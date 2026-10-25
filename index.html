@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ollama AI Studio - Antigravity Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0f1117;
+      --bg-secondary: #161b26;
+      --bg-tertiary: #1f2737;
+      --border: #2a3449;
+      --accent: #4f8cff;
+      --accent-hover: #3b76e8;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --user-bubble: #1e3a8a;
+      --assistant-bubble: #1c2433;
+      --success: #238636;
+      --danger: #da3633;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 320px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, #4f8cff, #9333ea);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: white;
+      font-size: 18px;
+    }
+
+    .brand-text h1 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .brand-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 500;
+      margin: 12px 20px;
+      background: rgba(35, 134, 54, 0.15);
+      color: #3fb950;
+      border: 1px solid rgba(63, 185, 80, 0.3);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3fb950;
+    }
+
+    .sidebar-section {
+      padding: 12px 20px 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    .model-selector-wrap {
+      padding: 0 20px 14px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    select:focus {
+      border-color: var(--accent);
+    }
+
+    .skills-filter {
+      padding: 0 20px 8px;
+    }
+
+    .skills-filter input {
+      width: 100%;
+      padding: 8px 12px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 12px;
+      outline: none;
+    }
+
+    .skills-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 12px 12px;
+    }
+
+    .skill-card {
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      background: var(--bg-tertiary);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .skill-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #79c0ff;
+      margin-bottom: 3px;
+    }
+
+    .skill-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.3;
+    }
+
+    /* Main Chat Area */
+    .main-chat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .chat-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-secondary);
+    }
+
+    .chat-header-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .chat-controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-tertiary);
+      color: var(--text);
+      transition: all 0.15s;
+    }
+
+    .btn:hover {
+      background: var(--border);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .messages-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .message {
+      max-width: 85%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      line-height: 1.6;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .message.user {
+      align-self: flex-end;
+      background: var(--user-bubble);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .message.assistant {
+      align-self: flex-start;
+      background: var(--assistant-bubble);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 4px;
+    }
+
+    .message pre {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 12px;
+      overflow-x: auto;
+      margin: 10px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+    }
+
+    .message code {
+      font-family: 'Fira Code', monospace;
+      background: rgba(110, 118, 129, 0.2);
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .message p {
+      margin-bottom: 8px;
+    }
+
+    .message p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Input area */
+    .input-bar {
+      padding: 18px 24px;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+    }
+
+    textarea {
+      flex: 1;
+      padding: 12px 16px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      resize: none;
+      height: 52px;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">⚡</div>
+      <div class="brand-text">
+        <h1>Ollama Studio</h1>
+        <p>Antigravity Powered</p>
+      </div>
+    </div>
+
+    <div class="status-badge" id="statusBadge">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Connecting to Ollama...</span>
+    </div>
+
+    <div class="sidebar-section">Active Model</div>
+    <div class="model-selector-wrap">
+      <select id="modelSelect">
+        <option value="antigravity-skills:latest">antigravity-skills:latest (All Skills)</option>
+      </select>
+    </div>
+
+    <div class="sidebar-section">Acquired Skills Directory (<span id="skillCount">0</span>)</div>
+    <div class="skills-filter">
+      <input type="text" id="skillSearch" placeholder="Filter skills (e.g. pymol, clinvar)...">
+    </div>
+    <div class="skills-list" id="skillsList">
+      <div style="font-size: 12px; color: var(--text-muted); padding: 8px;">Loading skills catalog...</div>
+    </div>
+  </div>
+
+  <!-- Main Chat -->
+  <div class="main-chat">
+    <div class="chat-header">
+      <div class="chat-header-title" id="chatTitle">Antigravity Skills Assistant</div>
+      <div class="chat-controls">
+        <button class="btn" onclick="clearChat()">Clear Chat</button>
+        <button class="btn btn-primary" onclick="syncSkills()">Sync Fresh Skills</button>
+      </div>
+    </div>
+
+    <div class="messages-container" id="messagesContainer">
+      <div class="message assistant">
+        <p><strong>Welcome to your local Ollama AI Workspace!</strong></p>
+        <p>I have ingested all 50+ of your Antigravity skills across Structural Biology, Genomics, Drug Discovery, Literature Search, and Agentic Automation.</p>
+        <p>You can click any skill on the left to ask questions or type directly below.</p>
+      </div>
+    </div>
+
+    <div class="input-bar">
+      <textarea id="promptInput" placeholder="Ask anything, or instruct with your acquired skills..." onkeydown="handleKey(event)"></textarea>
+      <button class="btn btn-primary" id="sendBtn" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    let skillsData = {};
+    const OLLAMA_HOST = "http://127.0.0.1:11434";
+
+    async function checkOllama() {
+      try {
+        const res = await fetch(`${OLLAMA_HOST}/api/tags`);
+        if (res.ok) {
+          const data = await res.json();
+          document.getElementById('statusDot').style.background = '#3fb950';
+          document.getElementById('statusText').innerText = 'Ollama Connected (Port 11434)';
+          
+          const sel = document.getElementById('modelSelect');
+          sel.innerHTML = '';
+          data.models.forEach(m => {
+            const opt = document.createElement('option');
+            opt.value = m.name;
+            opt.innerText = m.name;
+            if (m.name.includes('antigravity-skills')) opt.selected = true;
+            sel.appendChild(opt);
+          });
+        }
+      } catch (e) {
+        document.getElementById('statusDot').style.background = '#da3633';
+        document.getElementById('statusText').innerText = 'Ollama Disconnected';
+      }
+    }
+
+    async function loadSkillsCatalog() {
+      try {
+        const res = await fetch('skills_knowledge_base.json');
+        if (res.ok) {
+          skillsData = await res.json();
+          renderSkills(skillsData);
+        }
+      } catch (e) {
+        console.log("Using fallback or waiting for sync:", e);
+      }
+    }
+
+    function renderSkills(skills) {
+      const list = document.getElementById('skillsList');
+      list.innerHTML = '';
+      const keys = Object.keys(skills);
+      document.getElementById('skillCount').innerText = keys.length;
+
+      keys.forEach(k => {
+        const item = skills[k];
+        const card = document.createElement('div');
+        card.className = 'skill-card';
+        card.innerHTML = `
+          <div class="skill-name">${item.name}</div>
+          <div class="skill-desc">${item.description || 'No description'}</div>
+        `;
+        card.onclick = () => {
+          document.getElementById('promptInput').value = `Using your acquired skill '${item.name}', explain how to `;
+          document.getElementById('promptInput').focus();
+        };
+        list.appendChild(card);
+      });
+    }
+
+    document.getElementById('skillSearch').addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = {};
+      for (const [k, v] of Object.entries(skillsData)) {
+        if (k.toLowerCase().includes(q) || (v.description && v.description.toLowerCase().includes(q))) {
+          filtered[k] = v;
+        }
+      }
+      renderSkills(filtered);
+    });
+
+    function handleKey(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    }
+
+    function clearChat() {
+      document.getElementById('messagesContainer').innerHTML = `
+        <div class="message assistant">
+          <p>Chat cleared. Ready for your prompt.</p>
+        </div>
+      `;
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('promptInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const model = document.getElementById('modelSelect').value;
+      input.value = '';
+
+      const container = document.getElementById('messagesContainer');
+      
+      // User message
+      const userDiv = document.createElement('div');
+      userDiv.className = 'message user';
+      userDiv.innerText = text;
+      container.appendChild(userDiv);
+
+      // Assistant message placeholder
+      const asstDiv = document.createElement('div');
+      asstDiv.className = 'message assistant';
+      asstDiv.innerHTML = '<em>Thinking...</em>';
+      container.appendChild(asstDiv);
+      container.scrollTop = container.scrollHeight;
+
+      document.getElementById('sendBtn').disabled = true;
+
+      try {
+        const response = await fetch(`${OLLAMA_HOST}/api/generate`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: model,
+            prompt: text,
+            stream: true
+          })
+        });
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let accumulated = '';
+        asstDiv.innerHTML = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split('\n');
+
+          for (const line of lines) {
+            if (line.trim()) {
+              try {
+                const parsed = JSON.parse(line);
+                if (parsed.response) {
+                  accumulated += parsed.response;
+                  asstDiv.innerText = accumulated;
+                  container.scrollTop = container.scrollHeight;
+                }
+              } catch (err) {}
+            }
+          }
+        }
+      } catch (err) {
+        asstDiv.innerHTML = `<span style="color:#da3633">Error connecting to Ollama: ${err.message}. Make sure Ollama is running on port 11434.</span>`;
+      } finally {
+        document.getElementById('sendBtn').disabled = false;
+      }
+    }
+
+    async function syncSkills() {
+      alert("Skills sync can be triggered from your daily scheduled automation or by running 'python sync_skills_to_ollama.py'.");
+    }
+
+    // Initialize
+    checkOllama();
+    loadSkillsCatalog();
+    setInterval(checkOllama, 8000);
+  </script>
+</body>
+</html>
