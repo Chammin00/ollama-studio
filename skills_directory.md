@@ -102,7 +102,7 @@ Access protein metadata, function, taxonomy, and sequences across UniProtKB, Uni
 ## Genomics & Variant Impact (14 skills)
 
 ### `alphagenome-atlas-website-links`
-Constructs deep-links and URLs for the AlphaGenome Atlas website. Supports generating single-variant exploration links (1-based chr:pos:ref>alt), genomic locus views (1-based closed chr:start-end), candidate summary tables, and AlphaGenome reference vs. alternate predictions. Use whenever visualizing, exploring, charting, or linking genetic variants and genomic loci on the AlphaGenome Atlas, or when asked to inspect, view, or link predictions for a genomic variant.
+Constructs deep-links and URLs for the AlphaGenome Atlas website. Supports generating single-variant exploration links (1-based VCF-style coordinates), genomic locus views (1-based closed chr:start-end), candidate summary tables, and AlphaGenome reference vs. alternate predictions. Use when visualizing, exploring, charting, or linking genetic variants and genomic loci on the AlphaGenome Atlas, or when asked to inspect, view, or link predictions for a genomic variant. Don't use for computing raw AlphaGenome variant predictions directly without Atlas URLs (use alphagenome-single-variant-analysis or alphagenome-variant-impact-score).
 
 - Source: `C:\Users\chase\.gemini\config\plugins\science\skills\alphagenome_atlas_website_links\SKILL.md`
 
@@ -240,17 +240,27 @@ Search PubMed for scientific literature, including published clinical trials. Fe
 
 - Source: `C:\Users\chase\.gemini\config\plugins\science\skills\pubmed_database\SKILL.md`
 
-## Developer Workflows & Automation (5 skills)
+## Developer Workflows & Automation (7 skills)
 
 ### `android-cli`
 Provides instructions for installing and using the `android` CLI. The `android` command-line tool is a critical tool for Android development and helps you create new Android projects, run Android apps on devices, manage and interact with Android virtual devices (including screenshots and UI inspection), manage Android SDK components, look up official Android documentation, and discover and install official Android skills.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\android-cli-plugin\skills\SKILL.md`
 
+### `android-device-hub`
+Instructions for working with the Android Device Hub sidecar, which lists, starts, stops, creates and removes Android Virtual Devices (AVDs), lists physical devices connected to adb, and lets the user mirror and control any of them (video, touch, keyboard, mouse wheel) in the Device Hub pane. Also explains how to inspect and interact with the screen the user is mirroring, with `android layout`, `android screen` and `adb`.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\android-cli-plugin\skills\device-hub\SKILL.md`
+
 ### `automation`
 Interactive guide to design and create a scheduled background automation. Use this skill when the user wants to create an automated or recurring scheduled task (e.g. "summarize my emails every morning", "every Monday send me a to-do list"). Also triggered by the /automation slash command.
 
 - Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\automation\SKILL.md`
+
+### `compose-preview`
+Instructions for the Android Compose Preview sidecar, which renders Jetpack Compose @Preview functions with `android preview render` and shows them in the Android Compose Preview pane. Use it when the user wants to see a Compose preview, or to review the result of UI changes — re-render after changing the code so that the pane shows the result.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\android-cli-plugin\skills\compose-preview\SKILL.md`
 
 ### `migrate-workflows`
 Automatically migrate legacy workflows to modern skills across global and workspace configurations. Scans for existing workflows, creates target SKILL.md files, and safely archives old workflow files.

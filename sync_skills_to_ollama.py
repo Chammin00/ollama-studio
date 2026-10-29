@@ -94,7 +94,7 @@ def categorize_skills(skills):
             categories["Genomics & Variant Impact"].append(data)
         elif any(k in n for k in ["chembl", "pubchem", "fda", "opentargets", "reactome", "clinical-trial"]):
             categories["Drug Discovery & Pharmacology"].append(data)
-        elif any(k in n for k in ["automation", "android", "workflow", "uv"]):
+        elif any(k in n for k in ["automation", "android", "workflow", "uv", "compose"]):
             categories["Developer Workflows & Automation"].append(data)
         elif any(k in n for k in ["agy", "antigravity", "customization", "plugin", "generative_ui", "credentials", "permissioned-github", "ui-extension"]):
             categories["Platform & Customizations"].append(data)
