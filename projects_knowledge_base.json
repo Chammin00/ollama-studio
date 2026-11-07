@@ -1,0 +1,642 @@
+{
+  "How to train your AI": {
+    "name": "How to train your AI",
+    "category": "AI / Agents",
+    "stack": "Ollama, Python, Modelfiles",
+    "status": "Active",
+    "frontier": "TensorRT-LLM 1.x (PyTorch-native), vLLM 0.7+, Blackwell NVFP4 16-element micro-block scaling with FP8 E4M3 local scaling & FP32 global scaling via ModelOpt (`mtq.quantize` with `NVFP4_DEFAULT_CFG` or `NVFP4_MLP_ONLY_CFG`), dual export pathways (`export_tensorrt_llm_checkpoint` & `export_hf_checkpoint` via `hf_quant_config.json`), vLLM/SGLang native `--quantization modelopt_fp4 --linear-backend cutlass` with Marlin W4A16 fallback, ModelOpt Quantization-Aware Distillation (QAD), `KvCacheConfig(dtype='nvfp4')`, RoPE precision control (`skip_rope_quantization=True` / `2FP4`), Speculative Decoding (EAGLE-2 / DFlash)",
+    "action": "Deploy `serve_vllm.ps1` with dynamic prefix caching; integrate AST parser and local ChromaDB knowledge base"
+  },
+  "personal assistant": {
+    "name": "personal assistant",
+    "category": "AI / Desktop",
+    "stack": "Python, Audio, JSON",
+    "status": "Active",
+    "frontier": "Faster-Whisper Turbo (CTranslate2), Kokoro-82M v1.0 ONNX (`kokoro-onnx` + G2P `misaki`), multi-voice linear interpolation blending (`0.6 * voice_sarah + 0.4 * voice_adam`), Structured JSON Tool Calling, sub-150ms speech loops",
+    "action": "Implement sub-150ms speech loop; bind `inspect_pc`, `windows event viewer`, and `automate my day` as callable tools"
+  },
+  "using ai agents for profit": {
+    "name": "using ai agents for profit",
+    "category": "AI / Finance",
+    "stack": "Python, SQLite, Pydantic v2",
+    "status": "Active",
+    "frontier": "LangGraph StateGraph, Double-entry invariants, IBM Docling & Surya OCR receipts, SHA-256 cryptographic digests",
+    "action": "Build cyclic self-correcting invoice parser with SHA-256 cryptographic checksums and anomaly isolation"
+  },
+  "is this AI": {
+    "name": "is this AI",
+    "category": "AI / Detection",
+    "stack": "Python, Transformers, FFT",
+    "status": "Active",
+    "frontier": "2D Fourier FFT spectral radial power density analysis, Kirchenbauer watermarking, acoustic phase flattening",
+    "action": "Implement 2D FFT radial power density check to catch synthetic diffusion grid artifacts"
+  },
+  "ollama": {
+    "name": "ollama",
+    "category": "AI / Knowledge Hub",
+    "stack": "Python, Ollama, HTML/JS",
+    "status": "Active",
+    "frontier": "Automated Antigravity skill ingestion, dynamic Modelfile generation, local HTTP web studio, Windows scheduled daily sync",
+    "action": "Expand `sync_skills_to_ollama.py` to auto-ingest newly added project refinement blueprints into the local system prompt"
+  },
+  "ai models tools from threads": {
+    "name": "ai models tools from threads",
+    "category": "AI / Directory & Studio",
+    "stack": "HTML5, TailwindCSS, JSON, JS",
+    "status": "Active",
+    "frontier": "Curated AI tools directory (reasoning, video, audio, design, web builders), Synthetix Studio workspace, multi-modal pipeline templates",
+    "action": "Sync `tools_catalog.json` with latest 2026 frontier releases; connect quick-launch buttons to `My Custom Gui`"
+  },
+  "agent 365": {
+    "name": "agent 365",
+    "category": "AI / Enterprise Productivity",
+    "stack": "Python 3.12, FastAPI, Pydantic v2, MSAL",
+    "status": "Active",
+    "frontier": "Authentic 1-to-1 Microsoft 365 replica, multi-agent Copilot orchestrator (Chief of Staff DAG task breakdown across Mail, Calendar, OneDrive, Teams, and Office specialists), MSAL Graph API client + in-memory mock tenant, high-gloss lacquer UI",
+    "action": "Expand multi-agent DAG task decomposition; wire in real-time execution telemetry to `automate my day` and `deploy` suite"
+  },
+  "vulnerability management": {
+    "name": "vulnerability management",
+    "category": "Cybersecurity",
+    "stack": "C#, .NET 10 MVC, SQLite",
+    "status": "Active",
+    "frontier": "Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, October/November 2026 advisories (**CVE-2026-76418** ASA/FTD SSL VPN tunnel DoS actively exploited in wild, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; `cisco-sa-asaftd-vpn-dos-dzv4mQFF`, `cisco-sa-sec-client-priv-esc-muF8eZdm`, **CVE-2026-76482** Smart License On-Prem CVSS 10.0, **CVE-2026-76519** Email Gateway RCE in AMP - CISA KEV, Secure Firewall & ISE hardening releases, **CVE-2026-76465** NX-OS MPLS OAM, **CVE-2026-76485/76486/76501** NGOAM, **CVE-2026-76471** NX-API, **CVE-2026-76498..500** APIC, **CVE-2026-76466** Expressway, **CVE-2026-76506** UCS Central RCE - CVSS 7.6, **CVE-2026-20236/20043** Snort 3 RCE - CVSS 9.0, **Nov 4, 2026 ISE/UCS Central/CUCM disclosures & Cisco EOY release freeze until Jan 20, 2027**)",
+    "action": "Ingest actively exploited CVE-2026-76418, CVE-2026-76519, CVE-2026-76482, and CVE-2026-76506 into automated scanner; compile scanner with .NET 10 Native AOT"
+  },
+  "MY Security": {
+    "name": "MY Security",
+    "category": "Cybersecurity",
+    "stack": "C#, .NET 10, PowerShell",
+    "status": "Active",
+    "frontier": "NetBird Zero-Trust posture checks, WireGuard kernel overlay, BitLocker/Defender compliance hooks, Cisco KEV telemetry, actively exploited CVE-2026-76418, CVE-2026-76519 & Secure Client posture check validation",
+    "action": "Add endpoint posture validator (BitLocker, Defender, OS build) before peer access; alert on unpatched ASA SSL VPN, AMP, Expressway, and NX-OS endpoints"
+  },
+  "ai defense": {
+    "name": "ai defense",
+    "category": "Cybersecurity / AI Safety",
+    "stack": "Python 3.12, HTML5, High-Gloss Lacquer",
+    "status": "Active",
+    "frontier": "Aegis-AI Defense Matrix: 5-layer zero-trust agent containment, gVisor microVMs (`runsc`), AST parameter validation, eBPF Tetragon in-kernel telemetry, default-deny DNS egress proxy, emergency hardware killswitch",
+    "action": "Deploy live simulation testbed on port 5050; bind anomaly alerts to Sysmon and `MY Security`"
+  },
+  "windows event viewer": {
+    "name": "windows event viewer",
+    "category": "Cybersecurity",
+    "stack": "PowerShell, Sysmon 15+, Batch",
+    "status": "Active",
+    "frontier": "Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`)",
+    "action": "Connect `Invoke-McAfeeScanner.ps1` to automated alert triggers for LSASS dump attempts; parse hourly scan logs"
+  },
+  "bot finder": {
+    "name": "bot finder",
+    "category": "Cybersecurity",
+    "stack": "Python, UV, FastAPI",
+    "status": "Active",
+    "frontier": "TLS fingerprinting (JA4), Heuristic IP reputation, Token buckets, rate-limiting middleware",
+    "action": "Add JA4 fingerprint inspection and rate-limiting middleware to FastAPI server"
+  },
+  "spam block": {
+    "name": "spam block",
+    "category": "Privacy / Security",
+    "stack": "Python, Flask, Playwright, XML",
+    "status": "Active",
+    "frontier": "Headless Playwright opt-out runner (`kevinl95/privotron` pattern), Texas TDPSA & HB 2802 compliance, California DELETE Act (DROP), Gmail filter XML rules",
+    "action": "Deploy automated Playwright opt-out runner for 15+ data brokers; sync suppression status and spam filters to `email organizer`"
+  },
+  "reverse engineer applications": {
+    "name": "reverse engineer applications",
+    "category": "Cybersecurity",
+    "stack": "Ghidra 11.3, x64dbg, PE-bear",
+    "status": "Active",
+    "frontier": "Headless Ghidra 11.3 decompilation, PyGhidra CPython 3 (JPype, `./support/pyghidra`), `JitPcodeEmulator` (JIT P-code translation to JVM bytecode for 3x-5x accelerated unpacking and string decryption), VS Code module project scaffolding, IAT inspection",
+    "action": "Build automated headless Ghidra Python script using PyGhidra and `JitPcodeEmulator` to unpack binaries and extract decrypted strings"
+  },
+  "REA": {
+    "name": "REA",
+    "category": "Cybersecurity / Reversing",
+    "stack": "Python, Ghidra 11.3, PowerShell",
+    "status": "Active",
+    "frontier": "Dedicated Reverse Engineering Applications Hub, Ninja Gaiden 2 Xenon/x64 DAT unpacker, Tekken 8 UE5 hooks, Naraka asset boundaries, PyGhidra CPython 3 integration, `JitPcodeEmulator` accelerated decoding",
+    "action": "Automate 1-click Ghidra 11.3 + JDK 21 installer in `tools/setup_ghidra.ps1` and connect `binary_inspector.py` with `JitPcodeEmulator` to `game mods`"
+  },
+  "RHCSA Exam200": {
+    "name": "RHCSA Exam200",
+    "category": "Linux / SysAdmin",
+    "stack": "Markdown, Shell, RHEL 9.5/10",
+    "status": "Active",
+    "frontier": "Podman 5 Quadlets (`.container`, `.image`, `.volume`, `.network`, `.kube`, `.pod`), Netavark + `pasta` rootless networking (replacing slirp4netns), systemd v256+ `run0` (`--machine=` container execution), `systemd-creds` encrypted secret injection, `loginctl enable-linger $USER`, journald streaming, cgroups v2 direct PID 1 monitoring, SELinux context (`:Z`)",
+    "action": "Build `grade_rhcsa_lab.sh` validating Quadlets, pasta/Netavark networks, persistent LVM UUIDs, and SGID permissions"
+  },
+  "openshift": {
+    "name": "openshift",
+    "category": "Linux / Platform Engineering",
+    "stack": "OpenShift 4.17/4.18/4.19, Kubernetes 1.30-1.32, oc, Podman 5, Helm, Argo CD",
+    "status": "Active",
+    "frontier": "Red Hat OpenShift Administration II (DO280) & EX280 certification curriculum, DO180 container architecture, DO380 advanced automation, OpenShift 4.17 (K8s 1.30, OVN-Kubernetes only), 4.18 (K8s 1.31 EUS, User Defined Networks UDNs GA, Secrets Store CSI Operator GA, `cert-manager` v1.15), 4.19 (K8s 1.32, unified console, BGP Route Advertisements for ClusterUserDefinedNetworks CUDNs with FRR via `k8s.ovn.org/v1` `RouteAdvertisements` CR, Network Observability Operator native UDN flow tracing, strict cgroups v2, Service Mesh 3.1, Argo CD/Rollouts), Security Context Constraints (SCC `restricted-v2`), Ingress Routes TLS profiles (Edge, Passthrough, Re-encrypt), dynamic CSI StorageClasses, `oc adm must-gather` & `ovn-trace`",
+    "action": "Execute `setup-workstation.ps1` and `check-binary.ps1`; run `diagnose-route.ps1` and `deploy-hello-world.ps1` to validate ingress routes and RBAC; configure CUDN BGP route advertisements; integrate EX280 timed mock exam engine"
+  },
+  "docker": {
+    "name": "docker",
+    "category": "DevOps / Containers",
+    "stack": "PowerShell, Docker Desktop 4.98+, WSL2, Linux",
+    "status": "Active",
+    "frontier": "Enterprise Container Virtualization on Windows 11 with WSL2, Intel Core i9-13900HX VT-x/VT-d firmware enablement, `.wslconfig` Mirrored Mode networking (`networkingMode=mirrored`), `dnsTunneling=true`, `autoProxy=true`, `virtiofs=true` high-performance shared-memory filesystem acceleration (slashing bind mount latency over legacy 9P), `autoMemoryReclaim=gradual` and `pageReporting=true` (dynamic RAM reclamation eliminating bloated `vmmemWSL`), `sparseVhd=true`, Docker Compose v2, rootless Podman 5 vs Docker CLI context bridging (`DOCKER_HOST`)",
+    "action": "Verify VT-x firmware status post-reboot; execute `Test-DockerEnvironment.ps1 -RunContainerTest`; test multi-service stack with `docker compose up -d`; apply Mirrored networking in `.wslconfig`"
+  },
+  "Scripting": {
+    "name": "Scripting",
+    "category": "Linux / PowerShell Automation",
+    "stack": "Bash, RHEL 9.5/10, PowerShell 5.1/7+, Pester 5.5+",
+    "status": "Active",
+    "frontier": "Production RHEL 10 & systemd v256+ `run0` privilege management (`--machine=` container debug shells), defensive Bash standards (`set -euo pipefail`, `IFS`), LVM storage monitoring, firewalld rich rules, Modern PowerShell cmdlet architecture (`[CmdletBinding(SupportsShouldProcess)]`, `[PSCustomObject]` streaming), Pester 5.5+ unit testing, `script-coach` AI mentor",
+    "action": "Execute `Test-Runner.ps1` and `test.sh` to validate all 14 labs; link interactive portal (`webpage/index.html`) into `My Custom Gui` quick launcher"
+  },
+  "aws": {
+    "name": "aws",
+    "category": "Cloud / DevOps",
+    "stack": "Markdown, Terraform, CDK",
+    "status": "Active",
+    "frontier": "AWS CDK v2 (Python), Terraform, IAM Identity Center (SSO), EventBridge GuardDuty auto-quarantine",
+    "action": "Supplement Cloud Practitioner domains with reproducible Terraform modules and SCP guardrails"
+  },
+  "google drive organizer": {
+    "name": "google drive organizer",
+    "category": "Automation",
+    "stack": "PowerShell, Google Drive API",
+    "status": "Active",
+    "frontier": "PEP 723 inline script metadata, SHA-256 deduplication, automatic OAuth2 token refresh",
+    "action": "Implement hash-based pre-upload check to eliminate redundant cloud uploads"
+  },
+  "email organizer": {
+    "name": "email organizer",
+    "category": "Automation",
+    "stack": "Python, UV, Gmail API",
+    "status": "Active",
+    "frontier": "OAuth2 token refresh lifecycle, LangGraph triage agent, IBM Docling attachment parsing",
+    "action": "Route invoice/receipt attachments directly to Google Drive structured folders; stream spam senders to `spam block`"
+  },
+  "automate my day": {
+    "name": "automate my day",
+    "category": "Productivity",
+    "stack": "Batch, VBS, Markdown, Python",
+    "status": "Active",
+    "frontier": "Kokoro-82M speech synthesis, multi-source telemetry ingestion, Stock Watch coiling alerts, automated YouTube Shorts packaging",
+    "action": "Synthesize daily morning briefing into `morning_brief.wav` for audio playback"
+  },
+  "screen reader": {
+    "name": "screen reader",
+    "category": "Accessibility",
+    "stack": "Python, Surya OCR, Piper TTS",
+    "status": "Active",
+    "frontier": "IBM Docling / Surya OCR layout parsing, Piper TTS, Tkinter UI snapshot caching, bookmarks persistence",
+    "action": "Replace legacy OCR with Surya/Docling to read multi-column technical PDFs without text interleaving"
+  },
+  "note taker": {
+    "name": "note taker",
+    "category": "Productivity",
+    "stack": "Markdown, Notes",
+    "status": "Active",
+    "frontier": "SuperMemo SM-2 algorithm, Anki CSV export, Hierarchical notes",
+    "action": "Add automated flashcard exporter converting Security+ notes into Anki flashcards"
+  },
+  "inspect my pc for improvements": {
+    "name": "inspect my pc for improvements",
+    "category": "SysAdmin / Tuning",
+    "stack": "PowerShell, WMI",
+    "status": "Active",
+    "frontier": "Windows Performance Toolkit (`xperf`), SSD SMART diagnostics, DPC/ISR latency sweeps",
+    "action": "Implement DPC and ISR latency check to flag driver-level audio/gaming microstutter"
+  },
+  "improve gaming pc performance": {
+    "name": "improve gaming pc performance",
+    "category": "Gaming / Tuning",
+    "stack": "PowerShell, Registry",
+    "status": "Active",
+    "frontier": "GPU MSI mode verification, Dynamic Ultimate Performance power plan, timer resolution tuning",
+    "action": "Create PowerShell tuning script enabling MSI mode on RTX GPU and optimizing timer resolution"
+  },
+  "zfold6 features": {
+    "name": "zfold6 features",
+    "category": "Mobile / Android",
+    "stack": "Markdown, Termux",
+    "status": "Active",
+    "frontier": "Termux Linux environment, Tasker automation, DeX multi-window, bi-directional Syncthing sync",
+    "action": "Document Termux Python execution recipes and bi-directional Syncthing sync scripts"
+  },
+  "scheduled task": {
+    "name": "scheduled task",
+    "category": "DevOps / Ops",
+    "stack": "Windows Task Scheduler, PS1",
+    "status": "Scaffolding",
+    "frontier": "Event-driven triggers, PowerShell task health logger, automated task failure alerts",
+    "action": "Add automated daily health check auditing all registered Antigravity scheduled tasks"
+  },
+  "My Custom Gui": {
+    "name": "My Custom Gui",
+    "category": "Portals / Command Center",
+    "stack": "HTML5, TailwindCSS, Glassmorphism",
+    "status": "Active",
+    "frontier": "Nexus Hub Pro Command Center, real-time telemetry polling (`deploy/health_status.json`), quick-launcher grid, local app hooks (`vscode://`, `file:///`)",
+    "action": "Integrate live WebSocket/REST health polling to `deploy/health_status.json`; add quick-launch tiles for new Plugins, Synthetix Studio, and OpenShift Lab"
+  },
+  "ai slop": {
+    "name": "ai slop",
+    "category": "Automation / Code Craftsmanship",
+    "stack": "PowerShell 7+, Regex, AST, Git Hooks, Windows Scheduler",
+    "status": "Active",
+    "frontier": "Anti-Slop Craftsman automated audit engine (`Invoke-AntiSlopAudit.ps1`), 6 community anti-patterns (Emoji Asset Flips, LLM Purple Prose, Shovelware Ad-Traps, Shallow Dilution, Zero Kinesthetics & Lifeless Touch, Sub-48dp touch targets), `Clear-AiSlop.ps1` automated remediation, `Register-AntiSlopSchedule.ps1` recurring audit",
+    "action": "Execute `Invoke-AntiSlopAudit.ps1` across all workspace projects; register daily scheduled audit; integrate anti-slop quality score into `deploy/health_status.json` and morning briefings"
+  },
+  "baselines": {
+    "name": "baselines",
+    "category": "Automation / Standards",
+    "stack": "Python, PowerShell, High-Gloss Lacquer",
+    "status": "Active",
+    "frontier": "Automated workspace habit tracking & pattern synthesis across 1,042+ conversation prompts, automated rule synthesis to `Projects/AGENTS.md`, `Sync-StillCosmicAndLacquer.ps1` distribution across 16 project hubs",
+    "action": "Execute daily midnight cron via `Register-BaselineSchedule.ps1`; stream synthesized rules into Ollama knowledge base"
+  },
+  "Plugins/chrome-pulse-task-manager": {
+    "name": "Plugins/chrome-pulse-task-manager",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, JS, Chrome APIs",
+    "status": "Active",
+    "frontier": "Chrome Pulse Toolbar Task Manager & Memory Saver, live toolbar badge stats (`chrome.system.memory`, `chrome.system.cpu`), safe tab discard memory reclamation (`chrome.tabs.discard`), tab search & sleep controls",
+    "action": "Add configurable memory pressure alert threshold; implement `chrome.sidePanel` persistent inspector"
+  },
+  "Plugins/website-bookmark-manager": {
+    "name": "Plugins/website-bookmark-manager",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, JS, CSS",
+    "status": "Active",
+    "frontier": "Full bookmark suite, auto-tagging, search & filter, import/export JSON, broken link verification, `manager/manager.html` full dashboard, `chrome.sidePanel.getLayout()` (Chrome 140+) dynamic left/right panel docking orientation detection",
+    "action": "Integrate `chrome.sidePanel` for persistent split-screen bookmark triage; implement `getLayout()` responsive sidebar layout"
+  },
+  "Plugins/website-screenshot": {
+    "name": "Plugins/website-screenshot",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, Canvas, Offscreen",
+    "status": "Active",
+    "frontier": "Multi-mode screenshot capture (full-page scrolling stitch, visible viewport, custom selection), built-in Canvas annotation editor (shapes, text, arrow, blur redaction, crop), PNG/PDF export, single offscreen document guard via `chrome.runtime.getContexts()`",
+    "action": "Implement `chrome.offscreen` with `getContexts()` collision guards for headless canvas stitch operations; add one-click copy to clipboard via Offscreen document"
+  },
+  "Plugins/youtube-audio-converter": {
+    "name": "Plugins/youtube-audio-converter",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, WebAssembly LAME, JS",
+    "status": "Active",
+    "frontier": "SoundFlow YouTube & video-to-audio converter, in-page WASM audio extraction (MP3/WAV/WebM), lossless tab audio capture via `tabCapture` + `offscreen`, A/B waveform trimming, ID3 tagger",
+    "action": "Test offscreen tab capture audio pipeline; verify keyboard shortcuts (`Ctrl+Shift+U`, `Ctrl+Shift+R`)"
+  },
+  "Plugins/webpage-reverse-engineer": {
+    "name": "Plugins/webpage-reverse-engineer",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, Gemini API, Ollama",
+    "status": "Active",
+    "frontier": "ReverseCraft AI webpage reverse engineer & recompiler, full-page DOM/CSS extraction, automated transpilation into standalone web apps, Playwright scripts, React components, and Ollama modelfiles",
+    "action": "Connect local Ollama bridge (`localhost:11434`) and Gemini API; test Studio dashboard (`Ctrl+Shift+U`)"
+  },
+  "Plugins/raindrop-sports-scoreboard": {
+    "name": "Plugins/raindrop-sports-scoreboard",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, ESPN API, JS",
+    "status": "Active",
+    "frontier": "Raindrop Sports Scoreboard Master, real-time live scores for NBA, NFL, NCAAB, and NCAAF via ESPN REST API, quarter clocks, broadcast badges, floating on-screen overlay (`Ctrl+Shift+S`)",
+    "action": "Calibrate polling intervals via `chrome.alarms`; verify floating overlay drag ergonomics"
+  },
+  "Plugins/raindrop-sports-nba": {
+    "name": "Plugins/raindrop-sports-nba",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, ESPN API, JS",
+    "status": "Active",
+    "frontier": "Specialized NBA scoreboard, live box scores, team timeout counts, quarter-by-quarter scoring flow, individual stat leaders",
+    "action": "Test live game clock sync; connect favorite team push alerts"
+  },
+  "Plugins/raindrop-sports-nfl": {
+    "name": "Plugins/raindrop-sports-nfl",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, ESPN API, JS",
+    "status": "Active",
+    "frontier": "Specialized NFL scoreboard, real-time drive charts, red zone possession indicators, down-and-distance, field position tracker",
+    "action": "Add red zone score alerts; verify Thursday/Sunday/Monday night game schedules"
+  },
+  "Plugins/raindrop-sports-ncaab": {
+    "name": "Plugins/raindrop-sports-ncaab",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, ESPN API, JS",
+    "status": "Active",
+    "frontier": "Specialized NCAA Men's Basketball live tracker, AP Top 25 rankings, conference filters, live March Madness tournament brackets",
+    "action": "Implement conference tournament bracket view; track live upset alerts"
+  },
+  "Plugins/raindrop-sports-ncaaf": {
+    "name": "Plugins/raindrop-sports-ncaaf",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, ESPN API, JS",
+    "status": "Active",
+    "frontier": "Specialized NCAA College Football tracker, CFP top-25 rankings, conference standings, scoring drive summaries, bowl game tracker",
+    "action": "Connect CFP playoff bracket predictor; verify ranking update hooks"
+  },
+  "chrome tab and bar": {
+    "name": "chrome tab and bar",
+    "category": "Browser Extension",
+    "stack": "Manifest V3, JS, CSS, Chrome APIs",
+    "status": "Active",
+    "frontier": "Google Chrome Manifest V3 2026 standard, persistent `chrome.sidePanel` with Chrome 140+ `sidePanel.getLayout()` dynamic left/right docking orientation awareness, programmatic `chrome.tabGroups` auto-categorization and color palettes, proactive memory reclamation via `chrome.tabs.discard`, `chrome.system.memory` & `chrome.system.cpu` live HUD telemetry, custom breadcrumb status bar, `chrome.storage.session` state persistence",
+    "action": "Scaffold Manifest V3 manifest, background service worker, and sidepanel UI; integrate search, domain auto-grouping, and sleep controls"
+  },
+  "MCP": {
+    "name": "MCP",
+    "category": "Systems / AI Tools",
+    "stack": "Node.js, JSON-RPC, Python",
+    "status": "Active",
+    "frontier": "Centralized Model Context Protocol hub, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`), mcp-baseline.js HUD, global `mcp_config.json` integration",
+    "action": "Sync live tool availability to `My Planetarium` and `My Custom Gui`; enforce loopback HMAC token auth"
+  },
+  "VR creation apps": {
+    "name": "VR creation apps",
+    "category": "XR / VR",
+    "stack": "WebXR, Three.js, Quest 3",
+    "status": "Active",
+    "frontier": "Three.js `WebGPURenderer` (`await renderer.init()`), TSL (Three Shading Language), node-based `RenderPipeline` (Three.js r183) with MRT, Quest 3 bare-hand tracking (`XRHandModelFactory`), HRTF Web Audio",
+    "action": "Upgrade `word-defender-xr.html` to WebGPU/TSL with `RenderPipeline` and add `XRHandModelFactory` pinch firing"
+  },
+  "3d images": {
+    "name": "3d images",
+    "category": "3D / Graphics",
+    "stack": "Node.js, WebGL, Shaders",
+    "status": "Active",
+    "frontier": "WebGL2 stereoscopic shaders, glTF Draco mesh compression, Three.js TSL materials",
+    "action": "Integrate Draco mesh compression to load high-resolution 3D models with minimal latency"
+  },
+  "backgrounds for gaming,apps": {
+    "name": "backgrounds for gaming,apps",
+    "category": "Graphics / Dev",
+    "stack": "HTML5, CSS3, JS, Python",
+    "status": "Active",
+    "frontier": "5-layer parallax engine, horizontal seamless feathering, automated contrast squint test",
+    "action": "Deploy Python background processor for seamless loop generation and squint contrast checks"
+  },
+  "game studio": {
+    "name": "game studio",
+    "category": "Game Dev",
+    "stack": "C++ UE5, Unity 6, MSVC, ROMs",
+    "status": "Active",
+    "frontier": "Unreal Engine 5 C++ (`ShadowBlade_Tekken_Naraka_UE5` Battle Royale), BPS/UPS delta-patching, Capstone disassembly, Anti-Slop combat feedback standards",
+    "action": "Expand ShadowBlade C++ character combat system (Naraka clash, Tekken heat, Ninja Gaiden Izuna drop); verify hit-stop kinesthetics"
+  },
+  "chancenvaders": {
+    "name": "chancenvaders",
+    "category": "Games / Retro Arcade",
+    "stack": "HTML5 Canvas, Procedural Web Audio API, JS",
+    "status": "Active",
+    "frontier": "Museum-grade 1978 Space Invaders Arcade Replica, 100% Intel 8080 spec fidelity (`invaders.asm`), bitmask sprite matrices, destructible arched bunkers with dynamic pixel blast carving, procedural Web Audio API synthesizer (discrete oscillators, 4-tone accelerating march 55.0Hz down to 33ms, zero audio files), continuous vertical swept-bounding-box raycast intervals (`[min(y, prevY), max(y, prevY)]` with `\u00b13px` horizontal tolerances eliminating bullet tunneling), point-and-click finger/touch aim and rapid-fire streaming, 5 collectible power-up pods (Cyan Spread Laser, Neon Green Piercing Beam, Amber Shield, Orange Overdrive Rapid, Crimson Nuke), 6-tier Orbital Tower Ascension elevator, 1978 Pepper's Ghost Mirror Illusion (lunar diorama backdrop behind semi-transparent two-way mirror, 45-degree cabinet shelf reflection, cellophane color overlays)",
+    "action": "Add localStorage high scores persistence; integrate Gamepad API haptic rumble vibration; scaffold WebGL 3D curved CRT bezel simulation"
+  },
+  "game mods": {
+    "name": "game mods",
+    "category": "Game Dev",
+    "stack": "Batch, Asset Injectors, HTML",
+    "status": "Active",
+    "frontier": "Mod conflict resolver, automated asset validator, IoStore (`.utoc`/`.ucas`) extraction with FModel, Xbox PC GUI dashboard (`xbox_pc_gui.html`)",
+    "action": "Build checksum validation script verifying patched game assets against known good hashes; polish `xbox_pc_gui.html`"
+  },
+  "Record my Gameplay": {
+    "name": "Record my Gameplay",
+    "category": "XR / Media / Game Capture",
+    "stack": "Python 3.12, OBS Studio 30/31, obsws-python, OpenCV",
+    "status": "Active",
+    "frontier": "obs-websocket v5.x protocol, NVIDIA NVENC AV1 hardware encoding (`jim_av1_nvenc` and OBS 31 `obs_nvenc_av1_tex`), OpenCV template matching (`cv2.TM_CCOEFF_NORMED`) with multi-scale downscaled pyramids for sub-45ms boss health bar & victory screen detection, automated failed attempt disk purging (`Path.unlink`), direct integration into `youtube shorts edit for gaming`",
+    "action": "Implement downscaled template matching loop in `vision_monitor.py` for hands-free detection; configure OBS encoder to NVENC AV1 for RTX 4080"
+  },
+  "youtube shorts edit for gaming": {
+    "name": "youtube shorts edit for gaming",
+    "category": "Media / AI",
+    "stack": "Python, FFmpeg 7, OpenCV",
+    "status": "Active",
+    "frontier": "NVIDIA NVENC AV1 (`av1_nvenc`), Faster-Whisper karaoke subtitles (`.ass`), optical flow crosshair tracker, video craftsmanship pacing",
+    "action": "Build FFmpeg script reframing 16:9 gameplay to 9:16 vertical video with animated `.ass` subs"
+  },
+  "game review": {
+    "name": "game review",
+    "category": "Media / Script",
+    "stack": "Markdown",
+    "status": "Active",
+    "frontier": "Video metadata optimization, B-roll cue synchronization, narration script templates, Anti-Slop narrative depth",
+    "action": "Align *A Plague Tale: Resonance* script timestamps with captured gameplay footage"
+  },
+  "monopoly": {
+    "name": "monopoly",
+    "category": "Games",
+    "stack": "HTML5 Canvas, JS, Python",
+    "status": "Active",
+    "frontier": "Monte Carlo Tree Search (MCTS), Markov chain probabilities, adaptive AI trading, tactile piece movement",
+    "action": "Implement MCTS bot decision engine for dynamic property trading valuation"
+  },
+  "chess": {
+    "name": "chess",
+    "category": "Games",
+    "stack": "JS, CSS, WebAssembly",
+    "status": "Active",
+    "frontier": "Stockfish 16+ WebAssembly in Web Workers, client evaluation bar, blunder coaching, high-contrast SVG pieces",
+    "action": "Integrate Stockfish 16 WASM worker for real-time engine evaluation and blunder coaching"
+  },
+  "desktopscreensaver": {
+    "name": "desktopscreensaver",
+    "category": "Graphics",
+    "stack": "HTML5 Canvas, JS",
+    "status": "Active",
+    "frontier": "Hardware-accelerated canvas particles, dynamic frame pacing, idle power conservation",
+    "action": "Add automatic frame throttling when window is unfocused to conserve GPU cycles"
+  },
+  "anime": {
+    "name": "anime",
+    "category": "Media",
+    "stack": "Python, PowerShell, REST",
+    "status": "Active",
+    "frontier": "AniList GraphQL API, Plex/Kodi naming format compliance, structured `.nfo` generator",
+    "action": "Build AniList scraper script matching video files and generating structured `.nfo` metadata"
+  },
+  "mobile game": {
+    "name": "mobile game",
+    "category": "Mobile / Game Dev",
+    "stack": "React Native 0.88, Expo, TypeScript",
+    "status": "Active",
+    "frontier": "Aether Ascent dual-mode card battle engine (Gwent 3-row tactical warfare + Slay the Spire roguelike ascension), React Native New Architecture (Fabric), Margelo Nitro Modules (`margelo/nitro`, package `react-native-nitro-modules`, ~7.27ms vs 115ms per 100k calls, Nitrogen code generator, Swift 5.9+ direct C++ interop, Android `fbjni`), SHA-256 deterministic combat state hashing, Anti-Slop kinesthetics (haptics, spring tweening, hit-stops, min 48dp touch targets)",
+    "action": "Add deterministic battle state hashing to `gwentEngine.ts` and migrate critical card state bindings to Nitro Modules Hybrid Objects; enforce 48dp touch targets"
+  },
+  "My Planetarium": {
+    "name": "My Planetarium",
+    "category": "XR / Graphics / Navigation",
+    "stack": "Three.js, WebGL, High-Gloss Lacquer",
+    "status": "Active",
+    "frontier": "3D Interactive Deep Space Planetary Observatory & Sector Atlas, 64 charted planetary bodies, astronomical rigor, Antigravity bidirectional prompt dispatching (`window.sidecar.agent.sendMessage`), auto-fit panoramic projection (`[F]`), MCP matrix",
+    "action": "Keep `projects-data.js` synchronized with expanded project inventory; package as Antigravity UI extension plugin"
+  },
+  "Scary Water Slides": {
+    "name": "Scary Water Slides",
+    "category": "XR / 3D Simulation / Media",
+    "stack": "Three.js, WebGL, Web Audio, VFX",
+    "status": "Active",
+    "frontier": "Playable 3D waterslide simulation (Space Exosphere, Avalanche, Volcanic Core), real-world terrain 4K VFX integration (Blender camera tracking, PBR glass BSDF, Runway Gen-3/Kling 1.5 AI motion), top 0.1% YouTube packaging drawer",
+    "action": "Record 4K simulation runs; generate episode 1 thumbnail assets and test audio synthesis"
+  },
+  "Choogle": {
+    "name": "Choogle",
+    "category": "Search / Portals",
+    "stack": "Static Web, JS, CSS, PWA",
+    "status": "Active",
+    "frontier": "Automated `Sync-ChoogleProjects.ps1` catalog sync, offline Service Worker, local inverted index",
+    "action": "Sync search database with expanded project inventory and add offline search caching"
+  },
+  "portfolio": {
+    "name": "portfolio",
+    "category": "Web / Showcase",
+    "stack": "HTML5, CSS3, JS",
+    "status": "Active",
+    "frontier": "Dynamic JSON project catalog sync, dark-mode animations, interactive category filtering",
+    "action": "Connect project showcase cards directly to live `deploy/PROJECT_CATALOG.json`"
+  },
+  "Github Portfolio": {
+    "name": "Github Portfolio",
+    "category": "Web / Career Showcase",
+    "stack": "HTML5, CSS3, JS, Markdown, PDF Resumes",
+    "status": "Active",
+    "frontier": "Chase Hamilton Master Developer & Infrastructure Showcase, dynamic GitHub REST/GraphQL API integration, interactive terminal CLI modal (`whoami`, `cat resume`, `ls projects`, `skills`), Bento grid glassmorphism, live operational health badges synced from `deploy/health_status.json`",
+    "action": "Integrate terminal emulator component in `app.js` and connect project cards to live `deploy/PROJECT_CATALOG.json` health badges"
+  },
+  "onestop": {
+    "name": "onestop",
+    "category": "Portals / Hubs",
+    "stack": "PowerShell, HTML, CSS",
+    "status": "Active",
+    "frontier": "Lightweight local PowerShell HTTP server, health status badge, quick-launch grid",
+    "action": "Add live health badge polling from `deploy/health_status.json`"
+  },
+  "synergize and pay": {
+    "name": "synergize and pay",
+    "category": "Strategy / Business",
+    "stack": "Markdown, HTML",
+    "status": "Active",
+    "frontier": "Digital product packaging, cross-project monetization matrix, turnkey distribution",
+    "action": "Create turnkey commercial distribution packaging for PC Optimizer and Study Simulator"
+  },
+  "architect": {
+    "name": "architect",
+    "category": "Architecture",
+    "stack": "Markdown, Mermaid, HTML",
+    "status": "Active",
+    "frontier": "Mermaid.js global diagrams, control plane sequence diagrams, living architecture map",
+    "action": "Maintain living system architecture map reflecting new OpenShift, Anti-Slop, financial, and trading nodes"
+  },
+  "deploy": {
+    "name": "deploy",
+    "category": "DevOps / Control",
+    "stack": "PowerShell, SQLite, JSON",
+    "status": "Active",
+    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (71 tracked projects + 10 extension sub-projects), nightly health scan (17/17 Deploy Suite 100% Healthy)",
+    "action": "Maintain continuous health verification and sync all active projects into `PROJECT_CATALOG.json`"
+  },
+  "sandbox": {
+    "name": "sandbox",
+    "category": "DevOps / Test",
+    "stack": "Python, PowerShell, Web",
+    "status": "Active",
+    "frontier": "Mock HTTP endpoints, rapid prototyping sandbox, isolated script validation",
+    "action": "Maintain isolated staging ground for testing experimental scripts before project deployment"
+  },
+  "stock watch": {
+    "name": "stock watch",
+    "category": "Quantitative Finance",
+    "stack": "Python 3.12, UV, alpaca-py, cuDF",
+    "status": "Active",
+    "frontier": "NVIDIA RAPIDS cuDF GPU acceleration (`cudf.pandas.install()`), Volume-Filtered Carter Squeeze (VWAP & 21/50 EMA), Wyckoff Spring smart-money absorption ($>2.0\\times$ volume), Half-Kelly capital sizing, Alpaca paper-to-live execution slippage & spread delta logging",
+    "action": "Implement slippage and spread-crossing delta logger in `alpaca_broker.py`; connect evening screener alerts to `automate my day` briefing"
+  },
+  "stock Bot traders": {
+    "name": "stock Bot traders",
+    "category": "Quantitative Finance / Algotrading",
+    "stack": "Python 3.12, alpaca-py, CCXT, Flask",
+    "status": "Active",
+    "frontier": "Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling knowledge logger",
+    "action": "Ingest coiling volatility squeeze signals from `stock watch` into vector screener; enforce zero entry slippage via bracket limit orders"
+  },
+  "Track Home Value": {
+    "name": "Track Home Value",
+    "category": "Finance / Real Estate",
+    "stack": "Python, Chart.js, CSV, JSON",
+    "status": "Active",
+    "frontier": "Collin CAD scraper, Zestimate/Redfin consensus, Collin County ARB Tax protest CMA generator",
+    "action": "Build automated property tax protest packet generator using Collin CAD comps"
+  },
+  "track most wanted": {
+    "name": "track most wanted",
+    "category": "E-Commerce",
+    "stack": "Python, Chart.js, eBay API",
+    "status": "Active",
+    "frontier": "eBay Browse API, `curl_cffi` TLS Chrome fingerprint impersonation (StockX), Webhook alerts",
+    "action": "Set up automated alert webhook notifying when ANTA KAI \"Ocean Eye\" drops $\\le \\$120$"
+  },
+  "deal Finder": {
+    "name": "deal Finder",
+    "category": "E-Commerce",
+    "stack": "Python, Playwright, SQLite",
+    "status": "Active",
+    "frontier": "Multi-store deal scrapers (Amazon, Best Buy), 90-day ATL tracker, discount code harvester",
+    "action": "Build initial Playwright price drop crawler storing daily hardware pricing in SQLite"
+  },
+  "comptia exam simulator": {
+    "name": "comptia exam simulator",
+    "category": "Education",
+    "stack": "HTML, JS, CSS",
+    "status": "Active",
+    "frontier": "SY0-701 domain weighting, Performance-Based Questions (PBQ), interactive network topologies, `diagnose.html` diagnostic engine",
+    "action": "`diagnose.html` diagnostic PBQ engine implemented and verified (health restored to 100% Healthy 17/17); expand domain-specific PBQ network simulation questions"
+  },
+  "1st grade learning": {
+    "name": "1st grade learning",
+    "category": "Education",
+    "stack": "HTML, JS, Audio",
+    "status": "Active",
+    "frontier": "Gamified phonics engine, Web Audio sound effects, typing arcade, celebratory canvas particles",
+    "action": "Expand spelling word dictionary and add positive reinforcement celebratory canvas particles"
+  },
+  "personal training": {
+    "name": "personal training",
+    "category": "Health / Fitness",
+    "stack": "Markdown",
+    "status": "Active",
+    "frontier": "Progressive overload tracking, 1RM Brzycki formula metrics, volume fatigue autoregulation",
+    "action": "Add automated weekly volume calculator and deload week recommendation script"
+  },
+  "Images": {
+    "name": "Images",
+    "category": "Asset Store",
+    "stack": "Image Formats (.heic, .jpg)",
+    "status": "Active",
+    "frontier": "Shared high-res image repository, automated format converter (Pillow WebP batch compression)",
+    "action": "Add Python image conversion script batch-converting mobile `.heic` photos to `.webp`"
+  },
+  "project refinement": {
+    "name": "project refinement",
+    "category": "Strategy / Docs",
+    "stack": "Markdown, Schemas",
+    "status": "Active",
+    "frontier": "5 Frontier Blueprints, Action Matrix, Daily automated refresh, 2026 intelligence pipeline",
+    "action": "Keep master blueprints continuously aligned with 2026 tech breakthroughs across all active projects in the portfolio"
+  },
+  "New folder (3)": {
+    "name": "New folder (3)",
+    "category": "Maintenance / Staging",
+    "stack": "Empty Workspace Dirs",
+    "status": "Clean",
+    "frontier": "Temporary workspace cleanup rules, staging area isolation for ephemeral tests",
+    "action": "Maintain clean staging isolation; archive or repurpose scratch directories into dedicated testbeds"
+  },
+  ".pytest_cache": {
+    "name": ".pytest_cache",
+    "category": "Maintenance",
+    "stack": "Cache Artifacts",
+    "status": "Internal",
+    "frontier": "Automated test execution cache",
+    "action": "Maintain `.gitignore` rules to keep repository trees clean of test cache files"
+  }
+}
