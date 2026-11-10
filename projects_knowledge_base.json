@@ -17,11 +17,11 @@
   },
   "using ai agents for profit": {
     "name": "using ai agents for profit",
-    "category": "AI / Finance",
-    "stack": "Python, SQLite, Pydantic v2",
+    "category": "AI / Operations Engine",
+    "stack": "Python 3.12, FastAPI, SQLite, Three.js WebGL",
     "status": "Active",
-    "frontier": "LangGraph StateGraph, Double-entry invariants, IBM Docling & Surya OCR receipts, SHA-256 cryptographic digests",
-    "action": "Build cyclic self-correcting invoice parser with SHA-256 cryptographic checksums and anomaly isolation"
+    "frontier": "Antigravity Operations Engine: B2B document ingestion & reconciliation, 3D NPR pipeline topology simulator (cel/toon shaders, cross-hatching, inverted hull outlines), step-by-step packet simulator across 4 operational scenarios, Client Acquisition ROI & SOW Studio (`POST /api/roi/calculate`, `POST /api/proposal/generate`), forensic reconciliation drill engine, 6 deterministic business invariants, batch approvals (`POST /api/documents/batch-approve`), QuickBooks CSV export, and async outbound webhook dispatch",
+    "action": "Maintain 6 core invariants; execute `pytest tests/test_pipeline.py`; link live demo to `My Custom Gui`"
   },
   "is this AI": {
     "name": "is this AI",
@@ -60,7 +60,7 @@
     "category": "Cybersecurity",
     "stack": "C#, .NET 10 MVC, SQLite",
     "status": "Active",
-    "frontier": "Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, October/November 2026 advisories (**CVE-2026-76418** ASA/FTD SSL VPN tunnel DoS actively exploited in wild, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; `cisco-sa-asaftd-vpn-dos-dzv4mQFF`, `cisco-sa-sec-client-priv-esc-muF8eZdm`, **CVE-2026-76482** Smart License On-Prem CVSS 10.0, **CVE-2026-76519** Email Gateway RCE in AMP - CISA KEV, Secure Firewall & ISE hardening releases, **CVE-2026-76465** NX-OS MPLS OAM, **CVE-2026-76485/76486/76501** NGOAM, **CVE-2026-76471** NX-API, **CVE-2026-76498..500** APIC, **CVE-2026-76466** Expressway, **CVE-2026-76506** UCS Central RCE - CVSS 7.6, **CVE-2026-20236/20043** Snort 3 RCE - CVSS 9.0, **Nov 4, 2026 ISE/UCS Central/CUCM disclosures & Cisco EOY release freeze until Jan 20, 2027**)",
+    "frontier": "Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, October/November 2026 advisories (**CVE-2026-76418** ASA/FTD SSL VPN tunnel DoS actively exploited in wild, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; `cisco-sa-asaftd-vpn-dos-dzv4mQFF`, `cisco-sa-sec-client-priv-esc-muF8eZdm`, **CVE-2026-76482** Smart License On-Prem CVSS 10.0, **CVE-2026-76519** Email Gateway RCE in AMP - CISA KEV, Secure Firewall & ISE hardening releases, **CVE-2026-76465** NX-OS MPLS OAM, **CVE-2026-76485/76486/76501** NGOAM, **CVE-2026-76471** NX-API, **CVE-2026-76498..500** APIC, **CVE-2026-76466** Expressway, **CVE-2026-76506** UCS Central RCE - CVSS 7.6, **CVE-2026-76419** CUCM XSS - CVSS 6.1, **CVE-2026-20241** ISE Authorization Bypass - CVSS 5.3, **CVE-2026-20043/20236/20291/20356** Snort 3 RCE - CVSS 9.0, **CVE-2026-76524** Snort socket command exec - CVSS 7.8, **Nov 4, 2026 ISE/UCS Central/CUCM disclosures & Cisco EOY release freeze until Jan 20, 2027**)",
     "action": "Ingest actively exploited CVE-2026-76418, CVE-2026-76519, CVE-2026-76482, and CVE-2026-76506 into automated scanner; compile scanner with .NET 10 Native AOT"
   },
   "MY Security": {
@@ -178,10 +178,10 @@
   "automate my day": {
     "name": "automate my day",
     "category": "Productivity",
-    "stack": "Batch, VBS, Markdown, Python",
+    "stack": "Python 3.12, UV, Batch, VBS, Kokoro-82M, FFmpeg",
     "status": "Active",
-    "frontier": "Kokoro-82M speech synthesis, multi-source telemetry ingestion, Stock Watch coiling alerts, automated YouTube Shorts packaging",
-    "action": "Synthesize daily morning briefing into `morning_brief.wav` for audio playback"
+    "frontier": "Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py`), automated clip cutter & YouTube shorts converter (`convert_to_shorts.py`, `smart_cutter.py`, `sfx_manager.py`) processing TEKKEN 8, Beast of Reincarnation, and Sonic Racing clips, Kokoro-82M ONNX speech synthesis (`morning_brief.wav`), multi-source telemetry ingestion, Stock Watch coiling alerts",
+    "action": "Verify sentinel daemon automated clip processing; ensure morning audio briefing synthesizes daily telemetry via Kokoro-82M ONNX"
   },
   "screen reader": {
     "name": "screen reader",
@@ -210,10 +210,10 @@
   "improve gaming pc performance": {
     "name": "improve gaming pc performance",
     "category": "Gaming / Tuning",
-    "stack": "PowerShell, Registry",
+    "stack": "PowerShell 7+, Registry, WMI, UE5 Ini",
     "status": "Active",
-    "frontier": "GPU MSI mode verification, Dynamic Ultimate Performance power plan, timer resolution tuning",
-    "action": "Create PowerShell tuning script enabling MSI mode on RTX GPU and optimizing timer resolution"
+    "frontier": "Dynamic Ultimate Performance power plan (`$UltimatePlanGuid = \"ce71df13-30de-418e-9c7c-7afb0a84dc89\"`), discrete RTX 4080 GPU registry assignment (`HKCU:\\Software\\Microsoft\\DirectX\\UserGpuPreferences`, `GpuPreference=2;`), Phantom Blade Zero (PBZ) & Steam continuous performance watcher (`Start-SteamGamingPerformanceWatcher.ps1` polling every 5s), process priority elevation (`High`), UE5 `Engine.ini` streaming & async compute tuning (`r.Streaming.PoolSize=6144`, `r.CreateShadersOnLoad=1`, `r.AsyncCompute=1`, `FX.Niagara.AllowAsyncBudgeting=1`), GPU MSI-X mode verification, Windows 11 24H2 DirectStorage 1.2 GPU decompression",
+    "action": "Register `Start-SteamGamingPerformanceWatcher.ps1` as a startup background daemon; verify `Engine.ini` 6GB texture pool & shader preload across steamapps directories"
   },
   "zfold6 features": {
     "name": "zfold6 features",
@@ -378,10 +378,10 @@
   "game studio": {
     "name": "game studio",
     "category": "Game Dev",
-    "stack": "C++ UE5, Unity 6, MSVC, ROMs",
+    "stack": "C++ UE5, Godot 4.3/4.4, Unity 6, MSVC, ROMs",
     "status": "Active",
-    "frontier": "Unreal Engine 5 C++ (`ShadowBlade_Tekken_Naraka_UE5` Battle Royale), BPS/UPS delta-patching, Capstone disassembly, Anti-Slop combat feedback standards",
-    "action": "Expand ShadowBlade C++ character combat system (Naraka clash, Tekken heat, Ninja Gaiden Izuna drop); verify hit-stop kinesthetics"
+    "frontier": "Unreal Engine 5 C++ (`ShadowBlade_Tekken_Naraka_UE5` Battle Royale: Naraka clash, Tekken heat, Ninja Gaiden Izuna drop), Godot 4 3D arena (`ShatteredPagoda_Godot` with 3D models, scenes, tests, `Launch_Kagura_Godot3D.bat`, `Play_Kagura_Godot3D.vbs`), `ChessClash_Godot`, `aether_ascent_spire` build, BPS/UPS delta-patching, Capstone disassembly, Anti-Slop hit-stop kinesthetics",
+    "action": "Run `Launch_Kagura_Godot3D.bat` to verify 3D pagoda arena rendering; benchmark Forward+ clustered lighting and hit-stop frame freezing"
   },
   "chancenvaders": {
     "name": "chancenvaders",
@@ -458,10 +458,10 @@
   "mobile game": {
     "name": "mobile game",
     "category": "Mobile / Game Dev",
-    "stack": "React Native 0.88, Expo, TypeScript",
+    "stack": "React Native 0.88, Expo, TypeScript, Nitro Modules",
     "status": "Active",
-    "frontier": "Aether Ascent dual-mode card battle engine (Gwent 3-row tactical warfare + Slay the Spire roguelike ascension), React Native New Architecture (Fabric), Margelo Nitro Modules (`margelo/nitro`, package `react-native-nitro-modules`, ~7.27ms vs 115ms per 100k calls, Nitrogen code generator, Swift 5.9+ direct C++ interop, Android `fbjni`), SHA-256 deterministic combat state hashing, Anti-Slop kinesthetics (haptics, spring tweening, hit-stops, min 48dp touch targets)",
-    "action": "Add deterministic battle state hashing to `gwentEngine.ts` and migrate critical card state bindings to Nitro Modules Hybrid Objects; enforce 48dp touch targets"
+    "frontier": "Aether Ascent dual-mode card battle engine: Gwent 3-row tactical warfare (`gwentEngine.ts`, `gwentCards.ts`, Hayabusa faction kodachi/kusarigama/odachi, `GwentScreen.tsx`), Slay the Spire roguelike ascension (`spire.ts`, `spireCards.ts`, `spireEnemies.ts`, `SpireCombatScreen.tsx`), Afro-Asian warrior animated motion stage (`AfroAsianMotionStage.tsx`), Chess campaign play mode (`chessAudioService.ts`, `ChessPlayScreen.tsx`, `CampaignShopModal.tsx`), clean-room monetization service (`monetization.ts`, `monetizationService.ts`), React Native New Architecture (Fabric), Margelo Nitro Modules (`margelo/nitro`, package `react-native-nitro-modules`, ~7.27ms vs 115ms per 100k calls, Nitrogen code generator, Swift 5.9+ direct C++ interop, Android `fbjni`), SHA-256 deterministic combat state hashing, Anti-Slop kinesthetics (haptics, spring tweening, min 48dp touch targets)",
+    "action": "Benchmark Nitro Modules JSI hybrid objects against standard state recalculations; test Expo web export bundle in `mobile game/public`"
   },
   "My Planetarium": {
     "name": "My Planetarium",
@@ -532,7 +532,7 @@
     "category": "DevOps / Control",
     "stack": "PowerShell, SQLite, JSON",
     "status": "Active",
-    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (71 tracked projects + 10 extension sub-projects), nightly health scan (17/17 Deploy Suite 100% Healthy)",
+    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (74 tracked projects + 10 extension sub-projects), nightly health scan (17/17 Deploy Suite 100% Healthy)",
     "action": "Maintain continuous health verification and sync all active projects into `PROJECT_CATALOG.json`"
   },
   "sandbox": {
@@ -607,6 +607,38 @@
     "frontier": "Progressive overload tracking, 1RM Brzycki formula metrics, volume fatigue autoregulation",
     "action": "Add automated weekly volume calculator and deload week recommendation script"
   },
+  "AAC": {
+    "name": "AAC",
+    "category": "Assistive Tech / Accessibility",
+    "stack": "TypeScript, Vite, Web Speech API, PWA, CSS",
+    "status": "Active",
+    "frontier": "Amina Universal AAC & Systematic Phonics Studio, WCAG 2.1 AAA compliance, Open Board Format (`.obf`) & Open Board Zip (`.obz`) JSON schemas for Cboard/Open-AAC interoperability, Modified Fitzgerald Key clinical color coding, Afro-European female voice scoring engine (\"Amina\") with male voice exclusion, decodable micro-phonics (\"The help lives on the word\" single-letter dots, digraph bars, magic-e arcs), PWA offline caching, system screen reader synchronization (`aria-live=\"assertive\"`, `v.default`)",
+    "action": "Implement .obf/.obz board export/import; calibrate switch-scanning dwell intervals; verify WCAG AAA contrast"
+  },
+  "Game Library": {
+    "name": "Game Library",
+    "category": "Portals / Gaming UI",
+    "stack": "React, TailwindCSS, Python, Model Context Protocol",
+    "status": "Active",
+    "frontier": "Clean-Room Xbox PC App & Game Library Visual Reconstruction, 100vw x 100vh fullscreen layout, collapsible rail (280px <-> 64px), sticky 52px command bar (Ctrl+K), multi-dock inspector, live MCP telemetry bridge (`mcp_xbox_sync.py`) streaming data from `game-capture` (Xbox Game Bar DVR, RTX 4080 thermals) and `game-studio` (UE5, Unity 6 PIE)",
+    "action": "Execute `python mcp_xbox_sync.py` to refresh live MCP telemetry; run `Invoke-AntiSlopAudit.ps1` to verify zero-slop visual fidelity"
+  },
+  "youtube channels": {
+    "name": "youtube channels",
+    "category": "Media / YouTube Automation",
+    "stack": "PowerShell, Python, YouTube Data API v3, FFmpeg, Pillow",
+    "status": "Active",
+    "frontier": "Your Favorite Character's White Noise & Sleep Ambience Automation Engine, high-AVD 3\u20138 hour sleep loops, 2-Upload Funnel (12\u201318s discovery Short with Related Video pill funnelling into 3\u20138h sleep loop), 4-slot rotating character format (Eustace Bagge, Rolf, Courage Computer, Nostalgia Wildcard), dynamic anti-repetition visual loops (CRT static grain, farmhouse shadows, audio waveforms), 12 complete episodes generated with matching audio, thumbnails, and short/long videos (`ep01-eustace` through `ep12-sa1-mystic-ruins`), automated publishing queue (`Invoke-AutoUploadQueue.ps1`, `youtube_api_upload.py`, `Start-ChannelAndUploadWizard.ps1`, `New-WhiteNoisePair.ps1`)",
+    "action": "Execute `Invoke-AutoUploadQueue.ps1` across the 12 generated episodes; verify YouTube Data API v3 OAuth2 token refresh and scheduled publish cadence"
+  },
+  "Social Media": {
+    "name": "Social Media",
+    "category": "Media / Staging",
+    "stack": "Asset Staging, Markdown",
+    "status": "Staging",
+    "frontier": "Social media distribution staging ground, scheduled content queue, multi-platform publishing templates (YouTube Shorts, TikTok, Instagram Reels, X/Twitter)",
+    "action": "Build automated distribution dispatcher linking rendered video outputs from `youtube channels` and `youtube shorts edit for gaming`"
+  },
   "Images": {
     "name": "Images",
     "category": "Asset Store",
@@ -622,21 +654,5 @@
     "status": "Active",
     "frontier": "5 Frontier Blueprints, Action Matrix, Daily automated refresh, 2026 intelligence pipeline",
     "action": "Keep master blueprints continuously aligned with 2026 tech breakthroughs across all active projects in the portfolio"
-  },
-  "New folder (3)": {
-    "name": "New folder (3)",
-    "category": "Maintenance / Staging",
-    "stack": "Empty Workspace Dirs",
-    "status": "Clean",
-    "frontier": "Temporary workspace cleanup rules, staging area isolation for ephemeral tests",
-    "action": "Maintain clean staging isolation; archive or repurpose scratch directories into dedicated testbeds"
-  },
-  ".pytest_cache": {
-    "name": ".pytest_cache",
-    "category": "Maintenance",
-    "stack": "Cache Artifacts",
-    "status": "Internal",
-    "frontier": "Automated test execution cache",
-    "action": "Maintain `.gitignore` rules to keep repository trees clean of test cache files"
   }
 }

@@ -101,6 +101,12 @@ def find_antigravity_projects():
                     if len(parts) >= 6:
                         name_m = re.search(r"\[(.*?)\]", parts[0])
                         p_name = name_m.group(1) if name_m else parts[0]
+                        if (
+                            p_name.startswith(".")
+                            or p_name.lower().startswith("new folder")
+                            or "cache" in p_name.lower()
+                        ):
+                            continue
                         p_cat = parts[1]
                         p_stack = parts[2]
                         p_status = parts[3]
@@ -170,44 +176,104 @@ def find_antigravity_projects():
                     
     return projects
 
+def clean_desc(desc, max_len=180):
+    if not desc:
+        return "Advanced domain skill"
+    d = " ".join(desc.strip().splitlines())
+    if ". " in d:
+        first = d.split(". ")[0].strip() + "."
+        if len(first) >= 30 and len(first) <= max_len:
+            return first
+    if len(d) > max_len:
+        return d[:max_len-3].rstrip() + "..."
+    return d
+
+def ensure_ollama_running():
+    import urllib.request
+    try:
+        with urllib.request.urlopen("http://127.0.0.1:11434/api/tags", timeout=2) as resp:
+            if resp.status == 200:
+                return True
+    except Exception:
+        pass
+    
+    print("Ollama server not detected on port 11434. Starting ollama serve...")
+    try:
+        ollama_bin = r"C:\Users\chase\AppData\Local\Programs\Ollama\ollama.exe"
+        cmd = [ollama_bin, "serve"] if os.path.exists(ollama_bin) else ["ollama", "serve"]
+        subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        import time
+        for _ in range(40):
+            time.sleep(1)
+            try:
+                with urllib.request.urlopen("http://127.0.0.1:11434/api/tags", timeout=1) as resp:
+                    if resp.status == 200:
+                        print("Ollama server started successfully.")
+                        return True
+            except Exception:
+                pass
+    except Exception as e:
+        print(f"Failed to auto-start ollama serve: {e}")
+    return False
+
 def categorize_skills(skills):
     categories = {
         "Platform & Customizations": [],
+        "Google Cloud & BigQuery Data Engineering": [],
+        "Firebase & Backend Services": [],
+        "Flutter & Mobile App Development": [],
+        "Cloud Deployments & Serverless Architecture": [],
+        "Graph Databases & Knowledge Graphs": [],
+        "Design, UI/UX & Creative Engineering": [],
+        "Browser Automation & Web DevTools": [],
         "Structural Biology & Molecular Modeling": [],
         "Genomics & Variant Impact": [],
         "Cheminformatics & Computational Chemistry": [],
         "Drug Discovery & Pharmacology": [],
         "Literature & Knowledge Retrieval": [],
         "Developer Workflows & Automation": [],
-        "Media & Audience Strategy": []
+        "Media & Video Strategy": []
     }
     
     for name, data in sorted(skills.items()):
         n = name.lower()
         d = data["description"].lower()
+        p = data.get("path", "").lower()
         
-        # Match by specific skill name identity first for precision
+        # Priority matching by domain identity
         if any(k in n for k in ["cheminformatics", "rdkit"]):
             categories["Cheminformatics & Computational Chemistry"].append(data)
-        elif any(k in n for k in ["youtube", "media", "retention", "audience", "video", "content"]):
-            categories["Media & Audience Strategy"].append(data)
-        elif any(k in n for k in ["literature", "arxiv", "biorxiv", "europepmc", "openalex", "pubmed", "predictingthepast", "ols"]):
+        elif any(k in n for k in ["youtube", "retention", "invideo", "higgsfield", "hyperframes", "magnific", "openedit", "remotion", "runway", "video"]):
+            categories["Media & Video Strategy"].append(data)
+        elif any(k in n for k in ["literature", "arxiv", "biorxiv", "europepmc", "openalex", "pubmed", "predictingthepast", "embl-ebi-ols"]):
             categories["Literature & Knowledge Retrieval"].append(data)
         elif any(k in n for k in ["alphafold", "pymol", "pdb", "foldseek", "biomolecular", "protein", "msa", "interpro", "string", "uniprot"]):
             categories["Structural Biology & Molecular Modeling"].append(data)
         elif any(k in n for k in ["variant", "genome", "genomic", "clinvar", "dbsnp", "gnomad", "gtex", "encode", "ucsc", "jaspar", "unibind", "ensembl", "ncbi-sequence", "quickgo"]):
             categories["Genomics & Variant Impact"].append(data)
-        elif any(k in n for k in ["chembl", "pubchem", "fda", "opentargets", "reactome", "clinical-trial"]):
+        elif any(k in n for k in ["chembl", "pubchem", "openfda", "opentargets", "reactome", "clinical-trial"]):
             categories["Drug Discovery & Pharmacology"].append(data)
-        elif any(k in n for k in ["automation", "android", "workflow", "uv", "compose", "script", "practice", "powershell", "bash", "slop", "craftsman", "layout", "fullscreen", "simulation", "primer"]):
+        elif any(k in n for k in ["neo4j", "cypher", "graphrag", "lookml", "looker"]):
+            categories["Graph Databases & Knowledge Graphs"].append(data)
+        elif any(k in n for k in ["bigquery", "bigframes", "bigtable", "dataform", "data-autocleaning", "gcp-", "gcs-", "discovering-gcp", "federate-lakehouse", "enforcing-resource", "gcloud", "google-cloud-storage", "google-cloud-recipe", "cloud-databases-onboarding", "building-data-apps", "finding-google-skills", "schema-mapping", "dak-setup", "resolving-mcp-region-configs", "gemini-api", "gemini-live", "gemini-omni", "retrieving-developer-knowledge", "google-developer-knowledge"]):
+            categories["Google Cloud & BigQuery Data Engineering"].append(data)
+        elif any(k in n for k in ["firebase", "firestore", "extension-to-functions-codebase"]):
+            categories["Firebase & Backend Services"].append(data)
+        elif any(k in n for k in ["flutter", "dart-", "android", "compose", "xcode"]):
+            categories["Flutter & Mobile App Development"].append(data)
+        elif any(k in n for k in ["chrome-devtools", "a11y-debugging", "cookie-debugging", "memory-leak-debugging", "troubleshooting", "puppeteer", "chrome-extensions"]):
+            categories["Browser Automation & Web DevTools"].append(data)
+        elif (any(k in n for k in ["figma", "canva", "wix", "mobbin", "redesign-screen", "plain-writing", "search", "generative_ui", "motion-craftsmanship"]) or "mobbin" in p) and "ml-best-practices" not in n:
+            categories["Design, UI/UX & Creative Engineering"].append(data)
+        elif any((k in n if k != "eve" else (n == "eve" or n.startswith("eve-") or n.endswith("-eve"))) for k in ["vercel", "netlify", "base44", "cdn-caching", "runtime-cache", "routing-middleware", "is-agentic", "chat-sdk", "ai-sdk", "flags-sdk", "env-vars", "domains", "bootstrap", "create-a-backend", "custom-metrics", "microfrontends", "modern-web-guidance", "react-best-practices", "debug-optimize-lcp", "auth", "auth0", "offload-to-sandbox", "deployments-cicd", "queues", "daemons", "ai-gateway", "eve", "build-agents", "knowledge-update"]):
+            categories["Cloud Deployments & Serverless Architecture"].append(data)
+        elif any(k in n for k in ["autofix", "code-review", "script-practice", "anti-slop", "enterprise-fullscreen", "interactive-simulation", "github-primer", "workflow", "uv", "automation", "managing-python-dependencies", "notebook-guidance", "generate-project-plan", "accidental-data-loss-prevention", "verification", "ml-best-practices", "permissioned-github", "google-maps-platform", "gdrive", "gcalendar", "gsheets", "gdocs", "credentials", "context7"]):
             categories["Developer Workflows & Automation"].append(data)
-        elif any(k in n for k in ["agy", "antigravity", "customization", "plugin", "generative_ui", "credentials", "permissioned-github", "ui-extension"]):
-            categories["Platform & Customizations"].append(data)
         # Fallback keyword matching on description
         elif any(k in d for k in ["cheminformatics", "rdkit", "molecular dynamics", "autodock vina", "smarts"]):
             categories["Cheminformatics & Computational Chemistry"].append(data)
         elif any(k in d for k in ["youtube", "retention", "thumbnail", "audiences", "click-through"]):
-            categories["Media & Audience Strategy"].append(data)
+            categories["Media & Video Strategy"].append(data)
         elif any(k in d for k in ["alphafold", "pymol", "pdb", "foldseek", "biomolecular", "protein"]):
             categories["Structural Biology & Molecular Modeling"].append(data)
         elif any(k in d for k in ["variant", "genome", "genomic", "clinvar", "dbsnp", "gnomad", "gtex", "encode", "ucsc", "jaspar", "unibind"]):
@@ -236,7 +302,7 @@ def build_system_prompt(skills, categories, projects):
             continue
         lines.append(f"\n### {cat}")
         for item in items:
-            desc = item["description"] or "Advanced domain skill"
+            desc = clean_desc(item["description"])
             lines.append(f"- **{item['name']}**: {desc}")
             
     # Append Live Antigravity Projects Knowledge
@@ -254,23 +320,32 @@ def build_system_prompt(skills, categories, projects):
         for p in sorted(p_list, key=lambda x: x["name"]):
             name = p["name"]
             stack = p.get("stack", "Universal")
-            frontier = p.get("frontier", "")
-            action = p.get("action", "")
+            frontier = clean_desc(p.get("frontier", ""), max_len=200)
+            action = clean_desc(p.get("action", ""), max_len=140)
             lines.append(f"- **{name}** [{stack}]: {frontier} (Immediate target: {action})")
             
     lines.append("\n## OPERATIONAL GUIDELINES & PROBLEM SOLVING METHODOLOGY:")
     lines.append("1. **Deep Scientific, Cheminformatics & Genomic Precision**: When assisting with bioinformatics and cheminformatics (PDB, AlphaFold, Boltz-2, UniProt, ClinVar, gnomAD, ChEMBL, RDKit, AutoDock Vina, OpenMM), reference standard identifier formats, coordinate conventions (1-based vs 0-based), valid SMILES/SMARTS notation, stereochemical integrity, and robust molecular validation protocols.")
-    lines.append("2. **System & Automation Mastery**: Provide complete, production-ready code, commands, and scheduled automation patterns. Adhere strictly to enterprise production standards for Bash/RHEL (set -euo pipefail, variable quoting, parameter expansions, trap cleanup) and modern PowerShell (CmdletBinding, pipeline architecture, strongly-typed PSCustomObjects, cross-version compatibility).")
-    lines.append("3. **Anti-Slop Craftsmanship & Code Quality**: Eliminate low-effort AI hallmarks across all 8 community anti-patterns: emoji asset flips, hallucinated purple prose, shovelware ad-traps, shallow dilution, zero kinesthetics, sub-48dp touch targets, video/audio SFX brainrot, and sterile CGI plastic renders. Enforce handcrafted organic linework/watercolor textures, cel-shaded WebGL, audio soundboard limits (<=1 subtle cue per 30-45s, -14 to -16 LUFS voiceover), pure gameplay/utility loops, and WCAG AAA ergonomics (minimum 48x48dp touch targets).")
-    lines.append("4. **Zero-Trust Security & Containment**: Ingest and enforce the 5-layer Aegis-AI defense matrix (strict AST schema validation, microVM kernel independence, DNS egress filtering, recursion limits, and scoped MCP tokens).")
-    lines.append("5. **Content Strategy & Retention Engineering**: Apply elite video packaging mechanics (CTR/AVD optimization, curiosity gaps, loss aversion, pattern interrupts, and session-time retention bridges) when developing technical tutorials, media, or documentation.")
-    lines.append("6. **Enterprise UI Architecture & Interactive Simulation Engines**: Architect full-screen (100vw x 100vh) enterprise web layouts with collapsible left navigation rails, top command search palettes (Ctrl+K), zero dead margin space, and dockable right inspector panels using crisp 1px borders and High-Gloss Lacquer physical optics. Build step-by-step interactive traffic and packet journey simulators and self-grading architecture drill engines with fuzzy matching, visual hint hierarchies, and speech feedback.")
-    lines.append("7. **Actionable Insights**: Provide direct answers, synthesized reasoning, and actionable code blocks with zero unnecessary fluff.")
+    lines.append("2. **Google Cloud, BigQuery & Dataform Engineering**: Architect scalable, idempotent ELT pipelines using BigQuery DataFrames (BigFrames), Dataform, Cloud Storage FUSE, Cloud Composer (Airflow), and Spark. Apply mandatory resource attribution labels to bq operations and optimize slot utilization.")
+    lines.append("3. **Firebase & Backend Architecture**: Enforce declarative Firestore security rules, Firebase Auth flows, Cloud Functions v2 triggers, and Firebase Data Connect PostgreSQL backends with strict type safety.")
+    lines.append("4. **Flutter & Mobile App Engineering**: Implement clean layered architectures (UI, Logic, Data), declarative routing with go_router, primary constructor syntax, package:checks testing, WCAG accessibility standards, and Android Compose previews.")
+    lines.append("5. **Cloud Deployments, Serverless & Edge Systems**: Deploy robust Vercel and Netlify systems utilizing Edge functions, AI SDK, durable workflows, CDN caching/revalidation policies, zero-trust middleware, and automated CI/CD verification.")
+    lines.append("6. **Graph Databases & GraphRAG**: Construct high-performance Neo4j Cypher queries, vector indexes, and GraphRAG retrieval patterns. Ingest LookML models with semantic explorations, liquid variables, and access grants.")
+    lines.append("7. **Design Systems & Creative Engineering**: Seamlessly bridge design and code using Figma Code Connect, custom shaders, Canva Brand Kits, and Wix headless design systems with pixel-perfect responsive execution.")
+    lines.append("8. **Browser Automation & DevTools Diagnostics**: Audit web performance, memory leak profiles, cookie/session configurations, and accessibility trees via Chrome DevTools protocol and Puppeteer automation.")
+    lines.append("9. **Enterprise Scripting & Automation Mastery**: Provide complete, production-ready code, commands, and scheduled automation patterns. Adhere strictly to enterprise production standards for Bash/RHEL (set -euo pipefail, variable quoting, parameter expansions, trap cleanup) and modern PowerShell (CmdletBinding, pipeline architecture, strongly-typed PSCustomObjects, cross-version compatibility).")
+    lines.append("10. **Anti-Slop Craftsmanship & Code Quality**: Eliminate low-effort AI hallmarks across all 8 community anti-patterns: emoji asset flips, hallucinated purple prose, shovelware ad-traps, shallow dilution, zero kinesthetics, sub-48dp touch targets, video/audio SFX brainrot, and sterile CGI plastic renders. Enforce handcrafted organic linework/watercolor textures, cel-shaded WebGL, audio soundboard limits (<=1 subtle cue per 30-45s, -14 to -16 LUFS voiceover), pure gameplay/utility loops, and WCAG AAA ergonomics (minimum 48x48dp touch targets).")
+    lines.append("11. **Zero-Trust Security & Containment**: Ingest and enforce the 5-layer Aegis-AI defense matrix (strict AST schema validation, microVM kernel independence, DNS egress filtering, recursion limits, and scoped MCP tokens).")
+    lines.append("12. **Content Strategy & Retention Engineering**: Apply elite video packaging mechanics (CTR/AVD optimization, curiosity gaps, loss aversion, pattern interrupts, and session-time retention bridges) when developing technical tutorials, media, or documentation.")
+    lines.append("13. **Enterprise Fullscreen Layouts**: Architect full-screen (100vw x 100vh) enterprise web layouts with collapsible left navigation rails, top command search palettes (Ctrl+K), zero dead margin space, and dockable right inspector panels using crisp 1px borders and High-Gloss Lacquer physical optics.")
+    lines.append("14. **Actionable Insights**: Provide direct answers, synthesized reasoning, and actionable code blocks with zero unnecessary fluff.")
+    lines.append("15. **Motion Craftsmanship & Anti-Slop Motion**: Enforce tactile, spring-driven 60 FPS motion across all web and mobile interfaces. Eliminate floaty 0.3s ease-in-out transitions, janky max-height animations, and lifeless button clicks. Standardize on critically damped springs (stiffness: 400, damping: 30), Apple-grade quintic beziers (cubic-bezier(0.16, 1, 0.3, 1)), staggered kinetic reveals with blur-up, and zero-jank sliding layoutId indicators synthesized from getlayers.ai, 60fps.design, motion-primitives.com, kinetics.colorion.co, and microkit.co.")
     
     return "\n".join(lines)
 
 def sync(output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
+    ensure_ollama_running()
     print("Discovering skills...")
     skills = find_skills()
     print(f"Found {len(skills)} unique skills.")
@@ -325,7 +400,7 @@ def sync(output_dir: Path):
 
 PARAMETER temperature 0.5
 PARAMETER top_p 0.9
-PARAMETER num_ctx 8192
+PARAMETER num_ctx 32768
 
 SYSTEM """{system_prompt}"""
 '''
@@ -336,8 +411,9 @@ SYSTEM """{system_prompt}"""
     # Run ollama create
     print("Building Ollama model 'antigravity-skills:latest' with updated skills & projects...")
     try:
+        ollama_cmd = r"C:\Users\chase\AppData\Local\Programs\Ollama\ollama.exe" if os.path.exists(r"C:\Users\chase\AppData\Local\Programs\Ollama\ollama.exe") else "ollama"
         res = subprocess.run(
-            ["ollama", "create", "antigravity-skills", "-f", str(modelfile_path)],
+            [ollama_cmd, "create", "antigravity-skills", "-f", str(modelfile_path)],
             capture_output=True,
             text=True,
             encoding="utf-8",
