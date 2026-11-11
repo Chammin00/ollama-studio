@@ -60,7 +60,7 @@
     "category": "Cybersecurity",
     "stack": "C#, .NET 10 MVC, SQLite",
     "status": "Active",
-    "frontier": "Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, October/November 2026 advisories (**CVE-2026-76418** ASA/FTD SSL VPN tunnel DoS actively exploited in wild, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; `cisco-sa-asaftd-vpn-dos-dzv4mQFF`, `cisco-sa-sec-client-priv-esc-muF8eZdm`, **CVE-2026-76482** Smart License On-Prem CVSS 10.0, **CVE-2026-76519** Email Gateway RCE in AMP - CISA KEV, Secure Firewall & ISE hardening releases, **CVE-2026-76465** NX-OS MPLS OAM, **CVE-2026-76485/76486/76501** NGOAM, **CVE-2026-76471** NX-API, **CVE-2026-76498..500** APIC, **CVE-2026-76466** Expressway, **CVE-2026-76506** UCS Central RCE - CVSS 7.6, **CVE-2026-76419** CUCM XSS - CVSS 6.1, **CVE-2026-20241** ISE Authorization Bypass - CVSS 5.3, **CVE-2026-20043/20236/20291/20356** Snort 3 RCE - CVSS 9.0, **CVE-2026-76524** Snort socket command exec - CVSS 7.8, **Nov 4, 2026 ISE/UCS Central/CUCM disclosures & Cisco EOY release freeze until Jan 20, 2027**)",
+    "frontier": "Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, October/November 2026 advisories (**CVE-2026-76418** ASA/FTD SSL VPN tunnel DoS actively exploited in wild, Bug ID `CSCwx26625`, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; `cisco-sa-asaftd-vpn-dos-dzv4mQFF`, `cisco-sa-sec-client-priv-esc-muF8eZdm`, **CVE-2026-76482** Smart License On-Prem CVSS 10.0, **CVE-2026-76519** Email Gateway RCE in AMP - CISA KEV, Secure Firewall & ISE hardening releases, **CVE-2026-76465** NX-OS MPLS OAM, **CVE-2026-76485/76486/76501** NGOAM, **CVE-2026-76471** NX-API, **CVE-2026-76498..500** APIC, **CVE-2026-76466** Expressway, **CVE-2026-76506** UCS Central RCE - CVSS 7.6, Bug ID `CSCwv60193`, **CVE-2026-76419** CUCM XSS - CVSS 6.1, **CVE-2026-20241** ISE Authorization Bypass - CVSS 5.3, **CVE-2026-111497** Node.js Brotli RCE, **CVE-2026-20043/20236/20291/20356** Snort 3 RCE - CVSS 9.0, **CVE-2026-76524** Snort socket command exec - CVSS 7.8, **Nov 4, 2026 ISE/UCS Central/CUCM disclosures & Cisco EOY release freeze until Jan 20, 2027**)",
     "action": "Ingest actively exploited CVE-2026-76418, CVE-2026-76519, CVE-2026-76482, and CVE-2026-76506 into automated scanner; compile scanner with .NET 10 Native AOT"
   },
   "MY Security": {
@@ -346,10 +346,10 @@
   "MCP": {
     "name": "MCP",
     "category": "Systems / AI Tools",
-    "stack": "Node.js, JSON-RPC, Python",
+    "stack": "Node.js, JSON-RPC, Python, JavaScript",
     "status": "Active",
-    "frontier": "Centralized Model Context Protocol hub, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`), mcp-baseline.js HUD, global `mcp_config.json` integration",
-    "action": "Sync live tool availability to `My Planetarium` and `My Custom Gui`; enforce loopback HMAC token auth"
+    "frontier": "Centralized Model Context Protocol hub, MCP Baseline 2.0 (`MCP_WEB_APPS_BASELINE.md`), `mcp-baseline.js` v2.0, `mcp-registry.json`, `Ctrl+M` telemetry HUD, `Ctrl+E` in-app element inspection & hot-patching editor console, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`), global `mcp_config.json` integration",
+    "action": "Sync live tool availability to `My Planetarium` and `My Custom Gui`; enforce loopback HMAC token auth; maintain in-app element inspection and hot-patching console"
   },
   "VR creation apps": {
     "name": "VR creation apps",
@@ -532,8 +532,8 @@
     "category": "DevOps / Control",
     "stack": "PowerShell, SQLite, JSON",
     "status": "Active",
-    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (74 tracked projects + 10 extension sub-projects), nightly health scan (17/17 Deploy Suite 100% Healthy)",
-    "action": "Maintain continuous health verification and sync all active projects into `PROJECT_CATALOG.json`"
+    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (75 tracked projects + 10 extension sub-projects), nightly health scan (17/17 Deploy Suite 100% Healthy)",
+    "action": "Maintain continuous health verification and sync all 75 active projects into `PROJECT_CATALOG.json`"
   },
   "sandbox": {
     "name": "sandbox",
@@ -620,8 +620,16 @@
     "category": "Portals / Gaming UI",
     "stack": "React, TailwindCSS, Python, Model Context Protocol",
     "status": "Active",
-    "frontier": "Clean-Room Xbox PC App & Game Library Visual Reconstruction, 100vw x 100vh fullscreen layout, collapsible rail (280px <-> 64px), sticky 52px command bar (Ctrl+K), multi-dock inspector, live MCP telemetry bridge (`mcp_xbox_sync.py`) streaming data from `game-capture` (Xbox Game Bar DVR, RTX 4080 thermals) and `game-studio` (UE5, Unity 6 PIE)",
-    "action": "Execute `python mcp_xbox_sync.py` to refresh live MCP telemetry; run `Invoke-AntiSlopAudit.ps1` to verify zero-slop visual fidelity"
+    "frontier": "Clean-Room Xbox PC App & Game Library Visual Reconstruction, 100vw x 100vh fullscreen layout, collapsible rail (280px <-> 64px), sticky 52px command bar (Ctrl+K), multi-dock inspector, live MCP telemetry bridge (`mcp_xbox_sync.py`) streaming data from `game-capture` (Xbox Game Bar DVR, RTX 4080 thermals) and `game-studio` (UE5, Unity 6 PIE), MCP Baseline 2.0 (`Ctrl+M`, `Ctrl+E`)",
+    "action": "Execute `python mcp_xbox_sync.py` to refresh live MCP telemetry; verify in-app element inspection and hot-patching editor console; run `Invoke-AntiSlopAudit.ps1` to verify zero-slop visual fidelity"
+  },
+  "opensource": {
+    "name": "opensource",
+    "category": "DevOps / Governance & Supply Chain",
+    "stack": "Markdown, Git, GitHub CLI, CycloneDX, SPDX, Python",
+    "status": "Active",
+    "frontier": "Open-Source Program Office (OSPO) architecture, OpenChain (ISO/IEC 5230) license compliance, automated CycloneDX 1.6 / SPDX 3.0 SBOM generation, OpenSSF Scorecard auditing, SLSA Level 3 build provenance, automated Git submodule/subtree upstream sync, SemVer 2.0.0 release automation with `git-cliff`",
+    "action": "Scaffold `ospo_governance.py` and `Generate-ProjectSbom.ps1`; enforce SPDX license headers across all 75 portfolio repositories; deploy automated upstream fork synchronizer"
   },
   "youtube channels": {
     "name": "youtube channels",

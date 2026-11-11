@@ -245,7 +245,7 @@ def categorize_skills(skills):
             categories["Cheminformatics & Computational Chemistry"].append(data)
         elif any(k in n for k in ["youtube", "retention", "invideo", "higgsfield", "hyperframes", "magnific", "openedit", "remotion", "runway", "video"]):
             categories["Media & Video Strategy"].append(data)
-        elif any(k in n for k in ["literature", "arxiv", "biorxiv", "europepmc", "openalex", "pubmed", "predictingthepast", "embl-ebi-ols"]):
+        elif any(k in n for k in ["literature", "arxiv", "biorxiv", "europepmc", "openalex", "pubmed", "predictingthepast", "embl-ebi-ols", "perplexity"]):
             categories["Literature & Knowledge Retrieval"].append(data)
         elif any(k in n for k in ["alphafold", "pymol", "pdb", "foldseek", "biomolecular", "protein", "msa", "interpro", "string", "uniprot"]):
             categories["Structural Biology & Molecular Modeling"].append(data)
@@ -261,13 +261,13 @@ def categorize_skills(skills):
             categories["Firebase & Backend Services"].append(data)
         elif any(k in n for k in ["flutter", "dart-", "android", "compose", "xcode"]):
             categories["Flutter & Mobile App Development"].append(data)
-        elif any(k in n for k in ["chrome-devtools", "a11y-debugging", "cookie-debugging", "memory-leak-debugging", "troubleshooting", "puppeteer", "chrome-extensions"]):
+        elif any(k in n for k in ["chrome-devtools", "a11y-debugging", "cookie-debugging", "memory-leak-debugging", "troubleshooting", "puppeteer", "chrome-extensions", "playwright", "firecrawl"]):
             categories["Browser Automation & Web DevTools"].append(data)
-        elif (any(k in n for k in ["figma", "canva", "wix", "mobbin", "redesign-screen", "plain-writing", "search", "generative_ui", "motion-craftsmanship"]) or "mobbin" in p) and "ml-best-practices" not in n:
+        elif (any(k in n for k in ["figma", "canva", "wix", "mobbin", "redesign-screen", "plain-writing", "generative_ui", "motion-craftsmanship"]) or n == "search" or "mobbin" in p) and "ml-best-practices" not in n:
             categories["Design, UI/UX & Creative Engineering"].append(data)
         elif any((k in n if k != "eve" else (n == "eve" or n.startswith("eve-") or n.endswith("-eve"))) for k in ["vercel", "netlify", "base44", "cdn-caching", "runtime-cache", "routing-middleware", "is-agentic", "chat-sdk", "ai-sdk", "flags-sdk", "env-vars", "domains", "bootstrap", "create-a-backend", "custom-metrics", "microfrontends", "modern-web-guidance", "react-best-practices", "debug-optimize-lcp", "auth", "auth0", "offload-to-sandbox", "deployments-cicd", "queues", "daemons", "ai-gateway", "eve", "build-agents", "knowledge-update"]):
             categories["Cloud Deployments & Serverless Architecture"].append(data)
-        elif any(k in n for k in ["autofix", "code-review", "script-practice", "anti-slop", "enterprise-fullscreen", "interactive-simulation", "github-primer", "workflow", "uv", "automation", "managing-python-dependencies", "notebook-guidance", "generate-project-plan", "accidental-data-loss-prevention", "verification", "ml-best-practices", "permissioned-github", "google-maps-platform", "gdrive", "gcalendar", "gsheets", "gdocs", "credentials", "context7"]):
+        elif any(k in n for k in ["autofix", "code-review", "script-practice", "anti-slop", "enterprise-fullscreen", "interactive-simulation", "github-primer", "workflow", "uv", "automation", "managing-python-dependencies", "notebook-guidance", "generate-project-plan", "accidental-data-loss-prevention", "verification", "ml-best-practices", "permissioned-github", "google-maps-platform", "gdrive", "gcalendar", "gsheets", "gdocs", "gslides", "credentials", "context7"]):
             categories["Developer Workflows & Automation"].append(data)
         # Fallback keyword matching on description
         elif any(k in d for k in ["cheminformatics", "rdkit", "molecular dynamics", "autodock vina", "smarts"]):
@@ -332,14 +332,15 @@ def build_system_prompt(skills, categories, projects):
     lines.append("5. **Cloud Deployments, Serverless & Edge Systems**: Deploy robust Vercel and Netlify systems utilizing Edge functions, AI SDK, durable workflows, CDN caching/revalidation policies, zero-trust middleware, and automated CI/CD verification.")
     lines.append("6. **Graph Databases & GraphRAG**: Construct high-performance Neo4j Cypher queries, vector indexes, and GraphRAG retrieval patterns. Ingest LookML models with semantic explorations, liquid variables, and access grants.")
     lines.append("7. **Design Systems & Creative Engineering**: Seamlessly bridge design and code using Figma Code Connect, custom shaders, Canva Brand Kits, and Wix headless design systems with pixel-perfect responsive execution.")
-    lines.append("8. **Browser Automation & DevTools Diagnostics**: Audit web performance, memory leak profiles, cookie/session configurations, and accessibility trees via Chrome DevTools protocol and Puppeteer automation.")
+    lines.append("8. **Browser Automation, Scraping & Web DevTools Diagnostics**: Audit web performance, memory leak profiles, cookie/session configurations, and accessibility trees via Chrome DevTools protocol, Puppeteer, Playwright MCP end-to-end browser automation, and Firecrawl clean LLM-ready markdown extraction & multi-page site crawling.")
     lines.append("9. **Enterprise Scripting & Automation Mastery**: Provide complete, production-ready code, commands, and scheduled automation patterns. Adhere strictly to enterprise production standards for Bash/RHEL (set -euo pipefail, variable quoting, parameter expansions, trap cleanup) and modern PowerShell (CmdletBinding, pipeline architecture, strongly-typed PSCustomObjects, cross-version compatibility).")
     lines.append("10. **Anti-Slop Craftsmanship & Code Quality**: Eliminate low-effort AI hallmarks across all 8 community anti-patterns: emoji asset flips, hallucinated purple prose, shovelware ad-traps, shallow dilution, zero kinesthetics, sub-48dp touch targets, video/audio SFX brainrot, and sterile CGI plastic renders. Enforce handcrafted organic linework/watercolor textures, cel-shaded WebGL, audio soundboard limits (<=1 subtle cue per 30-45s, -14 to -16 LUFS voiceover), pure gameplay/utility loops, and WCAG AAA ergonomics (minimum 48x48dp touch targets).")
     lines.append("11. **Zero-Trust Security & Containment**: Ingest and enforce the 5-layer Aegis-AI defense matrix (strict AST schema validation, microVM kernel independence, DNS egress filtering, recursion limits, and scoped MCP tokens).")
-    lines.append("12. **Content Strategy & Retention Engineering**: Apply elite video packaging mechanics (CTR/AVD optimization, curiosity gaps, loss aversion, pattern interrupts, and session-time retention bridges) when developing technical tutorials, media, or documentation.")
+    lines.append("12. **Content Strategy & Cinematic Media Generation**: Apply elite video packaging mechanics (CTR/AVD optimization, curiosity gaps, loss aversion, pattern interrupts, and session-time retention bridges) alongside Higgsfield AI MCP for cinematic 30+ visual model generation, character motion, and InVideo timeline video pipelines.")
     lines.append("13. **Enterprise Fullscreen Layouts**: Architect full-screen (100vw x 100vh) enterprise web layouts with collapsible left navigation rails, top command search palettes (Ctrl+K), zero dead margin space, and dockable right inspector panels using crisp 1px borders and High-Gloss Lacquer physical optics.")
     lines.append("14. **Actionable Insights**: Provide direct answers, synthesized reasoning, and actionable code blocks with zero unnecessary fluff.")
     lines.append("15. **Motion Craftsmanship & Anti-Slop Motion**: Enforce tactile, spring-driven 60 FPS motion across all web and mobile interfaces. Eliminate floaty 0.3s ease-in-out transitions, janky max-height animations, and lifeless button clicks. Standardize on critically damped springs (stiffness: 400, damping: 30), Apple-grade quintic beziers (cubic-bezier(0.16, 1, 0.3, 1)), staggered kinetic reveals with blur-up, and zero-jank sliding layoutId indicators synthesized from getlayers.ai, 60fps.design, motion-primitives.com, kinetics.colorion.co, and microkit.co.")
+    lines.append("16. **Live Web Search & Technical Research Synthesis**: Synthesize real-time verified web information, fresh library documentation, and deep citations via Perplexity AI MCP, resolving live technical queries without leaving the environment.")
     
     return "\n".join(lines)
 

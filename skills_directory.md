@@ -1,10 +1,10 @@
 # Antigravity Acquired Skills & Projects Ecosystem Digest
 
-Updated: 326 Acquired Skills | 82 Production Projects
+Updated: 330 Acquired Skills | 83 Production Projects
 
 ## 📦 Part 1: Acquired Agent Skills Catalog
 
-### Platform & Customizations (4 skills)
+### Platform & Customizations (3 skills)
 
 #### `antigravity-guide`
 Provides a comprehensive guide, quick reference, and sitemap for Google Antigravity (AGY), including the Antigravity CLI (agy), Antigravity 2.0, Antigravity IDE, Python SDK, slash commands, keybindings, and customizations (skills, rules, MCP, sidecars). Activate this skill when the user asks questions about how to use, configure, or customize Antigravity, AGY, the agy CLI, the Antigravity IDE, or Antigravity 2.0.
@@ -15,11 +15,6 @@ Provides a comprehensive guide, quick reference, and sitemap for Google Antigrav
 Design, implement, and debug autonomous AI agents and multi-agent systems using the Google Antigravity (AGY) SDK. ACTIVATE this skill when the user wants to create, configure, or orchestrate Google Antigravity agents.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\google-antigravity-sdk\skills\google-antigravity-sdk\SKILL.md`
-
-#### `gslides`
-Read, create, and edit Google Slides presentations. Use when creating presentations, when the user shares a slides.google.com URL, asks to summarize or extract content from a deck, wants slides drafted or updated, or wants a presentation exported. Don't use for Google Docs, Sheets, or Drive file management.
-
-- Source: `C:\Users\chase\.gemini\config\plugins\gslides\skills\gslides\SKILL.md`
 
 #### `marketplace`
 Vercel Marketplace expert guidance — discovering, installing, and managing third-party integrations via the `vercel integration` CLI. Use when building any app that needs an external capability without a dedicated skill — commerce (stores, storefronts, selling products), payments (checkout, subscriptions, billing), observability/monitoring, messaging/email, search, or CMS — or when discovering, installing, or managing integrations.
@@ -1173,7 +1168,7 @@ What the Wix plugin holds and how to work with Wix through it: the flow the Wix 
 
 - Source: `C:\Users\chase\.gemini\config\plugins\wix\skills\wix-readme\SKILL.md`
 
-### Browser Automation & Web DevTools (6 skills)
+### Browser Automation & Web DevTools (8 skills)
 
 #### `a11y-debugging`
 Uses Chrome DevTools MCP for accessibility (a11y) debugging and auditing based on web.dev guidelines. Use when testing semantic HTML, ARIA labels, focus states, keyboard navigation, tap targets, and color contrast.
@@ -1195,10 +1190,20 @@ Uses Chrome DevTools MCP for inspecting, debugging, and testing cookies, session
 
 - Source: `C:\Users\chase\.gemini\config\plugins\chrome-devtools-plugin\skills\cookie-debugging\SKILL.md`
 
+#### `firecrawl-scraper`
+Extracts clean, LLM-ready markdown, crawls multi-page websites, and maps sitemaps using Firecrawl MCP. Use when scraping web pages, ingesting technical documentation without HTML clutter, extracting structured data, or crawling entire documentation sites.
+
+- Source: `C:\Users\chase\.gemini\config\skills\firecrawl-scraper\SKILL.md`
+
 #### `memory-leak-debugging`
 Diagnoses and resolves memory leaks in JavaScript/Node.js applications. Use when a user reports high memory usage, OOM errors, or wants to capture, compare, or inspect heap snapshots with Chrome DevTools MCP memory tools.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\chrome-devtools-plugin\skills\memory-leak-debugging\SKILL.md`
+
+#### `playwright-automation`
+Automates Chromium, Firefox, and WebKit browsers using Playwright MCP for end-to-end testing, UI verification, visual regression, form filling, and DOM interaction. Use when validating web apps, clicking interactive controls, capturing full-page screenshots, or executing automated browser QA directly from the workspace.
+
+- Source: `C:\Users\chase\.gemini\config\skills\playwright-automation\SKILL.md`
 
 #### `troubleshooting`
 Uses Chrome DevTools MCP and documentation to troubleshoot connection and target issues. Trigger this skill when list_pages, new_page, or navigate_page fail, or when the server initialization fails.
@@ -1403,7 +1408,7 @@ Query the Reactome database (Analysis and Content Services). Use when the user a
 
 - Source: `C:\Users\chase\.gemini\config\plugins\science\skills\reactome_database\SKILL.md`
 
-### Literature & Knowledge Retrieval (7 skills)
+### Literature & Knowledge Retrieval (8 skills)
 
 #### `embl-ebi-ols`
 Query and search the EMBL-EBI Ontology Lookup Service (OLS) for biomedical ontology terms, definitions, and hierarchies across 250+ ontologies (e.g., GO, DOID, HP). Use when the user asks to search for terms, retrieve details, navigate hierarchies (parents, children, ancestors), look up properties and individuals, get autocomplete suggestions, or access ontology metadata and statistics.
@@ -1430,6 +1435,11 @@ Query the OpenAlex scholarly database for research papers, authors, institutions
 
 - Source: `C:\Users\chase\.gemini\config\plugins\science\skills\literature_search_openalex\SKILL.md`
 
+#### `perplexity-search`
+Executes live real-time web search, deep technical research, and citation synthesis using Perplexity AI. Use when answering questions requiring fresh online documentation, latest library releases, live web data, or verified external technical citations without leaving the terminal.
+
+- Source: `C:\Users\chase\.gemini\config\skills\perplexity-search\SKILL.md`
+
 #### `predictingthepast`
 Ancient text restoration, attribution, dating, contextualization, and embedding via Aeneas (Latin) / Ithaca (Ancient Greek). Use when asked to "restore", "attribute", "date", "contextualize", "find parallels", "where was it written", "when was it written", "embed", or "analyze" an ancient text, inscription, or epigraphic document, or when the user mentions "Aeneas", or "Ithaca".
 
@@ -1440,7 +1450,7 @@ Search PubMed for scientific literature, including published clinical trials. Fe
 
 - Source: `C:\Users\chase\.gemini\config\plugins\science\skills\pubmed_database\SKILL.md`
 
-### Developer Workflows & Automation (31 skills)
+### Developer Workflows & Automation (32 skills)
 
 #### `accidental-data-loss-prevention`
 **STOP AND VERIFY**: Before running any command or tool that results in irreversible data loss, you MUST obtain explicit user consent. When in doubt, ask. It is better to wait for confirmation than to accidentally delete production data or critical project assets. Use this for: - SQL: DROP TABLE/VIEW/SCHEMA/DATABASE, TRUNCATE, or broad DELETE (missing WHERE or using 1=1). - Cloud Storage: gsutil rm or gcloud storage rm targeting production data or critical buckets. - Infrastructure: gcloud projects delete, deleting Spanner/BigQuery/Dataproc resources, deleting secrets, or KMS key destruction.
@@ -1527,6 +1537,11 @@ Read, write, format, and manage Google Sheets. Use when the user shares a sheets
 
 - Source: `C:\Users\chase\.gemini\config\plugins\gsheets\skills\gsheets\SKILL.md`
 
+#### `gslides`
+Read, create, and edit Google Slides presentations. Use when creating presentations, when the user shares a slides.google.com URL, asks to summarize or extract content from a deck, wants slides drafted or updated, or wants a presentation exported. Don't use for Google Docs, Sheets, or Drive file management.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\gslides\skills\gslides\SKILL.md`
+
 #### `interactive-simulation-practice-engine`
 Builds interactive, step-by-step traffic and packet journey simulators alongside gamified, self-grading system design drill engines with smart fuzzy matching, architectural hints, audio speech synthesis, and live progress rings. Use when creating educational tools, exam simulators, system architecture trainers, or interactive walkthroughs.
 
@@ -1597,7 +1612,12 @@ Distills a completed user workflow or interaction into a reusable agent skill. U
 
 - Source: `C:\Users\chase\.gemini\config\plugins\science\skills\workflow_skill_creator\SKILL.md`
 
-### Media & Video Strategy (13 skills)
+### Media & Video Strategy (14 skills)
+
+#### `higgsfield-generation`
+Generates cinematic AI images, character motion, and high-fidelity video sequences using Higgsfield AI MCP. Use when creating visual concept art, character animation, game cutscenes, video ad assets, or YouTube Short backgrounds across 30+ visual models.
+
+- Source: `C:\Users\chase\.gemini\config\skills\higgsfield-generation\SKILL.md`
 
 #### `higgsfield-to-invideo`
 Use when the person has clips from Higgsfield and wants a finished video: put the clips in order, add captions and music, export.
@@ -1694,8 +1714,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `Game Library` (Portals / Gaming UI)
 - **Stack**: `React, TailwindCSS, Python, Model Context Protocol`
 - **Status**: `Active`
-- **Frontier Architecture**: Clean-Room Xbox PC App & Game Library Visual Reconstruction, 100vw x 100vh fullscreen layout, collapsible rail (280px <-> 64px), sticky 52px command bar (Ctrl+K), multi-dock inspector, live MCP telemetry bridge (`mcp_xbox_sync.py`) streaming data from `game-capture` (Xbox Game Bar DVR, RTX 4080 thermals) and `game-studio` (UE5, Unity 6 PIE)
-- **Target Action**: Execute `python mcp_xbox_sync.py` to refresh live MCP telemetry; run `Invoke-AntiSlopAudit.ps1` to verify zero-slop visual fidelity
+- **Frontier Architecture**: Clean-Room Xbox PC App & Game Library Visual Reconstruction, 100vw x 100vh fullscreen layout, collapsible rail (280px <-> 64px), sticky 52px command bar (Ctrl+K), multi-dock inspector, live MCP telemetry bridge (`mcp_xbox_sync.py`) streaming data from `game-capture` (Xbox Game Bar DVR, RTX 4080 thermals) and `game-studio` (UE5, Unity 6 PIE), MCP Baseline 2.0 (`Ctrl+M`, `Ctrl+E`)
+- **Target Action**: Execute `python mcp_xbox_sync.py` to refresh live MCP telemetry; verify in-app element inspection and hot-patching editor console; run `Invoke-AntiSlopAudit.ps1` to verify zero-slop visual fidelity
 
 ### `Github Portfolio` (Web / Career Showcase)
 - **Stack**: `HTML5, CSS3, JS, Markdown, PDF Resumes`
@@ -1716,10 +1736,10 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Add Python image conversion script batch-converting mobile `.heic` photos to `.webp`
 
 ### `MCP` (Systems / AI Tools)
-- **Stack**: `Node.js, JSON-RPC, Python`
+- **Stack**: `Node.js, JSON-RPC, Python, JavaScript`
 - **Status**: `Active`
-- **Frontier Architecture**: Centralized Model Context Protocol hub, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`), mcp-baseline.js HUD, global `mcp_config.json` integration
-- **Target Action**: Sync live tool availability to `My Planetarium` and `My Custom Gui`; enforce loopback HMAC token auth
+- **Frontier Architecture**: Centralized Model Context Protocol hub, MCP Baseline 2.0 (`MCP_WEB_APPS_BASELINE.md`), `mcp-baseline.js` v2.0, `mcp-registry.json`, `Ctrl+M` telemetry HUD, `Ctrl+E` in-app element inspection & hot-patching editor console, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`), global `mcp_config.json` integration
+- **Target Action**: Sync live tool availability to `My Planetarium` and `My Custom Gui`; enforce loopback HMAC token auth; maintain in-app element inspection and hot-patching console
 
 ### `MY Security` (Cybersecurity)
 - **Stack**: `C#, .NET 10, PowerShell`
@@ -1946,8 +1966,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `deploy` (DevOps / Control)
 - **Stack**: `PowerShell, SQLite, JSON`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (74 tracked projects + 10 extension sub-projects), nightly health scan (17/17 Deploy Suite 100% Healthy)
-- **Target Action**: Maintain continuous health verification and sync all active projects into `PROJECT_CATALOG.json`
+- **Frontier Architecture**: Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (75 tracked projects + 10 extension sub-projects), nightly health scan (17/17 Deploy Suite 100% Healthy)
+- **Target Action**: Maintain continuous health verification and sync all 75 active projects into `PROJECT_CATALOG.json`
 
 ### `desktopscreensaver` (Graphics)
 - **Stack**: `HTML5 Canvas, JS`
@@ -2045,6 +2065,12 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Frontier Architecture**: Red Hat OpenShift Administration II (DO280) & EX280 certification curriculum, DO180 container architecture, DO380 advanced automation, OpenShift 4.17 (K8s 1.30, OVN-Kubernetes only), 4.18 (K8s 1.31 EUS, User Defined Networks UDNs GA, Secrets Store CSI Operator GA, `cert-manager` v1.15), 4.19 (K8s 1.32, unified console, BGP Route Advertisements for ClusterUserDefinedNetworks CUDNs with FRR via `k8s.ovn.org/v1` `RouteAdvertisements` CR, Network Observability Operator native UDN flow tracing, strict cgroups v2, Service Mesh 3.1, Argo CD/Rollouts), Security Context Constraints (SCC `restricted-v2`), Ingress Routes TLS profiles (Edge, Passthrough, Re-encrypt), dynamic CSI StorageClasses, `oc adm must-gather` & `ovn-trace`
 - **Target Action**: Execute `setup-workstation.ps1` and `check-binary.ps1`; run `diagnose-route.ps1` and `deploy-hello-world.ps1` to validate ingress routes and RBAC; configure CUDN BGP route advertisements; integrate EX280 timed mock exam engine
 
+### `opensource` (DevOps / Governance & Supply Chain)
+- **Stack**: `Markdown, Git, GitHub CLI, CycloneDX, SPDX, Python`
+- **Status**: `Active`
+- **Frontier Architecture**: Open-Source Program Office (OSPO) architecture, OpenChain (ISO/IEC 5230) license compliance, automated CycloneDX 1.6 / SPDX 3.0 SBOM generation, OpenSSF Scorecard auditing, SLSA Level 3 build provenance, automated Git submodule/subtree upstream sync, SemVer 2.0.0 release automation with `git-cliff`
+- **Target Action**: Scaffold `ospo_governance.py` and `Generate-ProjectSbom.ps1`; enforce SPDX license headers across all 75 portfolio repositories; deploy automated upstream fork synchronizer
+
 ### `personal assistant` (AI / Desktop)
 - **Stack**: `Python, Audio, JSON`
 - **Status**: `Active`
@@ -2132,7 +2158,7 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `vulnerability management` (Cybersecurity)
 - **Stack**: `C#, .NET 10 MVC, SQLite`
 - **Status**: `Active`
-- **Frontier Architecture**: Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, October/November 2026 advisories (**CVE-2026-76418** ASA/FTD SSL VPN tunnel DoS actively exploited in wild, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; `cisco-sa-asaftd-vpn-dos-dzv4mQFF`, `cisco-sa-sec-client-priv-esc-muF8eZdm`, **CVE-2026-76482** Smart License On-Prem CVSS 10.0, **CVE-2026-76519** Email Gateway RCE in AMP - CISA KEV, Secure Firewall & ISE hardening releases, **CVE-2026-76465** NX-OS MPLS OAM, **CVE-2026-76485/76486/76501** NGOAM, **CVE-2026-76471** NX-API, **CVE-2026-76498..500** APIC, **CVE-2026-76466** Expressway, **CVE-2026-76506** UCS Central RCE - CVSS 7.6, **CVE-2026-76419** CUCM XSS - CVSS 6.1, **CVE-2026-20241** ISE Authorization Bypass - CVSS 5.3, **CVE-2026-20043/20236/20291/20356** Snort 3 RCE - CVSS 9.0, **CVE-2026-76524** Snort socket command exec - CVSS 7.8, **Nov 4, 2026 ISE/UCS Central/CUCM disclosures & Cisco EOY release freeze until Jan 20, 2027**)
+- **Frontier Architecture**: Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, October/November 2026 advisories (**CVE-2026-76418** ASA/FTD SSL VPN tunnel DoS actively exploited in wild, Bug ID `CSCwx26625`, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; `cisco-sa-asaftd-vpn-dos-dzv4mQFF`, `cisco-sa-sec-client-priv-esc-muF8eZdm`, **CVE-2026-76482** Smart License On-Prem CVSS 10.0, **CVE-2026-76519** Email Gateway RCE in AMP - CISA KEV, Secure Firewall & ISE hardening releases, **CVE-2026-76465** NX-OS MPLS OAM, **CVE-2026-76485/76486/76501** NGOAM, **CVE-2026-76471** NX-API, **CVE-2026-76498..500** APIC, **CVE-2026-76466** Expressway, **CVE-2026-76506** UCS Central RCE - CVSS 7.6, Bug ID `CSCwv60193`, **CVE-2026-76419** CUCM XSS - CVSS 6.1, **CVE-2026-20241** ISE Authorization Bypass - CVSS 5.3, **CVE-2026-111497** Node.js Brotli RCE, **CVE-2026-20043/20236/20291/20356** Snort 3 RCE - CVSS 9.0, **CVE-2026-76524** Snort socket command exec - CVSS 7.8, **Nov 4, 2026 ISE/UCS Central/CUCM disclosures & Cisco EOY release freeze until Jan 20, 2027**)
 - **Target Action**: Ingest actively exploited CVE-2026-76418, CVE-2026-76519, CVE-2026-76482, and CVE-2026-76506 into automated scanner; compile scanner with .NET 10 Native AOT
 
 ### `windows event viewer` (Cybersecurity)
