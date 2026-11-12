@@ -201,7 +201,10 @@ def ensure_ollama_running():
     try:
         ollama_bin = r"C:\Users\chase\AppData\Local\Programs\Ollama\ollama.exe"
         cmd = [ollama_bin, "serve"] if os.path.exists(ollama_bin) else ["ollama", "serve"]
-        subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        creationflags = 0
+        if sys.platform == "win32":
+            creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+        subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=creationflags)
         import time
         for _ in range(40):
             time.sleep(1)
@@ -241,7 +244,9 @@ def categorize_skills(skills):
         p = data.get("path", "").lower()
         
         # Priority matching by domain identity
-        if any(k in n for k in ["cheminformatics", "rdkit"]):
+        if any(k in n for k in ["antigravity", "agy-", "migrate-workflows", "ui-plugin-navigation"]):
+            categories["Platform & Customizations"].append(data)
+        elif any(k in n for k in ["cheminformatics", "rdkit"]):
             categories["Cheminformatics & Computational Chemistry"].append(data)
         elif any(k in n for k in ["youtube", "retention", "invideo", "higgsfield", "hyperframes", "magnific", "openedit", "remotion", "runway", "video"]):
             categories["Media & Video Strategy"].append(data)
@@ -261,11 +266,11 @@ def categorize_skills(skills):
             categories["Firebase & Backend Services"].append(data)
         elif any(k in n for k in ["flutter", "dart-", "android", "compose", "xcode"]):
             categories["Flutter & Mobile App Development"].append(data)
-        elif any(k in n for k in ["chrome-devtools", "a11y-debugging", "cookie-debugging", "memory-leak-debugging", "troubleshooting", "puppeteer", "chrome-extensions", "playwright", "firecrawl"]):
+        elif any(k in n for k in ["chrome-devtools", "a11y-debugging", "cookie-debugging", "memory-leak-debugging", "troubleshooting", "puppeteer", "chrome-extensions", "playwright", "firecrawl", "browse"]):
             categories["Browser Automation & Web DevTools"].append(data)
         elif (any(k in n for k in ["figma", "canva", "wix", "mobbin", "redesign-screen", "plain-writing", "generative_ui", "motion-craftsmanship"]) or n == "search" or "mobbin" in p) and "ml-best-practices" not in n:
             categories["Design, UI/UX & Creative Engineering"].append(data)
-        elif any((k in n if k != "eve" else (n == "eve" or n.startswith("eve-") or n.endswith("-eve"))) for k in ["vercel", "netlify", "base44", "cdn-caching", "runtime-cache", "routing-middleware", "is-agentic", "chat-sdk", "ai-sdk", "flags-sdk", "env-vars", "domains", "bootstrap", "create-a-backend", "custom-metrics", "microfrontends", "modern-web-guidance", "react-best-practices", "debug-optimize-lcp", "auth", "auth0", "offload-to-sandbox", "deployments-cicd", "queues", "daemons", "ai-gateway", "eve", "build-agents", "knowledge-update"]):
+        elif any((k in n if k != "eve" else (n == "eve" or n.startswith("eve-") or n.endswith("-eve"))) for k in ["vercel", "netlify", "base44", "cdn-caching", "runtime-cache", "routing-middleware", "is-agentic", "chat-sdk", "ai-sdk", "flags-sdk", "env-vars", "domains", "bootstrap", "create-a-backend", "custom-metrics", "microfrontends", "modern-web-guidance", "react-best-practices", "debug-optimize-lcp", "auth", "auth0", "offload-to-sandbox", "deployments-cicd", "queues", "daemons", "ai-gateway", "eve", "build-agents", "knowledge-update", "marketplace", "sandbox"]):
             categories["Cloud Deployments & Serverless Architecture"].append(data)
         elif any(k in n for k in ["autofix", "code-review", "script-practice", "anti-slop", "enterprise-fullscreen", "interactive-simulation", "github-primer", "workflow", "uv", "automation", "managing-python-dependencies", "notebook-guidance", "generate-project-plan", "accidental-data-loss-prevention", "verification", "ml-best-practices", "permissioned-github", "google-maps-platform", "gdrive", "gcalendar", "gsheets", "gdocs", "gslides", "credentials", "context7"]):
             categories["Developer Workflows & Automation"].append(data)
@@ -329,9 +334,9 @@ def build_system_prompt(skills, categories, projects):
     lines.append("2. **Google Cloud, BigQuery & Dataform Engineering**: Architect scalable, idempotent ELT pipelines using BigQuery DataFrames (BigFrames), Dataform, Cloud Storage FUSE, Cloud Composer (Airflow), and Spark. Apply mandatory resource attribution labels to bq operations and optimize slot utilization.")
     lines.append("3. **Firebase & Backend Architecture**: Enforce declarative Firestore security rules, Firebase Auth flows, Cloud Functions v2 triggers, and Firebase Data Connect PostgreSQL backends with strict type safety.")
     lines.append("4. **Flutter & Mobile App Engineering**: Implement clean layered architectures (UI, Logic, Data), declarative routing with go_router, primary constructor syntax, package:checks testing, WCAG accessibility standards, and Android Compose previews.")
-    lines.append("5. **Cloud Deployments, Serverless & Edge Systems**: Deploy robust Vercel and Netlify systems utilizing Edge functions, AI SDK, durable workflows, CDN caching/revalidation policies, zero-trust middleware, and automated CI/CD verification.")
+    lines.append("5. **Cloud Deployments, Serverless & Edge Systems**: Deploy robust Vercel and Netlify systems utilizing Edge functions, AI SDK, durable workflows, Vercel Schedules cron automation, Vercel Sandbox microVM execution, Netlify Server long-lived backends, CDN caching/revalidation policies, zero-trust middleware, and automated CI/CD verification.")
     lines.append("6. **Graph Databases & GraphRAG**: Construct high-performance Neo4j Cypher queries, vector indexes, and GraphRAG retrieval patterns. Ingest LookML models with semantic explorations, liquid variables, and access grants.")
-    lines.append("7. **Design Systems & Creative Engineering**: Seamlessly bridge design and code using Figma Code Connect, custom shaders, Canva Brand Kits, and Wix headless design systems with pixel-perfect responsive execution.")
+    lines.append("7. **Design Systems & Creative Engineering**: Seamlessly bridge design and code using Figma Code Connect, custom shaders, Canva Brand Kits, and Wix headless design systems alongside chat-driven site creation in Wix Studio Two with pixel-perfect responsive execution.")
     lines.append("8. **Browser Automation, Scraping & Web DevTools Diagnostics**: Audit web performance, memory leak profiles, cookie/session configurations, and accessibility trees via Chrome DevTools protocol, Puppeteer, Playwright MCP end-to-end browser automation, and Firecrawl clean LLM-ready markdown extraction & multi-page site crawling.")
     lines.append("9. **Enterprise Scripting & Automation Mastery**: Provide complete, production-ready code, commands, and scheduled automation patterns. Adhere strictly to enterprise production standards for Bash/RHEL (set -euo pipefail, variable quoting, parameter expansions, trap cleanup) and modern PowerShell (CmdletBinding, pipeline architecture, strongly-typed PSCustomObjects, cross-version compatibility).")
     lines.append("10. **Anti-Slop Craftsmanship & Code Quality**: Eliminate low-effort AI hallmarks across all 8 community anti-patterns: emoji asset flips, hallucinated purple prose, shovelware ad-traps, shallow dilution, zero kinesthetics, sub-48dp touch targets, video/audio SFX brainrot, and sterile CGI plastic renders. Enforce handcrafted organic linework/watercolor textures, cel-shaded WebGL, audio soundboard limits (<=1 subtle cue per 30-45s, -14 to -16 LUFS voiceover), pure gameplay/utility loops, and WCAG AAA ergonomics (minimum 48x48dp touch targets).")

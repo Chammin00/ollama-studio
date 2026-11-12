@@ -60,8 +60,8 @@
     "category": "Cybersecurity",
     "stack": "C#, .NET 10 MVC, SQLite",
     "status": "Active",
-    "frontier": "Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, October/November 2026 advisories (**CVE-2026-76418** ASA/FTD SSL VPN tunnel DoS actively exploited in wild, Bug ID `CSCwx26625`, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; `cisco-sa-asaftd-vpn-dos-dzv4mQFF`, `cisco-sa-sec-client-priv-esc-muF8eZdm`, **CVE-2026-76482** Smart License On-Prem CVSS 10.0, **CVE-2026-76519** Email Gateway RCE in AMP - CISA KEV, Secure Firewall & ISE hardening releases, **CVE-2026-76465** NX-OS MPLS OAM, **CVE-2026-76485/76486/76501** NGOAM, **CVE-2026-76471** NX-API, **CVE-2026-76498..500** APIC, **CVE-2026-76466** Expressway, **CVE-2026-76506** UCS Central RCE - CVSS 7.6, Bug ID `CSCwv60193`, **CVE-2026-76419** CUCM XSS - CVSS 6.1, **CVE-2026-20241** ISE Authorization Bypass - CVSS 5.3, **CVE-2026-111497** Node.js Brotli RCE, **CVE-2026-20043/20236/20291/20356** Snort 3 RCE - CVSS 9.0, **CVE-2026-76524** Snort socket command exec - CVSS 7.8, **Nov 4, 2026 ISE/UCS Central/CUCM disclosures & Cisco EOY release freeze until Jan 20, 2027**)",
-    "action": "Ingest actively exploited CVE-2026-76418, CVE-2026-76519, CVE-2026-76482, and CVE-2026-76506 into automated scanner; compile scanner with .NET 10 Native AOT"
+    "frontier": "Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, October/November 2026 advisories (**CVE-2026-76418** ASA/FTD SSL VPN tunnel DoS actively exploited in wild, Bug ID `CSCwx26625`, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; **CVE-2026-20349** ASA/FTD Remote Access SSL VPN HTTP processing flaw DoS actively exploited in wild - CVSS 8.6; `cisco-sa-asaftd-vpn-dos-dzv4mQFF`, `cisco-sa-sec-client-priv-esc-muF8eZdm`, **CVE-2026-76482** Smart License On-Prem CVSS 10.0, **CVE-2026-76519** Email Gateway RCE in AMP - CISA KEV, Secure Firewall & ISE hardening releases, **CVE-2026-20271** IOS XE memory leak DoS, **CVE-2026-76465** NX-OS MPLS OAM, **CVE-2026-76485/76486/76501** NGOAM, **CVE-2026-76471** NX-API, **CVE-2026-76498..500** APIC, **CVE-2026-76466** Expressway, **CVE-2026-76506** UCS Central RCE - CVSS 7.6, Bug ID `CSCwv60193`, **CVE-2026-76419** CUCM XSS - CVSS 6.1, **CVE-2026-20241** ISE Authorization Bypass - CVSS 5.3, **CVE-2026-111497** Node.js Brotli RCE, **CVE-2026-20043/20236/20291/20356** Snort 3 RCE - CVSS 9.0, **CVE-2026-76524** Snort socket command exec - CVSS 7.8, **Nov 4, 2026 ISE/UCS Central/CUCM disclosures & Cisco EOY release freeze until Jan 20, 2027**)",
+    "action": "Ingest actively exploited CVE-2026-76418, CVE-2026-20349, CVE-2026-76519, CVE-2026-76482, and CVE-2026-76506 into automated scanner; compile scanner with .NET 10 Native AOT"
   },
   "MY Security": {
     "name": "MY Security",
@@ -122,18 +122,18 @@
   "RHCSA Exam200": {
     "name": "RHCSA Exam200",
     "category": "Linux / SysAdmin",
-    "stack": "Markdown, Shell, RHEL 9.5/10",
+    "stack": "Markdown, Shell, RHEL 9.5/9.6/10",
     "status": "Active",
-    "frontier": "Podman 5 Quadlets (`.container`, `.image`, `.volume`, `.network`, `.kube`, `.pod`), Netavark + `pasta` rootless networking (replacing slirp4netns), systemd v256+ `run0` (`--machine=` container execution), `systemd-creds` encrypted secret injection, `loginctl enable-linger $USER`, journald streaming, cgroups v2 direct PID 1 monitoring, SELinux context (`:Z`)",
-    "action": "Build `grade_rhcsa_lab.sh` validating Quadlets, pasta/Netavark networks, persistent LVM UUIDs, and SGID permissions"
+    "frontier": "RHEL 9.6 modernization: Landlock LSM unprivileged application sandboxing, Unified Kernel Images (UKIs) signed with UEFI stubs for secure boot root-of-trust, NFS RPC over TLS encryption, NetworkManager 1.52, Podman 5.4+ with rootless Netavark/`pasta` networking, Podman Quadlets (`.container`, `.image`, `.volume`, `.network`, `.kube`, `.pod`), systemd v256+ `run0` (`--machine=` container execution), `systemd-creds` encrypted secret injection, `loginctl enable-linger $USER`, journald streaming, cgroups v2 direct PID 1 monitoring, SELinux context (`:Z`)",
+    "action": "Build `grade_rhcsa_lab.sh` validating Quadlets, pasta/Netavark networks, Landlock rules, persistent LVM UUIDs, and SGID permissions"
   },
   "openshift": {
     "name": "openshift",
     "category": "Linux / Platform Engineering",
     "stack": "OpenShift 4.17/4.18/4.19, Kubernetes 1.30-1.32, oc, Podman 5, Helm, Argo CD",
     "status": "Active",
-    "frontier": "Red Hat OpenShift Administration II (DO280) & EX280 certification curriculum, DO180 container architecture, DO380 advanced automation, OpenShift 4.17 (K8s 1.30, OVN-Kubernetes only), 4.18 (K8s 1.31 EUS, User Defined Networks UDNs GA, Secrets Store CSI Operator GA, `cert-manager` v1.15), 4.19 (K8s 1.32, unified console, BGP Route Advertisements for ClusterUserDefinedNetworks CUDNs with FRR via `k8s.ovn.org/v1` `RouteAdvertisements` CR, Network Observability Operator native UDN flow tracing, strict cgroups v2, Service Mesh 3.1, Argo CD/Rollouts), Security Context Constraints (SCC `restricted-v2`), Ingress Routes TLS profiles (Edge, Passthrough, Re-encrypt), dynamic CSI StorageClasses, `oc adm must-gather` & `ovn-trace`",
-    "action": "Execute `setup-workstation.ps1` and `check-binary.ps1`; run `diagnose-route.ps1` and `deploy-hello-world.ps1` to validate ingress routes and RBAC; configure CUDN BGP route advertisements; integrate EX280 timed mock exam engine"
+    "frontier": "Red Hat OpenShift Administration II (DO280) & EX280 certification curriculum, DO180 container architecture, DO380 advanced automation, OpenShift 4.17 (K8s 1.30, OVN-Kubernetes mandatory), 4.18 (K8s 1.31 EUS, User Defined Networks UDNs GA, Secrets Store CSI Driver Operator GA for external vault/GCP secret injection without etcd storage, `cert-manager` v1.15), 4.19 (K8s 1.32, unified console, BGP Route Advertisements for ClusterUserDefinedNetworks CUDNs with FRR via `k8s.ovn.org/v1` `RouteAdvertisements` CR, Network Observability Operator native UDN flow tracing, strict cgroups v2, Service Mesh 3.1, Argo CD/Rollouts), Security Context Constraints (SCC `restricted-v2`), Ingress Routes TLS profiles (Edge, Passthrough, Re-encrypt), dynamic CSI StorageClasses, `oc adm must-gather` & `ovn-trace`",
+    "action": "Execute `setup-workstation.ps1` and `check-binary.ps1`; run `diagnose-route.ps1` and `deploy-hello-world.ps1` to validate ingress routes and RBAC; configure CUDN BGP route advertisements and test Secrets Store CSI mounting; integrate EX280 timed mock exam engine"
   },
   "docker": {
     "name": "docker",
@@ -212,8 +212,8 @@
     "category": "Gaming / Tuning",
     "stack": "PowerShell 7+, Registry, WMI, UE5 Ini",
     "status": "Active",
-    "frontier": "Dynamic Ultimate Performance power plan (`$UltimatePlanGuid = \"ce71df13-30de-418e-9c7c-7afb0a84dc89\"`), discrete RTX 4080 GPU registry assignment (`HKCU:\\Software\\Microsoft\\DirectX\\UserGpuPreferences`, `GpuPreference=2;`), Phantom Blade Zero (PBZ) & Steam continuous performance watcher (`Start-SteamGamingPerformanceWatcher.ps1` polling every 5s), process priority elevation (`High`), UE5 `Engine.ini` streaming & async compute tuning (`r.Streaming.PoolSize=6144`, `r.CreateShadersOnLoad=1`, `r.AsyncCompute=1`, `FX.Niagara.AllowAsyncBudgeting=1`), GPU MSI-X mode verification, Windows 11 24H2 DirectStorage 1.2 GPU decompression",
-    "action": "Register `Start-SteamGamingPerformanceWatcher.ps1` as a startup background daemon; verify `Engine.ini` 6GB texture pool & shader preload across steamapps directories"
+    "frontier": "Dynamic Ultimate Performance power plan (`$UltimatePlanGuid = \"ce71df13-30de-418e-9c7c-7afb0a84dc89\"`), discrete RTX 4080 GPU registry assignment (`HKCU:\\Software\\Microsoft\\DirectX\\UserGpuPreferences`, `GpuPreference=2;`), Phantom Blade Zero (PBZ) & Steam continuous performance watcher (`Start-SteamGamingPerformanceWatcher.ps1` polling every 5s), automated optimization suite (`Invoke-PBZOptimization.ps1`), process priority elevation (`High`), UE5 `Engine.ini` streaming & async compute tuning (`r.Streaming.PoolSize=6144`, `r.CreateShadersOnLoad=1`, `r.AsyncCompute=1`, `FX.Niagara.AllowAsyncBudgeting=1`), GPU MSI-X mode verification, Windows 11 24H2 DirectStorage 1.2 GPU decompression",
+    "action": "Execute `Invoke-PBZOptimization.ps1` prior to gaming sessions; register `Start-SteamGamingPerformanceWatcher.ps1` as a startup background daemon; verify `Engine.ini` 6GB texture pool & shader preload across steamapps directories"
   },
   "zfold6 features": {
     "name": "zfold6 features",
@@ -346,10 +346,10 @@
   "MCP": {
     "name": "MCP",
     "category": "Systems / AI Tools",
-    "stack": "Node.js, JSON-RPC, Python, JavaScript",
+    "stack": "Node.js, JSON-RPC, Python, JavaScript, FastMCP v4",
     "status": "Active",
-    "frontier": "Centralized Model Context Protocol hub, MCP Baseline 2.0 (`MCP_WEB_APPS_BASELINE.md`), `mcp-baseline.js` v2.0, `mcp-registry.json`, `Ctrl+M` telemetry HUD, `Ctrl+E` in-app element inspection & hot-patching editor console, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`), global `mcp_config.json` integration",
-    "action": "Sync live tool availability to `My Planetarium` and `My Custom Gui`; enforce loopback HMAC token auth; maintain in-app element inspection and hot-patching console"
+    "frontier": "Centralized Model Context Protocol hub, MCP `2026-07-28` specification standard (stateless protocol core, header routing `Mcp-Method`/`Mcp-Name`, multi round-trip `input_required`, `ttlMs` cache hints, formal `io.modelcontextprotocol/tasks` extensions), FastMCP v4 (`CurrentContext` dependency injection), MCP Baseline 2.0 (`MCP_WEB_APPS_BASELINE.md`), `mcp-baseline.js` v2.0, `mcp-registry.json`, `Ctrl+M` telemetry HUD, `Ctrl+E` in-app element inspection & hot-patching editor console, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`), global `mcp_config.json`, Texas Property Tax Form 50-132 protest generator (`Tax_Summary_and_2027_Protest_Plan.md`)",
+    "action": "Sync live tool availability to `My Planetarium` and `My Custom Gui`; enforce loopback HMAC token auth; maintain in-app element inspection and hot-patching console; migrate Python servers to FastMCP v4 stateless core"
   },
   "VR creation apps": {
     "name": "VR creation apps",
@@ -484,8 +484,8 @@
     "category": "Search / Portals",
     "stack": "Static Web, JS, CSS, PWA",
     "status": "Active",
-    "frontier": "Automated `Sync-ChoogleProjects.ps1` catalog sync, offline Service Worker, local inverted index",
-    "action": "Sync search database with expanded project inventory and add offline search caching"
+    "frontier": "Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed 2026-11-11 00:07:48 with active search mappings and app catalog ingestion), offline Service Worker, local inverted index",
+    "action": "Maintain scheduled sync; expand search mappings for newly staged micro-apps and tools"
   },
   "portfolio": {
     "name": "portfolio",
@@ -532,7 +532,7 @@
     "category": "DevOps / Control",
     "stack": "PowerShell, SQLite, JSON",
     "status": "Active",
-    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (75 tracked projects + 10 extension sub-projects), nightly health scan (17/17 Deploy Suite 100% Healthy)",
+    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking all 75 projects, 30 deployable, 6 in progress), nightly health scan (verified 2026-11-11 00:02:37: 17/17 Deploy Suite 100% Healthy, 0 degraded, 0 critical in 2,715ms)",
     "action": "Maintain continuous health verification and sync all 75 active projects into `PROJECT_CATALOG.json`"
   },
   "sandbox": {
@@ -564,8 +564,8 @@
     "category": "Finance / Real Estate",
     "stack": "Python, Chart.js, CSV, JSON",
     "status": "Active",
-    "frontier": "Collin CAD scraper, Zestimate/Redfin consensus, Collin County ARB Tax protest CMA generator",
-    "action": "Build automated property tax protest packet generator using Collin CAD comps"
+    "frontier": "Collin CAD scraper, Zestimate/Redfin consensus, Collin County ARB Tax protest CMA generator, official Texas Property Tax Form 50-132 evidence packet (Collin CAD account # 2883011 for 1766 Crestridge Cir Princeton TX generated via `MCP`)",
+    "action": "Integrate automated sales comps calculation ($/sqft variance modeling) directly into annual protest PDF pipeline; sync valuation metrics to `My Custom Gui`"
   },
   "track most wanted": {
     "name": "track most wanted",
@@ -636,7 +636,7 @@
     "category": "Media / YouTube Automation",
     "stack": "PowerShell, Python, YouTube Data API v3, FFmpeg, Pillow",
     "status": "Active",
-    "frontier": "Your Favorite Character's White Noise & Sleep Ambience Automation Engine, high-AVD 3\u20138 hour sleep loops, 2-Upload Funnel (12\u201318s discovery Short with Related Video pill funnelling into 3\u20138h sleep loop), 4-slot rotating character format (Eustace Bagge, Rolf, Courage Computer, Nostalgia Wildcard), dynamic anti-repetition visual loops (CRT static grain, farmhouse shadows, audio waveforms), 12 complete episodes generated with matching audio, thumbnails, and short/long videos (`ep01-eustace` through `ep12-sa1-mystic-ruins`), automated publishing queue (`Invoke-AutoUploadQueue.ps1`, `youtube_api_upload.py`, `Start-ChannelAndUploadWizard.ps1`, `New-WhiteNoisePair.ps1`)",
+    "frontier": "Your Favorite Character's White Noise & Sleep Ambience Automation Engine, high-AVD 3\u20138 hour sleep loops, 2-Upload Funnel (12\u201318s discovery Short with Related Video pill funnelling into 3\u20138h sleep loop), 4-slot rotating character format (Eustace Bagge, Rolf, Courage Computer, Nostalgia Wildcard), dynamic anti-repetition visual loops (CRT static grain, farmhouse shadows, audio waveforms), 12 complete episodes generated with matching audio, thumbnails, and short/long videos (`ep01-eustace` through `ep12-sa1-mystic-ruins`), automated publishing queue (`Invoke-AutoUploadQueue.ps1`, `youtube_api_upload.py`, `Start-ChannelAndUploadWizard.ps1`, `New-WhiteNoisePair.ps1`), character rotation catalog updated 2026-11-10 10:51 PM",
     "action": "Execute `Invoke-AutoUploadQueue.ps1` across the 12 generated episodes; verify YouTube Data API v3 OAuth2 token refresh and scheduled publish cadence"
   },
   "Social Media": {
