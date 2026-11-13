@@ -1,6 +1,6 @@
 # Antigravity Acquired Skills & Projects Ecosystem Digest
 
-Updated: 334 Acquired Skills | 83 Production Projects
+Updated: 334 Acquired Skills | 84 Production Projects
 
 ## 📦 Part 1: Acquired Agent Skills Catalog
 
@@ -1716,8 +1716,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `3d images` (3D / Graphics)
 - **Stack**: `Node.js, WebGL, Shaders`
 - **Status**: `Active`
-- **Frontier Architecture**: WebGL2 stereoscopic shaders, glTF Draco mesh compression, Three.js TSL materials
-- **Target Action**: Integrate Draco mesh compression to load high-resolution 3D models with minimal latency
+- **Frontier Architecture**: WebGL2 stereoscopic shaders, glTF Draco mesh compression, Three.js r184/r185 TSL materials with automatic WGSL/GLSL cross-compilation, FSR 1 and TAAU upscaling nodes
+- **Target Action**: Integrate Draco mesh compression and Three.js r184 FSR 1 / TAAU upscaling nodes to load high-resolution 3D models with minimal latency
 
 ### `AAC` (Assistive Tech / Accessibility)
 - **Stack**: `TypeScript, Vite, Web Speech API, PWA, CSS`
@@ -1746,8 +1746,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `How to train your AI` (AI / Agents)
 - **Stack**: `Ollama, Python, Modelfiles`
 - **Status**: `Active`
-- **Frontier Architecture**: TensorRT-LLM 1.x (PyTorch-native), vLLM 0.7+, Blackwell NVFP4 16-element micro-block scaling with FP8 E4M3 local scaling & FP32 global scaling via ModelOpt (`mtq.quantize` with `NVFP4_DEFAULT_CFG` or `NVFP4_MLP_ONLY_CFG`), dual export pathways (`export_tensorrt_llm_checkpoint` & `export_hf_checkpoint` via `hf_quant_config.json`), vLLM/SGLang native `--quantization modelopt_fp4 --linear-backend cutlass` with Marlin W4A16 fallback, ModelOpt Quantization-Aware Distillation (QAD), `KvCacheConfig(dtype='nvfp4')`, RoPE precision control (`skip_rope_quantization=True` / `2FP4`), Speculative Decoding (EAGLE-2 / DFlash)
-- **Target Action**: Deploy `serve_vllm.ps1` with dynamic prefix caching; integrate AST parser and local ChromaDB knowledge base
+- **Frontier Architecture**: TensorRT-LLM 1.4+ (PyTorch-native, DFlash 2 support, KV-Cache Manager V2 default for Llama, explicit `sampler_type` in `SamplingConfig`), vLLM v0.33.0 (LibTorch Stable ABI migration, PyTorch 2.14, concurrent worker startup for TP > 1, native watchdog, removal of Medusa and old MLP speculators, `uv pip install vllm --torch-backend=auto`), Blackwell NVFP4 16-element micro-block scaling with FP8 E4M3 local scaling & FP32 global scaling via ModelOpt (`mtq.quantize` with `NVFP4_DEFAULT_CFG` or `NVFP4_MLP_ONLY_CFG`), dual export pathways (`export_tensorrt_llm_checkpoint` & `export_hf_checkpoint` via `hf_quant_config.json`), vLLM/SGLang native `--quantization modelopt_fp4 --linear-backend cutlass` with Marlin W4A16 fallback, ModelOpt Quantization-Aware Distillation (QAD), `KvCacheConfig(dtype='nvfp4')`, RoPE precision control (`skip_rope_quantization=True` / `2FP4`), Speculative Decoding (EAGLE-2 / DFlash 2)
+- **Target Action**: Deploy `serve_vllm.ps1` with vLLM v0.33.0 LibTorch ABI; enable DFlash 2 and KV-Cache Manager V2; integrate AST parser and local ChromaDB knowledge base
 
 ### `Images` (Asset Store)
 - **Stack**: `Image Formats (.heic, .jpg)`
@@ -1758,8 +1758,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `MCP` (Systems / AI Tools)
 - **Stack**: `Node.js, JSON-RPC, Python, JavaScript, FastMCP v4`
 - **Status**: `Active`
-- **Frontier Architecture**: Centralized Model Context Protocol hub, MCP `2026-07-28` specification standard (stateless protocol core, header routing `Mcp-Method`/`Mcp-Name`, multi round-trip `input_required`, `ttlMs` cache hints, formal `io.modelcontextprotocol/tasks` extensions), FastMCP v4 (`CurrentContext` dependency injection), MCP Baseline 2.0 (`MCP_WEB_APPS_BASELINE.md`), `mcp-baseline.js` v2.0, `mcp-registry.json`, `Ctrl+M` telemetry HUD, `Ctrl+E` in-app element inspection & hot-patching editor console, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`), global `mcp_config.json`, Texas Property Tax Form 50-132 protest generator (`Tax_Summary_and_2027_Protest_Plan.md`)
-- **Target Action**: Sync live tool availability to `My Planetarium` and `My Custom Gui`; enforce loopback HMAC token auth; maintain in-app element inspection and hot-patching console; migrate Python servers to FastMCP v4 stateless core
+- **Frontier Architecture**: Centralized Model Context Protocol hub, MCP `2026-07-28` specification standard (Linux Foundation, stateless protocol core, header routing `Mcp-Method`/`Mcp-Name`, multi round-trip `input_required`, `ttlMs` cache hints, formal `io.modelcontextprotocol/tasks` extensions), FastMCP v4 (`CurrentContext` dependency injection), newly deployed dedicated `ollama-mcp` server (`MCP/ollama-mcp`) exposing 6 specialized tools, MCP Baseline 2.0 (`MCP_WEB_APPS_BASELINE.md`), `mcp-baseline.js` v2.0, `mcp-registry.json`, `Ctrl+M` telemetry HUD, `Ctrl+E` in-app element inspection & hot-patching editor console, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`, `ollama-mcp`), global `mcp_config.json`, Texas Property Tax Form 50-132 protest generator (`Tax_Summary_and_2027_Protest_Plan.md`)
+- **Target Action**: Sync live tool availability across all project hubs (`My Planetarium`, `My Custom Gui`, `index folder`); enforce loopback HMAC token auth; test FastMCP v4 `CurrentContext` dependency injection in `ollama-mcp`
 
 ### `MY Security` (Cybersecurity)
 - **Stack**: `C#, .NET 10, PowerShell`
@@ -1776,8 +1776,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `My Planetarium` (XR / Graphics / Navigation)
 - **Stack**: `Three.js, WebGL, High-Gloss Lacquer`
 - **Status**: `Active`
-- **Frontier Architecture**: 3D Interactive Deep Space Planetary Observatory & Sector Atlas, 64 charted planetary bodies, astronomical rigor, Antigravity bidirectional prompt dispatching (`window.sidecar.agent.sendMessage`), auto-fit panoramic projection (`[F]`), MCP matrix
-- **Target Action**: Keep `projects-data.js` synchronized with expanded project inventory; package as Antigravity UI extension plugin
+- **Frontier Architecture**: 3D Interactive Deep Space Planetary Observatory & Sector Atlas, 64 charted planetary bodies, astronomical rigor, Three.js r184/r185 WebGPURenderer and TSL materials, Antigravity bidirectional prompt dispatching (`window.sidecar.agent.sendMessage`), auto-fit panoramic projection (`[F]`), slide-out MCP telemetry drawer
+- **Target Action**: Keep `projects-data.js` synchronized with expanded 76-project inventory; package as Antigravity UI extension plugin; verify Three.js r184/r185 TSL shader rendering
 
 ### `Plugins/chrome-pulse-task-manager` (Browser Extension)
 - **Stack**: `Manifest V3, JS, Chrome APIs`
@@ -1860,8 +1860,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `Scary Water Slides` (XR / 3D Simulation / Media)
 - **Stack**: `Three.js, WebGL, Web Audio, VFX`
 - **Status**: `Active`
-- **Frontier Architecture**: Playable 3D waterslide simulation (Space Exosphere, Avalanche, Volcanic Core), real-world terrain 4K VFX integration (Blender camera tracking, PBR glass BSDF, Runway Gen-3/Kling 1.5 AI motion), top 0.1% YouTube packaging drawer
-- **Target Action**: Record 4K simulation runs; generate episode 1 thumbnail assets and test audio synthesis
+- **Frontier Architecture**: Playable 3D waterslide simulation (Space Exosphere, Avalanche, Volcanic Core), Three.js r184/r185 TSL continuous gravity tube splines with Catmull-Rom interpolation, real-world terrain 4K VFX integration (Blender camera tracking, PBR glass BSDF, Runway Gen-3/Kling 1.5 AI motion), top 0.1% YouTube packaging drawer
+- **Target Action**: Record 4K simulation runs; generate episode 1 thumbnail assets and test audio synthesis; test Three.js r184 TSL water shader nodes
 
 ### `Scripting` (Linux / PowerShell Automation)
 - **Stack**: `Bash, RHEL 9.5/10, PowerShell 5.1/7+, Pester 5.5+`
@@ -1884,8 +1884,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `VR creation apps` (XR / VR)
 - **Stack**: `WebXR, Three.js, Quest 3`
 - **Status**: `Active`
-- **Frontier Architecture**: Three.js `WebGPURenderer` (`await renderer.init()`), TSL (Three Shading Language), node-based `RenderPipeline` (Three.js r183) with MRT, Quest 3 bare-hand tracking (`XRHandModelFactory`), HRTF Web Audio
-- **Target Action**: Upgrade `word-defender-xr.html` to WebGPU/TSL with `RenderPipeline` and add `XRHandModelFactory` pinch firing
+- **Frontier Architecture**: Three.js `WebGPURenderer` (`await renderer.init()`), Three.js r184 non-blocking `compileAsync()` and WebGL compatibility layers for TSL node materials on `WebGLRenderer`, Three.js r185 full WebGPU feature parity & native immersive VR support directly into `WebGPURenderer`, TSL (Three Shading Language) transpiling dynamically to WGSL and GLSL, node-based `RenderPipeline` with MRT, Quest 3 bare-hand tracking (`XRHandModelFactory`), HRTF Web Audio
+- **Target Action**: Upgrade `word-defender-xr.html` to Three.js r184/r185 WebGPURenderer with `compileAsync()` and TSL `RenderPipeline`; integrate `XRHandModelFactory` pinch firing
 
 ### `agent 365` (AI / Enterprise Productivity)
 - **Stack**: `Python 3.12, FastAPI, Pydantic v2, MSAL`
@@ -1968,8 +1968,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `chrome tab and bar` (Browser Extension)
 - **Stack**: `Manifest V3, JS, CSS, Chrome APIs`
 - **Status**: `Active`
-- **Frontier Architecture**: Google Chrome Manifest V3 2026 standard, persistent `chrome.sidePanel` with Chrome 140+ `sidePanel.getLayout()` dynamic left/right docking orientation awareness, programmatic `chrome.tabGroups` auto-categorization and color palettes, proactive memory reclamation via `chrome.tabs.discard`, `chrome.system.memory` & `chrome.system.cpu` live HUD telemetry, custom breadcrumb status bar, `chrome.storage.session` state persistence
-- **Target Action**: Scaffold Manifest V3 manifest, background service worker, and sidepanel UI; integrate search, domain auto-grouping, and sleep controls
+- **Frontier Architecture**: Google Chrome Manifest V3 2026 standard, persistent `chrome.sidePanel` with Chrome 140+ `sidePanel.getLayout()` dynamic left/right docking orientation awareness (and Chrome 148+ `browser.sidePanel.getLayout()` cross-browser namespace), programmatic `chrome.tabGroups` auto-categorization and color palettes, proactive memory reclamation via `chrome.tabs.discard`, `chrome.system.memory` & `chrome.system.cpu` live HUD telemetry, custom breadcrumb status bar, `chrome.storage.session` state persistence
+- **Target Action**: Implement `sidePanel.getLayout()` in `sidepanel.js` to dynamically mirror UI layout based on left/right docking; integrate search, domain auto-grouping, and sleep controls
 
 ### `comptia exam simulator` (Education)
 - **Stack**: `HTML, JS, CSS`
@@ -1986,8 +1986,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `deploy` (DevOps / Control)
 - **Stack**: `PowerShell, SQLite, JSON`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking all 75 projects, 30 deployable, 6 in progress), nightly health scan (verified 2026-11-11 00:02:37: 17/17 Deploy Suite 100% Healthy, 0 degraded, 0 critical in 2,715ms)
-- **Target Action**: Maintain continuous health verification and sync all 75 active projects into `PROJECT_CATALOG.json`
+- **Frontier Architecture**: Automated health audits (`Test-ProjectHealth.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking all 76 projects, 32 deployable, 6 in progress), nightly health scan (verified 2026-11-11 23:46:51: 17/17 Deploy Suite 100% Healthy, 0 degraded, 0 critical in 7,021ms)
+- **Target Action**: Maintain continuous health verification and sync all 76 active projects into `PROJECT_CATALOG.json`; link new 'index folder' into automated deployment manager
 
 ### `desktopscreensaver` (Graphics)
 - **Stack**: `HTML5 Canvas, JS`
@@ -2022,8 +2022,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `game studio` (Game Dev)
 - **Stack**: `C++ UE5, Godot 4.3/4.4, Unity 6, MSVC, ROMs`
 - **Status**: `Active`
-- **Frontier Architecture**: Unreal Engine 5 C++ (`ShadowBlade_Tekken_Naraka_UE5` Battle Royale: Naraka clash, Tekken heat, Ninja Gaiden Izuna drop), Godot 4 3D arena (`ShatteredPagoda_Godot` with 3D models, scenes, tests, `Launch_Kagura_Godot3D.bat`, `Play_Kagura_Godot3D.vbs`), `ChessClash_Godot`, `aether_ascent_spire` build, BPS/UPS delta-patching, Capstone disassembly, Anti-Slop hit-stop kinesthetics
-- **Target Action**: Run `Launch_Kagura_Godot3D.bat` to verify 3D pagoda arena rendering; benchmark Forward+ clustered lighting and hit-stop frame freezing
+- **Frontier Architecture**: Unreal Engine 5 C++ (`ShadowBlade_Tekken_Naraka_UE5` Battle Royale: Naraka clash, Tekken heat, Ninja Gaiden Izuna drop), Godot 4 3D arena (`ShatteredPagoda_Godot` with 3D models, scenes, tests, `Launch_Kagura_Godot3D.bat`, `Play_Kagura_Godot3D.vbs`), `ChessClash_Godot`, `aether_ascent_spire` build, 3D Art Studio (`index.html`, `game-studio-scene.js`, `game-studio-engine.js`), automated studio quality gate verification (`Test-StudioQualityGate.ps1`), BPS/UPS delta-patching, Capstone disassembly, Anti-Slop hit-stop kinesthetics
+- **Target Action**: Execute `Test-StudioQualityGate.ps1`; run `Launch_Kagura_Godot3D.bat` to verify 3D pagoda arena rendering; benchmark Forward+ clustered lighting and hit-stop frame freezing
 
 ### `google drive organizer` (Automation)
 - **Stack**: `PowerShell, Google Drive API`
@@ -2036,6 +2036,12 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Status**: `Active`
 - **Frontier Architecture**: Dynamic Ultimate Performance power plan (`$UltimatePlanGuid = "ce71df13-30de-418e-9c7c-7afb0a84dc89"`), discrete RTX 4080 GPU registry assignment (`HKCU:\Software\Microsoft\DirectX\UserGpuPreferences`, `GpuPreference=2;`), Phantom Blade Zero (PBZ) & Steam continuous performance watcher (`Start-SteamGamingPerformanceWatcher.ps1` polling every 5s), automated optimization suite (`Invoke-PBZOptimization.ps1`), process priority elevation (`High`), UE5 `Engine.ini` streaming & async compute tuning (`r.Streaming.PoolSize=6144`, `r.CreateShadersOnLoad=1`, `r.AsyncCompute=1`, `FX.Niagara.AllowAsyncBudgeting=1`), GPU MSI-X mode verification, Windows 11 24H2 DirectStorage 1.2 GPU decompression
 - **Target Action**: Execute `Invoke-PBZOptimization.ps1` prior to gaming sessions; register `Start-SteamGamingPerformanceWatcher.ps1` as a startup background daemon; verify `Engine.ini` 6GB texture pool & shader preload across steamapps directories
+
+### `index folder` (Portals / Workspace Navigation & 3D Museum)
+- **Stack**: `HTML5, Three.js WebGL, JS, CSS, High-Gloss Lacquer`
+- **Status**: `Active`
+- **Frontier Architecture**: Antigravity Central Directory & Index Hub, 3D Art Gallery Studio & Index Museum (`3d-gallery-studio.html`, `3d-gallery-studio.js`, `Launch_3D_Art_Gallery_Studio.url`) with first-person WASD controls, automated VIP cinematic tour, minimap radar, and iframe previews, 5 domain category trees (`01_Cybersecurity_and_IT`, `02_Games_and_Simulation`, `03_AI_and_Agent_Systems`, `04_Web_Apps_and_Media`, `05_Productivity_and_Finance`), and multi-root workspace config (`Antigravity_Projects.code-workspace`)
+- **Target Action**: Maintain directory shortcuts and 3D Art Gallery Studio; sync new project additions into `projects-catalog.js` and `PROJECTS_DIRECTORY.md`; link to `deploy` and `My Custom Gui`
 
 ### `inspect my pc for improvements` (SysAdmin / Tuning)
 - **Stack**: `PowerShell, WMI`
@@ -2052,8 +2058,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `mobile game` (Mobile / Game Dev)
 - **Stack**: `React Native 0.88, Expo, TypeScript, Nitro Modules`
 - **Status**: `Active`
-- **Frontier Architecture**: Aether Ascent dual-mode card battle engine: Gwent 3-row tactical warfare (`gwentEngine.ts`, `gwentCards.ts`, Hayabusa faction kodachi/kusarigama/odachi, `GwentScreen.tsx`), Slay the Spire roguelike ascension (`spire.ts`, `spireCards.ts`, `spireEnemies.ts`, `SpireCombatScreen.tsx`), Afro-Asian warrior animated motion stage (`AfroAsianMotionStage.tsx`), Chess campaign play mode (`chessAudioService.ts`, `ChessPlayScreen.tsx`, `CampaignShopModal.tsx`), clean-room monetization service (`monetization.ts`, `monetizationService.ts`), React Native New Architecture (Fabric), Margelo Nitro Modules (`margelo/nitro`, package `react-native-nitro-modules`, ~7.27ms vs 115ms per 100k calls, Nitrogen code generator, Swift 5.9+ direct C++ interop, Android `fbjni`), SHA-256 deterministic combat state hashing, Anti-Slop kinesthetics (haptics, spring tweening, min 48dp touch targets)
-- **Target Action**: Benchmark Nitro Modules JSI hybrid objects against standard state recalculations; test Expo web export bundle in `mobile game/public`
+- **Frontier Architecture**: React Native 0.88, Expo SDK 53/54, TypeScript, Margelo Nitro Modules (`react-native-nitro-modules`, `nitrogen` code generator, Swift 5.9+ direct C++ interop, Android `fbjni`, compile-time JSI bindings delivering ~7.27ms vs 115ms per 100k calls), Aether Ascent dual-mode card battle engine: Gwent 3-row tactical warfare (`gwentEngine.ts`, `gwentCards.ts`, Hayabusa faction kodachi/kusarigama/odachi, `GwentScreen.tsx`), Slay the Spire roguelike ascension (`spire.ts`, `spireCards.ts`, `spireEnemies.ts`, `SpireCombatScreen.tsx`), Afro-Asian warrior animated motion stage (`AfroAsianMotionStage.tsx`), Chess campaign play mode (`chessAudioService.ts`, `ChessPlayScreen.tsx`, `CampaignShopModal.tsx`), clean-room monetization service (`monetization.ts`, `monetizationService.ts`), React Native New Architecture (Fabric), SHA-256 deterministic combat state hashing, Anti-Slop kinesthetics (haptics, spring tweening, min 48dp touch targets)
+- **Target Action**: Benchmark Nitro Modules JSI hybrid objects against standard state recalculations; test Expo web export bundle in `mobile game/public`; test Gwent 3-row combat flows
 
 ### `monopoly` (Games)
 - **Stack**: `HTML5 Canvas, JS, Python`
@@ -2068,10 +2074,10 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Add automated flashcard exporter converting Security+ notes into Anki flashcards
 
 ### `ollama` (AI / Knowledge Hub)
-- **Stack**: `Python, Ollama, HTML/JS`
+- **Stack**: `Python, Ollama, HTML/JS, FastMCP`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated Antigravity skill ingestion, dynamic Modelfile generation, local HTTP web studio, Windows scheduled daily sync
-- **Target Action**: Expand `sync_skills_to_ollama.py` to auto-ingest newly added project refinement blueprints into the local system prompt
+- **Frontier Architecture**: Automated Antigravity skill ingestion, dynamic Modelfile generation, local HTTP web studio (`index.html`), Windows scheduled daily sync, dedicated Ollama Model Context Protocol server (`MCP/ollama-mcp`) exposing 6 specialized tools (`ollama_list_models`, `ollama_show_model`, `ollama_generate`, `ollama_chat`, `ollama_get_telemetry`, `ollama_studio_consult`) with FastMCP v4 / Python SDK v2 architecture
+- **Target Action**: Verify `MCP/ollama-mcp` server tools integration; expand `sync_skills_to_ollama.py` to auto-ingest newly added project refinement blueprints into local system prompt; validate `index.html` Web Studio
 
 ### `onestop` (Portals / Hubs)
 - **Stack**: `PowerShell, HTML, CSS`
@@ -2082,14 +2088,14 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `openshift` (Linux / Platform Engineering)
 - **Stack**: `OpenShift 4.17/4.18/4.19, Kubernetes 1.30-1.32, oc, Podman 5, Helm, Argo CD`
 - **Status**: `Active`
-- **Frontier Architecture**: Red Hat OpenShift Administration II (DO280) & EX280 certification curriculum, DO180 container architecture, DO380 advanced automation, OpenShift 4.17 (K8s 1.30, OVN-Kubernetes mandatory), 4.18 (K8s 1.31 EUS, User Defined Networks UDNs GA, Secrets Store CSI Driver Operator GA for external vault/GCP secret injection without etcd storage, `cert-manager` v1.15), 4.19 (K8s 1.32, unified console, BGP Route Advertisements for ClusterUserDefinedNetworks CUDNs with FRR via `k8s.ovn.org/v1` `RouteAdvertisements` CR, Network Observability Operator native UDN flow tracing, strict cgroups v2, Service Mesh 3.1, Argo CD/Rollouts), Security Context Constraints (SCC `restricted-v2`), Ingress Routes TLS profiles (Edge, Passthrough, Re-encrypt), dynamic CSI StorageClasses, `oc adm must-gather` & `ovn-trace`
-- **Target Action**: Execute `setup-workstation.ps1` and `check-binary.ps1`; run `diagnose-route.ps1` and `deploy-hello-world.ps1` to validate ingress routes and RBAC; configure CUDN BGP route advertisements and test Secrets Store CSI mounting; integrate EX280 timed mock exam engine
+- **Frontier Architecture**: Red Hat OpenShift Administration II (DO280) & EX280 certification curriculum, DO180 container architecture, DO380 advanced automation, OpenShift 4.17 (K8s 1.30, OVN-Kubernetes mandatory), 4.18 (K8s 1.31 EUS, User Defined Networks UDNs GA, Secrets Store CSI Driver Operator GA for external vault/GCP secret injection without etcd storage, `cert-manager` v1.15), 4.19 (Built on K8s 1.32 & CRI-O 1.32 on RHEL 9.6 RHCOS; complete removal of cgroups v1 with strict cgroups v2 requirement; Kubernetes Gateway API Generally Available via Service Mesh 3 with Istio 1.26 + Envoy for L4/L7 routing and traffic splitting; BGP Route Advertisements for ClusterUserDefinedNetworks CUDNs with FRR via `k8s.ovn.org/v1` `RouteAdvertisements` CR; Network Observability Operator native UDN flow tracing; unified console merging Admin and Developer views; `cert-manager` Router direct secret loading; oc-mirror v2 with Cosign SigStore tag signatures for air-gapped supply chain verification), Security Context Constraints (SCC `restricted-v2`), Ingress Routes TLS profiles (Edge, Passthrough, Re-encrypt), dynamic CSI StorageClasses, `oc adm must-gather` & `ovn-trace`
+- **Target Action**: Validate OpenShift 4.19 strict cgroups v2 compatibility; configure Gateway API HTTPRoute manifests and CUDN BGP route advertisements; execute `diagnose-route.ps1` and `deploy-hello-world.ps1`; test oc-mirror v2 Cosign SigStore signatures; integrate EX280 timed mock exam engine
 
 ### `opensource` (DevOps / Governance & Supply Chain)
 - **Stack**: `Markdown, Git, GitHub CLI, CycloneDX, SPDX, Python`
 - **Status**: `Active`
-- **Frontier Architecture**: Open-Source Program Office (OSPO) architecture, OpenChain (ISO/IEC 5230) license compliance, automated CycloneDX 1.6 / SPDX 3.0 SBOM generation, OpenSSF Scorecard auditing, SLSA Level 3 build provenance, automated Git submodule/subtree upstream sync, SemVer 2.0.0 release automation with `git-cliff`
-- **Target Action**: Scaffold `ospo_governance.py` and `Generate-ProjectSbom.ps1`; enforce SPDX license headers across all 75 portfolio repositories; deploy automated upstream fork synchronizer
+- **Frontier Architecture**: Open-Source Program Office (OSPO) architecture, OpenChain (ISO/IEC 5230) license compliance, automated CycloneDX 1.6 / SPDX 3.0 profile-based SBOM generation (ECMA-424 & ISO/IEC standards), OpenSSF Scorecard automated security auditing (0-10 security rating across 18 checks), SLSA Level 3 build provenance with Cosign/Sigstore keyless OIDC attestations, automated Git submodule/subtree upstream sync (`Sync-UpstreamForks.ps1`), SemVer 2.0.0 release automation with `git-cliff`
+- **Target Action**: Scaffold `ospo_governance.py` and `Generate-ProjectSbom.ps1`; enforce SPDX license headers across all 76 portfolio repositories; deploy automated upstream fork synchronizer
 
 ### `personal assistant` (AI / Desktop)
 - **Stack**: `Python, Audio, JSON`
@@ -2178,8 +2184,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `vulnerability management` (Cybersecurity)
 - **Stack**: `C#, .NET 10 MVC, SQLite`
 - **Status**: `Active`
-- **Frontier Architecture**: Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, October/November 2026 advisories (**CVE-2026-76418** ASA/FTD SSL VPN tunnel DoS actively exploited in wild, Bug ID `CSCwx26625`, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; **CVE-2026-20349** ASA/FTD Remote Access SSL VPN HTTP processing flaw DoS actively exploited in wild - CVSS 8.6; `cisco-sa-asaftd-vpn-dos-dzv4mQFF`, `cisco-sa-sec-client-priv-esc-muF8eZdm`, **CVE-2026-76482** Smart License On-Prem CVSS 10.0, **CVE-2026-76519** Email Gateway RCE in AMP - CISA KEV, Secure Firewall & ISE hardening releases, **CVE-2026-20271** IOS XE memory leak DoS, **CVE-2026-76465** NX-OS MPLS OAM, **CVE-2026-76485/76486/76501** NGOAM, **CVE-2026-76471** NX-API, **CVE-2026-76498..500** APIC, **CVE-2026-76466** Expressway, **CVE-2026-76506** UCS Central RCE - CVSS 7.6, Bug ID `CSCwv60193`, **CVE-2026-76419** CUCM XSS - CVSS 6.1, **CVE-2026-20241** ISE Authorization Bypass - CVSS 5.3, **CVE-2026-111497** Node.js Brotli RCE, **CVE-2026-20043/20236/20291/20356** Snort 3 RCE - CVSS 9.0, **CVE-2026-76524** Snort socket command exec - CVSS 7.8, **Nov 4, 2026 ISE/UCS Central/CUCM disclosures & Cisco EOY release freeze until Jan 20, 2027**)
-- **Target Action**: Ingest actively exploited CVE-2026-76418, CVE-2026-20349, CVE-2026-76519, CVE-2026-76482, and CVE-2026-76506 into automated scanner; compile scanner with .NET 10 Native AOT
+- **Frontier Architecture**: Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3, November 4, 2026 Disclosures: Cisco UCS Central Software RCE **CVE-2026-76506** (CWE-22 Path Traversal, CVSS 7.6, Bug ID `CSCwv60193`), Cisco Unified CM XSS **CVE-2026-76419** (CVSS 6.1), Cisco Identity Services Engine Authorization Bypass **CVE-2026-20241** (CVSS 5.3, `CWE-285` in cert services); Cisco official EOY vulnerability freeze until January 20, 2027; Actively Exploited Disclosures: **CVE-2026-76418** (ASA/FTD SSL VPN tunnel DoS with secondary auth, Bug ID `CSCwx26625`, actively exploited in wild, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; emergency workaround: `no secondary-authentication`), **CVE-2026-20349** (ASA/FTD Remote Access SSL VPN HTTP processing flaw DoS actively exploited in wild - CVSS 8.6), **CVE-2026-76482** (Smart License On-Prem CVSS 10.0), **CVE-2026-76519** (Secure Email Gateway RCE in AMP - CISA KEV cataloged), **CVE-2026-20271** (IOS XE memory leak DoS), **CVE-2026-76465** (NX-OS MPLS OAM), **CVE-2026-76485/76486/76501** (NGOAM), **CVE-2026-76471** (NX-API), **CVE-2026-76498..500** (APIC), **CVE-2026-76466** (Expressway), **CVE-2026-111497** (Node.js Brotli RCE), **CVE-2026-20043/20236/20291/20356** (Snort 3 RCE - CVSS 9.0), **CVE-2026-76524** (Snort socket command exec - CVSS 7.8)
+- **Target Action**: Ingest November 4, 2026 disclosures (CVE-2026-76506, CVE-2026-76419, CVE-2026-20241) and actively exploited CVE-2026-76418/76519 into automated scanner; lock scanner baseline for Cisco EOY freeze period until Jan 20, 2027; compile scanner with .NET 10 Native AOT
 
 ### `windows event viewer` (Cybersecurity)
 - **Stack**: `PowerShell, Sysmon 15+, Batch`

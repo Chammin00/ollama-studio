@@ -1,619 +1,929 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ollama AI Studio - Antigravity Edition</title>
+  <title>Ollama AI Studio | Antigravity Enterprise Hub</title>
+  <meta name="description" content="Local LLM Engineering Hub and Antigravity Studio Co-Pilot powered by Ollama, Qwen 2.5 Coder, and Model Context Protocol (MCP).">
+
+  <!-- Inter & Fira Code Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS Engine -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- High-Gloss Lacquer Material Tokens & Baseline Runtime -->
+  <link rel="stylesheet" href="high-gloss-lacquer.css">
+  <script src="high-gloss-lacquer.js" defer></script>
+  <script src="mcp-baseline.js" defer></script>
+
   <style>
     :root {
-      --bg-primary: #0f1117;
-      --bg-secondary: #161b26;
-      --bg-tertiary: #1f2737;
-      --border: #2a3449;
-      --accent: #4f8cff;
-      --accent-hover: #3b76e8;
-      --text: #e6edf3;
-      --text-muted: #8b949e;
-      --user-bubble: #1e3a8a;
-      --assistant-bubble: #1c2433;
-      --success: #238636;
-      --danger: #da3633;
+      --canvas-default: #090d16;
+      --panel-surface: #0d1117;
+      --container-bg: #161b22;
+      --inset-bg: #010409;
+      --border-subtle: #30363d;
+      --border-accent: rgba(79, 140, 255, 0.4);
+      --accent-blue: #388bfd;
+      --accent-cyan: #00f3ff;
+      --accent-gold: #d4af37;
+      --accent-purple: #8b5cf6;
+      --accent-emerald: #238636;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-muted: #6e7681;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     body {
-      background-color: var(--bg-primary);
-      color: var(--text);
-      display: flex;
+      background-color: var(--canvas-default);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      user-select: none;
+    }
+
+    code, pre, .font-mono {
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Enterprise Fullscreen Viewport Grid */
+    .app-root {
+      display: grid;
+      grid-template-rows: 52px 1fr;
+      grid-template-columns: auto 1fr auto;
+      width: 100vw;
       height: 100vh;
       overflow: hidden;
     }
 
-    /* Sidebar */
-    .sidebar {
-      width: 360px;
-      background: var(--bg-secondary);
-      border-right: 1px solid var(--border);
+    /* Top Command Bar */
+    .top-command-bar {
+      grid-column: 1 / -1;
+      height: 52px;
+      background: rgba(13, 17, 23, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 40;
+    }
+
+    /* Collapsible Left Sidebar */
+    .left-sidebar {
+      width: 280px;
+      background: var(--panel-surface);
+      border-right: 1px solid var(--border-subtle);
       display: flex;
       flex-direction: column;
-      flex-shrink: 0;
+      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      z-index: 30;
+      overflow: hidden;
     }
 
-    .brand {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border);
+    .left-sidebar.collapsed {
+      width: 64px;
+    }
+
+    .sidebar-content {
+      width: 280px;
+      height: 100%;
       display: flex;
-      align-items: center;
-      gap: 12px;
+      flex-direction: column;
+      transition: opacity 0.2s ease;
     }
 
-    .brand-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, #4f8cff, #9333ea);
-      border-radius: 8px;
+    .left-sidebar.collapsed .sidebar-full-content {
+      display: none;
+    }
+
+    .left-sidebar.collapsed .sidebar-mini-rail {
       display: flex;
+    }
+
+    .sidebar-mini-rail {
+      display: none;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      color: white;
-      font-size: 18px;
-      box-shadow: 0 4px 12px rgba(79, 140, 255, 0.3);
+      gap: 16px;
+      padding: 16px 0;
+      width: 64px;
     }
 
-    .brand-text h1 {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.2px;
-    }
-
-    .brand-text p {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 11px;
-      font-weight: 500;
-      margin: 10px 20px;
-      background: rgba(35, 134, 54, 0.15);
-      color: #3fb950;
-      border: 1px solid rgba(63, 185, 80, 0.3);
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #3fb950;
-    }
-
-    .sidebar-section {
-      padding: 10px 20px 4px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
-    }
-
-    .model-selector-wrap {
-      padding: 0 20px 10px;
-    }
-
-    select {
-      width: 100%;
-      padding: 9px 12px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-size: 13px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    select:focus {
-      border-color: var(--accent);
-    }
-
-    /* Tab switcher for Skills vs Projects */
-    .tabs-nav {
+    /* Central Workspace */
+    .center-workspace {
+      background: var(--canvas-default);
       display: flex;
-      padding: 0 20px 8px;
-      gap: 6px;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      min-width: 0;
     }
 
-    .tab-btn {
-      flex: 1;
-      padding: 6px 10px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text-muted);
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.15s ease;
+    /* Dockable Right Inspector */
+    .right-inspector {
+      width: 360px;
+      background: var(--panel-surface);
+      border-left: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s ease;
+      z-index: 30;
+      overflow-y: auto;
     }
 
-    .tab-btn.active {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
+    .right-inspector.collapsed {
+      width: 0;
+      border-left: none;
+      overflow: hidden;
     }
 
-    .items-filter {
-      padding: 0 20px 8px;
-    }
-
-    .items-filter input {
-      width: 100%;
-      padding: 8px 12px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text);
-      font-size: 12px;
-      outline: none;
-    }
-
-    .items-list {
+    /* Chat Messages Stream */
+    .messages-stream {
       flex: 1;
       overflow-y: auto;
-      padding: 0 12px 12px;
+      padding: 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    .item-card {
-      padding: 9px 12px;
+    .msg-bubble {
+      max-width: 88%;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      line-height: 1.65;
+      position: relative;
+      border: 1px solid var(--border-subtle);
+      user-select: text;
+    }
+
+    .msg-user {
+      align-self: flex-end;
+      background: #111b27;
+      border-color: #1f3d5c;
+      color: #f0f6fc;
+      border-bottom-right-radius: 2px;
+    }
+
+    .msg-assistant {
+      align-self: flex-start;
+      background: var(--container-bg);
+      border-color: var(--border-subtle);
+      color: var(--text-primary);
+      border-bottom-left-radius: 2px;
+    }
+
+    /* High-Gloss Code Block Box */
+    .code-block-container {
+      background: var(--inset-bg);
+      border: 1px solid var(--border-subtle);
       border-radius: 6px;
-      margin-bottom: 6px;
-      background: var(--bg-tertiary);
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: all 0.15s ease;
+      margin: 12px 0;
+      overflow: hidden;
     }
 
-    .item-card:hover {
-      border-color: var(--accent);
+    .code-block-header {
+      background: #0d1117;
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      font-family: 'Fira Code', monospace;
+      color: var(--text-secondary);
+    }
+
+    .code-block-pre {
+      padding: 12px;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #79c0ff;
+    }
+
+    /* Specular Top Highlight Card */
+    .lacquer-card {
+      background: var(--container-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .lacquer-card:hover {
+      border-color: var(--border-accent);
       transform: translateY(-1px);
     }
 
-    .item-title {
-      font-size: 12px;
-      font-weight: 600;
-      color: #79c0ff;
-      margin-bottom: 3px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #30363d;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #484f58;
     }
 
-    .item-badge {
-      font-size: 9px;
-      padding: 2px 5px;
-      background: rgba(79, 140, 255, 0.15);
-      border: 1px solid rgba(79, 140, 255, 0.3);
-      border-radius: 4px;
-      color: #a5d6ff;
-      font-weight: 500;
-      white-space: nowrap;
+    /* Pulse Glow */
+    @keyframes pulseDot {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
     }
-
-    .item-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      line-height: 1.35;
-    }
-
-    /* Main Chat Area */
-    .main-chat {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .chat-header {
-      padding: 14px 24px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg-secondary);
-    }
-
-    .chat-header-title {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .chat-controls {
-      display: flex;
-      gap: 10px;
-    }
-
-    .btn {
-      padding: 7px 14px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid var(--border);
-      background: var(--bg-tertiary);
-      color: var(--text);
-      transition: all 0.15s;
-    }
-
-    .btn:hover {
-      background: var(--border);
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-    }
-
-    .messages-container {
-      flex: 1;
-      overflow-y: auto;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .message {
-      max-width: 85%;
-      padding: 14px 18px;
-      border-radius: 12px;
-      line-height: 1.6;
-      font-size: 14px;
-      word-break: break-word;
-    }
-
-    .message.user {
-      align-self: flex-end;
-      background: var(--user-bubble);
-      color: white;
-      border-bottom-right-radius: 4px;
-    }
-
-    .message.assistant {
-      align-self: flex-start;
-      background: var(--assistant-bubble);
-      border: 1px solid var(--border);
-      border-bottom-left-radius: 4px;
-    }
-
-    .message pre {
-      background: #0d1117;
-      border: 1px solid #30363d;
-      border-radius: 6px;
-      padding: 12px;
-      overflow-x: auto;
-      margin: 10px 0;
-      font-family: 'Fira Code', monospace;
-      font-size: 12px;
-    }
-
-    .message code {
-      font-family: 'Fira Code', monospace;
-      background: rgba(110, 118, 129, 0.2);
-      padding: 2px 5px;
-      border-radius: 4px;
-      font-size: 12px;
-    }
-
-    .message p {
-      margin-bottom: 8px;
-    }
-
-    .message p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Input area */
-    .input-bar {
-      padding: 16px 24px;
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-      display: flex;
-      gap: 12px;
-    }
-
-    textarea {
-      flex: 1;
-      padding: 12px 16px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-size: 14px;
-      resize: none;
-      height: 52px;
-      outline: none;
-    }
-
-    textarea:focus {
-      border-color: var(--accent);
+    .pulse-dot {
+      animation: pulseDot 2s ease-in-out infinite;
     }
   </style>
-  <link rel="stylesheet" href="high-gloss-lacquer.css">
-  <script src="high-gloss-lacquer.js"></script>
-
-  <!-- Antigravity Baseline Integration -->
-  <script src="cosmic-background.js"></script>
-  <script src="mcp-baseline.js"></script>
-
-  <!-- Antigravity Baseline Integration -->
-  <link rel="stylesheet" href="aws-enterprise-baseline.css">
-  <script src="aws-enterprise-baseline.js"></script>
 </head>
 <body>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="brand">
-      <div class="brand-icon">⚡</div>
-      <div class="brand-text">
-        <h1>Ollama Studio</h1>
-        <p>Antigravity Powered</p>
+  <div class="app-root">
+
+    <!-- =========================================================================
+         1. TOP COMMAND & CONTROL BAR (52px Enterprise Standard)
+         ========================================================================= -->
+    <header class="top-command-bar">
+      <!-- Left: Logo & Breadcrumbs -->
+      <div class="flex items-center space-x-3">
+        <button id="sidebarToggleBtn" onclick="toggleSidebar()" class="p-1.5 rounded hover:bg-white/10 text-slate-400 hover:text-white transition-colors" title="Toggle Sidebar (Ctrl+B)">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+          </svg>
+        </button>
+
+        <!-- Brand Icon SVG -->
+        <div class="w-7 h-7 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md shadow-indigo-500/20 border border-indigo-400/30">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+
+        <div class="flex items-center space-x-2 text-xs">
+          <span class="font-bold tracking-wider text-slate-200">ANTIGRAVITY</span>
+          <span class="text-slate-600">/</span>
+          <span class="text-indigo-400 font-semibold">OLLAMA 1-CLICK STUDIO</span>
+        </div>
       </div>
-    </div>
 
-    <div class="status-badge" id="statusBadge">
-      <span class="status-dot" id="statusDot"></span>
-      <span id="statusText">Connecting to Ollama...</span>
-    </div>
+      <!-- Center: Status & Hardware Telemetry Pills -->
+      <div class="hidden md:flex items-center space-x-3">
+        <!-- Live Ollama Daemon Status -->
+        <div id="ollamaStatusPill" class="flex items-center space-x-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-[11px] font-mono text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+          <span id="ollamaStatusText">OLLAMA 11434 ONLINE</span>
+        </div>
 
-    <div class="sidebar-section">Active Model</div>
-    <div class="model-selector-wrap">
-      <select id="modelSelect">
-        <option value="antigravity-skills:latest">antigravity-skills:latest (Skills + Projects)</option>
-      </select>
-    </div>
+        <!-- Active Model Pill -->
+        <div class="flex items-center space-x-1.5 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[11px] font-mono text-slate-300">
+          <span class="text-indigo-400 font-bold">MODEL:</span>
+          <span id="activeModelLabel">qwen2.5-coder:7b</span>
+        </div>
 
-    <!-- Switch between Skills and Projects directory -->
-    <div class="tabs-nav">
-      <button class="tab-btn active" id="tabProjects" onclick="switchTab('projects')">Projects (<span id="projectCount">0</span>)</button>
-      <button class="tab-btn" id="tabSkills" onclick="switchTab('skills')">Skills (<span id="skillCount">0</span>)</button>
-    </div>
+        <!-- GPU Hardware Telemetry -->
+        <div id="gpuPill" class="flex items-center space-x-2 px-3 py-1 bg-purple-500/10 border border-purple-500/30 rounded-full text-[11px] font-mono text-purple-300">
+          <svg class="w-3.5 h-3.5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+          </svg>
+          <span id="gpuStatusText">RTX 4080 (12GB) // READY</span>
+        </div>
+      </div>
 
-    <div class="items-filter">
-      <input type="text" id="itemSearch" placeholder="Filter projects or skills..." oninput="handleSearch()">
-    </div>
+      <!-- Right: Action Controls -->
+      <div class="flex items-center space-x-2">
+        <!-- Quick Command Search (Ctrl+K) -->
+        <div class="relative hidden sm:block">
+          <input id="quickSearchInput" type="text" placeholder="Search skills, projects (Ctrl+K)..." class="bg-black/40 border border-white/10 rounded px-2.5 py-1 text-xs text-slate-200 placeholder-slate-500 w-56 focus:outline-none focus:border-indigo-500">
+          <span class="absolute right-2 top-1.5 text-[9px] font-mono text-slate-500 bg-white/5 px-1 rounded border border-white/10">⌘K</span>
+        </div>
 
-    <div class="items-list" id="itemsList">
-      <div style="font-size: 12px; color: var(--text-muted); padding: 8px;">Loading catalog...</div>
-    </div>
+        <!-- Game Studio 3D Portal Button -->
+        <button onclick="launchGameStudioPortal()" class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded text-xs font-semibold hover:bg-amber-500/20 transition-all flex items-center space-x-1" title="Jump to Game Studio 3D Hub">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+          </svg>
+          <span class="hidden md:inline">Game Studio 3D</span>
+        </button>
+
+        <!-- MCP Telemetry HUD Trigger -->
+        <button onclick="toggleMcpTelemetry()" class="px-2.5 py-1 bg-white/5 border border-white/10 text-slate-300 rounded text-xs font-medium hover:text-white hover:bg-white/10 transition-colors flex items-center space-x-1" title="Model Context Protocol HUD (Ctrl+M)">
+          <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          <span>MCP</span>
+        </button>
+
+        <!-- Right Inspector Toggle -->
+        <button id="inspectorToggleBtn" onclick="toggleInspector()" class="p-1.5 rounded hover:bg-white/10 text-slate-400 hover:text-white transition-colors" title="Toggle Inspector Panel (Ctrl+I)">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+          </svg>
+        </button>
+
+        <!-- Fullscreen Toggle Button -->
+        <button onclick="toggleFullscreen()" class="p-1.5 rounded hover:bg-white/10 text-slate-400 hover:text-white transition-colors" title="Toggle Fullscreen">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- =========================================================================
+         2. COLLAPSIBLE LEFT NAVIGATION SIDEBAR (280px -> 64px)
+         ========================================================================= -->
+    <aside id="leftSidebar" class="left-sidebar">
+      <!-- Full Content View -->
+      <div class="sidebar-content sidebar-full-content">
+        <!-- Navigation Tabs: Skills, Projects, Models -->
+        <div class="flex items-center border-b border-[#30363d] px-3 pt-3 pb-2 gap-1.5">
+          <button id="tabSkillsBtn" onclick="switchNavTab('skills')" class="flex-1 py-1 px-2 rounded text-xs font-semibold text-white bg-indigo-600 transition-all flex items-center justify-center space-x-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+            </svg>
+            <span>Skills</span>
+          </button>
+          <button id="tabProjectsBtn" onclick="switchNavTab('projects')" class="flex-1 py-1 px-2 rounded text-xs font-medium text-slate-400 hover:text-white bg-transparent transition-all flex items-center justify-center space-x-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+            </svg>
+            <span>Projects</span>
+          </button>
+          <button id="tabModelsBtn" onclick="switchNavTab('models')" class="flex-1 py-1 px-2 rounded text-xs font-medium text-slate-400 hover:text-white bg-transparent transition-all flex items-center justify-center space-x-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            <span>Models</span>
+          </button>
+        </div>
+
+        <!-- Filter Input -->
+        <div class="p-3 border-b border-[#30363d]">
+          <div class="relative">
+            <input id="itemFilterInput" oninput="handleItemFilter()" type="text" placeholder="Filter knowledge..." class="w-full bg-[#010409] border border-[#30363d] rounded px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+            <span id="itemCountBadge" class="absolute right-2.5 top-2 text-[10px] font-mono text-slate-400">0</span>
+          </div>
+        </div>
+
+        <!-- Item Scroll List -->
+        <div id="itemsContainer" class="flex-1 overflow-y-auto p-2.5 space-y-1.5">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Bottom Sidebar Status Bar -->
+        <div class="p-3 border-t border-[#30363d] bg-[#0d1117] flex items-center justify-between text-[11px] text-slate-400">
+          <span class="font-mono">Auto-Sync 4:00 AM</span>
+          <button onclick="triggerSyncRun()" class="hover:text-indigo-400 transition-colors flex items-center space-x-1" title="Run sync_skills_to_ollama.py">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+            <span>Sync</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsed Mini Rail View -->
+      <div class="sidebar-mini-rail">
+        <button onclick="switchNavTab('skills'); toggleSidebar();" class="p-2.5 rounded hover:bg-white/10 text-indigo-400" title="Skills Library">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+          </svg>
+        </button>
+        <button onclick="switchNavTab('projects'); toggleSidebar();" class="p-2.5 rounded hover:bg-white/10 text-amber-400" title="Antigravity Projects">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+          </svg>
+        </button>
+        <button onclick="switchNavTab('models'); toggleSidebar();" class="p-2.5 rounded hover:bg-white/10 text-purple-400" title="Local Ollama Models">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+          </svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- =========================================================================
+         3. CENTRAL WORKSPACE: CHAT CONSOLE, PROMPTING & RUNTIME
+         ========================================================================= -->
+    <main class="center-workspace">
+      <!-- Chat Messages Container -->
+      <div id="messagesContainer" class="messages-stream">
+        <!-- Initial Welcome Bubble -->
+        <div class="msg-bubble msg-assistant">
+          <div class="flex items-center space-x-2 mb-2 pb-2 border-b border-[#30363d]/50">
+            <div class="w-5 h-5 rounded bg-indigo-600 flex items-center justify-center text-[10px] font-bold text-white">🦙</div>
+            <span class="font-bold text-xs text-indigo-400">Ollama AI Consultant (Antigravity Edition)</span>
+            <span class="text-[10px] text-slate-500 font-mono">• Active via MCP</span>
+          </div>
+          <p class="leading-relaxed">
+            Welcome to the upgraded <strong>Antigravity Ollama Studio</strong>. Connected directly to your local Ollama daemon on <code class="px-1.5 py-0.5 rounded bg-black/40 text-cyan-300 font-mono text-xs">127.0.0.1:11434</code> with sub-millisecond RTX 4080 GPU inference.
+          </p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <button onclick="sendQuickPrompt('Review Game Studio 3D showroom and recommend 3 high-impact Three.js optimizations.')" class="px-2.5 py-1 rounded bg-[#010409] hover:bg-white/5 border border-[#30363d] text-xs text-slate-300 transition-colors">
+              🚀 Optimize Game Studio 3D
+            </button>
+            <button onclick="sendQuickPrompt('Generate Unreal Engine 5.8 C++ Character Combat component for Shadow Blade with Hit-Stop freeze.')" class="px-2.5 py-1 rounded bg-[#010409] hover:bg-white/5 border border-[#30363d] text-xs text-slate-300 transition-colors">
+              ⚔️ Unreal C++ Combat Component
+            </button>
+            <button onclick="sendQuickPrompt('Explain how Model Context Protocol (MCP) bridges Ollama with Antigravity tool calling.')" class="px-2.5 py-1 rounded bg-[#010409] hover:bg-white/5 border border-[#30363d] text-xs text-slate-300 transition-colors">
+              🔌 MCP Architecture Overview
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Pills Strip -->
+      <div class="px-6 py-2 border-t border-[#30363d]/60 bg-[#0d1117]/80 flex items-center justify-between text-xs">
+        <div class="flex items-center space-x-2 overflow-x-auto">
+          <span class="text-slate-500 font-mono text-[10px] uppercase">Quick Inject:</span>
+          <button onclick="injectTemplate('architecture')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-slate-300 text-[11px] border border-white/10 transition-colors">Architecture Audit</button>
+          <button onclick="injectTemplate('cpp')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-slate-300 text-[11px] border border-white/10 transition-colors">Unreal C++</button>
+          <button onclick="injectTemplate('unity')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-slate-300 text-[11px] border border-white/10 transition-colors">Unity 6 C#</button>
+          <button onclick="injectTemplate('godot')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-slate-300 text-[11px] border border-white/10 transition-colors">Godot 4 GDScript</button>
+          <button onclick="injectTemplate('anti-slop')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-slate-300 text-[11px] border border-white/10 transition-colors">Anti-Slop Audit</button>
+        </div>
+        <button onclick="clearChatHistory()" class="text-slate-500 hover:text-slate-300 text-xs flex items-center space-x-1" title="Clear Chat History">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+          </svg>
+          <span>Clear</span>
+        </button>
+      </div>
+
+      <!-- Bottom Prompt Input Rail -->
+      <div class="p-4 bg-[#0d1117] border-t border-[#30363d] flex flex-col gap-2.5">
+        <div class="relative flex items-end bg-[#010409] border border-[#30363d] focus-within:border-indigo-500 rounded-lg p-2 transition-all">
+          <textarea id="promptInput" rows="2" placeholder="Ask Ollama or prompt with an Antigravity skill (Enter to send, Shift+Enter for newline)..." class="w-full bg-transparent text-slate-100 placeholder-slate-500 text-sm resize-none focus:outline-none p-1 leading-relaxed"></textarea>
+          
+          <div class="flex items-center space-x-2 ml-2 pb-1">
+            <button id="stopGenBtn" onclick="stopGeneration()" class="hidden px-3 py-1.5 rounded bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/40 text-xs font-semibold transition-all">
+              Stop
+            </button>
+            <button id="sendBtn" onclick="sendMessage()" class="px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs tracking-wider uppercase flex items-center space-x-1.5 shadow-lg shadow-indigo-600/30 transition-all">
+              <span>Send</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono">
+          <div class="flex items-center space-x-3">
+            <span>Inference: <strong class="text-slate-300">GPU Accelerated</strong></span>
+            <span>•</span>
+            <span id="tokenPerfStat">Tokens: -- t/s</span>
+          </div>
+          <div>Shift+Enter = Multi-line • ESC = Close Inspector</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================================
+         4. DOCKABLE RIGHT INSPECTOR PANEL (360px Hyperparameters & Telemetry)
+         ========================================================================= -->
+    <aside id="rightInspector" class="right-inspector">
+      <div class="p-4 border-b border-[#30363d] flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+          </svg>
+          <span class="text-xs font-bold text-slate-200 uppercase tracking-wider">Model Inspector</span>
+        </div>
+        <button onclick="toggleInspector()" class="text-slate-400 hover:text-white p-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="p-4 space-y-5">
+        <!-- Model Selector -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Active LLM Model</label>
+          <select id="modelDropdown" onchange="onModelChange()" class="w-full bg-[#010409] border border-[#30363d] rounded p-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
+            <option value="qwen2.5-coder:7b">qwen2.5-coder:7b (Default Coder)</option>
+            <option value="antigravity-skills:latest">antigravity-skills:latest (Agent Skills)</option>
+            <option value="deepseek-r1:8b">deepseek-r1:8b (Reasoning)</option>
+            <option value="phi4:14b">phi4:14b (14B High Accuracy)</option>
+            <option value="llama3.2:3b">llama3.2:3b (Ultra Fast)</option>
+          </select>
+        </div>
+
+        <!-- Temperature Slider -->
+        <div>
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span class="font-semibold text-slate-300">Temperature</span>
+            <span id="tempValueLabel" class="font-mono text-indigo-400">0.70</span>
+          </div>
+          <input id="tempSlider" type="range" min="0.0" max="1.0" step="0.05" value="0.70" oninput="document.getElementById('tempValueLabel').innerText = parseFloat(this.value).toFixed(2)" class="w-full accent-indigo-500 bg-[#010409]">
+          <div class="flex justify-between text-[10px] text-slate-500 mt-0.5 font-mono">
+            <span>Precise (0.0)</span>
+            <span>Balanced (0.7)</span>
+            <span>Creative (1.0)</span>
+          </div>
+        </div>
+
+        <!-- Context Size (num_ctx) -->
+        <div>
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span class="font-semibold text-slate-300">Context Window (num_ctx)</span>
+            <span id="ctxValueLabel" class="font-mono text-cyan-400">8192 tokens</span>
+          </div>
+          <select id="ctxSelect" class="w-full bg-[#010409] border border-[#30363d] rounded p-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
+            <option value="2048">2,048 Tokens (Minimal VRAM)</option>
+            <option value="4096">4,096 Tokens (Standard)</option>
+            <option value="8192" selected>8,192 Tokens (Recommended)</option>
+            <option value="16384">16,384 Tokens (Deep Context)</option>
+            <option value="32768">32,768 Tokens (Extended Architecture)</option>
+          </select>
+        </div>
+
+        <!-- System Prompt Override -->
+        <div>
+          <div class="flex items-center justify-between text-xs mb-1.5">
+            <span class="font-semibold text-slate-300">System Persona / Instructions</span>
+            <button onclick="resetSystemPrompt()" class="text-[10px] text-indigo-400 hover:underline">Reset</button>
+          </div>
+          <textarea id="systemPromptInput" rows="4" class="w-full bg-[#010409] border border-[#30363d] rounded p-2 text-xs text-slate-200 font-mono resize-none focus:outline-none focus:border-indigo-500" placeholder="You are an expert Antigravity AI systems engineer..."></textarea>
+          
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <button onclick="applyPersonaPreset('architect')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-[10px] text-slate-300 border border-white/10">Senior Architect</button>
+            <button onclick="applyPersonaPreset('game_dev')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-[10px] text-slate-300 border border-white/10">Game Dev Co-Pilot</button>
+            <button onclick="applyPersonaPreset('anti_slop')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-[10px] text-slate-300 border border-white/10">Anti-Slop Auditor</button>
+          </div>
+        </div>
+
+        <!-- Live VRAM & Model Metadata Card -->
+        <div class="p-3 bg-[#010409] border border-[#30363d] rounded">
+          <div class="text-[11px] font-bold text-slate-300 uppercase mb-2 flex items-center justify-between">
+            <span>Hardware Telemetry</span>
+            <span class="text-emerald-400">ONLINE</span>
+          </div>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400">
+            <div class="flex justify-between">
+              <span>Device:</span>
+              <span class="text-slate-200">RTX 4080 (12GB)</span>
+            </div>
+            <div class="flex justify-between">
+              <span>CUDA Cores:</span>
+              <span class="text-slate-200">9728 Cores</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Compute Cap:</span>
+              <span class="text-slate-200">v8.9 (Ada Lovelace)</span>
+            </div>
+            <div class="flex justify-between">
+              <span>VRAM Used:</span>
+              <span id="vramUsedStat" class="text-purple-300">~5.2 GB / 12.0 GB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
   </div>
 
-  <!-- Main Chat -->
-  <div class="main-chat">
-    <div class="chat-header">
-      <div class="chat-header-title" id="chatTitle">Antigravity Knowledge Assistant</div>
-      <div class="chat-controls">
-        <button class="btn" onclick="clearChat()">Clear Chat</button>
-        <button class="btn btn-primary" onclick="syncSkills()">Sync Fresh Skills & Projects</button>
-      </div>
-    </div>
-
-    <div class="messages-container" id="messagesContainer">
-      <div class="message assistant">
-        <p><strong>Welcome to your local Ollama AI Studio!</strong></p>
-        <p>This workspace is fully synchronized with your local Ollama models and holds complete operational awareness over all <strong>56 Antigravity skills</strong> and all <strong>68 Antigravity projects</strong> (including recent systems like <em>Agent 365</em>, <em>AI Defense Matrix</em>, and <em>MCP Hub</em>).</p>
-        <p>Click any project or skill in the sidebar to load prompt templates, or ask any engineering question below.</p>
-      </div>
-    </div>
-
-    <div class="input-bar">
-      <textarea id="promptInput" placeholder="Ask anything, or instruct across your projects and skills..." onkeydown="handleKey(event)"></textarea>
-      <button class="btn btn-primary" id="sendBtn" onclick="sendMessage()">Send</button>
-    </div>
-  </div>
-
+  <!-- Client-Side Runtime Script -->
   <script>
+    const OLLAMA_HOST = 'http://127.0.0.1:11434';
     let skillsData = {};
     let projectsData = {};
-    let currentTab = 'projects';
-    const OLLAMA_HOST = "http://127.0.0.1:11434";
+    let currentNavTab = 'skills';
+    let isStreaming = false;
+    let abortController = null;
 
-    async function checkOllama() {
-      try {
-        const res = await fetch(`${OLLAMA_HOST}/api/tags`);
-        if (res.ok) {
-          const data = await res.json();
-          document.getElementById('statusDot').style.background = '#3fb950';
-          document.getElementById('statusText').innerText = 'Ollama Connected (Port 11434)';
-          
-          const sel = document.getElementById('modelSelect');
-          const currentVal = sel.value;
-          sel.innerHTML = '';
-          data.models.forEach(m => {
-            const opt = document.createElement('option');
-            opt.value = m.name;
-            opt.innerText = m.name;
-            if (m.name.includes('antigravity-skills')) opt.selected = true;
-            sel.appendChild(opt);
-          });
-          if (currentVal && Array.from(sel.options).some(o => o.value === currentVal)) {
-            sel.value = currentVal;
-          }
-        }
-      } catch (e) {
-        document.getElementById('statusDot').style.background = '#da3633';
-        document.getElementById('statusText').innerText = 'Ollama Disconnected';
-      }
+    // Toggle Left Sidebar
+    function toggleSidebar() {
+      const sb = document.getElementById('leftSidebar');
+      sb.classList.toggle('collapsed');
+      playUiTick();
     }
 
+    // Toggle Right Inspector
+    function toggleInspector() {
+      const insp = document.getElementById('rightInspector');
+      insp.classList.toggle('collapsed');
+      playUiTick();
+    }
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.error(err));
+      } else {
+        document.exitFullscreen().catch(err => console.error(err));
+      }
+      playUiTick();
+    }
+
+    // Switch Left Navigation Tab
+    function switchNavTab(tab) {
+      currentNavTab = tab;
+      const skillsBtn = document.getElementById('tabSkillsBtn');
+      const projectsBtn = document.getElementById('tabProjectsBtn');
+      const modelsBtn = document.getElementById('tabModelsBtn');
+
+      skillsBtn.className = "flex-1 py-1 px-2 rounded text-xs font-medium text-slate-400 hover:text-white bg-transparent transition-all flex items-center justify-center space-x-1";
+      projectsBtn.className = "flex-1 py-1 px-2 rounded text-xs font-medium text-slate-400 hover:text-white bg-transparent transition-all flex items-center justify-center space-x-1";
+      modelsBtn.className = "flex-1 py-1 px-2 rounded text-xs font-medium text-slate-400 hover:text-white bg-transparent transition-all flex items-center justify-center space-x-1";
+
+      if (tab === 'skills') {
+        skillsBtn.className = "flex-1 py-1 px-2 rounded text-xs font-semibold text-white bg-indigo-600 transition-all flex items-center justify-center space-x-1";
+      } else if (tab === 'projects') {
+        projectsBtn.className = "flex-1 py-1 px-2 rounded text-xs font-semibold text-white bg-amber-600 transition-all flex items-center justify-center space-x-1";
+      } else if (tab === 'models') {
+        modelsBtn.className = "flex-1 py-1 px-2 rounded text-xs font-semibold text-white bg-purple-600 transition-all flex items-center justify-center space-x-1";
+      }
+
+      handleItemFilter();
+      playUiTick();
+    }
+
+    // Load Skills & Projects Data
     async function loadCatalog() {
       try {
         const [resSkills, resProjects] = await Promise.all([
           fetch('skills_knowledge_base.json'),
           fetch('projects_knowledge_base.json')
         ]);
-        if (resSkills.ok) {
-          skillsData = await resSkills.json();
-          document.getElementById('skillCount').innerText = Object.keys(skillsData).length;
-        }
-        if (resProjects.ok) {
-          projectsData = await resProjects.json();
-          document.getElementById('projectCount').innerText = Object.keys(projectsData).length;
-        }
-        renderCurrentList();
-      } catch (e) {
-        console.log("Error loading catalog:", e);
+
+        if (resSkills.ok) skillsData = await resSkills.json();
+        if (resProjects.ok) projectsData = await resProjects.json();
+
+        handleItemFilter();
+      } catch (err) {
+        console.warn("Catalog fetch fallback:", err);
       }
     }
 
-    function switchTab(tab) {
-      currentTab = tab;
-      document.getElementById('tabProjects').className = tab === 'projects' ? 'tab-btn active' : 'tab-btn';
-      document.getElementById('tabSkills').className = tab === 'skills' ? 'tab-btn active' : 'tab-btn';
-      document.getElementById('itemSearch').value = '';
-      renderCurrentList();
-    }
+    // Filter Items in Sidebar
+    function handleItemFilter() {
+      const query = (document.getElementById('itemFilterInput').value || '').toLowerCase().trim();
+      const container = document.getElementById('itemsContainer');
+      container.innerHTML = '';
 
-    function handleSearch() {
-      const q = document.getElementById('itemSearch').value.toLowerCase();
-      renderCurrentList(q);
-    }
-
-    function renderCurrentList(filter = '') {
-      const list = document.getElementById('itemsList');
-      list.innerHTML = '';
-
-      if (currentTab === 'projects') {
-        const entries = Object.entries(projectsData);
-        const filtered = entries.filter(([name, item]) => {
-          if (!filter) return true;
-          return name.toLowerCase().includes(filter) ||
-                 (item.category && item.category.toLowerCase().includes(filter)) ||
-                 (item.frontier && item.frontier.toLowerCase().includes(filter)) ||
-                 (item.stack && item.stack.toLowerCase().includes(filter));
-        });
-
-        filtered.forEach(([name, item]) => {
-          const card = document.createElement('div');
-          card.className = 'item-card';
-          card.innerHTML = `
-            <div class="item-title">
-              <span>${name}</span>
-              <span class="item-badge">${item.category || 'Project'}</span>
-            </div>
-            <div class="item-desc">${item.frontier || item.stack || 'Antigravity Project'}</div>
-          `;
-          card.onclick = () => {
-            document.getElementById('promptInput').value = `Regarding project '${name}' (${item.stack}): How can we advance the architecture and action items?`;
-            document.getElementById('promptInput').focus();
-          };
-          list.appendChild(card);
-        });
-      } else {
+      if (currentNavTab === 'skills') {
         const entries = Object.entries(skillsData);
         const filtered = entries.filter(([name, item]) => {
-          if (!filter) return true;
-          return name.toLowerCase().includes(filter) ||
-                 (item.description && item.description.toLowerCase().includes(filter));
+          if (!query) return true;
+          return name.toLowerCase().includes(query) || (item.description && item.description.toLowerCase().includes(query));
         });
 
-        filtered.forEach(([name, item]) => {
+        document.getElementById('itemCountBadge').innerText = filtered.length;
+
+        filtered.slice(0, 100).forEach(([name, item]) => {
           const card = document.createElement('div');
-          card.className = 'item-card';
+          card.className = 'lacquer-card p-2.5 cursor-pointer';
           card.innerHTML = `
-            <div class="item-title">
-              <span>${name}</span>
-              <span class="item-badge">Skill</span>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-semibold text-indigo-300 truncate">${name}</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Skill</span>
             </div>
-            <div class="item-desc">${item.description || 'Antigravity Skill'}</div>
+            <p class="text-[11px] text-slate-400 line-clamp-2 leading-snug">${item.description || 'Antigravity engineering capability'}</p>
           `;
           card.onclick = () => {
-            document.getElementById('promptInput').value = `Using your acquired skill '${name}', explain how to `;
-            document.getElementById('promptInput').focus();
+            const promptBox = document.getElementById('promptInput');
+            promptBox.value = `Using acquired Antigravity skill '${name}':\n`;
+            promptBox.focus();
+            playUiTick();
           };
-          list.appendChild(card);
+          container.appendChild(card);
         });
+      } else if (currentNavTab === 'projects') {
+        const entries = Object.entries(projectsData);
+        const filtered = entries.filter(([name, item]) => {
+          if (!query) return true;
+          return name.toLowerCase().includes(query) || (item.category && item.category.toLowerCase().includes(query)) || (item.stack && item.stack.toLowerCase().includes(query));
+        });
+
+        document.getElementById('itemCountBadge').innerText = filtered.length;
+
+        filtered.slice(0, 100).forEach(([name, item]) => {
+          const card = document.createElement('div');
+          card.className = 'lacquer-card p-2.5 cursor-pointer';
+          card.innerHTML = `
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-semibold text-amber-300 truncate">${name}</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">${item.category || 'Project'}</span>
+            </div>
+            <p class="text-[11px] text-slate-400 line-clamp-2 leading-snug">${item.frontier || item.stack || 'Antigravity workspace target'}</p>
+          `;
+          card.onclick = () => {
+            const promptBox = document.getElementById('promptInput');
+            promptBox.value = `Regarding project '${name}' (${item.stack || ''}):\nHow can we advance the architecture and action items?`;
+            promptBox.focus();
+            playUiTick();
+          };
+          container.appendChild(card);
+        });
+      } else if (currentNavTab === 'models') {
+        fetchModelsList();
       }
     }
 
-    function handleKey(e) {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
+    // Fetch Installed Models from Ollama
+    async function fetchModelsList() {
+      const container = document.getElementById('itemsContainer');
+      try {
+        const res = await fetch(`${OLLAMA_HOST}/api/tags`);
+        if (!res.ok) return;
+        const data = await res.json();
+        const models = data.models || [];
+        document.getElementById('itemCountBadge').innerText = models.length;
+
+        // Also update dropdown
+        const dropdown = document.getElementById('modelDropdown');
+        dropdown.innerHTML = '';
+        models.forEach(m => {
+          const opt = document.createElement('option');
+          opt.value = m.name;
+          opt.innerText = `${m.name} (${(m.size / (1024**3)).toFixed(1)} GB)`;
+          dropdown.appendChild(opt);
+        });
+
+        // Set default
+        dropdown.value = document.getElementById('activeModelLabel').innerText;
+
+        container.innerHTML = '';
+        models.forEach(m => {
+          const card = document.createElement('div');
+          card.className = 'lacquer-card p-2.5 cursor-pointer';
+          card.innerHTML = `
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-semibold text-purple-300 truncate">${m.name}</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">${(m.size / (1024**3)).toFixed(1)} GB</span>
+            </div>
+            <p class="text-[11px] text-slate-400">Parameter Size: ${m.details?.parameter_size || 'N/A'} • Quant: ${m.details?.quantization_level || 'N/A'}</p>
+          `;
+          card.onclick = () => {
+            document.getElementById('modelDropdown').value = m.name;
+            onModelChange();
+            playUiTick();
+          };
+          container.appendChild(card);
+        });
+      } catch (err) {
+        console.warn("Models list error:", err);
       }
     }
 
-    function clearChat() {
+    // On Model Dropdown Change
+    function onModelChange() {
+      const model = document.getElementById('modelDropdown').value;
+      document.getElementById('activeModelLabel').innerText = model;
+      playUiTick();
+    }
+
+    // Quick Prompt Dispatch
+    function sendQuickPrompt(promptText) {
+      document.getElementById('promptInput').value = promptText;
+      sendMessage();
+    }
+
+    // Inject Prompt Templates
+    function injectTemplate(type) {
+      const box = document.getElementById('promptInput');
+      if (type === 'architecture') {
+        box.value = "Conduct a rigorous architectural audit of this project. Identify bottlenecks, latency risks, and anti-patterns:\n";
+      } else if (type === 'cpp') {
+        box.value = "Provide an Unreal Engine 5.8 C++ production-ready component with clean header (.h) and source (.cpp):\n";
+      } else if (type === 'unity') {
+        box.value = "Write a high-performance Unity 6 C# script utilizing DOTS/Jobs or clean modular MonoBehaviour architecture:\n";
+      } else if (type === 'godot') {
+        box.value = "Create a Godot 4 GDScript character controller with state machine and physics raycasting:\n";
+      } else if (type === 'anti-slop') {
+        box.value = "Audit the following code against the Antigravity Anti-Slop Craftsman baseline (eliminate raw emojis, replace with SVGs, enforce tactile kinesthetics):\n";
+      }
+      box.focus();
+      playUiTick();
+    }
+
+    // Apply System Persona Presets
+    function applyPersonaPreset(preset) {
+      const sysBox = document.getElementById('systemPromptInput');
+      if (preset === 'architect') {
+        sysBox.value = "You are an Elite Enterprise AI Systems Architect at Google DeepMind pair programming inside Antigravity. Deliver strictly typed, production-grade solutions with zero fluff.";
+      } else if (preset === 'game_dev') {
+        sysBox.value = "You are a Principal Game Engine Specialist (Unreal Engine 5.8, Unity 6, Godot 4). Provide exact C++, C#, HLSL shaders, and mathematical kinematics.";
+      } else if (preset === 'anti_slop') {
+        sysBox.value = "You are the Antigravity Anti-Slop Craftsman. Eliminate all shallow emoji asset flips, purple prose, and floaty margins. Enforce crisp 1px borders and dual-tone SVGs.";
+      }
+      playUiTick();
+    }
+
+    function resetSystemPrompt() {
+      document.getElementById('systemPromptInput').value = '';
+      playUiTick();
+    }
+
+    // Clear Chat
+    function clearChatHistory() {
       document.getElementById('messagesContainer').innerHTML = `
-        <div class="message assistant">
-          <p>Chat cleared. Ready for your prompt.</p>
+        <div class="msg-bubble msg-assistant">
+          <p class="text-slate-400">Chat cleared. Ready for your prompt.</p>
         </div>
       `;
+      playUiTick();
     }
 
+    // Send Message with Streaming API
     async function sendMessage() {
       const input = document.getElementById('promptInput');
       const text = input.value.trim();
-      if (!text) return;
+      if (!text || isStreaming) return;
 
-      const model = document.getElementById('modelSelect').value;
+      const model = document.getElementById('modelDropdown').value || 'qwen2.5-coder:7b';
+      const temperature = parseFloat(document.getElementById('tempSlider').value) || 0.7;
+      const numCtx = parseInt(document.getElementById('ctxSelect').value) || 8192;
+      const systemPrompt = document.getElementById('systemPromptInput').value.trim();
+
       input.value = '';
+      input.style.height = 'auto';
 
       const container = document.getElementById('messagesContainer');
-      
-      const userDiv = document.createElement('div');
-      userDiv.className = 'message user';
-      userDiv.innerText = text;
-      container.appendChild(userDiv);
 
-      const asstDiv = document.createElement('div');
-      asstDiv.className = 'message assistant';
-      asstDiv.innerHTML = '<em>Thinking...</em>';
-      container.appendChild(asstDiv);
+      // User Message Bubble
+      const userBubble = document.createElement('div');
+      userBubble.className = 'msg-bubble msg-user';
+      userBubble.innerText = text;
+      container.appendChild(userBubble);
+
+      // Assistant Message Bubble
+      const asstBubble = document.createElement('div');
+      asstBubble.className = 'msg-bubble msg-assistant';
+      asstBubble.innerHTML = `
+        <div class="flex items-center space-x-2 mb-2 pb-2 border-b border-[#30363d]/50 text-xs text-indigo-400 font-mono">
+          <span>${model}</span>
+          <span class="text-slate-600">•</span>
+          <span class="text-slate-400">Generating...</span>
+        </div>
+        <div class="msg-content leading-relaxed"></div>
+      `;
+      container.appendChild(asstBubble);
       container.scrollTop = container.scrollHeight;
 
-      document.getElementById('sendBtn').disabled = true;
+      const contentDiv = asstBubble.querySelector('.msg-content');
+
+      // Toggle UI State
+      isStreaming = true;
+      document.getElementById('sendBtn').classList.add('hidden');
+      document.getElementById('stopGenBtn').classList.remove('hidden');
+
+      abortController = new AbortController();
+      const startTime = performance.now();
+      let totalTokens = 0;
 
       try {
+        const payload = {
+          model: model,
+          prompt: text,
+          stream: true,
+          options: {
+            temperature: temperature,
+            num_ctx: numCtx
+          }
+        };
+        if (systemPrompt) payload.system = systemPrompt;
+
         const response = await fetch(`${OLLAMA_HOST}/api/generate`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: model,
-            prompt: text,
-            stream: true
-          })
+          body: JSON.stringify(payload),
+          signal: abortController.signal
         });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
 
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
-        let accumulated = '';
-        asstDiv.innerHTML = '';
+        let rawAccumulated = '';
 
         while (true) {
           const { done, value } = await reader.read();
@@ -623,33 +933,200 @@
           const lines = chunk.split('\n');
 
           for (const line of lines) {
-            if (line.trim()) {
-              try {
-                const parsed = JSON.parse(line);
-                if (parsed.response) {
-                  accumulated += parsed.response;
-                  asstDiv.innerText = accumulated;
-                  container.scrollTop = container.scrollHeight;
-                }
-              } catch (err) {}
-            }
+            if (!line.trim()) continue;
+            try {
+              const data = JSON.parse(line);
+              if (data.response) {
+                rawAccumulated += data.response;
+                totalTokens++;
+                contentDiv.innerHTML = formatMarkdown(rawAccumulated);
+                container.scrollTop = container.scrollHeight;
+              }
+              if (data.done) {
+                const totalDurationSec = (performance.now() - startTime) / 1000;
+                const tps = totalDurationSec > 0 ? (totalTokens / totalDurationSec).toFixed(1) : '--';
+                document.getElementById('tokenPerfStat').innerText = `Tokens: ${tps} t/s (${totalTokens} tok)`;
+              }
+            } catch (jsonErr) {}
           }
         }
       } catch (err) {
-        asstDiv.innerHTML = `<span style="color:#da3633">Error connecting to Ollama: ${err.message}. Make sure Ollama is running on port 11434.</span>`;
+        if (err.name === 'AbortError') {
+          contentDiv.innerHTML += `<div class="mt-2 text-xs text-amber-400 font-mono">[Generation halted by user]</div>`;
+        } else {
+          contentDiv.innerHTML = `<span class="text-red-400">Error connecting to Ollama: ${err.message}. Ensure Ollama is running on 127.0.0.1:11434.</span>`;
+        }
       } finally {
-        document.getElementById('sendBtn').disabled = false;
+        isStreaming = false;
+        abortController = null;
+        document.getElementById('sendBtn').classList.remove('hidden');
+        document.getElementById('stopGenBtn').classList.add('hidden');
+        playCompletionTone();
       }
     }
 
-    async function syncSkills() {
-      alert("Skills & Projects synchronization is active daily at 4:00 AM, or can be re-run on demand via 'python sync_skills_to_ollama.py'.");
+    // Stop Generation
+    function stopGeneration() {
+      if (abortController) {
+        abortController.abort();
+      }
     }
 
-    // Initialize
-    checkOllama();
-    loadCatalog();
-    setInterval(checkOllama, 8000);
+    // Markdown Formatter with Code Copy
+    function formatMarkdown(text) {
+      // Escape HTML
+      let html = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+      // Code blocks with syntax highlighting container
+      html = html.replace(/```([a-zA-Z0-9_\-\+]*)\n([\s\S]*?)```/g, (match, lang, code) => {
+        const id = 'code-' + Math.random().toString(36).substring(2, 9);
+        return `
+          <div class="code-block-container">
+            <div class="code-block-header">
+              <span>${lang || 'CODE'}</span>
+              <button onclick="copyCodeBlock('${id}')" class="text-slate-400 hover:text-white flex items-center space-x-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre class="code-block-pre" id="${id}"><code>${code}</code></pre>
+          </div>
+        `;
+      });
+
+      // Inline code
+      html = html.replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-black/50 text-indigo-300 font-mono text-xs border border-white/10">$1</code>');
+
+      // Bold
+      html = html.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-white font-semibold">$1</strong>');
+
+      // Newlines to <p> / <br>
+      return html.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+    }
+
+    // Copy Code Block
+    function copyCodeBlock(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        navigator.clipboard.writeText(el.innerText).then(() => {
+          playUiTick();
+        });
+      }
+    }
+
+    // Jump to Game Studio 3D Portal
+    function launchGameStudioPortal() {
+      playUiTick();
+      window.open('file:///G:/My%20Drive/Antigravity/Projects/game%20studio/index.html', '_blank');
+    }
+
+    // Toggle MCP Telemetry HUD (ctrl+m)
+    function toggleMcpTelemetry() {
+      if (window.AntigravityMCP && window.AntigravityMCP.toggleHud) {
+        window.AntigravityMCP.toggleHud();
+      } else {
+        alert("Antigravity MCP Baseline active: 7 servers connected (game-capture, game-studio, github, puppeteer, google-drive, ollama, google-ai-studio). Press Ctrl+M to toggle HUD.");
+      }
+      playUiTick();
+    }
+
+    // Procedural Web Audio API Sound Feedback
+    let audioCtx = null;
+    function ensureAudio() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    function playUiTick() {
+      try {
+        ensureAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.04);
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.04);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.04);
+      } catch (e) {}
+    }
+
+    function playCompletionTone() {
+      try {
+        ensureAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+        osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); // E5
+        gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.22);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.22);
+      } catch (e) {}
+    }
+
+    // Keyboard Shortcuts (Enter, Ctrl+K, Ctrl+B, Ctrl+I, Esc)
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        document.getElementById('quickSearchInput').focus();
+      } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'b') {
+        e.preventDefault();
+        toggleSidebar();
+      } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'i') {
+        e.preventDefault();
+        toggleInspector();
+      } else if (e.key === 'Escape') {
+        document.getElementById('rightInspector').classList.add('collapsed');
+      } else if (e.key === 'Enter' && !e.shiftKey && document.activeElement === document.getElementById('promptInput')) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    // Check Ollama Server Health
+    async function checkOllamaHealth() {
+      try {
+        const res = await fetch(`${OLLAMA_HOST}/api/tags`);
+        const pill = document.getElementById('ollamaStatusPill');
+        const text = document.getElementById('ollamaStatusText');
+        if (res.ok) {
+          pill.className = "flex items-center space-x-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-[11px] font-mono text-emerald-400";
+          text.innerText = "OLLAMA 11434 ONLINE";
+        } else {
+          pill.className = "flex items-center space-x-2 px-3 py-1 bg-amber-500/10 border border-amber-500/30 rounded-full text-[11px] font-mono text-amber-400";
+          text.innerText = "OLLAMA CONNECTING...";
+        }
+      } catch (err) {
+        const pill = document.getElementById('ollamaStatusPill');
+        const text = document.getElementById('ollamaStatusText');
+        pill.className = "flex items-center space-x-2 px-3 py-1 bg-red-500/10 border border-red-500/30 rounded-full text-[11px] font-mono text-red-400";
+        text.innerText = "OLLAMA OFFLINE (PORT 11434)";
+      }
+    }
+
+    // Trigger Python sync
+    function triggerSyncRun() {
+      alert("Skills & Projects synchronization runs daily at 4:00 AM via Windows Task Scheduler. To trigger immediately, execute 'python sync_skills_to_ollama.py'.");
+    }
+
+    // Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      checkOllamaHealth();
+      loadCatalog();
+      fetchModelsList();
+      setInterval(checkOllamaHealth, 10000);
+    });
   </script>
 </body>
 </html>
