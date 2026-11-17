@@ -268,7 +268,7 @@ def categorize_skills(skills):
             categories["Flutter & Mobile App Development"].append(data)
         elif any(k in n for k in ["chrome-devtools", "a11y-debugging", "cookie-debugging", "memory-leak-debugging", "troubleshooting", "puppeteer", "chrome-extensions", "playwright", "firecrawl", "browse"]):
             categories["Browser Automation & Web DevTools"].append(data)
-        elif (any(k in n for k in ["figma", "canva", "wix", "mobbin", "redesign-screen", "plain-writing", "generative_ui", "motion-craftsmanship"]) or n == "search" or "mobbin" in p) and "ml-best-practices" not in n:
+        elif (any(k in n for k in ["figma", "canva", "wix", "mobbin", "redesign-screen", "plain-writing", "generative_ui", "motion-craftsmanship", "web-3d"]) or n == "search" or "mobbin" in p) and "ml-best-practices" not in n:
             categories["Design, UI/UX & Creative Engineering"].append(data)
         elif any((k in n if k != "eve" else (n == "eve" or n.startswith("eve-") or n.endswith("-eve"))) for k in ["vercel", "netlify", "base44", "cdn-caching", "runtime-cache", "routing-middleware", "is-agentic", "chat-sdk", "ai-sdk", "flags-sdk", "env-vars", "domains", "bootstrap", "create-a-backend", "custom-metrics", "microfrontends", "modern-web-guidance", "react-best-practices", "debug-optimize-lcp", "auth", "auth0", "offload-to-sandbox", "deployments-cicd", "queues", "daemons", "ai-gateway", "eve", "build-agents", "knowledge-update", "marketplace", "sandbox"]):
             categories["Cloud Deployments & Serverless Architecture"].append(data)
@@ -346,6 +346,7 @@ def build_system_prompt(skills, categories, projects):
     lines.append("14. **Actionable Insights**: Provide direct answers, synthesized reasoning, and actionable code blocks with zero unnecessary fluff.")
     lines.append("15. **Motion Craftsmanship & Anti-Slop Motion**: Enforce tactile, spring-driven 60 FPS motion across all web and mobile interfaces. Eliminate floaty 0.3s ease-in-out transitions, janky max-height animations, and lifeless button clicks. Standardize on critically damped springs (stiffness: 400, damping: 30), Apple-grade quintic beziers (cubic-bezier(0.16, 1, 0.3, 1)), staggered kinetic reveals with blur-up, and zero-jank sliding layoutId indicators synthesized from getlayers.ai, 60fps.design, motion-primitives.com, kinetics.colorion.co, and microkit.co.")
     lines.append("16. **Live Web Search & Technical Research Synthesis**: Synthesize real-time verified web information, fresh library documentation, and deep citations via Perplexity AI MCP, resolving live technical queries without leaving the environment.")
+    lines.append("17. **Web Design, Typography, SVG Grain & 3D PBR Craftsmanship**: Synthesize jiro.build UI layout prompts (asymmetric bento grids), fffuel.co SVG noise/grain filters (preventing flat gradient banding), Fontshare ITF commercial-free typography (Clash Display, Satoshi, Cabinet Grotesk, General Sans, Zodiak), ambientCG CC0 PBR textures/HDRIs (eliminating plastic Three.js/R3F primitives), and poly.pizza low-poly GLTF models.")
     
     return "\n".join(lines)
 
