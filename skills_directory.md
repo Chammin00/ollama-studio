@@ -1,6 +1,6 @@
 # Antigravity Acquired Skills & Projects Ecosystem Digest
 
-Updated: 335 Acquired Skills | 86 Production Projects
+Updated: 335 Acquired Skills | 87 Production Projects
 
 ## 📦 Part 1: Acquired Agent Skills Catalog
 
@@ -1722,7 +1722,7 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Stack**: `Node.js, WebGL, Shaders, WebGPU`
 - **Status**: `Active`
 - **Frontier Architecture**: WebGL2 stereoscopic shaders, glTF Draco mesh compression, Three.js r185/r186 native 3D Gaussian Splatting (`GaussianSplat` / `SPZLoader`), `KHR_gaussian_splatting` glTF support, TSL materials with automatic WGSL/GLSL cross-compilation, FSR 1 and TAAU upscaling nodes, `PCFShadowMap` migration
-- **Target Action**: Integrate Draco mesh compression, native Gaussian Splatting (`examples/jsm/objects/GaussianSplat.js`), and Three.js r186 upscaling nodes to load high-resolution 3D models with minimal latency
+- **Target Action**: Integrate Draco mesh compression, native Gaussian Splatting (`examples/jsm/objects/GaussianSplat.js`), and Three.js r187 cube-target PMREM, EON rough diffuse BRDF, and FSR1/TAAU upscaling nodes to load high-resolution 3D models with minimal latency
 
 ### `AAC` (Assistive Tech / Accessibility)
 - **Stack**: `TypeScript, Vite, Web Speech API, PWA, CSS`
@@ -1739,7 +1739,7 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `Choogle` (Search / Portals)
 - **Stack**: `Static Web, JS, CSS, PWA`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed 2026-11-14 11:05:16 PM with active search mappings and app catalog ingestion across all 78 projects), offline Service Worker, local inverted index
+- **Frontier Architecture**: Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed 2026-11-16 11:05:02 PM with active search mappings and app catalog ingestion across all 79 projects including `resume`), offline Service Worker, local inverted index
 - **Target Action**: Maintain scheduled sync; expand search mappings for newly staged apps (`turbo-type.html`, `rom_studio_3d.html`, `Paper_Mario_Expedition33_Pipe100.html`) and tools
 
 ### `Game Library` (Portals / Gaming UI)
@@ -1757,8 +1757,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `How to train your AI` (AI / Agents)
 - **Stack**: `Ollama, Python, Modelfiles`
 - **Status**: `Active`
-- **Frontier Architecture**: TensorRT-LLM 1.4+ (PyTorch-native, DFlash 2 and EAGLE-3 speculative decoding, MLA support, disaggregated prefill/decode primitives, KV-Cache Manager V2 default for Llama architectures, explicit `sampler_type` in `SamplingConfig`), vLLM v0.33.0 (LibTorch Stable ABI migration, PyTorch 2.14, concurrent worker startup for TP > 1, native watchdog, removal of Medusa and old MLP speculators, `uv pip install vllm --torch-backend=auto`), Blackwell NVFP4 16-element micro-block scaling with FP8 E4M3 local scaling & FP32 global scaling via ModelOpt (`mtq.quantize` with `NVFP4_DEFAULT_CFG` or `NVFP4_MLP_ONLY_CFG`), dual export pathways (`export_tensorrt_llm_checkpoint` & `export_hf_checkpoint` via `hf_quant_config.json`), ModelOpt KV-cache scale correction (`amax / 448`), Blackwell SM120 mixed-precision `lm_head.weight_scale` schema resolution on vLLM/SGLang, ModelOpt Quantization-Aware Distillation (QAD), `KvCacheConfig(dtype='nvfp4')`, RoPE precision control (`skip_rope_quantization=True` / `2FP4`)
-- **Target Action**: Deploy `serve_vllm.ps1` with vLLM v0.33.0 LibTorch ABI; enable DFlash 2 and KV-Cache Manager V2; apply ModelOpt amax/448 KV scale fix and mixed-precision schema resolver; integrate AST parser and local ChromaDB knowledge base
+- **Frontier Architecture**: TensorRT-LLM 1.4/1.5+ (PyTorch-native, native sparse MLA FMHA, unified NVFP4 MLA KV cache, FlashInfer CuTe DSL backends, DFlash 2 and EAGLE-3 speculative decoding, KV-Cache Manager V2 default for Llama architectures, explicit `sampler_type` in `SamplingConfig`), vLLM v0.34.0 (Model Runner V2 default / V1 deprecated, extensible dynamic KV caching, LibTorch Stable ABI migration, PyTorch 2.14, concurrent worker startup for TP > 1, native watchdog, `uv pip install vllm --torch-backend=auto`), Blackwell NVFP4 16-element micro-block scaling with FP8 E4M3 local scaling & FP32 global scaling via ModelOpt (`mtq.quantize` with `NVFP4_DEFAULT_CFG` or `NVFP4_MLP_ONLY_CFG`), dual export pathways (`export_tensorrt_llm_checkpoint` & `export_hf_checkpoint` via `hf_quant_config.json`), ModelOpt KV-cache scale correction (`amax / 448`), Blackwell SM120 mixed-precision `lm_head.weight_scale` schema resolution on vLLM/SGLang, ModelOpt Quantization-Aware Distillation (QAD), `KvCacheConfig(dtype='nvfp4')`, RoPE precision control (`skip_rope_quantization=True` / `2FP4`)
+- **Target Action**: Deploy `serve_vllm.ps1` with vLLM v0.34.0 Model Runner V2 & LibTorch ABI; enable DFlash 2 and KV-Cache Manager V2; apply ModelOpt amax/448 KV scale fix and mixed-precision schema resolver; integrate AST parser and local ChromaDB knowledge base
 
 ### `Images` (Asset Store)
 - **Stack**: `Image Formats (.heic, .jpg)`
@@ -1767,10 +1767,10 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Add Python image conversion script batch-converting mobile `.heic` photos to `.webp`
 
 ### `MCP` (Systems / AI Tools)
-- **Stack**: `Node.js, JSON-RPC, Python, JavaScript, FastMCP v4.1.4`
+- **Stack**: `Node.js, JSON-RPC, Python, JavaScript, FastMCP v4.2`
 - **Status**: `Active`
-- **Frontier Architecture**: Centralized Model Context Protocol hub, MCP `2026-07-28` specification standard (Linux Foundation, stateless protocol core, header routing `Mcp-Method`/`Mcp-Name`, multi round-trip `input_required`, `ttlMs` cache hints, formal `io.modelcontextprotocol/tasks` extensions), FastMCP v4.1.4 / PrefectHQ `fastmcp` (SEP-1686 protocol-native background tasks via `@mcp.tool(task=True)`, Redis-backed distributed tasks with credential providers, Dual-Era serving & negotiation via `Client(mode="auto")`, client sampling & elicitation via `ctx.sample()`, SEP-990 Identity Assertions, Dynamic Client Registration DCR, `CurrentContext` dependency injection, built-in OAuth 2.1, OpenTelemetry distributed tracing), newly deployed dedicated `ollama-mcp` server (`MCP/ollama-mcp`) exposing 6 specialized tools, MCP Baseline 2.0 (`MCP_WEB_APPS_BASELINE.md`), `mcp-baseline.js` v2.0, `mcp-registry.json`, `Ctrl+M` telemetry HUD, `Ctrl+E` in-app element inspection & hot-patching editor console, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`, `ollama-mcp`), global `mcp_config.json`, Texas Property Tax Form 50-132 protest generator (`Tax_Summary_and_2027_Protest_Plan.md`)
-- **Target Action**: Sync live tool availability across all project hubs (`My Planetarium`, `My Custom Gui`, `index folder`); enforce loopback HMAC token auth; test FastMCP v4.1.4 SEP-1686 background tasks and `CurrentContext` dependency injection in `ollama-mcp`
+- **Frontier Architecture**: Centralized Model Context Protocol hub, MCP `2026-07-28` specification standard (Linux Foundation, stateless protocol core, header routing `Mcp-Method`/`Mcp-Name`, multi round-trip `input_required`, `ttlMs` cache hints, formal `io.modelcontextprotocol/tasks` extensions), **FastMCP v4.2 ("Mad Skills")** / PrefectHQ `fastmcp` (**SEP-2640 Skills over MCP** via `SkillsExtension` / `SkillsDirectoryProvider` / `skill://` resources, SEP-1686 protocol-native background tasks via `@mcp.tool(task=True)`, Redis-backed distributed tasks with credential providers, Dual-Era serving & negotiation via `Client(mode="auto")`, client sampling & elicitation via `ctx.sample()`, SEP-990 Identity Assertions, Google ADK 3-legged OAuth for A2A, Dynamic Client Registration DCR, `CurrentContext` dependency injection, built-in OAuth 2.1, OpenTelemetry distributed tracing), UE 5.8 official native Unreal MCP Server bridge, newly deployed dedicated `ollama-mcp` server (`MCP/ollama-mcp`) exposing 6 specialized tools, MCP Baseline 2.0 (`MCP_WEB_APPS_BASELINE.md`), `mcp-baseline.js` v2.0, `mcp-registry.json`, `Ctrl+M` telemetry HUD, `Ctrl+E` in-app element inspection & hot-patching editor console, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`, `ollama-mcp`), global `mcp_config.json`, Texas Property Tax Form 50-132 protest generator (`Tax_Summary_and_2027_Protest_Plan.md`)
+- **Target Action**: Sync live tool availability across all project hubs (`My Planetarium`, `My Custom Gui`, `index folder`); enforce loopback HMAC token auth; test FastMCP v4.2 SEP-2640 Skills serving & SEP-1686 background tasks and `CurrentContext` dependency injection in `ollama-mcp`
 
 ### `MY Security` (Cybersecurity)
 - **Stack**: `C#, .NET 10, PowerShell`
@@ -1788,7 +1788,7 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Stack**: `Three.js, WebGL, High-Gloss Lacquer`
 - **Status**: `Active`
 - **Frontier Architecture**: 3D Interactive Deep Space Planetary Observatory & Sector Atlas, 64 charted planetary bodies, astronomical rigor, Three.js r184/r185 WebGPURenderer and TSL materials, Antigravity bidirectional prompt dispatching (`window.sidecar.agent.sendMessage`), auto-fit panoramic projection (`[F]`), slide-out MCP telemetry drawer
-- **Target Action**: Keep `projects-data.js` synchronized with expanded 76-project inventory; package as Antigravity UI extension plugin; verify Three.js r184/r185 TSL shader rendering
+- **Target Action**: Keep `projects-data.js` synchronized with expanded 79-project inventory; package as Antigravity UI extension plugin; upgrade to Three.js r187 (`PMREMGenerator` cube targets, EON BRDF, cooperative `compileAsync()`)
 
 ### `My Social Media` (Media / Enterprise Syndication)
 - **Stack**: `HTML5, CSS3, JS, PowerShell 7+, FastMCP, High-Gloss Lacquer, Web Speech API`
@@ -1857,15 +1857,15 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Test offscreen tab capture audio pipeline; verify keyboard shortcuts (`Ctrl+Shift+U`, `Ctrl+Shift+R`)
 
 ### `REA` (Cybersecurity / Reversing)
-- **Stack**: `Python, Ghidra 11.3, PowerShell`
+- **Stack**: `Python, Ghidra 11.4/12.0, PowerShell`
 - **Status**: `Active`
-- **Frontier Architecture**: Dedicated Reverse Engineering Applications Hub, Ninja Gaiden 2 Xenon/x64 DAT unpacker, Tekken 8 UE5 hooks, Naraka asset boundaries, PyGhidra CPython 3 integration, `JitPcodeEmulator` accelerated decoding
-- **Target Action**: Automate 1-click Ghidra 11.3 + JDK 21 installer in `tools/setup_ghidra.ps1` and connect `binary_inspector.py` with `JitPcodeEmulator` to `game mods`
+- **Frontier Architecture**: Dedicated Reverse Engineering Applications Hub, Ninja Gaiden 2 Xenon/x64 DAT unpacker, Tekken 8 UE5 hooks, Naraka asset boundaries, Ghidra 11.4/12.0 JDK 21 baseline & official PyGhidra CPython 3 integration, `JitPcodeEmulator` accelerated decoding
+- **Target Action**: Automate 1-click Ghidra 11.4/12.0 + JDK 21 installer in `tools/setup_ghidra.ps1` and connect `binary_inspector.py` with `JitPcodeEmulator` to `game mods`
 
 ### `RHCSA Exam200` (Linux / SysAdmin)
 - **Stack**: `Markdown, Shell, RHEL 9.5/9.6/10`
 - **Status**: `Active`
-- **Frontier Architecture**: RHEL 9.6 modernization: GCC 14, LLVM 19, Rust 1.84 toolchain, Landlock LSM unprivileged application sandboxing (`landlock_create_ruleset()`, `landlock_restrict_self()`), Unified Kernel Images (UKIs) signed with UEFI stubs for secure boot root-of-trust, NFS RPC over TLS encryption, NetworkManager 1.52, Podman 5.4+ with rootless Netavark/`pasta` networking (replacing slirp4netns), Podman Quadlets (`.container`, `.image`, `.volume`, `.network`, `.kube`, `.pod`), container supply chain audit for CVE-2026-123158 (SSHole on musl/Alpine), systemd v256+ `run0` (`--machine=` container execution), `systemd-creds` encrypted secret injection, `loginctl enable-linger $USER`, journald streaming, cgroups v2 direct PID 1 monitoring, SELinux context (`:Z`)
+- **Frontier Architecture**: RHEL 10 Image Mode (`bootc` OS-as-container) & NIST Post-Quantum Cryptography (`ML-KEM` in OpenSSL, Linux 6.12 kernel lineage); RHEL 9.6 modernization: GCC 14, LLVM 19, Rust 1.84 toolchain, Landlock LSM unprivileged application sandboxing (`landlock_create_ruleset()`, `landlock_restrict_self()`), Unified Kernel Images (UKIs) signed with UEFI stubs for secure boot root-of-trust, NFS RPC over TLS encryption, NetworkManager 1.52, Podman 5.4+ with rootless Netavark/`pasta` networking (replacing slirp4netns), Podman Quadlets (`.container`, `.image`, `.volume`, `.network`, `.kube`, `.pod`), container supply chain audit for CVE-2026-123158 (SSHole on musl/Alpine), systemd v256+ `run0` (`--machine=` container execution), `systemd-creds` encrypted secret injection, `loginctl enable-linger $USER`, journald streaming, cgroups v2 direct PID 1 monitoring, SELinux context (`:Z`)
 - **Target Action**: Build `grade_rhcsa_lab.sh` validating Quadlets, pasta/Netavark networks, Landlock rules, SSHole container image audit, persistent LVM UUIDs, and SGID permissions
 
 ### `Record my Gameplay` (XR / Media / Game Capture)
@@ -1893,10 +1893,10 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Integrate automated sales comps calculation ($/sqft variance modeling) directly into annual protest PDF pipeline; sync valuation metrics to `My Custom Gui`
 
 ### `VR creation apps` (XR / VR)
-- **Stack**: `WebXR, Three.js, Quest 3`
+- **Stack**: `WebXR, Three.js r187, Quest 3`
 - **Status**: `Active`
-- **Frontier Architecture**: Three.js `WebGPURenderer` (`await renderer.init()`), Three.js r185/r186 native WebXR on WebGPU with `multiview: true` single-pass stereo rendering (50% draw-call reduction), native XR MSAA layers and transmission corrections, Three.js r184 non-blocking `compileAsync()`, TSL (Three Shading Language) transpiling dynamically to WGSL and GLSL, node-based `RenderPipeline` with MRT, Quest 3 bare-hand tracking (`XRHandModelFactory`), HRTF Web Audio
-- **Target Action**: Upgrade `word-defender-xr.html` to Three.js r185/r186 WebGPURenderer with `multiview: true` and TSL `RenderPipeline`; integrate `XRHandModelFactory` pinch firing
+- **Frontier Architecture**: Three.js r187 (`PMREMGenerator` cube render targets, EON rough diffuse BRDF, cooperative `compileAsync()`), `WebGPURenderer` (`await renderer.init()`), r185/r186 native WebXR on WebGPU with `multiview: true` single-pass stereo rendering (50% draw-call reduction), native XR MSAA layers and transmission corrections, Three.js r184 non-blocking `compileAsync()`, TSL (Three Shading Language) transpiling dynamically to WGSL and GLSL, node-based `RenderPipeline` with MRT, Quest 3 bare-hand tracking (`XRHandModelFactory`), HRTF Web Audio
+- **Target Action**: Upgrade `word-defender-xr.html` to Three.js r187 WebGPURenderer (cube-target PMREM, cooperative `compileAsync()`) with `multiview: true` and TSL `RenderPipeline`; integrate `XRHandModelFactory` pinch firing
 
 ### `agent 365` (AI / Enterprise Productivity)
 - **Stack**: `Python 3.12, FastAPI, Pydantic v2, MSAL`
@@ -1937,7 +1937,7 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `automate my day` (Productivity)
 - **Stack**: `Python 3.12, UV, Batch, VBS, Kokoro-82M, FFmpeg`
 - **Status**: `Active`
-- **Frontier Architecture**: Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py`), automated clip cutter & YouTube shorts converter (`convert_to_shorts.py`, `smart_cutter.py`, `sfx_manager.py`) processing TEKKEN 8, Beast of Reincarnation, and Sonic Racing clips (verified running 11/13/2026 2:27 AM), Kokoro-82M ONNX speech synthesis (`morning_brief.wav`), multi-source telemetry ingestion, Stock Watch coiling alerts
+- **Frontier Architecture**: Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py`), automated clip cutter & YouTube shorts converter (`convert_to_shorts.py`, `smart_cutter.py`, `sfx_manager.py`) processing TEKKEN 8, Beast of Reincarnation, and Sonic Racing clips (verified active through 11/17/2026 02:27 AM in `processed_clips.json`), Kokoro-82M ONNX speech synthesis (`morning_brief.wav`), multi-source telemetry ingestion, Stock Watch coiling alerts
 - **Target Action**: Verify sentinel daemon automated clip processing; ensure morning audio briefing synthesizes daily telemetry via Kokoro-82M ONNX; maintain YouTube upload schedule
 
 ### `aws` (Cloud / DevOps)
@@ -1979,7 +1979,7 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `chrome tab and bar` (Browser Extension)
 - **Stack**: `Manifest V3, JS, CSS, Chrome APIs`
 - **Status**: `Active`
-- **Frontier Architecture**: Google Chrome Manifest V3 2026 standard, persistent `chrome.sidePanel` with Chrome 140+ `sidePanel.getLayout()` dynamic left/right docking orientation awareness (and Chrome 148+ `browser.sidePanel.getLayout()` cross-browser namespace), programmatic `chrome.tabGroups` auto-categorization and color palettes, proactive memory reclamation via `chrome.tabs.discard`, `chrome.system.memory` & `chrome.system.cpu` live HUD telemetry, custom breadcrumb status bar, `Install-ChromeBookmarks.ps1`, `Antigravity_Index_Bookmarks.html`, `chrome.storage.session` state persistence
+- **Frontier Architecture**: Chrome 157 (`CVE-2026-125350` UAF patched) Manifest V3 2026 standard (`activeTab` minimal permissions + proxy workers, WebGPU sidePanel SLMs), persistent `chrome.sidePanel` with Chrome 140+ `sidePanel.getLayout()` dynamic left/right docking orientation awareness (and Chrome 148+ `browser.sidePanel.getLayout()` cross-browser namespace), programmatic `chrome.tabGroups` auto-categorization and color palettes, proactive memory reclamation via `chrome.tabs.discard`, `chrome.system.memory` & `chrome.system.cpu` live HUD telemetry, custom breadcrumb status bar, `Install-ChromeBookmarks.ps1`, `Antigravity_Index_Bookmarks.html`, `chrome.storage.session` state persistence
 - **Target Action**: Implement `sidePanel.getLayout()` in `sidepanel.js` to dynamically mirror UI layout based on left/right docking; integrate search, domain auto-grouping, and sleep controls; execute `Install-ChromeBookmarks.ps1`
 
 ### `comptia exam simulator` (Education)
@@ -1997,8 +1997,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `deploy` (DevOps / Control)
 - **Stack**: `PowerShell, SQLite, JSON`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated health audits (`Test-ProjectHealth.ps1`, `routine_scan.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking all 78 projects, 35 deployable, 6 in progress), nightly health scan (verified 2026-11-14 23:01:35: 17/17 Deploy Suite 100% Healthy, 0 degraded, 0 critical in 2,103ms)
-- **Target Action**: Maintain continuous health verification and sync all 78 active projects into `PROJECT_CATALOG.json`; link newly staged `Cert Training Guide`, `onedrive cleanup`, and Godot 3D prototypes into automated deployment manager
+- **Frontier Architecture**: Automated health audits (`Test-ProjectHealth.ps1`, `routine_scan.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking all 79 projects, 35 deployable, 6 in progress), nightly health scan (verified 2026-11-16 23:01:40: 17/17 Deploy Suite 100% Healthy, 0 degraded, 0 critical in 3,422ms)
+- **Target Action**: Maintain continuous health verification and sync all 79 active projects (including `resume`) into `PROJECT_CATALOG.json`; link newly staged `Cert Training Guide`, `onedrive cleanup`, and Godot 3D prototypes into automated deployment manager
 
 ### `desktopscreensaver` (Graphics)
 - **Stack**: `HTML5 Canvas, JS`
@@ -2031,10 +2031,10 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Align *A Plague Tale: Resonance* script timestamps with captured gameplay footage
 
 ### `game studio` (Game Dev)
-- **Stack**: `C++ UE5, Godot 4.3/4.4, Unity 6, MSVC, ROMs`
+- **Stack**: `C++ UE5.8, Godot 4.4/4.7, Unity 6, MSVC, ROMs`
 - **Status**: `Active`
-- **Frontier Architecture**: Unreal Engine 5 C++ (`ShadowBlade_Tekken_Naraka_UE5` Battle Royale: Naraka clash, Tekken heat, Ninja Gaiden Izuna drop), Godot 4 3D arena (`ShatteredPagoda_Godot` with 3D models, scenes, tests, `Launch_Kagura_Godot3D.bat`, `Play_Kagura_Godot3D.vbs`), `ChessClash_Godot`, `aether_ascent_spire` build, 3D Art Studio (`index.html`, `game-studio-scene.js`, `game-studio-engine.js`), **newly added Turbo Type Rally 3D in Godot 4.3/4.4 (`TurboTypeRally_Godot` with `scripts/Main.gd`, `scenes/Main.tscn`, `Launch_TurboTypeRally_Godot.bat`)** featuring typed dictionaries, 3D physics interpolation, and native Jolt physics engine integration, **Paper Mario x Expedition 33 - 100 Trial Pipe RPG prototype (`Paper_Mario_Expedition33_Pipe100.html`)** with reactive QTE timing, dodge/parry mechanics, and tactical turn-based combat, **3D ROM Studio (`rom_studio_3d.html`, `rom_studio_engine.js`, `rom_studio_scene.js`)**, Michael Jackson "Hee-Hee" soundbyte integration in `assets/soundbytes/`, automated studio quality gate verification (`Test-StudioQualityGate.ps1`), master launcher (`GameStudio_Hub.ps1`), BPS/UPS delta-patching, Capstone disassembly, Anti-Slop hit-stop kinesthetics
-- **Target Action**: Execute `Test-StudioQualityGate.ps1`; launch `Launch_TurboTypeRally_Godot.bat` to test 3D typing rally mechanics; test `Paper_Mario_Expedition33_Pipe100.html` QTE timing; run `Launch_Kagura_Godot3D.bat` to verify 3D pagoda arena rendering; benchmark Forward+ clustered lighting and hit-stop frame freezing
+- **Frontier Architecture**: **Antigravity Engine Forge IDE (`engine_forge.html`, `engine_forge.js`, `Start-EngineForge.ps1`, `Launch_Engine_Forge.bat`)** unifying Three.js PBR viewport, Blueprint Node Graph, UE5.8 MCP Bridge, GitHub AI Studio Multi-Agent Hierarchy, and Udemy Dev Academy; UE 5.8 Mesh Terrain, Lumen Probe Occlusion, Fast Geometry Streaming & native Unreal MCP Server; Godot 4.7 `AreaLight3D`, True HDR & Vulkan RT groundwork; Unreal Engine 5 C++ (`ShadowBlade_Tekken_Naraka_UE5` Battle Royale: Naraka clash, Tekken heat, Ninja Gaiden Izuna drop), Godot 4 3D arena (`ShatteredPagoda_Godot` with 3D models, scenes, tests, `Launch_Kagura_Godot3D.bat`, `Play_Kagura_Godot3D.vbs`), `ChessClash_Godot`, `aether_ascent_spire` build, 3D Art Studio (`index.html`, `game-studio-scene.js`, `game-studio-engine.js`), **newly added Turbo Type Rally 3D in Godot 4.3/4.4 (`TurboTypeRally_Godot` with `scripts/Main.gd`, `scenes/Main.tscn`, `Launch_TurboTypeRally_Godot.bat`)** featuring typed dictionaries, 3D physics interpolation, and native Jolt physics engine integration, **Paper Mario x Expedition 33 - 100 Trial Pipe RPG prototype (`Paper_Mario_Expedition33_Pipe100.html`)** with reactive QTE timing, dodge/parry mechanics, and tactical turn-based combat, **3D ROM Studio (`rom_studio_3d.html`, `rom_studio_engine.js`, `rom_studio_scene.js`)**, Michael Jackson "Hee-Hee" soundbyte integration in `assets/soundbytes/`, automated studio quality gate verification (`Test-StudioQualityGate.ps1`), master launcher (`GameStudio_Hub.ps1`), BPS/UPS delta-patching, Capstone disassembly, Anti-Slop hit-stop kinesthetics
+- **Target Action**: Upgrade `engine_forge.html` from legacy `three.min.js` (r128 fallback) to Three.js r187 `WebGPURenderer`; execute `Test-StudioQualityGate.ps1`; launch `Start-EngineForge.ps1` and `Launch_TurboTypeRally_Godot.bat` to test 3D typing rally mechanics; test `Paper_Mario_Expedition33_Pipe100.html` QTE timing; run `Launch_Kagura_Godot3D.bat` to verify 3D pagoda arena rendering; benchmark Forward+ clustered lighting and hit-stop frame freezing
 
 ### `google drive organizer` (Automation)
 - **Stack**: `PowerShell, Google Drive API`
@@ -2087,8 +2087,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `ollama` (AI / Knowledge Hub)
 - **Stack**: `Python, Ollama, HTML/JS, FastMCP`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated Antigravity skill ingestion, dynamic Modelfile generation (`Modelfile`), local HTTP web studio (`index.html`), Windows scheduled daily sync, newly deployed **Ollama Tandem Protocol (`Invoke-OllamaTandem.ps1`, `tandem_bridge.py`, `OLLAMA_TANDEM_PROTOCOL.txt`)** for dual-model offline/cloud co-reasoning, dedicated Ollama Model Context Protocol server (`MCP/ollama-mcp`) exposing 6 specialized tools (`ollama_list_models`, `ollama_show_model`, `ollama_generate`, `ollama_chat`, `ollama_get_telemetry`, `ollama_studio_consult`) with FastMCP v4 / Python SDK v2 architecture
-- **Target Action**: Verify `MCP/ollama-mcp` server tools integration; expand `sync_skills_to_ollama.py` to auto-ingest newly added project refinement blueprints into local system prompt; validate `index.html` Web Studio and test tandem bridge
+- **Frontier Architecture**: Automated Antigravity skill ingestion, dynamic Modelfile generation (`Modelfile`), local HTTP web studio (`index.html`), Windows scheduled daily sync, newly deployed **Ollama Tandem Protocol (`Invoke-OllamaTandem.ps1`, `tandem_bridge.py`, `OLLAMA_TANDEM_PROTOCOL.txt`)** for dual-model offline/cloud co-reasoning, dedicated Ollama Model Context Protocol server (`MCP/ollama-mcp`) exposing 6 specialized tools (`ollama_list_models`, `ollama_show_model`, `ollama_generate`, `ollama_chat`, `ollama_get_telemetry`, `ollama_studio_consult`) with FastMCP v4.2 (`SkillsDirectoryProvider` SEP-2640) / Python SDK v2 architecture
+- **Target Action**: Verify `MCP/ollama-mcp` server tools and SEP-2640 `skill://` resource serving; expand `sync_skills_to_ollama.py` to auto-ingest all 79 projects and refinement blueprints; validate `index.html` Web Studio and test tandem bridge
 
 ### `onedrive cleanup` (Storage / Lifecycle Automation)
 - **Stack**: `PowerShell 7+, Windows Storage API, FFmpeg`
@@ -2103,22 +2103,22 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Add live health badge polling from `deploy/health_status.json`
 
 ### `openshift` (Linux / Platform Engineering)
-- **Stack**: `OpenShift 4.17/4.18/4.19, Kubernetes 1.30-1.32, oc, Podman 5, Helm, Argo CD`
+- **Stack**: `OpenShift 4.18/4.19/4.20 EUS, Kubernetes 1.31-1.33, oc, Podman 5, Helm, Argo CD`
 - **Status**: `Active`
-- **Frontier Architecture**: Red Hat OpenShift Administration II (DO280) & EX280 certification curriculum, DO180 container architecture, DO380 advanced automation, OpenShift 4.17 (K8s 1.30, OVN-Kubernetes mandatory), 4.18 (K8s 1.31 EUS, User Defined Networks UDNs GA, Secrets Store CSI Driver Operator GA for external vault/GCP secret injection without etcd storage, `cert-manager` v1.15), 4.19 (Built on K8s 1.32 & CRI-O 1.32 on RHEL 9.6 RHCOS; complete removal of cgroups v1 with strict cgroups v2 requirement; default `ServiceAccountTokenNodeBinding` to bind SA tokens to node objects; cluster-wide CVE-2026-123158 SSHole admission auditing; Kubernetes Gateway API Generally Available via Service Mesh 3 with Istio 1.26 + Envoy for L4/L7 routing and traffic splitting; BGP Route Advertisements for ClusterUserDefinedNetworks CUDNs with FRR via `k8s.ovn.org/v1` `RouteAdvertisements` CR; Network Observability Operator native UDN flow tracing; unified console merging Admin and Developer views; `cert-manager` Router direct secret loading; oc-mirror v2 with Cosign SigStore tag signatures for air-gapped supply chain verification), Security Context Constraints (SCC `restricted-v2`), Ingress Routes TLS profiles (Edge, Passthrough, Re-encrypt), dynamic CSI StorageClasses, `oc adm must-gather` & `ovn-trace`
-- **Target Action**: Validate OpenShift 4.19 strict cgroups v2 compatibility and ServiceAccountTokenNodeBinding; audit Alpine pods for CVE-2026-123158 SSHole; configure Gateway API HTTPRoute manifests and CUDN BGP route advertisements; execute `diagnose-route.ps1` and `deploy-hello-world.ps1`; test oc-mirror v2 Cosign SigStore signatures; integrate EX280 timed mock exam engine
+- **Frontier Architecture**: Red Hat OpenShift Administration II (DO280) & EX280 certification curriculum, DO180 container architecture, DO380 advanced automation, OpenShift 4.17 (K8s 1.30, OVN-Kubernetes mandatory), 4.18 (K8s 1.31 EUS, User Defined Networks UDNs GA, Secrets Store CSI Driver Operator GA for external vault/GCP secret injection without etcd storage, `cert-manager` v1.15), 4.19 (Built on K8s 1.32 & CRI-O 1.32 on RHEL 9.6 RHCOS; complete removal of cgroups v1 with strict cgroups v2 requirement; default `ServiceAccountTokenNodeBinding` to bind SA tokens to node objects; cluster-wide CVE-2026-123158 SSHole admission auditing; Kubernetes Gateway API Generally Available via Service Mesh 3 with Istio 1.26 + Envoy for L4/L7 routing and traffic splitting; BGP Route Advertisements for ClusterUserDefinedNetworks CUDNs with FRR via `k8s.ovn.org/v1` `RouteAdvertisements` CR; Network Observability Operator native UDN flow tracing; unified console merging Admin and Developer views; `cert-manager` Router direct secret loading; oc-mirror v2 with Cosign SigStore tag signatures for air-gapped supply chain verification), Security Context Constraints (SCC `restricted-v2`), Ingress Routes TLS profiles (Edge, Passthrough, Re-encrypt), dynamic CSI StorageClasses, and **OpenShift 4.20 EUS (K8s 1.33 / CRI-O 1.33)**: `X25519MLKEM768` hybrid PQC control-plane TLS via Go 1.24, OVN-Kubernetes native BGP (`FRR-K8s`) & EVPN (`MAC-VRF` / `IP-VRF` over single VXLAN via FRR 10+), GA Gateway API (`GatewayClass`/`HTTPRoute`/`GRPCRoute`/`ReferenceGrant`), native Sidecars GA, `LeaderWorkerSet` GA, `oc adm must-gather` & `ovn-trace`
+- **Target Action**: Validate OpenShift 4.20 EVPN/BGP (`FRRConfiguration`) & PQC TLS alongside 4.19 strict cgroups v2 compatibility and ServiceAccountTokenNodeBinding; audit Alpine pods for CVE-2026-123158 SSHole; configure Gateway API HTTPRoute manifests and CUDN BGP route advertisements; execute `diagnose-route.ps1` and `deploy-hello-world.ps1`; test oc-mirror v2 Cosign SigStore signatures; integrate EX280 timed mock exam engine
 
 ### `opensource` (DevOps / Governance & Supply Chain)
 - **Stack**: `Markdown, Git, GitHub CLI, CycloneDX, SPDX, Python`
 - **Status**: `Active`
 - **Frontier Architecture**: Open-Source Program Office (OSPO) architecture, OpenChain (ISO/IEC 5230) license compliance, automated CycloneDX 1.6 / SPDX 3.0 profile-based SBOM generation (ECMA-424 & ISO/IEC standards), OpenSSF Scorecard automated security auditing (0-10 security rating across 18 checks), SLSA Level 3 build provenance with Cosign/Sigstore keyless OIDC attestations, automated Git submodule/subtree upstream sync (`Sync-UpstreamForks.ps1`), SemVer 2.0.0 release automation with `git-cliff`
-- **Target Action**: Scaffold `ospo_governance.py` and `Generate-ProjectSbom.ps1`; enforce SPDX license headers across all 76 portfolio repositories; deploy automated upstream fork synchronizer
+- **Target Action**: Scaffold `ospo_governance.py` and `Generate-ProjectSbom.ps1`; enforce SPDX license headers across all 79 portfolio repositories; deploy automated upstream fork synchronizer
 
 ### `personal assistant` (AI / Desktop)
 - **Stack**: `Python, Audio, JSON`
 - **Status**: `Active`
-- **Frontier Architecture**: Faster-Whisper Large V3 Turbo (CTranslate2 4x-6x faster transcription), Kokoro-82M v1.0 ONNX Runtime Web / WebGPU (`kokoro-onnx` + G2P `misaki`), sub-150ms speech loops, sub-85MB footprint, multi-voice linear interpolation blending (`0.6 * voice_sarah + 0.4 * voice_adam`), Structured JSON Tool Calling
-- **Target Action**: Implement sub-150ms speech loop; bind `inspect_pc`, `windows event viewer`, and `automate my day` as callable tools
+- **Frontier Architecture**: Faster-Whisper Large V3 Turbo (CTranslate2 4x-6x faster transcription), Kokoro-82M v1.0 ONNX Runtime Web / WebGPU (`kokoro-onnx` + G2P `misaki`), sub-150ms chunked sentence-by-sentence streaming loops (sub-5s end-to-end voice pipeline with 128k+ local foundational LLMs), sub-85MB footprint, multi-voice linear interpolation blending (`0.6 * voice_sarah + 0.4 * voice_adam`), Structured JSON Tool Calling
+- **Target Action**: Implement sentence-streaming Kokoro-82M speech loop; bind `inspect_pc`, `windows event viewer`, and `automate my day` as callable tools
 
 ### `personal training` (Health / Fitness)
 - **Stack**: `Markdown`
@@ -2137,6 +2137,12 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Status**: `Active`
 - **Frontier Architecture**: 5 Frontier Blueprints, Action Matrix, Daily automated refresh, 2026 intelligence pipeline
 - **Target Action**: Keep master blueprints continuously aligned with 2026 tech breakthroughs across all active projects in the portfolio
+
+### `resume` (Career / Showcase)
+- **Stack**: `Markdown, HTML5, PDF`
+- **Status**: `Active`
+- **Frontier Architecture**: Dedicated Career & Resume Engineering Hub (`Chase_Hamilton_Master_Resume.md`, `Chase_Hamilton_Resume.html`, `Tailored_Resume_Linux_Storage.html`, `Tailored_Resume_Infra_Security.html`, compiled PDFs, `2026 Resume-Cham V2.pdf`), synced to `portfolio` & `Github Portfolio`
+- **Target Action**: Build automated Markdown-to-HTML/PDF pipeline (`uv` + Playwright/WeasyPrint) and verify ATS extraction via Docling/`pdftotext`; update `deploy/PROJECT_CATALOG.json` classification from Incomplete to Active
 
 ### `reverse engineer applications` (Cybersecurity)
 - **Stack**: `Ghidra 11.3, x64dbg, PE-bear`
@@ -2171,14 +2177,14 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `stock Bot traders` (Quantitative Finance / Algotrading)
 - **Stack**: `Python 3.12, alpaca-py, CCXT, Flask`
 - **Status**: `Active`
-- **Frontier Architecture**: Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling sentinel (verified active 11/14/2026: detected `CHOP_BEAR` regime with AAPL momentum, 100% compliant)
+- **Frontier Architecture**: Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling sentinel (verified active 11/16/2026 17:01 settlement: `$100,045.54` equity, `AAPL` +2.64%, `CHOP_BEAR` regime, 100% compliant)
 - **Target Action**: Ingest coiling volatility squeeze signals from `stock watch` into vector screener; enforce zero entry slippage via bracket limit orders; maintain automated daily upskill logs
 
 ### `stock watch` (Quantitative Finance)
 - **Stack**: `Python 3.12, UV, alpaca-py, cuDF`
 - **Status**: `Active`
 - **Frontier Architecture**: NVIDIA RAPIDS cuDF GPU acceleration (`cudf.pandas.install()`), Volume-Filtered Carter Squeeze (VWAP & 21/50 EMA), Wyckoff Spring smart-money absorption ($>2.0\times$ volume), Half-Kelly capital sizing, Alpaca paper-to-live execution slippage & spread delta logging
-- **Target Action**: Implement slippage and spread-crossing delta logger in `alpaca_broker.py`; connect evening screener alerts to `automate my day` briefing
+- **Target Action**: Run 1-share/micro-contract live canary execution phase and implement slippage/spread-crossing delta logger in `alpaca_broker.py`; connect evening screener alerts to `automate my day` briefing
 
 ### `synergize and pay` (Strategy / Business)
 - **Stack**: `Markdown, HTML`
@@ -2201,19 +2207,19 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `vulnerability management` (Cybersecurity)
 - **Stack**: `C#, .NET 10 MVC, SQLite`
 - **Status**: `Active`
-- **Frontier Architecture**: Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3; **November 2026 Disclosures, Hardening & CISA KEV**: OpenSSH Authentication Bypass ("SSHole" **CVE-2026-123158**, CWE-394 on musl libc, CISA KEV cataloged November 9, 2026), Cisco BroadWorks **CVE-2026-20320** (XXE in OCI XML parser, CISA KEV cataloged November 10, 2026 for active exploitation), Cisco Meraki OS Security Hardening Release (`cisco-sa-hardening-meraki-os-drbEX9GH`, CWE-682 & input validation), Cisco UCS Central Software RCE **CVE-2026-76506** (CWE-22 Path Traversal, CVSS 7.6, Bug ID `CSCwv60193`), Cisco Unified CM XSS **CVE-2026-76419** (CVSS 6.1, `cisco-sa-cucm-xss-5mQn2U5z`), Cisco Identity Services Engine Authorization Bypass **CVE-2026-20241** (CVSS 5.3, `CWE-285` in cert services), Node.js/Brotli multi-product flaws **CVE-2026-105482** & **CVE-2026-105483**; **Cisco official EOY vulnerability freeze notice (`cisco-sa-notice-I8z3n6lK`) until January 20, 2027**; Actively Exploited Disclosures: **CVE-2026-76418** (ASA/FTD SSL VPN tunnel DoS with secondary auth, Bug ID `CSCwx26625`, actively exploited in wild, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; emergency workaround: `no secondary-authentication`), **CVE-2026-20349** (ASA/FTD Remote Access SSL VPN HTTP processing flaw DoS actively exploited in wild - CVSS 8.6), **CVE-2026-76482** (Smart License On-Prem CVSS 10.0), **CVE-2026-76519** (Secure Email Gateway RCE in AMP - CISA KEV cataloged), **CVE-2026-20271** (IOS XE memory leak DoS), **CVE-2026-76465** (NX-OS MPLS OAM), **CVE-2026-76485/76486/76501** (NGOAM), **CVE-2026-76471** (NX-API), **CVE-2026-76498..500** (APIC), **CVE-2026-76466** (Expressway), **CVE-2026-111497** (Node.js Brotli RCE), **CVE-2026-20043/20236/20291/20356** (Snort 3 RCE - CVSS 9.0), **CVE-2026-76524** (Snort socket command exec - CVSS 7.8)
-- **Target Action**: Ingest November 2026 disclosures (CVE-2026-123158 SSHole, CVE-2026-20320, CVE-2026-76506, CVE-2026-76419, CVE-2026-20241, Meraki OS `cisco-sa-hardening-meraki-os-drbEX9GH`) and actively exploited CVE-2026-76418/76519 into automated scanner; lock scanner baseline for Cisco EOY freeze period until Jan 20, 2027; compile scanner with .NET 10 Native AOT
+- **Frontier Architecture**: Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3; **November 2026 Disclosures, Hardening & CISA KEV**: OpenSSH Authentication Bypass ("SSHole" **CVE-2026-123158**, CWE-394 on musl libc, CISA KEV cataloged November 9, 2026), Cisco BroadWorks **CVE-2026-20320** (XXE in OCI XML parser, CISA KEV cataloged November 10, 2026 for active exploitation), Cisco Meraki OS Security Hardening Release (`cisco-sa-hardening-meraki-os-drbEX9GH`, CWE-682 & input validation), Cisco UCS Central Software RCE **CVE-2026-76506** (CWE-22 Path Traversal, CVSS 7.6, Bug ID `CSCwv60193`), Cisco Unified CM XSS **CVE-2026-76419** (CVSS 6.1, `cisco-sa-cucm-xss-5mQn2U5z`), Cisco Identity Services Engine Authorization Bypass **CVE-2026-20241** (CVSS 5.3, `CWE-285` in cert services), Node.js/Brotli multi-product flaws **CVE-2026-105482** & **CVE-2026-105483**; **Cisco official EOY vulnerability freeze notice (`cisco-sa-notice-I8z3n6lK`) until January 20, 2027**; Actively Exploited Disclosures: **CVE-2026-76418** (ASA/FTD SSL VPN tunnel DoS with secondary auth, Bug ID `CSCwx26625`, actively exploited in wild, fixed in ASA 9.16.4.104+ / FTD 7.0.11+; emergency workaround: `no secondary-authentication`), **CVE-2026-20349** (ASA/FTD Remote Access SSL VPN HTTP processing flaw DoS actively exploited in wild - CVSS 8.6), **CVE-2026-76482** (Smart License On-Prem CVSS 10.0), **CVE-2026-76519** (Secure Email Gateway RCE in AMP - CISA KEV cataloged), **CVE-2026-20271** (IOS XE memory leak DoS), **CVE-2026-76465** (NX-OS MPLS OAM), **CVE-2026-76485/76486/76501** (NGOAM), **CVE-2026-76471** (NX-API), **CVE-2026-76498..500** (APIC), **CVE-2026-76466** (Expressway), **CVE-2026-111497** (Node.js Brotli RCE), **CVE-2026-20043/20236/20291/20356** (Snort 3 RCE - CVSS 9.0), **CVE-2026-76524** (Snort socket command exec - CVSS 7.8); **Additional Nov 2026 CISA KEV**: Chrome **CVE-2026-125350** (XML/XSLT UAF, CVSS 8.8), Outlook **CVE-2026-124194**, Check Point Gaia **CVE-2026-123039**, Barracuda ESG **CVE-2026-116606/111560**, IBM Aspera **CVE-2026-123218**
+- **Target Action**: Ingest November 2026 CISA KEV & PSIRT disclosures (CVE-2026-123158 SSHole, CVE-2026-20320, CVE-2026-125350, CVE-2026-76506, CVE-2026-76419, CVE-2026-20241, Meraki OS `cisco-sa-hardening-meraki-os-drbEX9GH`) and actively exploited CVE-2026-76418/76519 into automated scanner; lock scanner baseline for Cisco EOY freeze period until Jan 20, 2027; compile scanner with .NET 10 Native AOT
 
 ### `windows event viewer` (Cybersecurity)
 - **Stack**: `PowerShell, Sysmon 15+, Batch`
 - **Status**: `Active`
-- **Frontier Architecture**: Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`) executing hourly and daily scans (verified active through 11/14/2026 11:32 PM with zero threat detections across 24h), LSASS memory dump protection (Sysmon Event ID 10), automated log rotation
+- **Frontier Architecture**: Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`) executing hourly and daily scans (verified active through 11/17/2026 02:32 AM: 598 processes & 22 autostart entries audited, 0 threats), LSASS memory dump protection (Sysmon Event ID 10), automated log rotation
 - **Target Action**: Maintain hourly and daily McAfee scanner scans; alert on LSASS dump attempts; parse scan logs into `deploy/health_status.json`
 
 ### `youtube channels` (Media / YouTube Automation)
 - **Stack**: `PowerShell, Python, YouTube Data API v3, FFmpeg, Pillow, Three.js, CSS`
 - **Status**: `Active`
-- **Frontier Architecture**: Your Favorite Character's White Noise & Sleep Ambience Automation Engine, high-AVD 3–8 hour sleep loops, 2-Upload Funnel (12–18s discovery Short with Related Video pill funnelling into 3–8h sleep loop), 4-slot rotating character format (Eustace Bagge, Rolf, Courage Computer, Nostalgia Wildcard), dynamic anti-repetition visual loops (CRT static grain, farmhouse shadows, audio waveforms), 12 complete episodes generated with matching audio, thumbnails, and short/long videos (`ep01-eustace` through `ep12-sa1-mystic-ruins`), updated `character_rotation_catalog.json`, automated publishing queue (`Invoke-AutoUploadQueue.ps1`, `youtube_api_upload.py`), **newly deployed licensed audio manifest and studio engine (`Build-AudioManifest.ps1`, `audio_manifest.json`, `studio-engine.js`, `hallway-scene.js`, `high-gloss-lacquer.css`)** featuring licensed character voice lines (Perfect Dark Elvis Maian, Guard, Ed Edd n Eddy Rolf)
+- **Frontier Architecture**: Your Favorite Character's White Noise & Sleep Ambience Automation Engine, high-AVD 3–8 hour sleep loops, 2-Upload Funnel (12–18s discovery Short with Related Video pill funnelling into 3–8h sleep loop), 4-slot rotating character format (Eustace Bagge, Rolf, Courage Computer, Nostalgia Wildcard), dynamic anti-repetition visual loops (CRT static grain, farmhouse shadows, audio waveforms), 16-episode catalog (`ep01`–`ep12` rendered + `ep13`–`ep16` queued in `character_rotation_catalog.json`) with matching audio, thumbnails, and short/long videos, updated `character_rotation_catalog.json`, automated publishing queue (`Invoke-AutoUploadQueue.ps1`, `youtube_api_upload.py`), **newly deployed licensed audio manifest and studio engine (`Build-AudioManifest.ps1`, `audio_manifest.json`, `studio-engine.js`, `hallway-scene.js`, `high-gloss-lacquer.css`)** featuring licensed character voice lines (Perfect Dark Elvis Maian, Guard, Ed Edd n Eddy Rolf)
 - **Target Action**: Execute `Invoke-AutoUploadQueue.ps1` across the 12 generated episodes; verify YouTube Data API v3 OAuth2 token refresh; run `Start-HighlightStudio.ps1` to test 3D ambience studio view
 
 ### `youtube shorts edit for gaming` (Media / AI)
