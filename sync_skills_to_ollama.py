@@ -260,7 +260,7 @@ def categorize_skills(skills):
             categories["Drug Discovery & Pharmacology"].append(data)
         elif any(k in n for k in ["neo4j", "cypher", "graphrag", "lookml", "looker"]):
             categories["Graph Databases & Knowledge Graphs"].append(data)
-        elif any(k in n for k in ["bigquery", "bigframes", "bigtable", "dataform", "data-autocleaning", "gcp-", "gcs-", "discovering-gcp", "federate-lakehouse", "enforcing-resource", "gcloud", "google-cloud-storage", "google-cloud-recipe", "cloud-databases-onboarding", "building-data-apps", "finding-google-skills", "schema-mapping", "dak-setup", "resolving-mcp-region-configs", "gemini-api", "gemini-live", "gemini-omni", "retrieving-developer-knowledge", "google-developer-knowledge"]):
+        elif any(k in n for k in ["bigquery", "bigframes", "bigtable", "dataform", "data-autocleaning", "gcp-", "gcs-", "discovering-gcp", "federate-lakehouse", "enforcing-resource", "gcloud", "google-cloud-storage", "google-cloud-recipe", "cloud-databases-onboarding", "building-data-apps", "finding-google-skills", "schema-mapping", "dak-setup", "curate-context", "discover-assets", "resolving-mcp-region-configs", "gemini-api", "gemini-live", "gemini-omni", "retrieving-developer-knowledge", "google-developer-knowledge"]):
             categories["Google Cloud & BigQuery Data Engineering"].append(data)
         elif any(k in n for k in ["firebase", "firestore", "extension-to-functions-codebase"]):
             categories["Firebase & Backend Services"].append(data)
@@ -268,11 +268,11 @@ def categorize_skills(skills):
             categories["Flutter & Mobile App Development"].append(data)
         elif any(k in n for k in ["chrome-devtools", "a11y-debugging", "cookie-debugging", "memory-leak-debugging", "troubleshooting", "puppeteer", "chrome-extensions", "playwright", "firecrawl", "browse"]):
             categories["Browser Automation & Web DevTools"].append(data)
-        elif (any(k in n for k in ["figma", "canva", "wix", "mobbin", "redesign-screen", "plain-writing", "generative_ui", "motion-craftsmanship", "web-3d"]) or n == "search" or "mobbin" in p) and "ml-best-practices" not in n:
+        elif (any(k in n for k in ["figma", "canva", "wix", "mobbin", "redesign-screen", "plain-writing", "generative_ui", "motion-craftsmanship", "web-3d", "frontend-design", "kubai-icons", "stageshow", "web-design-guidelines"]) or n == "search" or "mobbin" in p) and "ml-best-practices" not in n:
             categories["Design, UI/UX & Creative Engineering"].append(data)
         elif any((k in n if k != "eve" else (n == "eve" or n.startswith("eve-") or n.endswith("-eve"))) for k in ["vercel", "netlify", "base44", "cdn-caching", "runtime-cache", "routing-middleware", "is-agentic", "chat-sdk", "ai-sdk", "flags-sdk", "env-vars", "domains", "bootstrap", "create-a-backend", "custom-metrics", "microfrontends", "modern-web-guidance", "react-best-practices", "debug-optimize-lcp", "auth", "auth0", "offload-to-sandbox", "deployments-cicd", "queues", "daemons", "ai-gateway", "eve", "build-agents", "knowledge-update", "marketplace", "sandbox"]):
             categories["Cloud Deployments & Serverless Architecture"].append(data)
-        elif any(k in n for k in ["autofix", "code-review", "script-practice", "anti-slop", "enterprise-fullscreen", "interactive-simulation", "github-primer", "workflow", "uv", "automation", "managing-python-dependencies", "notebook-guidance", "generate-project-plan", "accidental-data-loss-prevention", "verification", "ml-best-practices", "permissioned-github", "google-maps-platform", "gdrive", "gcalendar", "gsheets", "gdocs", "gslides", "credentials", "context7"]):
+        elif any(k in n for k in ["autofix", "code-review", "coderabbit", "script-practice", "anti-slop", "enterprise-fullscreen", "interactive-simulation", "github-primer", "workflow", "uv", "automation", "managing-python-dependencies", "notebook-guidance", "generate-project-plan", "accidental-data-loss-prevention", "verification", "ml-best-practices", "permissioned-github", "google-maps-platform", "gdrive", "gcalendar", "gsheets", "gdocs", "gslides", "credentials", "context7"]) or n == "setup":
             categories["Developer Workflows & Automation"].append(data)
         # Fallback keyword matching on description
         elif any(k in d for k in ["cheminformatics", "rdkit", "molecular dynamics", "autodock vina", "smarts"]):
