@@ -60,31 +60,31 @@
     "category": "Cybersecurity",
     "stack": "C#, .NET 10 MVC, SQLite",
     "status": "Active",
-    "frontier": "Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp` (Streamable HTTP at `apix.cisco.com/api/mcp/openvuln`), CSAF 2.0/3.0 JSON feeds, DefectDojo v2/v3; **November 2026 Disclosures, Hardening & CISA KEV**: **CVE-2026-114938 (\"Java4Shell\")** (CVSS v4.0 9.2 Critical OpenJDK 17.0.6+/21/25/27 & 8-perf AVX-512 VBMI Base64 RCE, `-XX:UseAVX=2` workaround), **NoisyTCP (`CVE-2026-99288`)** (CVSS 7.5 Linux TCP `ehash` ABA race remote kernel panic), OpenSSH Authentication Bypass (\"SSHole\" **CVE-2026-123158**, CWE-394 on musl libc, CISA KEV Nov 9, 2026), Cisco BroadWorks **CVE-2026-20320** (XXE in OCI XML parser, CISA KEV Nov 10, 2026; fix in `RI.2026.07+` & credential rotation), Cisco Meraki OS Hardening (`cisco-sa-hardening-meraki-os-drbEX9GH`), UCS Central RCE **CVE-2026-76506**, CUCM XSS **CVE-2026-76419**, ISE Auth Bypass **CVE-2026-20241**, Node.js/Brotli **CVE-2026-105482/105483**; **Cisco official EOY vulnerability freeze notice (`cisco-sa-notice-I8z3n6lK`) until January 20, 2027**; Actively Exploited: **CVE-2026-76418**, **CVE-2026-20349**, **CVE-2026-76482**, **CVE-2026-76519**, Chrome 157 **CVE-2026-125350** (200+ vulns patched), Outlook **CVE-2026-124194**, Check Point Gaia **CVE-2026-123039**, Barracuda ESG **CVE-2026-116606/111560**, IBM Aspera **CVE-2026-123218**",
-    "action": "Ingest Java4Shell (CVE-2026-114938), NoisyTCP (CVE-2026-99288), SSHole (CVE-2026-123158), and BroadWorks (CVE-2026-20320) into automated scanner; lock Cisco advisory baseline for EOY freeze until Jan 20, 2027; compile scanner with .NET 10 Native AOT"
+    "frontier": "**Deployed `SecurityHardeningMiddleware.cs` (`11/18/2026`)** + `SECURITY.md`; Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp`, CSAF 2.0/3.0, DefectDojo v2/v3; **Mid-Nov 2026 Critical CVEs & CISA KEV**: **LiteLLM `CVE-2026-40217`** (CISA KEV Nov 18, `v1.83.14-stable+`), **Linux Kernel `CVE-2026-98432`** (CVSS 9.8 IPv4 TCP UAF), **NGINX2Root (`CVE-2026-123007` / `123633`)**, **Podman `RHSA-2026:93464`/`98554`** & **CopyEscape `CVE-2026-17106`**, **Puppet `CVE-2026-115731`** (Nov 17 KEV), **Check Point `CVE-2026-123039`** (Nov 13 KEV), **UnrealIRCd `CVE-2026-114713`**, **Synology `CVE-2024-10441`**, **Axis `CVE-2026-90436`**, **REDCap `CVE-2026-90817`**; plus **Java4Shell (`CVE-2026-114938`)**, **NoisyTCP (`CVE-2026-99288`)**, **SSHole (`CVE-2026-123158`)**, BroadWorks **CVE-2026-20320**, Chrome 157 **CVE-2026-125350**, Cisco EOY freeze until Jan 20, 2027",
+    "action": "Ingest Nov 13\u201318 CISA KEV (`CVE-2026-40217`, `115731`, `123039`, `98432`, `123007`) into scanner; lock Cisco advisory baseline for EOY freeze until Jan 20, 2027; compile scanner with .NET 10 Native AOT"
   },
   "MY Security": {
     "name": "MY Security",
     "category": "Cybersecurity",
     "stack": "C#, .NET 10, PowerShell",
     "status": "Active",
-    "frontier": "NetBird Zero-Trust posture checks, WireGuard kernel overlay, BitLocker/Defender compliance hooks, CISA KEV telemetry, actively exploited **CVE-2026-114938** (Java4Shell AVX-512 Base64 RCE), **CVE-2026-99288** (NoisyTCP kernel panic), **CVE-2026-123158** (OpenSSH SSHole on musl), **CVE-2026-20320** (BroadWorks `RI.2026.07+`), CVE-2026-76418 (ASA/FTD), CVE-2026-76519 (AMP), CVE-2026-76506 (UCS Central), Cisco Meraki OS hardening (`cisco-sa-hardening-meraki-os-drbEX9GH`), & Secure Client posture check validation",
-    "action": "Add endpoint posture validator (BitLocker, Defender, OS/JDK build) before peer access; alert on unpatched Java 17/21/25, NoisyTCP kernels, OpenSSH musl, ASA SSL VPN, BroadWorks, AMP, UCS Central, Meraki, and NX-OS endpoints"
+    "frontier": "**Deployed inline security headers & same-origin mutation guard in `Program.cs` (`11/18/2026`)** + `SECURITY.md`; NetBird Zero-Trust posture checks, WireGuard kernel overlay, BitLocker/Defender compliance hooks, CISA KEV telemetry (**LiteLLM `CVE-2026-40217`**, **Kernel `CVE-2026-98432`**, **Java4Shell `CVE-2026-114938`**, **NoisyTCP `CVE-2026-99288`**, **SSHole `CVE-2026-123158`**, **BroadWorks `CVE-2026-20320`**, CVE-2026-76418, CVE-2026-76519, CVE-2026-76506, Meraki OS hardening)",
+    "action": "Add endpoint posture validator (BitLocker, Defender, OS/JDK/LiteLLM build) before peer access; alert on unpatched Java, LiteLLM, NoisyTCP/98432 kernels, OpenSSH musl, ASA SSL VPN, BroadWorks, AMP, UCS Central, Meraki, and NX-OS endpoints"
   },
   "ai defense": {
     "name": "ai defense",
     "category": "Cybersecurity / AI Safety",
     "stack": "Python 3.12, HTML5, High-Gloss Lacquer",
     "status": "Active",
-    "frontier": "Aegis-AI Defense Matrix: 5-layer zero-trust agent containment, gVisor microVMs (`runsc`), AST parameter validation, eBPF Tetragon in-kernel telemetry, default-deny DNS egress proxy, emergency hardware killswitch",
-    "action": "Deploy live simulation testbed on port 5050; bind anomaly alerts to Sysmon and `MY Security`"
+    "frontier": "Aegis-AI Defense Matrix: 7-vector containment (defending **LiteLLM `CVE-2026-40217`** bytecode sandbox escape & **Kernel `CVE-2026-98432`**), gVisor microVMs (`runsc`), AST/`RestrictedPython` validation, eBPF Tetragon telemetry, Codename MDASH alignment, default-deny DNS egress proxy, hardware killswitch",
+    "action": "Deploy live simulation testbed on port 5050; add `CVE-2026-40217` sandbox-escape simulation scenario; bind alerts to Sysmon and `MY Security`"
   },
   "windows event viewer": {
     "name": "windows event viewer",
     "category": "Cybersecurity",
     "stack": "PowerShell, Sysmon 15+, Batch",
     "status": "Active",
-    "frontier": "Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`) executing hourly and daily scans (verified active through 11/18/2026 02:32 AM: Engine `1.1.26100.4`, DAT `1.463.353.0`, 522 processes & 15 autostart entries audited including `SteamPBZPerformanceWatcher`, 0 threats in 9.68s), LSASS memory dump protection (Sysmon Event ID 10), automated log rotation",
+    "frontier": "Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`) executing hourly and daily scans (verified active through **11/19/2026 02:32:07 AM**: Engine `1.1.26100.4`, DAT `1.463.367.0`, 508 processes & 15 autostart entries audited including `SteamPBZPerformanceWatcher`, 0 threats in 7.98s), LSASS memory dump protection (Sysmon Event ID 10), automated log rotation",
     "action": "Maintain hourly and daily McAfee scanner scans; alert on LSASS dump attempts; parse scan logs into `deploy/health_status.json`"
   },
   "bot finder": {
@@ -132,8 +132,8 @@
     "category": "Linux / Platform Engineering",
     "stack": "OpenShift 4.19/4.20 EUS/4.21, Kubernetes 1.32-1.34, oc, Podman 5, Helm, Argo CD",
     "status": "Active",
-    "frontier": "Red Hat OpenShift Administration II (DO280) & EX280 curriculum; **OpenShift 4.21 (K8s 1.34 & CRI-O 1.34)**: **Dynamic Resource Allocation (DRA) GA** for CEL expression-based GPU VRAM/NVLink/NUMA scheduling, native **Kueue** & **JobSet Operator** AI training orchestration; **OpenShift 4.20 EUS (K8s 1.33)**: `X25519MLKEM768` hybrid PQC control-plane TLS, OVN-K8s native BGP (`FRR-K8s`) & EVPN (`MAC-VRF`/`IP-VRF` single VXLAN), GA Gateway API, native Sidecars GA, `LeaderWorkerSet` GA; **OpenShift 4.19 (K8s 1.32)**: strict cgroups v2, `ServiceAccountTokenNodeBinding`, CVE-2026-123158 SSHole & CVE-2026-114938 Java4Shell cluster admission auditing, CUDN BGP `RouteAdvertisements`, `oc-mirror` v2 Cosign SigStore signatures",
-    "action": "Add OpenShift 4.21 DRA GPU ResourceClaimTemplate labs alongside 4.20 EVPN/BGP (`FRRConfiguration`) & PQC TLS; audit Alpine/OpenJDK pods for SSHole & Java4Shell; execute `diagnose-route.ps1` & `deploy-hello-world.ps1`; integrate EX280 timed mock exam engine"
+    "frontier": "Red Hat OpenShift Administration II (DO280) & EX280 curriculum; **OpenShift 4.21 (K8s 1.34 & CRI-O 1.34)**: **Dynamic Resource Allocation (DRA) GA** for CEL GPU VRAM/NVLink/NUMA scheduling, **Kueue** & **JobSet Operator**, **`RHSA-2026:95408` (`ose-rhel-coreos` fix for `CVE-2026-98432` TCP UAF)** & CSI **`CVE-2026-85781`**; **OpenShift 4.20 EUS (K8s 1.33)**: `X25519MLKEM768` PQC TLS, OVN-K8s BGP/EVPN, GA Gateway API, native Sidecars GA, `LeaderWorkerSet` GA; **OpenShift 4.19 (K8s 1.32)**: strict cgroups v2, SSHole/Java4Shell/NGINX2Root admission auditing, CUDN BGP, `oc-mirror` v2 Cosign",
+    "action": "Add OpenShift 4.21 DRA GPU ResourceClaimTemplate labs alongside 4.20 EVPN/BGP & PQC TLS; verify `RHSA-2026:95408` RHCOS kernel & NGINX2Root ingress patches; execute `diagnose-route.ps1` & `deploy-hello-world.ps1`; integrate EX280 timed mock exam engine"
   },
   "docker": {
     "name": "docker",
@@ -180,7 +180,7 @@
     "category": "Productivity",
     "stack": "Python 3.12, UV, Batch, VBS, Kokoro-82M, FFmpeg",
     "status": "Active",
-    "frontier": "Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py`), automated clip cutter & YouTube shorts/longform pipeline (`convert_to_shorts.py`, `smart_cutter.py`, `sfx_manager.py`, `sound_randomizer.py`, `Invoke-LongformPipeline.ps1`, `longform_editor.py`) routing 32+ authentic Marshall Law & character soundbytes with FIFO rotation and 10/day upload pacing across TEKKEN 8, Beast of Reincarnation, and Sonic Racing (verified active through **11/18/2026 03:00 AM**), Kokoro-82M ONNX speech synthesis (`morning_brief.wav`), multi-source telemetry ingestion, Stock Watch coiling alerts",
+    "frontier": "Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py`), automated clip cutter & YouTube shorts/longform pipeline (`convert_to_shorts.py`, `smart_cutter.py`, `sfx_manager.py`, `sound_randomizer.py`, `Invoke-LongformPipeline.ps1`, `longform_editor.py`) routing 32+ authentic Marshall Law & character soundbytes with FIFO rotation and 10/day upload pacing across **Gears of War: E-Day**, TEKKEN 8, Beast of Reincarnation, and Sonic Racing (verified active through **11/19/2026 02:28 AM**), Kokoro-82M ONNX speech synthesis (`morning_brief.wav`), multi-source telemetry ingestion, Stock Watch coiling alerts",
     "action": "Verify sentinel daemon automated clip & longform compilation runs; ensure morning audio briefing synthesizes daily telemetry via Kokoro-82M ONNX; maintain paced YouTube upload schedule"
   },
   "screen reader": {
@@ -212,7 +212,7 @@
     "category": "Gaming / Tuning",
     "stack": "PowerShell 7+, Registry, WMI, UE5 Ini",
     "status": "Active",
-    "frontier": "**Factory Acer Predator power plan lock** (`$AcerPlanGuid = \"02e54963-3a6d-4756-9cca-a42174041e63\"`, updated `11/18/2026 03:02 AM` to prevent 100% Min Processor State thermal tripping), discrete RTX 4080 GPU registry assignment (`HKCU:\\Software\\Microsoft\\DirectX\\UserGpuPreferences`, `GpuPreference=2;`), Phantom Blade Zero (PBZ) & Steam continuous performance watcher (`Start-SteamGamingPerformanceWatcher.ps1` polling every 5s), automated optimization suite (`Invoke-PBZOptimization.ps1`), process priority elevation (`High`), UE5 `Engine.ini` streaming & async compute tuning (`r.Streaming.PoolSize=6144`, `r.CreateShadersOnLoad=1`, `r.AsyncCompute=1`, `FX.Niagara.AllowAsyncBudgeting=1`), GPU MSI-X mode verification, Windows 11 24H2 DirectStorage 1.2 GPU decompression",
+    "frontier": "**Factory Acer Predator power plan lock** (`$AcerPlanGuid = \"02e54963-3a6d-4756-9cca-a42174041e63\"`, refreshed `11/19/2026 03:01 AM` to prevent 100% Min Processor State thermal tripping), discrete RTX 4080 GPU registry assignment (`HKCU:\\Software\\Microsoft\\DirectX\\UserGpuPreferences`, `GpuPreference=2;`), Phantom Blade Zero (PBZ) & Steam continuous performance watcher (`Start-SteamGamingPerformanceWatcher.ps1` polling every 5s), automated optimization suite (`Invoke-PBZOptimization.ps1`), process priority elevation (`High`), UE5 `Engine.ini` streaming & async compute tuning (`r.Streaming.PoolSize=6144`, `r.CreateShadersOnLoad=1`, `r.AsyncCompute=1`, `FX.Niagara.AllowAsyncBudgeting=1`), GPU MSI-X mode verification, Windows 11 24H2 DirectStorage 1.2 GPU decompression",
     "action": "Execute `Invoke-PBZOptimization.ps1` prior to gaming sessions; confirm `SteamPBZPerformanceWatcher` startup key remains active; verify `Engine.ini` 6GB texture pool & shader preload across steamapps directories"
   },
   "zfold6 features": {
@@ -484,8 +484,8 @@
     "category": "Search / Portals",
     "stack": "Static Web, JS, CSS, PWA",
     "status": "Active",
-    "frontier": "Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed **2026-11-17 23:05:02** with active search mappings and app catalog ingestion across all **80 projects** including `resume`), offline Service Worker, local inverted index",
-    "action": "Maintain scheduled sync; expand search mappings for `Popular Github Projects` and newly staged apps (`turbo-type.html`, `rom_studio_3d.html`, `Paper_Mario_Expedition33_Pipe100.html`)"
+    "frontier": "Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed **2026-11-18 23:05:02** ingesting `Popular Github Projects` and indexing **81 workspace entries**), offline Service Worker, local inverted index",
+    "action": "Maintain scheduled sync; register newly detected `increase my bing score` and newly staged apps (`turbo-type.html`, `rom_studio_3d.html`, `Paper_Mario_Expedition33_Pipe100.html`)"
   },
   "portfolio": {
     "name": "portfolio",
@@ -532,8 +532,8 @@
     "category": "DevOps / Control",
     "stack": "PowerShell, SQLite, JSON",
     "status": "Active",
-    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`, `routine_scan.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking **80 total projects**, **35 deployable**, **6 in progress**), nightly health scan (verified **2026-11-17 23:02:02**: **17/17 Deploy Suite 100% Healthy**, 0 degraded, 0 critical in 9,250.24ms)",
-    "action": "Maintain continuous health verification across all 80 projects; classify newly detected `Popular Github Projects`, `Cert Training Guide`, `onedrive cleanup`, and Godot 3D prototypes into automated deployment manager"
+    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`, `routine_scan.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking **81 total projects**, **35 deployable**, **6 in progress**), nightly health scan (verified **2026-11-18 23:01:36**: **17/17 Deploy Suite 100% Healthy**, 0 degraded, 0 critical in 3,610.67ms)",
+    "action": "Reclassify newly graduated `Popular Github Projects` (`server.mjs` / `public/index.html`) from Incomplete to Deployable; classify `increase my bing score`, `Cert Training Guide`, `onedrive cleanup`, and Godot 3D prototypes into automated deployment manager"
   },
   "sandbox": {
     "name": "sandbox",
@@ -556,8 +556,8 @@
     "category": "Quantitative Finance / Algotrading",
     "stack": "Python 3.12, alpaca-py, CCXT, Flask",
     "status": "Active",
-    "frontier": "Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling sentinel (verified active **11/17/2026 17:00** settlement: `$100,029.19` equity, `AAPL` 5.0 units +1.69%, `CHOP_BEAR` regime, 0/3 PDT, 100% compliant)",
-    "action": "Ingest coiling volatility squeeze signals from `stock watch` into vector screener; enforce zero entry slippage via bracket limit orders; maintain automated daily upskill logs"
+    "frontier": "Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling sentinel (verified active **11/18/2026 08:43:56**: `CHOP_BEAR` regime, top momentum `AAPL` +14.78% / Sharpe 2.52, `$100,029.19` settlement, 0/3 PDT, 100% compliant)",
+    "action": "Ingest coiling volatility squeeze signals from `stock watch` into vector screener; enforce zero entry slippage via bracket limit orders; add intrabar tick-state vs historical reload parity check (`r/algotrading` Nov 2026); maintain daily upskill logs"
   },
   "Track Home Value": {
     "name": "Track Home Value",
@@ -697,10 +697,26 @@
   },
   "Popular Github Projects": {
     "name": "Popular Github Projects",
-    "category": "AI / Open-Source Curation",
-    "stack": "Markdown, Git, JSON, Python",
-    "status": "Scaffolding",
-    "frontier": "Newly detected 80th portfolio directory (`deploy/PROJECT_CATALOG.json` `2026-11-17 23:00:02`) intended for tracking high-signal trending GitHub repositories (vLLM, FastMCP, GhidrAssistMCP, Godot-MCP, Unsloth, Docling, Three.js)",
-    "action": "Populate `README.md` & `catalog.json` with curated Nov 2026 trending GitHub repos; connect upstream fork sync to `opensource/Sync-UpstreamForks.ps1` and register in `index folder`"
+    "category": "AI / Open-Source Radar",
+    "stack": "Node.js >=24, SSE, Vercel, PWA, JS",
+    "status": "Active",
+    "frontier": "**Graduated from scaffolding (`11/18/2026`)**: `github-trending-radar` v1.0.0 (`server.mjs` with SSE `/api/events`, `/api/reports`, path-traversal guard, `SECURITY_HEADERS`, `vercel.json` cleanUrls + HSTS, `SECURITY.md`, `public/sw.js`, 8 daily trending reports + verified Windows baseline `git 2.53.0`/`gh 2.97.0`/`Node v24.20.0`/`uv 0.12.5`), synced into `Choogle`",
+    "action": "Add `README.md` and deploy to Vercel (`vercel.json` ready); track mid-Nov 2026 trending \"Agent Work Surfaces\" (`claude-mem`, `docling.rs`, `Granite-Docling`, `FastMCP 4.2`, `unreal-agent-benchmark`); reclassify to Deployable in `deploy/PROJECT_CATALOG.json`"
+  },
+  "increase my bing score": {
+    "name": "increase my bing score",
+    "category": "Automation / Productivity",
+    "stack": "PowerShell 5.1/7+, Edge, Task Scheduler",
+    "status": "Active",
+    "frontier": "**Newly detected 81st portfolio directory (`2026-11-18 22:51:14`)**: `Invoke-BingRewardsSearch.ps1` (Microsoft Edge signed-in profile automation, `20 topics \u00d7 10 modifiers` randomized pool, `[CmdletBinding(SupportsShouldProcess)]`, `[PSCustomObject]` streaming) and `Register-BingRewardsTask.ps1` (daily `BingRewardsDailySearch` task)",
+    "action": "Add `search_history.json` deduplication ledger across consecutive days, Pester 5.5+ unit tests, and status reporting into `deploy/health_status.json` & `Choogle`"
+  },
+  "Highschool basketball": {
+    "name": "Highschool basketball",
+    "category": "Antigravity Project",
+    "stack": "Native Workspace",
+    "status": "Active",
+    "frontier": "Workspace project in Highschool basketball",
+    "action": "Active development and maintenance"
   }
 }
