@@ -229,6 +229,7 @@ def categorize_skills(skills):
         "Graph Databases & Knowledge Graphs": [],
         "Design, UI/UX & Creative Engineering": [],
         "Browser Automation & Web DevTools": [],
+        "Robotics, MuJoCo & Embodied Simulation": [],
         "Structural Biology & Molecular Modeling": [],
         "Genomics & Variant Impact": [],
         "Cheminformatics & Computational Chemistry": [],
@@ -244,8 +245,10 @@ def categorize_skills(skills):
         p = data.get("path", "").lower()
         
         # Priority matching by domain identity
-        if any(k in n for k in ["antigravity", "agy-", "migrate-workflows", "ui-plugin-navigation"]):
+        if any(k in n for k in ["antigravity", "agy-", "migrate-workflows", "migrate-agent-settings", "ui-plugin-navigation", "mcp-app-development", "swarm"]) or n == "plugin":
             categories["Platform & Customizations"].append(data)
+        elif "\\plugins\\robotics\\" in p or "/plugins/robotics/" in p or any(k in n for k in ["mujoco", "sim2real", "so101", "fr3-duo", "i2rt-yam", "visual-servoing", "motion-planning", "rgb-object-localization", "blender-creation"]):
+            categories["Robotics, MuJoCo & Embodied Simulation"].append(data)
         elif any(k in n for k in ["cheminformatics", "rdkit"]):
             categories["Cheminformatics & Computational Chemistry"].append(data)
         elif any(k in n for k in ["youtube", "retention", "invideo", "higgsfield", "hyperframes", "magnific", "openedit", "remotion", "runway", "video"]):
@@ -264,15 +267,20 @@ def categorize_skills(skills):
             categories["Google Cloud & BigQuery Data Engineering"].append(data)
         elif any(k in n for k in ["firebase", "firestore", "extension-to-functions-codebase"]):
             categories["Firebase & Backend Services"].append(data)
-        elif any(k in n for k in ["flutter", "dart-", "android", "compose", "xcode"]):
+        elif any(k in n for k in ["flutter", "dart-", "android", "compose", "xcode"]) and "clerk" not in n:
             categories["Flutter & Mobile App Development"].append(data)
-        elif any(k in n for k in ["chrome-devtools", "a11y-debugging", "cookie-debugging", "memory-leak-debugging", "troubleshooting", "puppeteer", "chrome-extensions", "playwright", "firecrawl", "browse"]):
+        elif any(k in n for k in ["chrome-devtools", "a11y-debugging", "cookie-debugging", "memory-leak-debugging", "troubleshooting", "puppeteer", "chrome-extensions", "playwright", "firecrawl", "browse"]) and "clerk" not in n:
             categories["Browser Automation & Web DevTools"].append(data)
-        elif (any(k in n for k in ["figma", "canva", "wix", "mobbin", "redesign-screen", "plain-writing", "generative_ui", "motion-craftsmanship", "web-3d", "frontend-design", "kubai-icons", "stageshow", "web-design-guidelines"]) or n == "search" or "mobbin" in p) and "ml-best-practices" not in n:
+        elif (any(k in n for k in ["figma", "canva", "wix", "mobbin", "redesign-screen", "plain-writing", "generative_ui", "motion-craftsmanship", "web-3d", "frontend-design", "kubai-icons", "stageshow", "web-design-guidelines", "polyfork"]) or n == "search" or "mobbin" in p) and "ml-best-practices" not in n:
             categories["Design, UI/UX & Creative Engineering"].append(data)
-        elif any((k in n if k != "eve" else (n == "eve" or n.startswith("eve-") or n.endswith("-eve"))) for k in ["vercel", "netlify", "base44", "cdn-caching", "runtime-cache", "routing-middleware", "is-agentic", "chat-sdk", "ai-sdk", "flags-sdk", "env-vars", "domains", "bootstrap", "create-a-backend", "custom-metrics", "microfrontends", "modern-web-guidance", "react-best-practices", "debug-optimize-lcp", "auth", "auth0", "offload-to-sandbox", "deployments-cicd", "queues", "daemons", "ai-gateway", "eve", "build-agents", "knowledge-update", "marketplace", "sandbox"]):
+        elif (
+            "\\plugins\\cloudflare\\" in p or "/plugins/cloudflare/" in p
+            or "\\plugins\\clerk\\" in p or "/plugins/clerk/" in p
+            or "\\plugins\\railway\\" in p or "/plugins/railway/" in p
+            or any((k in n if k != "eve" else (n == "eve" or n.startswith("eve-") or n.endswith("-eve"))) for k in ["vercel", "netlify", "base44", "cloudflare", "clerk", "railway", "botid", "cdn-caching", "runtime-cache", "routing-middleware", "is-agentic", "chat-sdk", "ai-sdk", "flags-sdk", "env-vars", "domains", "bootstrap", "create-a-backend", "custom-metrics", "microfrontends", "modern-web-guidance", "react-best-practices", "debug-optimize-lcp", "auth", "auth0", "offload-to-sandbox", "deployments-cicd", "queues", "daemons", "ai-gateway", "eve", "build-agents", "knowledge-update", "marketplace", "sandbox"])
+        ):
             categories["Cloud Deployments & Serverless Architecture"].append(data)
-        elif any(k in n for k in ["autofix", "code-review", "coderabbit", "script-practice", "anti-slop", "enterprise-fullscreen", "interactive-simulation", "github-primer", "workflow", "uv", "automation", "managing-python-dependencies", "notebook-guidance", "generate-project-plan", "accidental-data-loss-prevention", "verification", "ml-best-practices", "permissioned-github", "google-maps-platform", "gdrive", "gcalendar", "gsheets", "gdocs", "gslides", "credentials", "context7"]) or n == "setup":
+        elif any(k in n for k in ["autofix", "code-review", "coderabbit", "script-practice", "anti-slop", "enterprise-fullscreen", "interactive-simulation", "github-primer", "workflow", "uv", "automation", "managing-python-dependencies", "notebook-guidance", "generate-project-plan", "accidental-data-loss-prevention", "verification", "ml-best-practices", "permissioned-github", "google-maps-platform", "gdrive", "gcalendar", "gsheets", "gdocs", "gslides", "gmail", "credentials", "context7"]) or n == "setup":
             categories["Developer Workflows & Automation"].append(data)
         # Fallback keyword matching on description
         elif any(k in d for k in ["cheminformatics", "rdkit", "molecular dynamics", "autodock vina", "smarts"]):
@@ -334,7 +342,7 @@ def build_system_prompt(skills, categories, projects):
     lines.append("2. **Google Cloud, BigQuery & Dataform Engineering**: Architect scalable, idempotent ELT pipelines using BigQuery DataFrames (BigFrames), Dataform, Cloud Storage FUSE, Cloud Composer (Airflow), and Spark. Apply mandatory resource attribution labels to bq operations and optimize slot utilization.")
     lines.append("3. **Firebase & Backend Architecture**: Enforce declarative Firestore security rules, Firebase Auth flows, Cloud Functions v2 triggers, and Firebase Data Connect PostgreSQL backends with strict type safety.")
     lines.append("4. **Flutter & Mobile App Engineering**: Implement clean layered architectures (UI, Logic, Data), declarative routing with go_router, primary constructor syntax, package:checks testing, WCAG accessibility standards, and Android Compose previews.")
-    lines.append("5. **Cloud Deployments, Serverless & Edge Systems**: Deploy robust Vercel and Netlify systems utilizing Edge functions, AI SDK, durable workflows, Vercel Schedules cron automation, Vercel Sandbox microVM execution, Netlify Server long-lived backends, CDN caching/revalidation policies, zero-trust middleware, and automated CI/CD verification.")
+    lines.append("5. **Cloud Deployments, Serverless & Edge Systems**: Deploy robust Vercel, Cloudflare, Netlify, and Railway systems utilizing Edge/Workers functions, Durable Objects, Cloudflare Agents SDK, Turnstile/BotID protection, Clerk authentication & billing, AI SDK, durable workflows, Vercel Schedules cron automation, Sandbox microVM execution, Netlify Server long-lived backends, CDN caching/revalidation policies, zero-trust middleware, and automated CI/CD verification.")
     lines.append("6. **Graph Databases & GraphRAG**: Construct high-performance Neo4j Cypher queries, vector indexes, and GraphRAG retrieval patterns. Ingest LookML models with semantic explorations, liquid variables, and access grants.")
     lines.append("7. **Design Systems & Creative Engineering**: Seamlessly bridge design and code using Figma Code Connect, custom shaders, Canva Brand Kits, and Wix headless design systems alongside chat-driven site creation in Wix Studio Two with pixel-perfect responsive execution.")
     lines.append("8. **Browser Automation, Scraping & Web DevTools Diagnostics**: Audit web performance, memory leak profiles, cookie/session configurations, and accessibility trees via Chrome DevTools protocol, Puppeteer, Playwright MCP end-to-end browser automation, and Firecrawl clean LLM-ready markdown extraction & multi-page site crawling.")
@@ -346,7 +354,9 @@ def build_system_prompt(skills, categories, projects):
     lines.append("14. **Actionable Insights**: Provide direct answers, synthesized reasoning, and actionable code blocks with zero unnecessary fluff.")
     lines.append("15. **Motion Craftsmanship & Anti-Slop Motion**: Enforce tactile, spring-driven 60 FPS motion across all web and mobile interfaces. Eliminate floaty 0.3s ease-in-out transitions, janky max-height animations, and lifeless button clicks. Standardize on critically damped springs (stiffness: 400, damping: 30), Apple-grade quintic beziers (cubic-bezier(0.16, 1, 0.3, 1)), staggered kinetic reveals with blur-up, and zero-jank sliding layoutId indicators synthesized from getlayers.ai, 60fps.design, motion-primitives.com, kinetics.colorion.co, and microkit.co.")
     lines.append("16. **Live Web Search & Technical Research Synthesis**: Synthesize real-time verified web information, fresh library documentation, and deep citations via Perplexity AI MCP, resolving live technical queries without leaving the environment.")
-    lines.append("17. **Web Design, Typography, SVG Grain & 3D PBR Craftsmanship**: Synthesize jiro.build UI layout prompts (asymmetric bento grids), fffuel.co SVG noise/grain filters (preventing flat gradient banding), Fontshare ITF commercial-free typography (Clash Display, Satoshi, Cabinet Grotesk, General Sans, Zodiak), ambientCG CC0 PBR textures/HDRIs (eliminating plastic Three.js/R3F primitives), and poly.pizza low-poly GLTF models.")
+    lines.append("17. **Web Design, Typography, SVG Grain & 3D PBR Craftsmanship**: Synthesize jiro.build UI layout prompts (asymmetric bento grids), fffuel.co SVG noise/grain filters (preventing flat gradient banding), Fontshare ITF commercial-free typography (Clash Display, Satoshi, Cabinet Grotesk, General Sans, Zodiak), ambientCG CC0 PBR textures/HDRIs (eliminating plastic Three.js/R3F primitives), and poly.pizza / polyfork.dev low-poly GLTF/parametric 3D models.")
+    lines.append("18. **Robotics, MuJoCo & Embodied Simulation**: Author, audit, and simulate physically calibrated MuJoCo MJCF/MjSpec assets and Blender-to-MuJoCo pipelines, run GPU-accelerated MJX/MJWarp and MuJoCo Playground RL rollouts, verify sim-to-real manipulation controllers across perturbation tiers (robosim_gauntlet), and manage hardware bringup/calibration/visual-servoing for SO-101, I2RT YAM, and Franka FR3 Duo cells.")
+    lines.append("19. **Antigravity Swarm & MCP App Orchestration**: Coordinate multi-agent parallel swarms with shared message boards, monitor/narrator/overview pane protocols, and build interactive MCP Apps that render rich UI directly in conversations or side panes.")
     
     return "\n".join(lines)
 

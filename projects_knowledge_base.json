@@ -4,15 +4,15 @@
     "category": "AI / Agents",
     "stack": "Ollama, Python, Modelfiles",
     "status": "Active",
-    "frontier": "TensorRT-LLM 1.4/1.5+ (PyTorch-native, native sparse MLA FMHA, unified NVFP4 MLA KV cache, `TRTLLM_FLASHINFER_WORKSPACE_PER_PROCESS` workspace isolation, FlashInfer CuTe DSL backends, DFlash 2 and EAGLE-3 speculative decoding, KV-Cache Manager V2 default for Llama, explicit `sampler_type`), vLLM v0.34.0 (Model Runner V2 default, `--linear-backend` replacing deprecated `VLLM_NVFP4_GEMM_BACKEND`, `--moe-backend flashinfer_moe_ep_cutedsl` CuTe-DSL MoE EP, LibTorch Stable ABI, PyTorch 2.14), Blackwell NVFP4 via ModelOpt (Triton block-pointer fix, `amax/448` KV scale, QAD, RoPE `skip_rope_quantization=True`), **Unsloth Dynamic V3.1** GGUF quantization (+5\u201315% Terminal-Bench/DeepSWE on Qwen3.8/DeepSeek-V4.1-Flash)",
-    "action": "Deploy `serve_vllm.ps1` with vLLM v0.34.0 `--linear-backend flashinfer_cutedsl` & `--moe-backend flashinfer_moe_ep_cutedsl`; test Unsloth Dynamic V3.1 GGUFs; integrate AST parser and local ChromaDB knowledge base"
+    "frontier": "NVIDIA **Vera Rubin NVL72** & **Rubin (SM107)** TensorRT-LLM preview, **CUTLASS 4.9.0** CuTe DSL (`@cute.jit`/`jax.vmap`), **Nemotron 3.5 Super VL / Transcribe**, **NIM 2.1.6**, TensorRT-LLM 1.4/1.5+ (PyTorch-native, PrimTS sparse MLA FMHA, unified NVFP4 MLA KV cache, EAGLE3 dynamic trees & PARD drafters, DFlash 2, KV-Cache Manager V2), **vLLM `v0.34.0`** (Model Runner V1 removed, extensible KV cache default, block size `64`, `gpu_memory_utilization=1.0`, `huggingface_hub>=2.0`, `--linear-backend`/`--moe-backend flashinfer_moe_ep_cutedsl`), Blackwell NVFP4 ModelOpt (`amax/448`, QAD), **`Qwen 3.8 Flash Next`**, **`LiquidAI LFM2.5-24B-A2B`**, **Unsloth Dynamic V3.1** & `sybil-solutions/inference-optimisation-skill`",
+    "action": "Deploy `serve_vllm.ps1` with vLLM `v0.34.0` Model Runner V2 (`--linear-backend flashinfer_cutedsl` & `--moe-backend flashinfer_moe_ep_cutedsl`); benchmark `Qwen 3.8 Flash Next` / `LFM2.5-24B-A2B` Unsloth V3.1 GGUFs; integrate AST parser and ChromaDB knowledge base"
   },
   "personal assistant": {
     "name": "personal assistant",
     "category": "AI / Desktop",
     "stack": "Python, Audio, JSON",
     "status": "Active",
-    "frontier": "Faster-Whisper Large V3 Turbo (CTranslate2 4x-6x faster), **Fluid-Speech-Pro** (~600MB sub-1B Parakeet-TDT 25-language local ASR), Kokoro-82M v1.0 ONNX Runtime Web / WebGPU (`kokoro-onnx` + G2P `misaki`), sub-150ms chunked sentence-by-sentence streaming loops (sub-5s end-to-end voice pipeline), multi-voice interpolation blending, Structured JSON Tool Calling",
+    "frontier": "Faster-Whisper Large V3 Turbo (CTranslate2 4x-6x faster), **Fluid-Speech-Pro** (~600MB sub-1B Parakeet-TDT 25-language local ASR), Kokoro-82M v1.0 ONNX Runtime Web / WebGPU (`kokoro-onnx` + G2P `misaki`), **`n4ze3m/tiny-voca v0.2.0`** (~70x realtime CPU fallback), sub-150ms sentence-streaming loops, multi-voice interpolation, Structured JSON Tool Calling",
     "action": "Benchmark Fluid-Speech-Pro vs Faster-Whisper Turbo for noisy desktop ASR; implement sentence-streaming Kokoro-82M speech loop; bind `inspect_pc`, `windows event viewer`, and `automate my day` as callable tools"
   },
   "using ai agents for profit": {
@@ -26,18 +26,18 @@
   "is this AI": {
     "name": "is this AI",
     "category": "AI / Detection",
-    "stack": "Python, Transformers, FFT",
+    "stack": "Python, PIL, Transformers, FFT",
     "status": "Active",
-    "frontier": "2D Fourier FFT spectral radial power density analysis, Kirchenbauer watermarking, acoustic phase flattening",
-    "action": "Implement 2D FFT radial power density check to catch synthetic diffusion grid artifacts"
+    "frontier": "**Deployed `hikaku-extension v0.1.0` C2PA/IPTC/XMP provenance rules (`2026-11-22 09:25`)** in `image_analyzer.py` (`trainedAlgorithmicMedia`, `compositeWithTrainedAlgorithmicMedia`, `digitalCapture`, 35+ generator markers, EXIF hardware check) + 2D Fourier FFT spectral radial power density analysis & Kirchenbauer watermarking",
+    "action": "Implement 2D FFT radial power density check alongside `image_analyzer.py` C2PA/IPTC provenance scoring to catch metadata-stripped diffusion images"
   },
   "ollama": {
     "name": "ollama",
     "category": "AI / Knowledge Hub",
     "stack": "Python, Ollama, HTML/JS, FastMCP",
     "status": "Active",
-    "frontier": "Automated Antigravity skill ingestion, dynamic Modelfile generation (`Modelfile`), local HTTP web studio (`index.html`), Windows scheduled daily sync, newly deployed **Ollama Tandem Protocol (`Invoke-OllamaTandem.ps1`, `tandem_bridge.py`, `OLLAMA_TANDEM_PROTOCOL.txt`)** for dual-model offline/cloud co-reasoning, dedicated Ollama Model Context Protocol server (`MCP/ollama-mcp`) exposing 6 specialized tools (`ollama_list_models`, `ollama_show_model`, `ollama_generate`, `ollama_chat`, `ollama_get_telemetry`, `ollama_studio_consult`) with FastMCP v4.2 (`SkillsDirectoryProvider` SEP-2640) / Python SDK v2 architecture",
-    "action": "Verify `MCP/ollama-mcp` server tools and SEP-2640 `skill://` resource serving; expand `sync_skills_to_ollama.py` to auto-ingest all 79 projects and refinement blueprints; validate `index.html` Web Studio and test tandem bridge"
+    "frontier": "Automated Antigravity skill ingestion (refreshed **`2026-11-22 04:01`** on **`ollama/ollama` v0.40.17** lineage), dynamic Modelfile generation (`Modelfile`), local HTTP web studio (`index.html`), Windows scheduled daily sync, **Ollama Tandem Protocol (`Invoke-OllamaTandem.ps1`, `tandem_bridge.py`, `OLLAMA_TANDEM_PROTOCOL.txt`)**, dedicated Ollama MCP server (`MCP/ollama-mcp`) with FastMCP v4.2 (`SkillsDirectoryProvider` SEP-2640), `openclaw`/`deepseek-harness`/`hermes-agent`/`ponytail` patterns",
+    "action": "Verify `MCP/ollama-mcp` server tools and SEP-2640 `skill://` resource serving; ensure `sync_skills_to_ollama.py` ingests all 87 projects and updated Nov 23 blueprints; validate `index.html` Web Studio and test tandem bridge"
   },
   "ai models tools from threads": {
     "name": "ai models tools from threads",
@@ -60,32 +60,32 @@
     "category": "Cybersecurity",
     "stack": "C#, .NET 10 MVC, SQLite",
     "status": "Active",
-    "frontier": "**Deployed `SecurityHardeningMiddleware.cs` (`11/18/2026`)** + `SECURITY.md`; Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp`, CSAF 2.0/3.0, DefectDojo v2/v3; **Mid-Nov 2026 Critical CVEs & CISA KEV**: **LiteLLM `CVE-2026-40217`** (CISA KEV Nov 18, `v1.83.14-stable+`), **Linux Kernel `CVE-2026-98432`** (CVSS 9.8 IPv4 TCP UAF), **NGINX2Root (`CVE-2026-123007` / `123633`)**, **Podman `RHSA-2026:93464`/`98554`** & **CopyEscape `CVE-2026-17106`**, **Puppet `CVE-2026-115731`** (Nov 17 KEV), **Check Point `CVE-2026-123039`** (Nov 13 KEV), **UnrealIRCd `CVE-2026-114713`**, **Synology `CVE-2024-10441`**, **Axis `CVE-2026-90436`**, **REDCap `CVE-2026-90817`**; plus **Java4Shell (`CVE-2026-114938`)**, **NoisyTCP (`CVE-2026-99288`)**, **SSHole (`CVE-2026-123158`)**, BroadWorks **CVE-2026-20320**, Chrome 157 **CVE-2026-125350**, Cisco EOY freeze until Jan 20, 2027",
-    "action": "Ingest Nov 13\u201318 CISA KEV (`CVE-2026-40217`, `115731`, `123039`, `98432`, `123007`) into scanner; lock Cisco advisory baseline for EOY freeze until Jan 20, 2027; compile scanner with .NET 10 Native AOT"
+    "frontier": "**Deployed `SecurityHardeningMiddleware.cs` (`11/18/2026`)** + `SECURITY.md`; Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp`, CSAF 2.0/3.0, DefectDojo v2/v3; **CISA KEV BOD 26-04 (Nov 23 Deadline) & Nov 2026 CVEs**: **Cisco Expressway `CVE-2026-76466`** (`15.5.21+`), **Apache Roller `CVE-2026-129448`**, **VMware vCenter `CVE-2026-123890`**, **SAP NetWeaver `CVE-2025-42884`**, **LiteLLM `CVE-2026-40217`**; **Cisco Third-Party**: **NGINX `CVE-2026-113425`/`121810`** + **ClamAV DoS** (Secure Endpoint) + EOY freeze until Jan 20, 2027; **Podman/Go `RHSA-2026:100547` & `98554`** (`CVE-2026-78667`, `97031`, `111943`, `46597`), **CRI-O `CVE-2026-76061`**, **SSSD `CVE-2026-127101`**, **Kernel `CVE-2026-98432` & NoisyTCP (`99288`)**, **NGINX2Root (`123007`/`123633`)**, **Java4Shell (`114938`)**, **SSHole (`123158`)**",
+    "action": "Enforce BOD 26-04 Nov 23 remediation checks (`CVE-2026-76466`, `129448`, `123890`, `42884`) + `RHSA-2026:100547`/`CVE-2026-76061`/Cisco ClamAV in scanner; lock Cisco advisory baseline for EOY freeze until Jan 20, 2027; compile scanner with .NET 10 Native AOT"
   },
   "MY Security": {
     "name": "MY Security",
     "category": "Cybersecurity",
     "stack": "C#, .NET 10, PowerShell",
     "status": "Active",
-    "frontier": "**Deployed inline security headers & same-origin mutation guard in `Program.cs` (`11/18/2026`)** + `SECURITY.md`; NetBird Zero-Trust posture checks, WireGuard kernel overlay, BitLocker/Defender compliance hooks, CISA KEV telemetry (**LiteLLM `CVE-2026-40217`**, **Kernel `CVE-2026-98432`**, **Java4Shell `CVE-2026-114938`**, **NoisyTCP `CVE-2026-99288`**, **SSHole `CVE-2026-123158`**, **BroadWorks `CVE-2026-20320`**, CVE-2026-76418, CVE-2026-76519, CVE-2026-76506, Meraki OS hardening)",
-    "action": "Add endpoint posture validator (BitLocker, Defender, OS/JDK/LiteLLM build) before peer access; alert on unpatched Java, LiteLLM, NoisyTCP/98432 kernels, OpenSSH musl, ASA SSL VPN, BroadWorks, AMP, UCS Central, Meraki, and NX-OS endpoints"
+    "frontier": "**Deployed inline security headers & same-origin mutation guard in `Program.cs` (`11/18/2026`)** + `SECURITY.md`; NetBird Zero-Trust posture checks, WireGuard kernel overlay, BitLocker/Defender/Endpoint ClamAV posture hooks, CISA KEV telemetry (**Expressway `CVE-2026-76466`**, **vCenter `123890`**, **LiteLLM `40217`**, **Kernel `98432`/`99288`**, **Java4Shell `114938`**, **SSHole `123158`**, **CRI-O `76061`**, **Podman `RHSA-2026:100547`**)",
+    "action": "Add endpoint posture validator (BitLocker, Defender, Secure Endpoint ClamAV, OS/JDK/LiteLLM build) before peer access; alert on unpatched BOD 26-04 KEVs, `RHSA-2026:100547`, Java, LiteLLM, and OpenSSH musl"
   },
   "ai defense": {
     "name": "ai defense",
     "category": "Cybersecurity / AI Safety",
     "stack": "Python 3.12, HTML5, High-Gloss Lacquer",
     "status": "Active",
-    "frontier": "Aegis-AI Defense Matrix: 7-vector containment (defending **LiteLLM `CVE-2026-40217`** bytecode sandbox escape & **Kernel `CVE-2026-98432`**), gVisor microVMs (`runsc`), AST/`RestrictedPython` validation, eBPF Tetragon telemetry, Codename MDASH alignment, default-deny DNS egress proxy, hardware killswitch",
-    "action": "Deploy live simulation testbed on port 5050; add `CVE-2026-40217` sandbox-escape simulation scenario; bind alerts to Sysmon and `MY Security`"
+    "frontier": "Aegis-AI Defense Matrix: 7-vector containment (defending **LiteLLM `CVE-2026-40217`** bytecode sandbox escape, **CRI-O `CVE-2026-76061`**, & **Kernel `CVE-2026-98432`**), gVisor microVMs (`runsc`), AST/`RestrictedPython` validation, eBPF Tetragon + memory histogram/ML pressure telemetry (`r/netsec`), GitHub Actions/npm hook defense, Codename MDASH alignment, default-deny DNS egress proxy",
+    "action": "Deploy live simulation testbed on port 5050; add `CVE-2026-40217` & `CVE-2026-76061` symlink containment scenarios; bind alerts to Sysmon and `MY Security`"
   },
   "windows event viewer": {
     "name": "windows event viewer",
     "category": "Cybersecurity",
-    "stack": "PowerShell, Sysmon 15+, Batch",
+    "stack": "PowerShell, Sysmon 15+, RustText, Batch",
     "status": "Active",
-    "frontier": "Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`) executing hourly and daily scans (verified active through **11/19/2026 02:32:07 AM**: Engine `1.1.26100.4`, DAT `1.463.367.0`, 508 processes & 15 autostart entries audited including `SteamPBZPerformanceWatcher`, 0 threats in 7.98s), LSASS memory dump protection (Sysmon Event ID 10), automated log rotation",
-    "action": "Maintain hourly and daily McAfee scanner scans; alert on LSASS dump attempts; parse scan logs into `deploy/health_status.json`"
+    "frontier": "Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`, verified active through **`2026-11-23 02:31 AM`**), **newly deployed `Open-EventLogInRustText.ps1` (`2026-11-22 09:29`)** integrating SHA-256 verified **`RustText v2.5.0`** (`Illson/RustText`) for large-file live log tailing & JSONL inspection",
+    "action": "Maintain hourly and daily McAfee scanner scans; test `Open-EventLogInRustText.ps1 -Launch` on latest scan logs; alert on LSASS dump attempts and parse logs into `deploy/health_status.json`"
   },
   "bot finder": {
     "name": "bot finder",
@@ -114,34 +114,34 @@
   "REA": {
     "name": "REA",
     "category": "Cybersecurity / Reversing",
-    "stack": "Python, Ghidra 12.2 (JDK 25+), PowerShell",
+    "stack": "Python, Ghidra 12.2 (JDK 25+), Node.js 24, PowerShell",
     "status": "Active",
-    "frontier": "Dedicated Reverse Engineering Applications Hub, **Ghidra 12.2** (Oct/Nov 2026 requiring **JDK 25+** with Compact Object Headers; ensure JDK 25 patches **CVE-2026-114938 Java4Shell** or pass `-XX:UseAVX=2` on x86-64), **`GhidrAssistMCP`** native FastMCP server exposing decompiled C, functions, and xrefs to AI agents, PyGhidra CPython 3 integration, `JitPcodeEmulator` (3x-5x speedup), Ninja Gaiden 2 Xenon/x64 DAT unpacker, Tekken 8 UE5 hooks, Naraka asset boundaries",
-    "action": "Automate 1-click Ghidra 12.2 + patched JDK 25 installer in `tools/setup_ghidra.ps1`; install `GhidrAssistMCP` plugin (`./gradlew`); connect `binary_inspector.py` with `JitPcodeEmulator` to `game mods`"
+    "frontier": "Dedicated Reverse Engineering Applications Hub, **newly integrated `tools/Invoke-RustAnythingAudit.ps1` (`2026-11-22 09:27`)** running SHA-256 verified **`erkamyaman/rust-anything` (`v2.1.0` staged / `v3.3.0` latest)** + `EL4CTEO/fast-anything v0.6.1`, **Ghidra 12.2** (requiring **JDK 25+**; patch **CVE-2026-114938**), **`GhidrAssistMCP`**, **`morluto/rea` (`rea-agents-6.10.1`, 473.6k stars)**, PyGhidra, `JitPcodeEmulator`, Xbox Series static recompilation (`Leonida`, `Xbox2Windows`, `xbox-emulator`)",
+    "action": "Run `Invoke-RustAnythingAudit.ps1 -Action Setup` alongside `npx rea-agents setup`; automate 1-click Ghidra 12.2 + patched JDK 25 installer in `tools/setup_ghidra.ps1`; connect `binary_inspector.py` to `game mods`"
   },
   "RHCSA Exam200": {
     "name": "RHCSA Exam200",
     "category": "Linux / SysAdmin",
     "stack": "Markdown, Shell, RHEL 9.5/9.6/10.3",
     "status": "Active",
-    "frontier": "**RHEL 10.3** (Nov 2026 minor stream, RHEL Lightspeed AI) & Image Mode (`bootc` OS-as-container) + NIST PQC (`ML-KEM`, Linux 6.12 lineage; upstream Linux 7.4-rc); **NoisyTCP (`CVE-2026-99288`)** kernel TCP `ehash` DoS patching; RHEL 9.6 modernization (GCC 14, LLVM 19, Rust 1.84, Landlock LSM, UKIs, NetworkManager 1.52); Podman 5+/6.x Quadlets with rootless Netavark/`pasta`, container supply chain audit for **CVE-2026-123158** (SSHole on musl/Alpine), systemd v256+ `run0` (`--machine=`), `systemd-creds`, `loginctl enable-linger $USER`, cgroups v2, SELinux (`:Z`)",
-    "action": "Build `grade_rhcsa_lab.sh` validating Quadlets, pasta/Netavark networks, Landlock rules, SSHole container image audit, NoisyTCP kernel patch level, persistent LVM UUIDs, and SGID permissions"
+    "frontier": "**RHEL 10.3** (Nov 2026 minor stream, RHEL Lightspeed AI) & Image Mode (`bootc`) + NIST PQC (`ML-KEM`, Linux 6.12 lineage; upstream Linux 7.4-rc); **`CVE-2026-98432`**, **NoisyTCP (`CVE-2026-99288`)**, **`sssd` `CVE-2026-127101`** kernel/auth patching; Podman 5.8.x Quadlets (**`RHSA-2026:100547`** & `98554`/`97533`), SSHole (`CVE-2026-123158`), systemd v256+ `run0`, `systemd-creds`, cgroups v2, SELinux (`:Z`)",
+    "action": "Build `grade_rhcsa_lab.sh` validating Quadlets, pasta/Netavark networks, Landlock rules, SSHole/`RHSA-2026:100547`/`sssd` patch levels, persistent LVM UUIDs, and SGID permissions"
   },
   "openshift": {
     "name": "openshift",
     "category": "Linux / Platform Engineering",
-    "stack": "OpenShift 4.19/4.20 EUS/4.21, Kubernetes 1.32-1.34, oc, Podman 5, Helm, Argo CD",
+    "stack": "OpenShift 4.19\u20134.22, Kubernetes 1.32\u20131.34+, oc, Podman 5.8, Helm, Argo CD",
     "status": "Active",
-    "frontier": "Red Hat OpenShift Administration II (DO280) & EX280 curriculum; **OpenShift 4.21 (K8s 1.34 & CRI-O 1.34)**: **Dynamic Resource Allocation (DRA) GA** for CEL GPU VRAM/NVLink/NUMA scheduling, **Kueue** & **JobSet Operator**, **`RHSA-2026:95408` (`ose-rhel-coreos` fix for `CVE-2026-98432` TCP UAF)** & CSI **`CVE-2026-85781`**; **OpenShift 4.20 EUS (K8s 1.33)**: `X25519MLKEM768` PQC TLS, OVN-K8s BGP/EVPN, GA Gateway API, native Sidecars GA, `LeaderWorkerSet` GA; **OpenShift 4.19 (K8s 1.32)**: strict cgroups v2, SSHole/Java4Shell/NGINX2Root admission auditing, CUDN BGP, `oc-mirror` v2 Cosign",
-    "action": "Add OpenShift 4.21 DRA GPU ResourceClaimTemplate labs alongside 4.20 EVPN/BGP & PQC TLS; verify `RHSA-2026:95408` RHCOS kernel & NGINX2Root ingress patches; execute `diagnose-route.ps1` & `deploy-hello-world.ps1`; integrate EX280 timed mock exam engine"
+    "frontier": "Red Hat OpenShift Administration II (DO280) & EX280 curriculum; **OpenShift 4.21 / 4.22 (K8s 1.34+ & CRI-O 1.34+)**: **DRA GA** for CEL GPU VRAM/NVLink/NUMA scheduling, **Kueue** & **JobSet Operator**, **`RHSA-2026:95408` (`CVE-2026-98432`)**, **CRI-O symlink bind-mount bypass (`CVE-2026-76061`)**, **`sssd` `CVE-2026-127101`**, Sandboxed Containers `systemd-gpt-auto-generator` hardening, `brace-expansion` (`14257`/`69152`), Go HTTP/2 (`33814`) & CSI `85781`; **OCP 4.20 EUS**: `X25519MLKEM768` PQC TLS, OVN-K8s BGP/EVPN",
+    "action": "Add OpenShift 4.21/4.22 DRA GPU ResourceClaimTemplate labs alongside 4.20 EVPN/BGP & PQC TLS; verify `RHSA-2026:95408` RHCOS, CRI-O `CVE-2026-76061`, & NGINX2Root ingress patches; execute `diagnose-route.ps1` & `deploy-hello-world.ps1`"
   },
   "docker": {
     "name": "docker",
     "category": "DevOps / Containers",
-    "stack": "PowerShell, Docker Desktop 4.98+, WSL2, Linux",
+    "stack": "PowerShell, Docker Desktop / Podman 5.8+, WSL2, Linux",
     "status": "Active",
-    "frontier": "Enterprise Container Virtualization on Windows 11 with WSL2, Intel Core i9-13900HX VT-x/VT-d firmware enablement, `.wslconfig` Mirrored Mode networking (`networkingMode=mirrored`), `dnsTunneling=true`, `autoProxy=true`, `virtiofs=true` high-performance shared-memory filesystem acceleration (slashing bind mount latency over legacy 9P), `autoMemoryReclaim=gradual` and `pageReporting=true` (dynamic RAM reclamation eliminating bloated `vmmemWSL`), `sparseVhd=true`, Docker Compose v2, rootless Podman 5 vs Docker CLI context bridging (`DOCKER_HOST`), base image scanning for CVE-2026-123158 (\"SSHole\" in musl libc)",
-    "action": "Verify VT-x firmware status post-reboot; execute `Test-DockerEnvironment.ps1 -RunContainerTest`; scan local Alpine/musl container images for CVE-2026-123158; test multi-service stack with `docker compose up -d`; apply Mirrored networking in `.wslconfig`"
+    "frontier": "Enterprise Container Virtualization on Windows 11 with WSL2 (Acer Predator i9-13900HX), `.wslconfig` Mirrored Mode networking, `virtiofs=true`, `autoMemoryReclaim=gradual`, `sparseVhd=true`, rootless Podman 5.8.x (**`RHSA-2026:100547` & `98554`**, Go `net/http`/`crypto/tls`/`crypto/x509`/`ssh` CVEs patched) vs `Kiri-0.2.2` / `DOCKER_HOST` bridging, base image scanning for `CVE-2026-123158` (SSHole), `CVE-2026-76061`, & `CVE-2026-17106` (CopyEscape); *(Host baseline `11/22`: Docker Desktop not yet installed)*",
+    "action": "Install Docker Desktop (`winget install Docker.DockerDesktop`) or bridge `DOCKER_HOST` to WSL2 rootless Podman 5.8 / `Kiri`; execute `Test-DockerEnvironment.ps1 -RunContainerTest`; scan local Alpine/musl images for CVE-2026-123158"
   },
   "Scripting": {
     "name": "Scripting",
@@ -180,16 +180,16 @@
     "category": "Productivity",
     "stack": "Python 3.12, UV, Batch, VBS, Kokoro-82M, FFmpeg",
     "status": "Active",
-    "frontier": "Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py`), automated clip cutter & YouTube shorts/longform pipeline (`convert_to_shorts.py`, `smart_cutter.py`, `sfx_manager.py`, `sound_randomizer.py`, `Invoke-LongformPipeline.ps1`, `longform_editor.py`) routing 32+ authentic Marshall Law & character soundbytes with FIFO rotation and 10/day upload pacing across **Gears of War: E-Day**, TEKKEN 8, Beast of Reincarnation, and Sonic Racing (verified active through **11/19/2026 02:28 AM**), Kokoro-82M ONNX speech synthesis (`morning_brief.wav`), multi-source telemetry ingestion, Stock Watch coiling alerts",
+    "frontier": "Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py`), automated clip cutter & YouTube shorts/longform pipeline (`Invoke-LongformPipeline.ps1`, `longform_editor.py`, `smart_cutter.py`, `convert_to_shorts.py`, `game_intelligence.py`, `sfx_manager.py`, `sound_randomizer.py`, `audio_rotation.json`) routing 32+ authentic soundbytes with FIFO rotation across **Gears of War: E-Day**, TEKKEN 8, Beast of Reincarnation, and **Sonic Racing: CrossWorlds** (verified active through **`2026-11-23 02:28 AM`** including `longform_MultiGame_Collab_20261122_140209_1440p60.mp4`), Kokoro-82M ONNX (`morning_brief.wav`), Stock Watch coiling alerts",
     "action": "Verify sentinel daemon automated clip & longform compilation runs; ensure morning audio briefing synthesizes daily telemetry via Kokoro-82M ONNX; maintain paced YouTube upload schedule"
   },
   "screen reader": {
     "name": "screen reader",
     "category": "Accessibility",
-    "stack": "Python, Surya OCR, Piper TTS",
+    "stack": "Python, Surya OCR, Piper TTS, Tiny-Voca",
     "status": "Active",
-    "frontier": "IBM Docling / Surya OCR layout parsing, Piper TTS, Tkinter UI snapshot caching, bookmarks persistence",
-    "action": "Replace legacy OCR with Surya/Docling to read multi-column technical PDFs without text interleaving"
+    "frontier": "**Newly deployed `Invoke-TinyVocaOfflineTTS.ps1` (`2026-11-22 09:30`)** running **`n4ze3m/tiny-voca v0.2.0`** (4.5M ~70x-realtime offline CPU/JS English TTS + `tiny-voca.gguf` -> `tiny_voca_output.wav`) alongside IBM Docling / Surya OCR layout parsing, Piper TTS, Tkinter UI snapshot caching, bookmarks persistence",
+    "action": "Replace legacy OCR with Surya/Docling to read multi-column technical PDFs without text interleaving; keep `tiny-voca` wired as zero-GPU offline TTS fallback"
   },
   "note taker": {
     "name": "note taker",
@@ -204,24 +204,24 @@
     "category": "SysAdmin / Tuning",
     "stack": "PowerShell, WMI",
     "status": "Active",
-    "frontier": "Windows Performance Toolkit (`xperf`), SSD SMART diagnostics, DPC/ISR latency sweeps",
-    "action": "Implement DPC and ISR latency check to flag driver-level audio/gaming microstutter"
+    "frontier": "Windows Performance Toolkit (`xperf`), SSD SMART diagnostics, DPC/ISR latency sweeps, **`Lemxy/WinRust v0.5.5`** native Windows Rust diagnostics pattern (`2026-11-22` report)",
+    "action": "Implement DPC and ISR latency check to flag driver-level audio/gaming microstutter; evaluate `WinRust v0.5.5` diagnostics in isolated VM"
   },
   "improve gaming pc performance": {
     "name": "improve gaming pc performance",
     "category": "Gaming / Tuning",
-    "stack": "PowerShell 7+, Registry, WMI, UE5 Ini",
+    "stack": "PowerShell 7+, Registry, WMI, UE5 Ini, BatteryHub",
     "status": "Active",
-    "frontier": "**Factory Acer Predator power plan lock** (`$AcerPlanGuid = \"02e54963-3a6d-4756-9cca-a42174041e63\"`, refreshed `11/19/2026 03:01 AM` to prevent 100% Min Processor State thermal tripping), discrete RTX 4080 GPU registry assignment (`HKCU:\\Software\\Microsoft\\DirectX\\UserGpuPreferences`, `GpuPreference=2;`), Phantom Blade Zero (PBZ) & Steam continuous performance watcher (`Start-SteamGamingPerformanceWatcher.ps1` polling every 5s), automated optimization suite (`Invoke-PBZOptimization.ps1`), process priority elevation (`High`), UE5 `Engine.ini` streaming & async compute tuning (`r.Streaming.PoolSize=6144`, `r.CreateShadersOnLoad=1`, `r.AsyncCompute=1`, `FX.Niagara.AllowAsyncBudgeting=1`), GPU MSI-X mode verification, Windows 11 24H2 DirectStorage 1.2 GPU decompression",
-    "action": "Execute `Invoke-PBZOptimization.ps1` prior to gaming sessions; confirm `SteamPBZPerformanceWatcher` startup key remains active; verify `Engine.ini` 6GB texture pool & shader preload across steamapps directories"
+    "frontier": "**Factory Acer Predator power plan lock** (`$AcerPlanGuid = \"02e54963-3a6d-4756-9cca-a42174041e63\"`, refreshed **`2026-11-23 03:02 AM`**), **newly added `Start-BatteryHubMonitor.ps1` (`2026-11-22 09:27`)** integrating SHA-256 verified **`BatteryHub v1.1.0`** (~2 MB RAM wireless peripheral monitor), discrete RTX 4080 GPU registry assignment (`GpuPreference=2;`), Steam PBZ continuous watcher, process priority `High`, UE5 `Engine.ini`, DirectStorage 1.2",
+    "action": "Execute `Invoke-PBZOptimization.ps1` & `Start-BatteryHubMonitor.ps1 -Launch` prior to gaming sessions; confirm `SteamPBZPerformanceWatcher` startup key remains active; verify `Engine.ini` 6GB texture pool across steamapps"
   },
   "zfold6 features": {
     "name": "zfold6 features",
     "category": "Mobile / Android",
-    "stack": "Markdown, Termux",
+    "stack": "Kotlin, Jetpack Compose, Android Gradle",
     "status": "Active",
-    "frontier": "Termux Linux environment, Tasker automation, DeX multi-window, bi-directional Syncthing sync",
-    "action": "Document Termux Python execution recipes and bi-directional Syncthing sync scripts"
+    "frontier": "**Graduated to FoldCraft Android App (`com.foldcraft.zfold6`, 22 files, `11/19/2026`)**: **Jetpack WindowManager (`androidx.window`)**, hardware **`Sensor.TYPE_HINGE_ANGLE`** (0\u00b0\u2013180\u00b0), adaptive `NavigationBar`/`NavigationRail` (`screenWidthDp >= 580`), `PostureDashboardScreen`, `AppPairsScreen`, `FlexTriggersScreen` + draggable `FoldOverlayService`, `compileSdk 35`; aligned with **Android 17 Adaptive-First**, **Jetpack `AppFunctions` (Android MCP)**, **Android Studio BYOA**, & **Google AI Studio native Kotlin**",
+    "action": "Open in Android Studio Ladybug+ and deploy APK via USB Debugging to Galaxy Z Fold 6; expose FoldCraft actions via **Android `AppFunctions`** MCP; add Termux/Syncthing PC bridge trigger rule"
   },
   "scheduled task": {
     "name": "scheduled task",
@@ -340,32 +340,32 @@
     "category": "Browser Extension",
     "stack": "Manifest V3, JS, CSS, Chrome APIs",
     "status": "Active",
-    "frontier": "Chrome 157 (`CVE-2026-125350` UAF + 200+ fixes patched) Manifest V3 2026 standard (`activeTab` minimal permissions + proxy workers, WebGPU sidePanel SLMs + subgroup size controls), persistent `chrome.sidePanel` with Chrome 140+ `sidePanel.getLayout()` dynamic left/right docking orientation awareness (and Chrome 148+ `browser.sidePanel.getLayout()` cross-browser namespace), programmatic `chrome.tabGroups` auto-categorization and color palettes, proactive memory reclamation via `chrome.tabs.discard`, `chrome.system.memory` & `chrome.system.cpu` live HUD telemetry, custom breadcrumb status bar, `Install-ChromeBookmarks.ps1`, `Antigravity_Index_Bookmarks.html`, `chrome.storage.session` state persistence",
-    "action": "Implement `sidePanel.getLayout()` in `sidepanel.js` to dynamically mirror UI layout based on left/right docking; integrate search, domain auto-grouping, and sleep controls; execute `Install-ChromeBookmarks.ps1`"
+    "frontier": "Chrome 157 (`CVE-2026-125350` UAF + 200+ fixes patched) Manifest V3 2026 standard (`activeTab` minimal permissions + proxy workers, Google **`WebMCP` `navigator.modelContext.registerTool`** + **`LiteRT.js` Wasm/WebGPU/WebNN** sidePanel SLMs + subgroup size controls), persistent `chrome.sidePanel` with Chrome 140+ `sidePanel.getLayout()`, programmatic `chrome.tabGroups`, proactive `chrome.tabs.discard`, `chrome.system.memory` & `chrome.system.cpu` live HUD telemetry, `Install-ChromeBookmarks.ps1`, `chrome.storage.session`",
+    "action": "Implement `sidePanel.getLayout()` in `sidepanel.js` to dynamically mirror UI layout based on left/right docking; expose tab-grouping tools via `navigator.modelContext.registerTool`; bridge `Bookmark-favorites` JSON sync"
   },
   "MCP": {
     "name": "MCP",
     "category": "Systems / AI Tools",
     "stack": "Node.js, JSON-RPC, Python, JavaScript, FastMCP v4.2",
     "status": "Active",
-    "frontier": "Centralized Model Context Protocol hub, MCP `2026-07-28` specification standard (Linux Foundation, stateless protocol core, header routing `Mcp-Method`/`Mcp-Name`, multi round-trip `input_required`, `ttlMs` cache hints, formal `io.modelcontextprotocol/tasks` extensions), **FastMCP v4.2 (\"Mad Skills\")** / PrefectHQ `fastmcp` (**SEP-2640 Skills over MCP** via `SkillsExtension` / `SkillsDirectoryProvider` / `skill://` resources, SEP-1686 protocol-native background tasks via `@mcp.tool(task=True)`, Redis-backed distributed tasks with credential providers, Dual-Era serving & negotiation via `Client(mode=\"auto\")`, client sampling & elicitation via `ctx.sample()`, SEP-990 Identity Assertions, Google ADK 3-legged OAuth for A2A, Dynamic Client Registration DCR, `CurrentContext` dependency injection, built-in OAuth 2.1, OpenTelemetry distributed tracing), UE 5.8 official native Unreal MCP Server bridge, newly deployed dedicated `ollama-mcp` server (`MCP/ollama-mcp`) exposing 6 specialized tools, MCP Baseline 2.0 (`MCP_WEB_APPS_BASELINE.md`), `mcp-baseline.js` v2.0, `mcp-registry.json`, `Ctrl+M` telemetry HUD, `Ctrl+E` in-app element inspection & hot-patching editor console, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`, `ollama-mcp`), global `mcp_config.json`, Texas Property Tax Form 50-132 protest generator (`Tax_Summary_and_2027_Protest_Plan.md`)",
-    "action": "Sync live tool availability across all project hubs (`My Planetarium`, `My Custom Gui`, `index folder`); enforce loopback HMAC token auth; test FastMCP v4.2 SEP-2640 Skills serving & SEP-1686 background tasks and `CurrentContext` dependency injection in `ollama-mcp`"
+    "frontier": "Centralized Model Context Protocol hub, MCP `2026-07-28` specification standard (stateless core, header routing `Mcp-Method`/`Mcp-Name`, `input_required`, `ttlMs`, `io.modelcontextprotocol/tasks`), **FastMCP v4.2** (**SEP-2640 Skills over MCP**, SEP-1686 `@mcp.tool(task=True)`, `Client(mode=\"auto\")`, `ctx.sample()`, SEP-990), **Google ADK 2.0 + Managed Agents API + A2A + `WebMCP` (`navigator.modelContext.registerTool`) + Android `AppFunctions`**, UE 5.8 Unreal MCP Server, `ollama-mcp`, `morluto/rea`, `rust-anything`, `fast-anything`, MCP Baseline 2.0 (`Ctrl+M`, `Ctrl+E`), Texas Form 50-132 generator",
+    "action": "Sync live tool availability across all project hubs; enforce loopback HMAC token auth; test FastMCP v4.2 SEP-2640 Skills serving & SEP-1686 background tasks in `ollama-mcp`; align web apps with `navigator.modelContext.registerTool` WebMCP manifests"
   },
   "VR creation apps": {
     "name": "VR creation apps",
-    "category": "XR / VR",
-    "stack": "WebXR, Three.js r187, Quest 3",
+    "category": "XR / VR / MR",
+    "stack": "WebXR, Meta IWSDK 0.3.1, super-three 0.181, HavokPhysics WASM, Three.js r187",
     "status": "Active",
-    "frontier": "Three.js r187 (`PMREMGenerator` cube render targets, EON rough diffuse BRDF, cooperative `compileAsync()`), `WebGPURenderer` (`await renderer.init()`), r185/r186 native WebXR on WebGPU with `multiview: true` single-pass stereo rendering (50% draw-call reduction), native XR MSAA layers and transmission corrections, Three.js r184 non-blocking `compileAsync()`, TSL (Three Shading Language) transpiling dynamically to WGSL and GLSL, node-based `RenderPipeline` with MRT, Quest 3 bare-hand tracking (`XRHandModelFactory`), HRTF Web Audio",
-    "action": "Upgrade `word-defender-xr.html` to Three.js r187 WebGPURenderer (cube-target PMREM, cooperative `compileAsync()`) with `multiview: true` and TSL `RenderPipeline`; integrate `XRHandModelFactory` pinch firing"
+    "frontier": "**Expanded to 7,541 files (`11/19/2026`) with `github-repos/WorldTear`**: Meta **Immersive Web SDK (`@iwsdk/core` 0.3.1)** + `super-three@0.181.0` + **HavokPhysics WASM** + `vite-plugin-mkcert` HTTPS Quest 3 passthrough cape using W3C WebXR Raw Camera Access (`'camera-access'`, `XRWebGLBinding.getCameraImage`) and Verlet fingertip-poke cloth simulation (`indexTipSpaces.{left,right}`); paired with Three.js r187 (`PMREMGenerator` cube targets, EON BRDF, cooperative `compileAsync()`), `WebGPURenderer` `multiview: true`, Chrome Android WebGPU rollout, and `XRHandModelFactory`",
+    "action": "Launch `WorldTear` (`npm run dev` over mkcert HTTPS) on Quest 3 to validate `'camera-access'` passthrough cape; upgrade `word-defender-xr.html` to Three.js r187 `WebGPURenderer` `multiview: true` & TSL `RenderPipeline`"
   },
   "3d images": {
     "name": "3d images",
     "category": "3D / Graphics",
     "stack": "Node.js, WebGL, Shaders, WebGPU",
     "status": "Active",
-    "frontier": "WebGL2 stereoscopic shaders, glTF Draco mesh compression, Three.js r185/r186 native 3D Gaussian Splatting (`GaussianSplat` / `SPZLoader`), `KHR_gaussian_splatting` glTF support, TSL materials with automatic WGSL/GLSL cross-compilation, FSR 1 and TAAU upscaling nodes, `PCFShadowMap` migration",
-    "action": "Integrate Draco mesh compression, native Gaussian Splatting (`examples/jsm/objects/GaussianSplat.js`), and Three.js r187 cube-target PMREM, EON rough diffuse BRDF, and FSR1/TAAU upscaling nodes to load high-resolution 3D models with minimal latency"
+    "frontier": "WebGL2 stereoscopic shaders, glTF Draco mesh compression, Three.js r185/r186 native 3D Gaussian Splatting (`GaussianSplat` / `SPZLoader`), `KHR_gaussian_splatting` glTF support, **`@shapeshift-labs/ink-studio`** SDF & pixel-art Gaussian splats, TSL materials, FSR 1/TAAU upscaling nodes, `PCFShadowMap` migration",
+    "action": "Integrate Draco mesh compression, native Gaussian Splatting (`GaussianSplat.js`), Ink Studio SDF splat exports, and Three.js r187 cube-target PMREM, EON BRDF, and FSR1/TAAU upscaling nodes"
   },
   "backgrounds for gaming,apps": {
     "name": "backgrounds for gaming,apps",
@@ -378,42 +378,42 @@
   "game studio": {
     "name": "game studio",
     "category": "Game Dev",
-    "stack": "C++ UE5.8, Godot 4.4/4.7, Unity 6, MSVC, ROMs",
+    "stack": "C++ UE5.8, Godot 4.4/4.7, Python, ROMs",
     "status": "Active",
-    "frontier": "**Antigravity Engine Forge IDE (`engine_forge.html`, `engine_forge.js`, `Start-EngineForge.ps1`, `Launch_Engine_Forge.bat`)** unifying Three.js PBR viewport, Blueprint Node Graph, UE5.8 MCP Bridge, GitHub AI Studio Multi-Agent Hierarchy, and Udemy Dev Academy; UE 5.8 Mesh Terrain, Lumen Probe Occlusion, Fast Geometry Streaming & native Unreal MCP Server; Godot 4.7 `AreaLight3D`, True HDR & Vulkan RT groundwork; Unreal Engine 5 C++ (`ShadowBlade_Tekken_Naraka_UE5` Battle Royale: Naraka clash, Tekken heat, Ninja Gaiden Izuna drop), Godot 4 3D arena (`ShatteredPagoda_Godot` with 3D models, scenes, tests, `Launch_Kagura_Godot3D.bat`, `Play_Kagura_Godot3D.vbs`), `ChessClash_Godot`, `aether_ascent_spire` build, 3D Art Studio (`index.html`, `game-studio-scene.js`, `game-studio-engine.js`), **newly added Turbo Type Rally 3D in Godot 4.3/4.4 (`TurboTypeRally_Godot` with `scripts/Main.gd`, `scenes/Main.tscn`, `Launch_TurboTypeRally_Godot.bat`)** featuring typed dictionaries, 3D physics interpolation, and native Jolt physics engine integration, **Paper Mario x Expedition 33 - 100 Trial Pipe RPG prototype (`Paper_Mario_Expedition33_Pipe100.html`)** with reactive QTE timing, dodge/parry mechanics, and tactical turn-based combat, **3D ROM Studio (`rom_studio_3d.html`, `rom_studio_engine.js`, `rom_studio_scene.js`)**, Michael Jackson \"Hee-Hee\" soundbyte integration in `assets/soundbytes/`, automated studio quality gate verification (`Test-StudioQualityGate.ps1`), master launcher (`GameStudio_Hub.ps1`), BPS/UPS delta-patching, Capstone disassembly, Anti-Slop hit-stop kinesthetics",
-    "action": "Upgrade `engine_forge.html` from legacy `three.min.js` (r128 fallback) to Three.js r187 `WebGPURenderer`; execute `Test-StudioQualityGate.ps1`; launch `Start-EngineForge.ps1` and `Launch_TurboTypeRally_Godot.bat` to test 3D typing rally mechanics; test `Paper_Mario_Expedition33_Pipe100.html` QTE timing; run `Launch_Kagura_Godot3D.bat` to verify 3D pagoda arena rendering; benchmark Forward+ clustered lighting and hit-stop frame freezing"
+    "frontier": "**Newly added `tools/Invoke-InkStudioSplatGenerator.ps1` (`2026-11-22 09:28`)** integrating **`@shapeshift-labs/ink-studio`** SDF sculpting & pixel-art Gaussian splats + **`chesstube_studio/` (`11/21\u201311/22`)** Chess.com-to-YouTube pipeline; Engine Forge IDE, UE 5.8 Mesh Terrain / Lumen Probe Occlusion / native Unreal MCP Server; Godot 4.7 `AreaLight3D`, True HDR, Vulkan RT & `Godot-MCP`; `ShadowBlade_Tekken_Naraka_UE5`, `ShatteredPagoda_Godot`, `ChessClash_Godot`, `TurboTypeRally_Godot`, `Paper_Mario_Expedition33_Pipe100.html`, `Test-StudioQualityGate.ps1`",
+    "action": "Run `Invoke-InkStudioSplatGenerator.ps1 -Operation RenderScene` to generate pixel-art Gaussian splat assets; run `python -m chesstube_studio` upload wizard; upgrade `engine_forge.html` from r128 to Three.js r187 `WebGPURenderer`; execute `Test-StudioQualityGate.ps1`"
   },
   "chancenvaders": {
     "name": "chancenvaders",
     "category": "Games / Retro Arcade",
     "stack": "HTML5 Canvas, Procedural Web Audio API, JS",
     "status": "Active",
-    "frontier": "Museum-grade 1978 Space Invaders Arcade Replica, 100% Intel 8080 spec fidelity (`invaders.asm`), bitmask sprite matrices, destructible arched bunkers with dynamic pixel blast carving, procedural Web Audio API synthesizer (discrete oscillators, 4-tone accelerating march 55.0Hz down to 33ms, zero audio files), continuous vertical swept-bounding-box raycast intervals (`[min(y, prevY), max(y, prevY)]` with `\u00b13px` horizontal tolerances eliminating bullet tunneling), point-and-click finger/touch aim and rapid-fire streaming, 5 collectible power-up pods (Cyan Spread Laser, Neon Green Piercing Beam, Amber Shield, Orange Overdrive Rapid, Crimson Nuke), 6-tier Orbital Tower Ascension elevator, 1978 Pepper's Ghost Mirror Illusion (lunar diorama backdrop behind semi-transparent two-way mirror, 45-degree cabinet shelf reflection, cellophane color overlays)",
+    "frontier": "Museum-grade 1978 Space Invaders Arcade Replica, 100% Intel 8080 spec fidelity (`invaders.asm`), bitmask sprite matrices, destructible arched bunkers with dynamic pixel blast carving, procedural Web Audio API synthesizer (discrete oscillators, 4-tone accelerating march 55.0Hz down to 33ms, zero audio files), continuous vertical swept-bounding-box raycast intervals (`[min(y, prevY), max(y, prevY)]` with `\u00b13px` horizontal tolerances eliminating bullet tunneling), point-and-click finger/touch aim and rapid-fire streaming, 5 collectible power-up pods (Cyan Spread Laser, Neon Green Piercing Beam, Amber Shield, Orange Overdrive Rapid, Crimson Nuke), 6-tier Orbital Tower Ascension elevator, 1978 Pepper's Ghost Mirror Illusion",
     "action": "Add localStorage high scores persistence; integrate Gamepad API haptic rumble vibration; scaffold WebGL 3D curved CRT bezel simulation"
   },
   "game mods": {
     "name": "game mods",
     "category": "Game Dev",
-    "stack": "Batch, Asset Injectors, HTML",
+    "stack": "Python, Three.js, Batch, HTML",
     "status": "Active",
-    "frontier": "Mod conflict resolver, automated asset validator, IoStore (`.utoc`/`.ucas`) extraction with FModel, Xbox PC GUI dashboard (`xbox_pc_gui.html`), **3D ROM Studio launcher (`Start-3DROMStudio.ps1`, `Launch_3D_ROM_Studio.bat`, `rom_studio_3d.html`)**, automated ROM checksum validation script verifying patched game assets against known good hashes",
-    "action": "Build checksum validation script verifying patched game assets against known good hashes; launch `Start-3DROMStudio.ps1` to test 3D cartridge inspection; polish `xbox_pc_gui.html`"
+    "frontier": "**Grand ROM Palace 3D Studio + MotionBricks + Vehicles (`2026-11-22 10:47`)**: `rom_studio_3d.html`, `rom_studio_engine.js`, `rom_studio_scene.js`, `rom_studio_motion.js` upgraded with **4 vehicle modes** (`foot`, **Hyper-Veloce X1 Kart**, **Blue Star Hoverboard**, `drone`), **3-tier Mini-Turbo drift boost**, **Freeplay Basement & Neon Raceway lap portal**, and **Web Gamepad API Xbox controller**; `build_grand_rom_catalog.py` & `xbox_gui_server.py` serving **759 retail ROMs across 18 consoles**; tracking Xbox Series static recompilation (`Leonida`, `Xbox2Windows`, `xbox-emulator`)",
+    "action": "Upgrade `rom_studio_3d.html` from Three.js r128 to r187 WebGPURenderer; pair `rom_studio_motion.js` with real exported MotionBricks JSON trajectories; wire `emulator and rom hunter` discovery into `build_grand_rom_catalog.py`"
   },
   "Record my Gameplay": {
     "name": "Record my Gameplay",
     "category": "XR / Media / Game Capture",
     "stack": "Python 3.12, OBS Studio 30/31, obsws-python, OpenCV",
     "status": "Active",
-    "frontier": "obs-websocket v5.x protocol, NVIDIA NVENC AV1 hardware encoding (`jim_av1_nvenc` and OBS 31 `obs_nvenc_av1_tex`), OpenCV template matching (`cv2.TM_CCOEFF_NORMED`) with multi-scale downscaled pyramids for sub-45ms boss health bar & victory screen detection, automated failed attempt disk purging (`Path.unlink`), direct integration into `youtube shorts edit for gaming`",
-    "action": "Implement downscaled template matching loop in `vision_monitor.py` for hands-free detection; configure OBS encoder to NVENC AV1 for RTX 4080"
+    "frontier": "obs-websocket v5.x protocol, NVIDIA NVENC AV1 hardware encoding (`jim_av1_nvenc` and OBS 31 `obs_nvenc_av1_tex`), OpenCV template matching (`cv2.TM_CCOEFF_NORMED`) with multi-scale downscaled pyramids for sub-45ms boss health bar & victory screen detection, automated failed attempt disk purging (`Path.unlink`), direct integration into `youtube shorts edit for gaming` (`Invoke-NeonClippingPipeline.ps1`)",
+    "action": "Implement downscaled template matching loop in `vision_monitor.py` for hands-free detection; configure OBS encoder to NVENC AV1 for RTX 4080; route victory clips through `Invoke-NeonClippingPipeline.ps1`"
   },
   "youtube shorts edit for gaming": {
     "name": "youtube shorts edit for gaming",
     "category": "Media / AI",
-    "stack": "Python, FFmpeg 7, OpenCV",
+    "stack": "Python, FFmpeg 7/9, OpenCV, PowerShell",
     "status": "Active",
-    "frontier": "NVIDIA NVENC AV1 (`av1_nvenc`), Faster-Whisper karaoke subtitles (`.ass`), optical flow crosshair tracker, video craftsmanship pacing",
-    "action": "Build FFmpeg script reframing 16:9 gameplay to 9:16 vertical video with animated `.ass` subs"
+    "frontier": "**Newly deployed `Invoke-NeonClippingPipeline.ps1` (`2026-11-22 09:27`)** bridging `Record my Gameplay/Recordings` into local **`iamajmeena/neonclipping` (`v1.0.0` local / `v1.1.0` latest)** 9:16 engine (`127.0.0.1:8770`) + NVIDIA NVENC AV1 (`av1_nvenc`), Faster-Whisper karaoke `.ass` subtitles, optical flow crosshair tracker, & **`PeakCut`**",
+    "action": "Launch `Invoke-NeonClippingPipeline.ps1 -StartServer` on port `8770`; benchmark `neonclipping` (`v1.1.0`) audio-spike + facecam layout detection vs `smart_cutter.py`"
   },
   "game review": {
     "name": "game review",
@@ -458,10 +458,10 @@
   "mobile game": {
     "name": "mobile game",
     "category": "Mobile / Game Dev",
-    "stack": "React Native 0.88, Expo SDK 54, TypeScript, Nitro Modules",
+    "stack": "React Native 0.88.1, Expo ~58.0.23, React 19.3.0, TypeScript ~6.0.3, Nitro Modules",
     "status": "Active",
-    "frontier": "React Native 0.88 (React 19.3.0, W3C `EventTarget` bubbling, `fontVariationSettings` variable fonts, Java/ObjC `ArrayBuffer` TurboModule contracts), Expo SDK 54 (precompiled iOS XCFrameworks for 10x faster builds, final legacy bridge transition), TypeScript, Margelo Nitro Modules (`react-native-nitro-modules`, Callstack enterprise partnership, `nitro-core`, `nitrogen` code generator, Swift 5.9+ direct C++ interop, Android `fbjni`, compile-time JSI bindings delivering ~7.27ms vs 115ms per 100k calls), **newly integrated Turbo Type Mobile screen (`TurboTypeScreen.tsx`, `turboTypeWords.ts`, `LobbyScreen.tsx`)**, Aether Ascent dual-mode card battle engine: Gwent 3-row tactical warfare (`gwentEngine.ts`, `gwentCards.ts`, Hayabusa faction kodachi/kusarigama/odachi, `GwentScreen.tsx`), Slay the Spire roguelike ascension (`spire.ts`, `spireCards.ts`, `spireEnemies.ts`, `SpireCombatScreen.tsx`), Afro-Asian warrior animated motion stage (`AfroAsianMotionStage.tsx`), Chess campaign play mode (`chessAudioService.ts`, `ChessPlayScreen.tsx`, `CampaignShopModal.tsx`), clean-room monetization service (`monetization.ts`, `monetizationService.ts`), SHA-256 deterministic combat state hashing, Anti-Slop kinesthetics (haptics, spring tweening, min 48dp touch targets)",
-    "action": "Test `TurboTypeScreen.tsx` typing game flow and lobby navigation; benchmark Nitro Modules JSI hybrid objects against standard state recalculations; test Expo web export bundle in `mobile game/public`; test Gwent 3-row combat flows"
+    "frontier": "**Verified `package.json` (`11/19/2026`)**: **React Native `0.88.1`**, **Expo `~58.0.23`**, **React `19.3.0`**, **TypeScript `~6.0.3`**, `react-native-svg 15.16.0`, `Start-MobileGames.ps1`, Margelo Nitro Modules (`react-native-nitro-modules`, `nitrogen` C++ JSI ~7.27ms/100k calls), **Turbo Type Mobile (`TurboTypeScreen.tsx`, `turboTypeWords.ts`, `LobbyScreen.tsx`)**, Aether Ascent Gwent 3-row (`gwentEngine.ts`) & Spire roguelike (`SpireCombatScreen.tsx`), `AfroAsianMotionStage.tsx`, `ChessPlayScreen.tsx`, SHA-256 deterministic state hashing, Anti-Slop kinesthetics",
+    "action": "Test `TurboTypeScreen.tsx`, `ShopScreen.tsx`, and `BattlePassScreen.tsx` via `Start-MobileGames.ps1`; benchmark Nitro Modules JSI hybrid objects against standard state recalculations; test Expo web export bundle"
   },
   "My Planetarium": {
     "name": "My Planetarium",
@@ -469,7 +469,7 @@
     "stack": "Three.js, WebGL, High-Gloss Lacquer",
     "status": "Active",
     "frontier": "3D Interactive Deep Space Planetary Observatory & Sector Atlas, 64 charted planetary bodies, astronomical rigor, Three.js r184/r185 WebGPURenderer and TSL materials, Antigravity bidirectional prompt dispatching (`window.sidecar.agent.sendMessage`), auto-fit panoramic projection (`[F]`), slide-out MCP telemetry drawer",
-    "action": "Keep `projects-data.js` synchronized with expanded 79-project inventory; package as Antigravity UI extension plugin; upgrade to Three.js r187 (`PMREMGenerator` cube targets, EON BRDF, cooperative `compileAsync()`)"
+    "action": "Keep `projects-data.js` synchronized with expanded 87-project inventory; package as Antigravity UI extension plugin; upgrade to Three.js r187 (`PMREMGenerator` cube targets, EON BRDF, cooperative `compileAsync()`)"
   },
   "Scary Water Slides": {
     "name": "Scary Water Slides",
@@ -484,8 +484,8 @@
     "category": "Search / Portals",
     "stack": "Static Web, JS, CSS, PWA",
     "status": "Active",
-    "frontier": "Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed **2026-11-18 23:05:02** ingesting `Popular Github Projects` and indexing **81 workspace entries**), offline Service Worker, local inverted index",
-    "action": "Maintain scheduled sync; register newly detected `increase my bing score` and newly staged apps (`turbo-type.html`, `rom_studio_3d.html`, `Paper_Mario_Expedition33_Pipe100.html`)"
+    "frontier": "Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed **`2026-11-22 23:05:03`**), offline Service Worker, local inverted index",
+    "action": "Maintain scheduled sync; register newly initialized projects (`Motion`, `Highschool basketball`, `geminipc`, `Neon- orchestrator`, `emulator and rom hunter`) and newly staged apps (`rom_studio_3d.html`, `WorldTear`)"
   },
   "portfolio": {
     "name": "portfolio",
@@ -532,8 +532,8 @@
     "category": "DevOps / Control",
     "stack": "PowerShell, SQLite, JSON",
     "status": "Active",
-    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`, `routine_scan.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking **81 total projects**, **35 deployable**, **6 in progress**), nightly health scan (verified **2026-11-18 23:01:36**: **17/17 Deploy Suite 100% Healthy**, 0 degraded, 0 critical in 3,610.67ms)",
-    "action": "Reclassify newly graduated `Popular Github Projects` (`server.mjs` / `public/index.html`) from Incomplete to Deployable; classify `increase my bing score`, `Cert Training Guide`, `onedrive cleanup`, and Godot 3D prototypes into automated deployment manager"
+    "frontier": "Automated health audits (`Test-ProjectHealth.ps1`, `routine_scan.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking **87 total cataloged projects**, **35 deployable**, **6 in progress**, 19 changes detected), nightly health scan (verified **`2026-11-22 23:02:16`**: **17/17 Deploy Suite 100% Healthy**, 0 degraded, 0 critical in `6,777.83 ms`)",
+    "action": "Reclassify newly graduated `Popular Github Projects` (`server.mjs`), `zfold6 features` (FoldCraft), `Bookmark-favorites`, `increase my bing score`, `Cert Training Guide`, and `onedrive cleanup` in `PROJECT_CATALOG.json`; trigger `Bookmark-favorites/Run-BookmarkSync.ps1` on new folder detection"
   },
   "sandbox": {
     "name": "sandbox",
@@ -548,16 +548,16 @@
     "category": "Quantitative Finance",
     "stack": "Python 3.12, UV, alpaca-py, cuDF",
     "status": "Active",
-    "frontier": "NVIDIA RAPIDS cuDF GPU acceleration (`cudf.pandas.install()`), Volume-Filtered Carter Squeeze (VWAP & 21/50 EMA), Wyckoff Spring smart-money absorption ($>2.0\\times$ volume), Half-Kelly capital sizing, tick-data vs. 1-min bar Sharpe validation (`r/algotrading` Nov 2026), Alpaca paper-to-live 1-share canary execution, slippage & spread delta logging",
-    "action": "Run tick-granularity validation against winning 1-min backtests; execute 1-share/micro-contract live canary phase and implement slippage/spread-crossing delta logger in `alpaca_broker.py`; connect evening screener alerts to `automate my day`"
+    "frontier": "NVIDIA RAPIDS cuDF GPU acceleration (`cudf.pandas.install()`), Volume-Filtered Carter Squeeze (VWAP & 21/50 EMA), Wyckoff Spring smart-money absorption ($>2.0\\times$ volume), Half-Kelly capital sizing, **permutation testing & upper-tail p-value validation + tick-data vs. 1-min bar Sharpe validation (`r/algotrading` Nov 2026)**, Alpaca paper-to-live 1-share canary execution, slippage & spread delta logging",
+    "action": "Run permutation/p-value & tick-granularity validation against winning 1-min backtests; execute 1-share/micro-contract live canary phase and implement slippage/spread-crossing delta logger in `alpaca_broker.py`; connect evening screener alerts to `automate my day`"
   },
   "stock Bot traders": {
     "name": "stock Bot traders",
     "category": "Quantitative Finance / Algotrading",
     "stack": "Python 3.12, alpaca-py, CCXT, Flask",
     "status": "Active",
-    "frontier": "Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling sentinel (verified active **11/18/2026 08:43:56**: `CHOP_BEAR` regime, top momentum `AAPL` +14.78% / Sharpe 2.52, `$100,029.19` settlement, 0/3 PDT, 100% compliant)",
-    "action": "Ingest coiling volatility squeeze signals from `stock watch` into vector screener; enforce zero entry slippage via bracket limit orders; add intrabar tick-state vs historical reload parity check (`r/algotrading` Nov 2026); maintain daily upskill logs"
+    "frontier": "Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling sentinel (verified active **`2026-11-22 08:01:11`**: `CHOP_BEAR` regime, top momentum `AAPL` +10.82% / Sharpe 1.94, `NTDOY` +0.15%, `BTC-USD` -21.24% / `ETH-USD` -29.75% `Safe=True`; Nov 19 settlement `$100,035.59`, 0/3 PDT, 100% SEC 15c3-5 compliant)",
+    "action": "Ingest coiling volatility squeeze signals from `stock watch` into vector screener; add intrabar tick-state parity, unintended short-skew check, & sector-batch cap (`r/algotrading` Nov 2026); maintain daily upskill logs"
   },
   "Track Home Value": {
     "name": "Track Home Value",
@@ -612,8 +612,8 @@
     "category": "Assistive Tech / Accessibility",
     "stack": "TypeScript, Vite, Web Speech API, PWA, CSS",
     "status": "Active",
-    "frontier": "Amina Universal AAC & Systematic Phonics Studio, WCAG 2.1 AAA compliance, Open Board Format (`.obf`) & Open Board Zip (`.obz`) JSON schemas for Cboard/Open-AAC interoperability, Modified Fitzgerald Key clinical color coding, Afro-European female voice scoring engine (\"Amina\") with male voice exclusion, decodable micro-phonics (\"The help lives on the word\" single-letter dots, digraph bars, magic-e arcs), PWA offline caching, system screen reader synchronization (`aria-live=\"assertive\"`, `v.default`)",
-    "action": "Implement .obf/.obz board export/import; calibrate switch-scanning dwell intervals; verify WCAG AAA contrast"
+    "frontier": "Amina Universal AAC & Systematic Phonics Studio, WCAG 2.1 AAA compliance, Open Board Format (`.obf`) & Open Board Zip (`.obz`) JSON schemas for Cboard/Open-AAC interoperability, Modified Fitzgerald Key color coding, Afro-European female voice scoring (\"Amina\"), decodable micro-phonics, PWA offline caching, **`tiny-voca v0.2.0`** offline JS/CPU TTS backup, system screen reader synchronization (`aria-live=\"assertive\"`, `v.default`)",
+    "action": "Implement .obf/.obz board export/import; calibrate switch-scanning dwell intervals; verify WCAG AAA contrast & `tiny-voca` offline fallback"
   },
   "Game Library": {
     "name": "Game Library",
@@ -628,15 +628,15 @@
     "category": "DevOps / Governance & Supply Chain",
     "stack": "Markdown, Git, GitHub CLI, CycloneDX, SPDX, Python",
     "status": "Active",
-    "frontier": "Open-Source Program Office (OSPO) architecture, OpenChain (ISO/IEC 5230) license compliance, automated CycloneDX 1.6 / SPDX 3.0 profile-based SBOM generation (ECMA-424 & ISO/IEC standards), OpenSSF Scorecard automated security auditing (0-10 security rating across 18 checks), SLSA Level 3 build provenance with Cosign/Sigstore keyless OIDC attestations, automated Git submodule/subtree upstream sync (`Sync-UpstreamForks.ps1`), SemVer 2.0.0 release automation with `git-cliff`",
-    "action": "Scaffold `ospo_governance.py` and `Generate-ProjectSbom.ps1`; enforce SPDX license headers across all 79 portfolio repositories; deploy automated upstream fork synchronizer"
+    "frontier": "Open-Source Program Office (OSPO) architecture, OpenChain (ISO/IEC 5230) license compliance, automated CycloneDX 1.6 / SPDX 3.0 profile-based SBOM generation, OpenSSF Scorecard automated security auditing (18 checks + **`r/cybersecurity` Nov 2026 GitHub Actions & npm hook credential-stealing defense**), SLSA Level 3 build provenance with Cosign/Sigstore keyless OIDC attestations, automated Git submodule/subtree upstream sync (`Sync-UpstreamForks.ps1`), SemVer 2.0.0 release automation with `git-cliff`",
+    "action": "Scaffold `ospo_governance.py` and `Generate-ProjectSbom.ps1`; enforce SPDX license headers & SHA-pinned GitHub Actions across all 87 projects; deploy automated upstream fork synchronizer"
   },
   "youtube channels": {
     "name": "youtube channels",
     "category": "Media / YouTube Automation",
     "stack": "PowerShell, Python, YouTube Data API v3, FFmpeg, Pillow, Three.js, CSS",
     "status": "Active",
-    "frontier": "Your Favorite Character's White Noise & Sleep Ambience Automation Engine, high-AVD 3\u20138 hour sleep loops, 2-Upload Funnel (12\u201318s discovery Short with Related Video pill funnelling into 3\u20138h sleep loop), 4-slot rotating character format (Eustace Bagge, Rolf, Courage Computer, Nostalgia Wildcard), dynamic anti-repetition visual loops (CRT static grain, farmhouse shadows, audio waveforms), 16-episode catalog (`ep01`\u2013`ep12` rendered + `ep13`\u2013`ep16` queued in `character_rotation_catalog.json`) with matching audio, thumbnails, and short/long videos, updated `character_rotation_catalog.json`, automated publishing queue (`Invoke-AutoUploadQueue.ps1`, `youtube_api_upload.py`), **newly deployed licensed audio manifest and studio engine (`Build-AudioManifest.ps1`, `audio_manifest.json`, `studio-engine.js`, `hallway-scene.js`, `high-gloss-lacquer.css`)** featuring licensed character voice lines (Perfect Dark Elvis Maian, Guard, Ed Edd n Eddy Rolf)",
+    "frontier": "Your Favorite Character's White Noise & Sleep Ambience Automation Engine, high-AVD 3\u20138 hour sleep loops, 2-Upload Funnel (12\u201318s discovery Short with Related Video pill funnelling into 3\u20138h sleep loop), 4-slot rotating character format (Eustace Bagge, Rolf, Courage Computer, Nostalgia Wildcard), dynamic anti-repetition visual loops (CRT static grain, farmhouse shadows, audio waveforms), 16-episode catalog (`ep01`\u2013`ep12` rendered + `ep13`\u2013`ep16` queued in `character_rotation_catalog.json` refreshed **`2026-11-22 22:29`**), automated publishing queue (`Invoke-AutoUploadQueue.ps1`, `youtube_api_upload.py`), licensed audio manifest & 3D studio engine (`Build-AudioManifest.ps1`, `audio_manifest.json`, `studio-engine.js`, `hallway-scene.js`)",
     "action": "Execute `Invoke-AutoUploadQueue.ps1` across the 12 generated episodes; verify YouTube Data API v3 OAuth2 token refresh; run `Start-HighlightStudio.ps1` to test 3D ambience studio view"
   },
   "My Social Media": {
@@ -700,23 +700,63 @@
     "category": "AI / Open-Source Radar",
     "stack": "Node.js >=24, SSE, Vercel, PWA, JS",
     "status": "Active",
-    "frontier": "**Graduated from scaffolding (`11/18/2026`)**: `github-trending-radar` v1.0.0 (`server.mjs` with SSE `/api/events`, `/api/reports`, path-traversal guard, `SECURITY_HEADERS`, `vercel.json` cleanUrls + HSTS, `SECURITY.md`, `public/sw.js`, 8 daily trending reports + verified Windows baseline `git 2.53.0`/`gh 2.97.0`/`Node v24.20.0`/`uv 0.12.5`), synced into `Choogle`",
-    "action": "Add `README.md` and deploy to Vercel (`vercel.json` ready); track mid-Nov 2026 trending \"Agent Work Surfaces\" (`claude-mem`, `docling.rs`, `Granite-Docling`, `FastMCP 4.2`, `unreal-agent-benchmark`); reclassify to Deployable in `deploy/PROJECT_CATALOG.json`"
+    "frontier": "**`github-trending-radar` v1.0.0 (`server.mjs`, `vercel.json`, `public/`, `dist/`)**: Verified **`2026-11-22`** daily report (`reports/2026-11-22.md`) + **18 organized `agent-tools/`** (`rust-anything v2.1.0`, `BatteryHub v1.1.0`, `NeonClipping v1.0.0`, `ink-studio`, `tiny-voca v0.2.0`, `hikaku-extension v0.1.0`, `RustText v2.5.0`, `orca`, `cc-switch`, `n8n`, `kiri`, `photocraft`, `magpie`, `peakcut`, `allo`) spotlighting **`morluto/rea`**, **`openclaw`**, **`deepseek-harness`**, **`hermes-agent`**, **`ponytail`**, **`Leonida`**, **`Xbox2Windows`**, **`xbox-emulator`**, **`fast-anything`**, **`WinRust`**, & Windows toolchain (`Git 2.53.0`, `gh 2.97.0`, `Node v24.20.0`, `Python 3.12.10`, `uv 0.12.5`, `FFmpeg 9.0.2`, `.NET 10.0.300`)",
+    "action": "Deploy to Vercel (`vercel.json` ready); add root `README.md`; reclassify from Incomplete to Deployable in `deploy/PROJECT_CATALOG.json`; keep wiring `agent-tools` releases into target workspaces (`fast-anything`, `WinRust`, `Xbox2Windows`)"
   },
   "increase my bing score": {
     "name": "increase my bing score",
     "category": "Automation / Productivity",
     "stack": "PowerShell 5.1/7+, Edge, Task Scheduler",
     "status": "Active",
-    "frontier": "**Newly detected 81st portfolio directory (`2026-11-18 22:51:14`)**: `Invoke-BingRewardsSearch.ps1` (Microsoft Edge signed-in profile automation, `20 topics \u00d7 10 modifiers` randomized pool, `[CmdletBinding(SupportsShouldProcess)]`, `[PSCustomObject]` streaming) and `Register-BingRewardsTask.ps1` (daily `BingRewardsDailySearch` task)",
+    "frontier": "**Active daily automation (`2026-11-22 09:00:01`)**: `Invoke-BingRewardsSearch.ps1` (Microsoft Edge signed-in profile automation, `20 topics \u00d7 10 modifiers` randomized pool, `[CmdletBinding(SupportsShouldProcess)]`, `[PSCustomObject]` streaming), `Register-BingRewardsTask.ps1` (`BingRewardsDailySearch`), plus `README.md` & `.gitignore` (`11/19/2026`)",
     "action": "Add `search_history.json` deduplication ledger across consecutive days, Pester 5.5+ unit tests, and status reporting into `deploy/health_status.json` & `Choogle`"
+  },
+  "Bookmark-favorites": {
+    "name": "Bookmark-favorites",
+    "category": "Portals / Browser Sync",
+    "stack": "Python 3.12, PowerShell 5.1/7+, HTML, JSON",
+    "status": "Active",
+    "frontier": "**Active daily sync (Edge verified `2026-11-22 08:00:04`)**: `generate_bookmarks.py` + `Sync-BrowserBookmarks.ps1` + `Run-BookmarkSync.ps1` generating **88 project bookmarks** (50 HTML entry + 38 folder-only) across 6 domain categories (`antigravity-all-projects-bookmarks.html`, `projects-bookmarks.json`) and backing up + syncing Chrome & Microsoft Edge `Bookmarks` files",
+    "action": "Trigger `Run-BookmarkSync.ps1` automatically from `deploy/routine_scan.ps1` on new project detection; unify JSON export with `Plugins/website-bookmark-manager` and `chrome tab and bar`"
+  },
+  "Motion": {
+    "name": "Motion",
+    "category": "XR / 3D Kinematics",
+    "stack": "NVIDIA MotionBricks, Hugging Face",
+    "status": "Active",
+    "frontier": "**Newly added (`11/20/2026`)**: Research & staging anchor for **NVIDIA MotionBricks** (SIGGRAPH 2026, `NVlabs/motionbricks`, `townbox/motionbricks-playground` in `https   hugging.txt`) neural Smart-Primitives character kinematics (`15,000 FPS` / `~2ms` latency via Warp/Newton/TensorRT), actively bridged into `game mods/rom_studio_motion.js`",
+    "action": "Export real MotionBricks JSON pose trajectories and FBX/GLB retargeting rigs for `game mods` Grand ROM Palace & `game studio` UE5/Godot characters"
   },
   "Highschool basketball": {
     "name": "Highschool basketball",
-    "category": "Antigravity Project",
-    "stack": "Native Workspace",
-    "status": "Active",
-    "frontier": "Workspace project in Highschool basketball",
-    "action": "Active development and maintenance"
+    "category": "Sports / Analytics",
+    "stack": "Scaffolding (Empty Dir)",
+    "status": "Scaffolding",
+    "frontier": "Newly initialized workspace (`11/19/2026`) for high school basketball scouting, shot-charting, and game film highlights",
+    "action": "Scaffold Python (`uv`) + OpenCV court homography shot-chart analyzer and FFmpeg `av1_nvenc` / `neonclipping` highlight cutter with `aws-enterprise-baseline.css` 100vw x 100vh dashboard"
+  },
+  "geminipc": {
+    "name": "geminipc",
+    "category": "AI / Desktop Agent",
+    "stack": "Scaffolding (Empty Dir)",
+    "status": "Scaffolding",
+    "frontier": "Newly initialized workspace (`11/19/2026`) for Gemini PC desktop automation and browser AI integration",
+    "action": "Scaffold FastMCP v4.2 + **Google ADK 2.0**, **`WebMCP` (`navigator.modelContext.registerTool`)**, **Android `AppFunctions`**, & **`LiteRT.js`** desktop bridge with local `ollama-mcp` fallback and `ai defense` path scoping"
+  },
+  "Neon- orchestrator": {
+    "name": "Neon- orchestrator",
+    "category": "AI / Multi-Agent Orchestration",
+    "stack": "Scaffolding (Empty Dir)",
+    "status": "Scaffolding",
+    "frontier": "Newly initialized workspace (`11/19/2026`) for multi-agent workflow orchestration and persistent state routing",
+    "action": "Scaffold async Python 3.12 DAG orchestrator backed by SQLite/Neon state, **ADK 2.0 + A2A**, **`stablyai/orca`**, `NousResearch/hermes-agent` FTS5 memory, and `Ctrl+M` MCP Baseline 2.0 HUD"
+  },
+  "emulator and rom hunter": {
+    "name": "emulator and rom hunter",
+    "category": "Games / ROM Curation",
+    "stack": "Scaffolding (Empty Dir)",
+    "status": "Scaffolding",
+    "frontier": "Newly initialized workspace (`11/20/2026`) for emulator tracking (Dolphin 2512, ares v148, PCSX2-Qt, RPCS3, DuckStation, ShadPS4, Ryujinx) and ROM verification",
+    "action": "Scaffold Python (`uv`) ROM checksum/No-Intro DAT verifier & emulator version updater feeding directly into `game mods/tools/build_grand_rom_catalog.py`"
   }
 }

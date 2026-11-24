@@ -1,10 +1,10 @@
 # Antigravity Acquired Skills & Projects Ecosystem Digest
 
-Updated: 344 Acquired Skills | 90 Production Projects
+Updated: 415 Acquired Skills | 95 Production Projects
 
 ## 📦 Part 1: Acquired Agent Skills Catalog
 
-### Platform & Customizations (5 skills)
+### Platform & Customizations (12 skills)
 
 #### `agy-customizations`
 Comprehensive guide and reference for the Antigravity Customization System. Use to explain how customizations work, their loading priority, discovery mechanisms, and to guide the creation of skills, rules, plugins, hooks, and MCP servers.
@@ -21,17 +21,52 @@ Design, implement, and debug autonomous AI agents and multi-agent systems using 
 
 - Source: `C:\Users\chase\.gemini\config\plugins\google-antigravity-sdk\skills\google-antigravity-sdk\SKILL.md`
 
+#### `mcp-app-development`
+Build, package, and debug MCP Apps for Antigravity: MCP server tools whose results render as interactive UI in the conversation, in the side pane, or full-page from the sidebar. Use when adding a UI to an MCP tool, building or theming the app itself, packaging it as a plugin, or debugging an app that doesn't render or behave as expected.
+
+- Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\mcp-app-development\SKILL.md`
+
+#### `migrate-agent-settings`
+Migrates the user's MCP servers, skills, slash commands, subagents, and instruction files from other coding agents (Claude Code, Codex, Cursor, Gemini CLI) into one new Antigravity plugin. Use when the user wants to bring over, import, or migrate their setup or config from another agent or tool. Don't use for installing Marketplace plugins or authoring a new plugin from scratch (use the plugin skill).
+
+- Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\migrate-agent-settings\SKILL.md`
+
 #### `migrate-workflows`
 Automatically migrate legacy workflows to modern skills across global and workspace configurations. Scans for existing workflows, creates target SKILL.md files, and safely archives old workflow files.
 
 - Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\migrate-workflows\SKILL.md`
+
+#### `plugin`
+How to manage and create plugins — namespaced bundles of skills, agents, rules, MCP servers and hooks that install, enable and disable as a single unit. Use this skill when the user wants to enable, disable, install or uninstall a plugin, when they want to create a new plugin, or when a new customization should be packaged into a plugin rather than left loose. Also triggered by the /plugin slash command. Don't use for the underlying customization system itself — discovery roots, loading priority, or authoring a standalone skill, agent, rule, hook or MCP server outside a plugin; see the customizations guide skill for those.
+
+- Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\plugin\SKILL.md`
+
+#### `swarm`
+(Preview & Quota Heavy) Run a swarm: several agents working in parallel on one task, each in its own conversation, collaborating through a shared message board. Use when the work splits into pieces that can be done at the same time, or when a second pair of eyes should check the first pair's work.
+
+- Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\native_swarm\SKILL.md`
+
+#### `swarm_monitor`
+ONLY for the native-swarm worker whose brief says it is the monitor. On a timer, it checks whether the whole swarm has stalled and calls on the one member who can unstick it. Coordinators and other workers: do not load this.
+
+- Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\swarm_monitor\SKILL.md`
+
+#### `swarm_narrator`
+ONLY for the native-swarm worker whose brief says it is the narrator. It watches the board and keeps the facts behind the user's Overview (view.json) current. Coordinators and other workers: do not load this.
+
+- Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\swarm_narrator\SKILL.md`
+
+#### `swarm_pane`
+What the coordinator writes so the Swarm UI's Overview can show the swarm's goal, its groups of work and a screenshot timeline. Load it before you brief and add the first workers to a swarm.
+
+- Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\swarm_pane\SKILL.md`
 
 #### `ui-plugin-navigation`
 Discover UI plugin panels relevant to the current task and surface a one-click pill in chat to open (toggle) them in the side pane. Use when a running UI plugin's panel would help with what the user is doing, or right after the user enables a new UI plugin pane and a shortcut to open it is handy.
 
 - Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\ui-plugin-navigation\SKILL.md`
 
-### Google Cloud & BigQuery Data Engineering (47 skills)
+### Google Cloud & BigQuery Data Engineering (44 skills)
 
 #### `bigquery-ai-ml`
 Leverages BigQuery's built-in machine learning and GenAI capabilities for advanced data analytics. Use when you need to write SQL queries that perform time-series forecasting, predict values, detect outliers or anomalies, find key drivers, perform semantic search or vector search, classify text, calculate similarity, summarize content, translate language, evaluate models, filter by semantic conditions, measure the causal effect of an intervention, compute correlations between columns, generate descriptive statistics and table distribution profiles, detect change points or structural breaks, extract trend or seasonality components, or leverage generative AI capabilities in BigQuery. Do not use for general BigQuery dataset, table, or job management requests.
@@ -88,11 +123,6 @@ Guides users through discovering their database requirements, recommends a Googl
 
 - Source: `C:\Users\chase\.gemini\config\plugins\data-agent-kit-plugin\skills\cloud-databases-onboarding\SKILL.md`
 
-#### `curate-context`
-Creates, imports, pulls, edits, repairs, or publishes a Knowledge Catalog (KC) context set as Open Knowledge Format (OKF v0.2) markdown under `bundle/` with `kcmd`, for BigQuery, Spanner, BigLake, Cloud SQL, AlloyDB, or Hive Metastore. Load FIRST whenever creating, importing, pulling, editing, repairing, or publishing a context set or OKF bundle/folder, or using `kcmd`, before running `kcmd` (never unscoped `kcmd` from pip/npx or unconfirmed `./kcmd`) or editing files: e.g. "build a context set from our sales tables and metric doc", "update churn in our context set and publish". Plans first, validates, and publishes only after user approval at both gates, even when told to work autonomously. Keeps the user's OKF folder/structure. If also asked for OSI-G semantic models, ontology canvases, new glossary terms, access changes, or certification, still use it: builds the context set and declines those parts. Never for read-only catalog search or data questions.
-
-- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-official\plugins\data-agent-kit-plugin\1.3.0\skills\curate-context\SKILL.md`
-
 #### `dak-setup`
 Configures (or reconfigures) the Google Cloud Data Agent Kit (DAK) plugin by checking gcloud and ADC credentials, collecting the GCP project ID, region, and services, and running its bundled `dak-setup` script. Use this proactively and without waiting to be asked whenever a SessionStart hook or any other system/context message reports that the Data Agent Kit plugin is not configured, is missing configuration, or needs to be reconfigured. Also use it whenever the user mentions setting up, configuring, reconfiguring, or changing the project, region, or service integrations for the Data Agent Kit or DAK plugin — even if they phrase it casually, like "dak isn't working" or "I want to enable more GCP service integrations".
 
@@ -112,11 +142,6 @@ Expertise in generating clean, correct, and efficient Dataform pipeline code for
 Expert guidance for creating, modifying, and optimizing dbt pipelines for BigQuery. Use this skill whenever user asks for generating or modifying a dbt model or project. Activate this skill when the user - Creates, modifies, or troubleshoots **dbt models or pipelines** - Needs to **optimize SQL** within a dbt project - Is **setting up a new dbt project** or configuring existing one
 
 - Source: `C:\Users\chase\.gemini\config\plugins\data-agent-kit-plugin\skills\dbt-bigquery\SKILL.md`
-
-#### `discover-assets`
-Finds and inspects data assets within Google Cloud. Use for any question that needs to discover data sources or find/inspect schemas, metadata, or domain rules for tables. Relevant when: (1) finding, exploring, or inspecting GCP data assets; (2) retrieving schemas, metadata, or governance policies for a GCP data asset (including a named table); (3) you have a keyword or topic (e.g., "sales data") without a table or resource ID; (4) the user asks for enterprise data, metrics, tables, datasets, analytics, business terms, financial reports, or industry statistics (e.g., banking, e-commerce, transit, SEC filings, solar, healthcare) without full table schemas. Don't use for general knowledge questions unrelated to data, or when both explicit table schemas and full SQL are already provided.
-
-- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-official\plugins\data-agent-kit-plugin\1.3.0\skills\discover-assets\SKILL.md`
 
 #### `discovering-gcp-data-assets`
 Finds and inspects data assets within Google Cloud. Relevant when any of the following conditions are true: 1. The user request involves finding, exploring, or inspecting data assets in Google Cloud, such as: - BigQuery datasets, tables, or views - BigLake catalog or tables - Spanner instances, databases or tables - etc. 2. You need to retrieve the schema, metadata, or governance policies for a GCP data asset. 3. You have a keyword or topic (e.g., "sales data") but lack the specific table or resource ID. 4. You are attempting to find data using `bq ls`, as this skill offers a superior approach. Don't use when: - Assets are outside Google Cloud
@@ -207,11 +232,6 @@ Provides expert guidance for troubleshooting Google Cloud Spark and Dataproc wor
 Assesses the security posture of Google Cloud Storage (GCS) buckets and projects. Grounds every finding in gathered telemetry, evaluates buckets against Google security best practices (public access, IAM over-granting, CMEK, VPC Service Controls, audit logging), and correlates signals to flag toxic combinations of individually low-risk settings, with actionable remediation. Use whenever a user asks for a security scan, audit, review, vulnerability check, or compliance assessment (including SAIF) — or simply asks whether their buckets, project, or data are secure, exposed, public, or misconfigured, who can access their data, or wants storage hardened or locked down, e.g. before a launch. Don't use for diagnosing a specific access failure or 403, managing or configuring storage, investigating a live outage, or non-GCS resources (Compute Engine, GKE, etc.).
 
 - Source: `C:\Users\chase\.gemini\config\plugins\data-agent-kit-plugin\skills\gcs-security-assessment\SKILL.md`
-
-#### `gemini-api-cli`
-Call the Gemini API from the shell with gemini-api. Use for media generation (images, TTS, music, video), file and YouTube analysis, audio/video transcription, Deep Research, and sandboxed agents.
-
-- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-official\plugins\gemini-api\2.7.0\skills\gemini-api-cli\SKILL.md`
 
 #### `gemini-api-dev`
 Use this skill when writing code that calls the Gemini API for text generation, multi-turn chat, multimodal understanding, image generation, video generation, speech generation (TTS), voice design, voice replication, streaming responses, background research tasks, function calling, structured output, or migrating from the old generateContent API. Covers SDK usage and best practices for Gemini models and agents in Python and TypeScript.
@@ -477,12 +497,17 @@ Safely modifies Xcode projects (.pbxproj) to add Swift Packages and link files. 
 
 - Source: `C:\Users\chase\.gemini\config\plugins\firebase\skills\xcode_project_setup\SKILL.md`
 
-### Cloud Deployments & Serverless Architecture (59 skills)
+### Cloud Deployments & Serverless Architecture (104 skills)
 
 #### `access-protected-vercel-deployment`
 Access and test Vercel deployments protected by Vercel Authentication, SSO, or Deployment Protection. Use when curl, agent-browser, Playwright, or another automated request reaches a Vercel login or protection page; when a protected preview or production URL returns 401 or 403; when TRUSTED_SOURCES_ENVIRONMENT_MISMATCH appears; or when choosing between `vercel curl` and the `x-vercel-trusted-oidc-idp-token` header.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\access-protected-vercel-deployment\SKILL.md`
+
+#### `agents-sdk`
+Build, debug, or review Cloudflare Agents SDK applications using the agents package.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\agents-sdk\SKILL.md`
 
 #### `ai-gateway`
 Vercel AI Gateway guidance for setup, model discovery, authentication, routing, fallbacks, virtual models, evaluation models, BYOK, budgets, spend reporting, observability, compatible APIs, and coding-agent configuration. Use when adding AI Gateway to an app, migrating provider calls, choosing models or providers, centralizing model configuration, evaluating application state, debugging gateway requests, or running `vercel ai-gateway` commands.
@@ -519,10 +544,20 @@ Troubleshoot production issues using backend function logs and workflow run hist
 
 - Source: `C:\Users\chase\.gemini\config\plugins\base44\skills\base44-troubleshooter\SKILL.md`
 
+#### `basin`
+Build and troubleshoot Cloudflare Basin analytics workflows with Basin Pipelines, Basin Catalog, and Basin SQL. Use for streaming data into R2 Iceberg tables, managing catalogs, or querying those tables; also use for requests using the former Data Platform, Pipelines, R2 Data Catalog, or R2 SQL names.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\basin\SKILL.md`
+
 #### `bootstrap`
 Project bootstrapping orchestrator for repos that depend on Vercel-linked resources (databases, auth, and managed integrations). Use when setting up or repairing a repository so linking, environment provisioning, env pulls, and first-run db/dev commands happen in the correct safe order.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\bootstrap\SKILL.md`
+
+#### `botid`
+Protect specific routes and server actions from bots in code with Vercel BotID (`botid` npm package). Use when installing BotID, calling `initBotId()` or `checkBotId()`, mounting `<BotIdClient />`, gating signup, login, checkout or AI inference endpoints, allowing verified bots such as ChatGPT agents through, enabling Deep Analysis, or debugging a route that always reports a bot. For site-wide bot rules (Bot Protection, AI Bots, custom rules on bot name or category), use the `vercel-firewall` skill.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\botid\SKILL.md`
 
 #### `build-agents`
 Default guidance for building AI agents. Use for generic requests to build, create, scaffold, design, architect, or implement an AI agent, agent app, tool-calling agent, durable agent, multi-agent system, or scheduled agent.
@@ -534,10 +569,140 @@ Debug Vercel CDN caching — cache hit rate, stale content, revalidation behavio
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\cdn-caching\SKILL.md`
 
+#### `cf-cli`
+Cloudflare's official cf CLI (beta) for the public Cloudflare API and Workers projects. Use for finding and running Cloudflare commands from the terminal — sign-in and profiles, cf cli search, cf schema, cf deploy/dev/build, resource commands for DNS, zones, D1, KV, and R2 — and for choosing between cf and Wrangler in a project.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\cf-cli\SKILL.md`
+
 #### `chat-sdk`
 Vercel Chat SDK expert guidance. Use when building multi-platform chat bots — Slack, Telegram, Microsoft Teams, Discord, Google Chat, GitHub, Linear — with a single codebase. Covers the Chat class, adapters, threads, messages, cards, modals, streaming, state management, and webhook setup.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\chat-sdk\SKILL.md`
+
+#### `clerk`
+Clerk authentication router. Use when user asks about Clerk CLI operations, adding authentication, setting up Clerk, custom sign-in flows, Swift or native iOS auth, native Android auth, Next.js patterns, React patterns, Vue patterns, Nuxt patterns, Astro patterns, TanStack Start patterns, Expo patterns, React Router patterns, Chrome Extension patterns, organizations, billing, subscriptions, payments, pricing, plans, seat-based pricing, feature entitlements, syncing users, testing, impersonating a user, or testing webhooks locally. Automatically routes to the specific skill based on their task.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk\SKILL.md`
+
+#### `clerk-android`
+Implement Clerk authentication for native Android apps using Kotlin and Jetpack Compose with clerk-android source-guided patterns. Use for prebuilt AuthView/UserButton or custom API-driven auth flows. Do not use for Expo or React Native projects.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-android\SKILL.md`
+
+#### `clerk-astro-patterns`
+Astro patterns with Clerk — middleware, SSR pages, island components, API routes, static vs SSR rendering. Triggers on: astro clerk, clerk astro middleware, astro protected page, clerk island component, astro API route auth, clerk astro SSR.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-astro-patterns\SKILL.md`
+
+#### `clerk-backend-api`
+Clerk Backend REST API explorer and executor. Browse tags, inspect endpoint schemas, and execute authenticated requests. Use when listing users, managing organizations, or calling any Clerk API endpoint.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-backend-api\SKILL.md`
+
+#### `clerk-billing`
+Clerk Billing for subscription management - render Clerk's PricingTable and in-app checkout drawer, configure subscription plans, seat-limit plans for B2B, feature entitlements with has(), and billing webhooks. Use for SaaS monetization, plan gating, checkout flows, trials, invoicing, and subscription lifecycle management.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-billing\SKILL.md`
+
+#### `clerk-chrome-extension-patterns`
+Chrome Extension auth with @clerk/chrome-extension -- popup/sidepanel setup, syncHost for OAuth/SAML via web app, createClerkClient for service workers and headless extensions, stable CRX ID. Triggers on: Chrome extension auth, Plasmo clerk, popup sign-in, syncHost, background service worker token, createClerkClient, headless extension.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-chrome-extension-patterns\SKILL.md`
+
+#### `clerk-cli`
+Operate the Clerk CLI (`clerk` binary) for authentication, user/org/session management, impersonation, local webhook testing, deploy verification, instance config, security audits, env keys, feature toggles, and any Clerk Backend, Platform, or Frontend API call. Use when the user mentions Clerk management tasks, "list clerk users", "impersonate a user", "test webhooks locally", "enable orgs", "enable billing", "clerk security", "harden my Clerk instance", "clerk env pull", "clerk doctor", "clerk deploy", "clerk api", or any ad-hoc Clerk API request. Prefer the CLI over raw HTTP: it handles auth, key resolution, app/instance targeting, and formatting automatically.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-cli\SKILL.md`
+
+#### `clerk-custom-ui`
+Custom authentication flows and component appearance - hooks (useSignIn, useSignUp), themes, colors, fonts, CSS. Use for custom sign-in/sign-up flows, appearance styling, visual customization, branding.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-custom-ui\SKILL.md`
+
+#### `clerk-expo`
+Add Clerk authentication to Expo and React Native apps using @clerk/expo. Use for Expo setup, prebuilt native components (AuthView, UserButton), custom sign-in/sign-up flows (email, password, SMS/phone OTP, MFA), OAuth/SSO, native Google/Apple sign-in, Expo Router protected routes, biometrics, and push notifications. Do not use for native Swift/iOS, native Android/Kotlin, or web-only framework projects.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-expo\SKILL.md`
+
+#### `clerk-nextjs-patterns`
+Advanced Next.js patterns - middleware, Server Actions, caching with Clerk.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-nextjs-patterns\SKILL.md`
+
+#### `clerk-nuxt-patterns`
+Nuxt 3 auth patterns with @clerk/nuxt - middleware, composables, server API routes, SSR. Triggers on: Nuxt auth, useAuth composable, clerkMiddleware Nuxt, server API Clerk, Nuxt route protection.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-nuxt-patterns\SKILL.md`
+
+#### `clerk-orgs`
+Clerk Organizations for B2B and multi-tenant apps - org switching, roles and permissions, verified domains, and enterprise SSO. Use for team workspaces, RBAC, org-scoped routing, member management. Also load this when a project treats teams, workspaces, tenants, or companies as its customers - shared accounts, inviting teammates, per-seat pricing, per-company data isolation - even when the words "organization" or "B2B" are never used.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-orgs\SKILL.md`
+
+#### `clerk-react-patterns`
+React SPA auth patterns with @clerk/react for Vite/CRA - ClerkProvider setup, useAuth/useUser/useClerk hooks, React Router protected routes, custom sign-in flows. Triggers on: Vite Clerk setup, React Router auth, useAuth hook, protected route, custom sign-in form React.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-react-patterns\SKILL.md`
+
+#### `clerk-react-router-patterns`
+React Router v7/v8 patterns with Clerk — rootAuthLoader, getAuth in loaders, clerkMiddleware, protected routes, SSR user data, org switching. Triggers on: react-router auth, rootAuthLoader, getAuth loader, react-router protected route, loader authentication, SSR auth react-router, useNavigate may be used only in the context of a Router.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-react-router-patterns\SKILL.md`
+
+#### `clerk-setup`
+Set up Clerk authentication in any project with the Clerk CLI and official framework quickstarts. Use when adding Clerk, initializing Clerk, scaffolding a new app with Clerk, or migrating an existing authentication system to Clerk.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-setup\SKILL.md`
+
+#### `clerk-swift`
+Implement Clerk authentication UI in native Swift apps on iOS and macOS with ClerkKitUI prebuilt views or custom ClerkKit flows. Set up Clerk first with the iOS setup prompt, which uses the Clerk CLI. Do not use for Expo or React Native projects.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-swift\SKILL.md`
+
+#### `clerk-tanstack-patterns`
+TanStack React Start auth patterns with @clerk/tanstack-react-start - createServerFn, beforeLoad guards, loaders, Vite plugin, server middleware. Triggers on: TanStack auth, createServerFn clerk, beforeLoad protection, TanStack Start middleware.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-tanstack-patterns\SKILL.md`
+
+#### `clerk-testing`
+E2E testing for Clerk apps. Use with Playwright or Cypress for auth flow tests.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-testing\SKILL.md`
+
+#### `clerk-vue-patterns`
+Vue 3 patterns with Clerk — composables (useAuth, useUser, useClerk, useOrganization), Vue Router guards, Pinia auth store integration. Triggers on: vue clerk, useAuth vue, clerk composables, vue router clerk guard, pinia auth clerk. For Nuxt, use clerk-nuxt-patterns instead.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-vue-patterns\SKILL.md`
+
+#### `clerk-webhooks`
+Clerk webhooks for real-time events and data syncing. Verify with verifyWebhook from the framework-specific package. Handle user, session, organization, billing, and payment events. Build event-driven features like database sync, notifications, and integrations.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\clerk\skills\clerk-webhooks\SKILL.md`
+
+#### `cloudflare`
+Discover and choose Cloudflare products for apps, APIs, AI agents, storage, networking, and security. Use for architecture and product selection, including when the user describes a need without naming a Cloudflare product; then find the relevant skill or documentation. Also use when a Cloudflare-proxied site shows a Cloudflare error page, a `52x` status, a 1xxx error code, or a Cloudflare `403`, to decide whether to fix Cloudflare configuration or the origin.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\cloudflare\SKILL.md`
+
+#### `cloudflare-app-bootstrap`
+Get a Cloudflare Workers app to a working local request by connecting its bindings, secrets, and initial data, then verifying real application behavior. Use for app setup or onboarding after the project exists; use frameworks-on-cloudflare or cf-cli to create or configure the project, and wrangler or cf-cli for isolated commands.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\cloudflare-app-bootstrap\SKILL.md`
+
+#### `cloudflare-email-service`
+Implement or troubleshoot Cloudflare Email Sending and Email Routing integrations and their delivery configuration.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\cloudflare-email-service\SKILL.md`
+
+#### `cloudflare-one`
+Design, configure, troubleshoot, or review Cloudflare One Zero Trust and SASE deployments. Use cloudflare-one-migrations for migration planning from other vendors. Also use when an agent, script, crawler, or other non-browser client needs to reach a webpage or API protected by Cloudflare Access.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\cloudflare-one\SKILL.md`
+
+#### `cloudflare-one-migrations`
+Assess and plan migrations from existing VPN, SWG, or SASE platforms to Cloudflare One, including policy mapping, parity gaps, and rollout.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\cloudflare-one-migrations\SKILL.md`
 
 #### `create-a-backend`
 Backend architecture guidance. Use when planning, building, or migrating an API or backend; choosing between Functions, Services, containers, Daemons, Workflow, Queues, and Marketplace databases; or selecting a supported backend framework or runtime.
@@ -545,7 +710,7 @@ Backend architecture guidance. Use when planning, building, or migrating an API 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\create-a-backend\SKILL.md`
 
 #### `custom-metrics`
-Emit and query Vercel Custom Metrics. Use when instrumenting application or business measurements in Vercel Functions, using metric() from @vercel/functions, choosing metric names and attributes, or querying emitted values with vc metrics.
+Emit and query Vercel Custom Metrics. Use proactively whenever you write or change server code that runs as a Vercel Function (route handlers, API routes, server actions, webhooks, scheduled jobs, queue consumers, AI or external API calls) to record outcomes and latency with metric() from @vercel/functions, even when the user did not ask for metrics. Also use when choosing metric names and attributes or querying emitted values with vc metrics.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\custom-metrics\SKILL.md`
 
@@ -569,6 +734,11 @@ Search, register, connect, transfer, and renew domain names on Vercel using the 
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\domains\SKILL.md`
 
+#### `durable-objects`
+Build, debug, or review Cloudflare Durable Objects code for persistent state and coordination.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\durable-objects\SKILL.md`
+
 #### `env-vars`
 Vercel environment variable expert guidance. Use when working with .env files, vercel env commands, Secret or Config variable types, OIDC tokens, or managing environment-specific configuration.
 
@@ -580,14 +750,29 @@ eve framework guidance for durable AI agents and agent-powered applications. Use
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\eve\SKILL.md`
 
 #### `flags-sdk`
-Implement feature flags in Next.js or SvelteKit code with the Flags SDK (`flags` npm package). Use when installing or configuring the SDK, declaring flags with `flag()`, wiring a provider adapter (`@flags-sdk/vercel`, Statsig, LaunchDarkly, PostHog, GrowthBook, Global Config, OpenFeature, and others), using `identify`, `dedupe`, or `evaluate`, keeping pages static with precompute, setting up Flags Explorer, or encrypting flag values. For planning a flag, Vercel Flags rollouts and experiments, the `vercel flags` CLI, or other frameworks, use the `vercel-flags` skill.
+Implement feature flags in Next.js or SvelteKit code with the Flags SDK (`flags` npm package). Use when installing or configuring the SDK, declaring flags with `flag()`, reading a connected same-team project's flags through Project Connections (`createVercelAdapter({ projectId })`), wiring a provider adapter (`@flags-sdk/vercel`, Statsig, LaunchDarkly, PostHog, GrowthBook, Global Config, OpenFeature, and others), using `identify`, `dedupe`, or `evaluate`, keeping pages static with precompute, setting up Flags Explorer, or encrypting flag values. For planning a flag, Vercel Flags rollouts and experiments, the `vercel flags` CLI, or other frameworks, use the `vercel-flags` skill.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\flags-sdk\SKILL.md`
+
+#### `frameworks-on-cloudflare`
+Build, migrate, and deploy web-framework applications on Cloudflare Workers. Use when a framework project such as Astro, SvelteKit, React Router, TanStack Start, Nuxt, Hono, or a React or Vue SPA targets Cloudflare, or when a framework repository contains Workers deployment configuration.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\frameworks-on-cloudflare\SKILL.md`
+
+#### `gateway-workers`
+Build, debug, or review Cloudflare Workers invoked by the Forward action in Gateway HTTP policies, including the GatewayMiddleware entrypoint, Gateway types, context, and continuation.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\gateway-workers\SKILL.md`
 
 #### `is-agentic`
 Score how ready a website, domain, or public MCP endpoint is for AI agents using Is Agentic, and read or act on the resulting report. Use when asked to check a site's agent readiness, get its Is Agentic score, fetch a scored report as JSON, or fix the issues that lower a site's score.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\is-agentic\SKILL.md`
+
+#### `k2`
+Build and troubleshoot Cloudflare K2 or K2 Streams durable logs. Use for stream setup, producing from Workers or HTTP, configuring retention and inputs, and consuming through subscriptions.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\k2\SKILL.md`
 
 #### `knowledge-update`
 Corrects outdated LLM knowledge about the Vercel platform and introduces new products. Injected at session start.
@@ -684,6 +869,16 @@ Build, deploy, and secure Model Context Protocol (MCP) servers on Netlify. Use w
 
 - Source: `C:\Users\chase\.gemini\config\plugins\netlify\agent-plugin\skills\netlify-mcp-servers\SKILL.md`
 
+#### `netlify-server`
+Build and deploy a long-lived Node.js backend on Netlify Server (Early Access) from netlify/server/index.ts. Use this skill whenever someone wants to run an Express, Fastify, Hono or Koa app on Netlify as it is, add a backend or REST/GraphQL API that keeps database pools and caches warm, build real-time features such as chat, live dashboards or multiplayer with WebSockets or Server-Sent Events, or stream AI responses and run agent loops. It also covers background work after responding with waitUntil, startup and graceful shutdown hooks, load-aware health checks, edge caching of server responses, region/size/scale settings, local testing with netlify dev, reading server logs with netlify logs or log drains, and debugging a server that gets no requests, fails to start, drops database connections after a minute, or returns 429/500/501/502.
+
+- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-partners\plugins\netlify\1.9.0\agent-plugin\skills\netlify-server\SKILL.md`
+
+#### `nextjs-on-cloudflare`
+Build, migrate, and deploy Next.js apps on Cloudflare Workers with vinext. Use when starting a Next.js project on Cloudflare, moving an existing app to Workers, choosing between vinext and OpenNext, or setting up vinext for Workers. For setup, migration, or deployment, install vinext's upstream skills with `npx skills add cloudflare/vinext` if missing, then read and follow the applicable skill and docs.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\nextjs-on-cloudflare\SKILL.md`
+
 #### `offload-to-sandbox`
 Offload heavy builds, full test suites and parallel experiments from the local machine to Vercel Sandboxes with the `vercel sandbox` CLI. Use when a local machine is overloaded or shared by several agents, when a test suite should be sharded, or when many tasks should run side by side without consuming local CPU, memory or disk.
 
@@ -700,7 +895,7 @@ Vercel's React and Next.js performance rules (70 rules in 8 categories ordered b
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\react-best-practices\SKILL.md`
 
 #### `routing-middleware`
-Vercel Routing Middleware guidance — request interception before cache, rewrites, redirects, personalization. Works with any framework. Supports Edge, Node.js, and Bun runtimes. Use when intercepting requests at the platform level.
+Vercel Routing Middleware guidance — request interception before cache, rewrites, redirects, personalization. Works with any framework. Supports Edge, Node.js, Bun, and Python runtimes. Use when intercepting requests at the platform level.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\routing-middleware\SKILL.md`
 
@@ -712,15 +907,40 @@ Vercel Runtime Cache API guidance — ephemeral per-region key-value cache with 
 #### `sandbox`
 Creates isolated Linux MicroVMs using Vercel Sandbox SDK. Use when building code execution environments, running untrusted code, spinning up dev servers, testing in isolation, or when the user mentions "sandbox", "microvm", "isolated execution", or "@vercel/sandbox".
 
-- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-partners\plugins\vercel-plugin\0.55.1-agy.4b94cb5a\skills\vercel-sandbox\upstream\SKILL.md`
+- Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\vercel-sandbox\upstream\SKILL.md`
+
+#### `sandbox-migrate-to-next`
+Migrate Cloudflare Sandbox apps from stable @cloudflare/sandbox to @cloudflare/sandbox@next (SDK 1.0 preview). Use sandbox-next for apps already on the preview.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\sandbox-migrate-to-next\SKILL.md`
+
+#### `sandbox-next`
+Build or maintain Cloudflare Sandbox apps on @cloudflare/sandbox@next (SDK 1.0 preview). Use sandbox-migrate-to-next when porting a stable app.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\sandbox-next\SKILL.md`
+
+#### `sandbox-stable`
+Build or maintain Cloudflare Sandbox apps on the stable @cloudflare/sandbox package. Use sandbox-next for preview apps and sandbox-migrate-to-next for stable-to-preview migrations.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\sandbox-stable\SKILL.md`
+
+#### `turnstile-spin`
+Set up, repair, or migrate to Cloudflare Turnstile bot verification in an existing frontend and backend, including server-side Siteverify.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\turnstile-spin\SKILL.md`
+
+#### `use-railway`
+Operate Railway infrastructure: sign up for or sign in to a Railway account, create projects, provision services, databases, and buckets, deploy code, configure infrastructure as code, environments and variables, manage domains, trace requests with OpenTelemetry, troubleshoot failures, check status and metrics, manage feature flags, database recovery and HA, cloud agents, usage limits, and Railway agent tooling. Use this skill whenever the user mentions Railway, feature flags, flag rollout, targeting rules, signing up, creating an account, registering, logging in, deployments, services, environments, buckets, object storage, tracing, traces, spans, OpenTelemetry, OTLP, build failures, agent setup, MCP, or infrastructure operations, even if they don't say "Railway" explicitly. Also invoke it when the user asks to be signed up, registered, or onboarded: do not refuse — drive them through the unauthed `railway up` flow (deploys + signs up on the fly) or `railway login` (which creates accounts on the fly).
+
+- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-partners\plugins\railway\1.7.0\skills\use-railway\SKILL.md`
 
 #### `vercel-agent`
-Vercel Agent guidance — dashboard and Slack chat, code review, production investigation, approved actions, and product installation. Use when configuring or working with Vercel's AI assistant.
+Vercel Agent guidance — dashboard and Slack chat, code review, Security Review, production investigation, approved actions, and product installation. Use when configuring or working with Vercel's AI assistant.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\vercel-agent\SKILL.md`
 
 #### `vercel-cli`
-Vercel CLI expert guidance. Use when deploying, managing environment variables, linking projects, viewing logs, querying metrics, debugging a deployed app on Vercel (errors, 5xx responses, timeouts, slow routes, or a single failing request), managing domains, managing feature flags with vercel flags, or interacting with the Vercel platform from the command line. Use the vercel-tracing skill instead for `vercel traces` span search, trace inspection, and sampling rules, or for OpenTelemetry setup.
+Vercel CLI expert guidance. Use when deploying, managing environment variables, linking projects, viewing logs, querying metrics, debugging a deployed app on Vercel (errors, 5xx responses, timeouts, slow routes, or a single failing request), managing domains, managing feature flags with vercel flags, reviewing security checks or Security Review vulnerabilities with vercel security, or interacting with the Vercel platform from the command line. Use the vercel-tracing skill instead for `vercel traces` span search, trace inspection, and sampling rules, or for OpenTelemetry setup.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\vercel-cli\SKILL.md`
 
@@ -735,12 +955,12 @@ Vercel Firewall expert guidance — automatic DDoS mitigation, the Vercel WAF (c
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\vercel-firewall\SKILL.md`
 
 #### `vercel-flags`
-Feature flags, A/B tests, and gradual rollouts with Vercel Flags, in any app or framework. Use whenever the user is planning, adding, or changing a feature flag, toggle, kill switch, experiment, percentage rollout, or targeting rule, or wants to gate or hide a feature for some users, even before a library or provider is chosen. Covers choosing an integration (Flags SDK, `@vercel/flags-core`, OpenFeature), the Vercel dashboard, the `vercel flags` CLI (create, inspect, set, split, rollout, rules, segments, evaluations, archive), OIDC vs SDK keys, `FLAGS_SECRET`, and Flags Explorer overrides. For `flag()` declarations, adapters, precompute, and the Flags Explorer endpoint in Next.js or SvelteKit code, load the `flags-sdk` skill.
+Feature flags, A/B tests, and gradual rollouts with Vercel Flags, in any app or framework. Use whenever the user is planning, adding, changing, or cleaning up a feature flag, toggle, kill switch, experiment, percentage rollout, or targeting rule, or wants to gate or hide a feature for some users, even before a library or provider is chosen. Covers choosing an integration (Flags SDK, `@vercel/flags-core`, OpenFeature), the Vercel dashboard, the `vercel flags` CLI (create, inspect, set, split, rollout, rules, segments, evaluations, archive, connections), Project Connections, OIDC vs SDK keys, `FLAGS_SECRET`, and Flags Explorer overrides. For `flag()` declarations, adapters, precompute, and the Flags Explorer endpoint in Next.js or SvelteKit code, load the `flags-sdk` skill.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\vercel-flags\SKILL.md`
 
 #### `vercel-functions`
-Vercel Functions expert guidance — Node.js/Bun/Python runtimes, Fluid Compute, long-duration (30 min) functions, large functions (5 GB bundles), Docker/OCI container images, plan limits, streaming, WebSockets, and Cron Jobs. Use when configuring, debugging, or optimizing server-side code running on Vercel.
+Vercel Functions expert guidance — Node.js/Bun/Python runtimes, Fluid Compute, long-duration (30 min) functions, large functions (5 GB bundles), Docker/OCI container images, plan limits, streaming, WebSockets, and legacy Cron Jobs (new scheduled work belongs to vercel-schedules). Use when configuring, debugging, or optimizing server-side code running on Vercel.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\vercel-functions\SKILL.md`
 
@@ -757,7 +977,7 @@ Vercel Sandbox guidance — ephemeral Firecracker microVMs for running untrusted
 #### `vercel-schedules`
 Vercel Schedules guidance — run a private function, route, or Vercel Queues topic on a cron cadence or once at a set time. Covers static schedules in vercel.json, dynamic per-user schedules with @vercel/schedules, handleSchedule, the vercel schedules CLI, environments, jitter, and migrating from Cron Jobs. Use when adding scheduled or recurring work, one-time reminders, or replacing `crons`.
 
-- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-partners\plugins\vercel-plugin\0.55.1-agy.4b94cb5a\skills\vercel-schedules\SKILL.md`
+- Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\vercel-schedules\SKILL.md`
 
 #### `vercel-services`
 Configure and troubleshoot Vercel Services for multiple frontends and backends in one project. Use when composing a polyglot or multi-service application on one Vercel deployment; defining the `services` key, service-targeted rewrites, or service bindings in `vercel.json`; or running all services with `vercel dev`.
@@ -773,6 +993,31 @@ Vercel storage expert guidance — Blob, Global Config (formerly Edge Config), a
 Set up OpenTelemetry instrumentation for Vercel Tracing and query the resulting spans. Use when adding or fixing `@vercel/otel`, wiring a framework's server startup hook (Next.js, SvelteKit, and others), adding custom spans, turning on spans from libraries such as the AI SDK, Flags SDK, or database clients, propagating trace context between services, configuring always-on tracing sampling, searching or inspecting spans with `vercel traces`, or debugging failed or slow server requests.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\vercel-plugin\skills\vercel-tracing\SKILL.md`
+
+#### `web-perf`
+Audit, diagnose, or optimize website loading and interaction performance, Core Web Vitals, and Lighthouse performance scores.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\web-perf\SKILL.md`
+
+#### `workers-best-practices`
+Cloudflare Workers best practices for production applications. Use when writing, reviewing, or configuring Workers.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\workers-best-practices\SKILL.md`
+
+#### `workers-development`
+Run, inspect, and debug Cloudflare Workers during local development with cf dev, wrangler dev, or the Cloudflare Vite plugin, using Local Explorer to read and seed binding data and query local traces and logs. Also routes production debugging to Workers observability. Use for debugging requests whether or not the project uses Wrangler.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\workers-development\SKILL.md`
+
+#### `workers-profiling`
+Profile or debug CPU usage and memory allocation in deployed Cloudflare Workers and Durable Objects. Then use this information to optimize your code.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\workers-profiling\SKILL.md`
+
+#### `wrangler`
+Run or troubleshoot Wrangler CLI commands in projects that have a wrangler.jsonc, wrangler.json, or wrangler.toml file, including local development, Previews, deployment, and resource management. For new projects and projects without a Wrangler configuration file, use the cf CLI instead.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\cloudflare\skills\wrangler\SKILL.md`
 
 ### Graph Databases & Knowledge Graphs (47 skills)
 
@@ -1011,7 +1256,7 @@ Looker Developer Onboarding: Step 5. Creates a new Looker project and configures
 
 - Source: `C:\Users\chase\.gemini\config\plugins\looker\skills\setting-up-looker-project\SKILL.md`
 
-### Design, UI/UX & Creative Engineering (46 skills)
+### Design, UI/UX & Creative Engineering (45 skills)
 
 #### `best-practices`
 Tells your agent what Mobbin can and can't do and how the Mobbin skills work together, so it picks the right one or says when Mobbin isn't the right tool. Read it first, before any other Mobbin skill or tools, when the user asks about Mobbin or its connection, or starts a design task Mobbin could help with, including one that's too big or outside what Mobbin does.
@@ -1072,11 +1317,6 @@ Resize a Canva design into multiple social media formats (Facebook post, Faceboo
 Translate all text in a Canva design to another language, creating a translated copy. Faster than manually copying and editing each text box in Canva's editor. Use when users say "translate my design to [language]", "make a Spanish/French/etc version", or "localize my Canva design".
 
 - Source: `C:\Users\chase\.gemini\config\plugins\canva\inactive-skills\design-translation\SKILL.md`
-
-#### `figma-3d-transforms`
-Add or edit 3D transforms — depth, perspective, z-axis rotation, tilt, isometric, and parallax looks that flat 2D rotation cannot express. Use whenever a request reaches into the third dimension — "make it 3D", "add depth/perspective", "tilt/rotate it back", "z-plane", "isometric", "flip it like a card", "parallax", "vanishing point", "receding into the distance", "make it pop out".
-
-- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-partners\plugins\figma\2.2.208-agy.82ddeba0\skills\figma-3d-transforms\SKILL.md`
 
 #### `figma-code-connect`
 Creates and maintains Figma Code Connect template files that map Figma components to code snippets. Use when the user mentions Code Connect, Figma component mapping, design-to-code translation, or asks to create/update .figma.ts or .figma.js files.
@@ -1183,6 +1423,11 @@ Makes every report a Mobbin skill writes read like a person wrote it, in plain i
 
 - Source: `C:\Users\chase\.gemini\config\plugins\mobbin\skills\plain-writing\SKILL.md`
 
+#### `polyfork`
+Find, remix and place free low-poly 3D models (props, buildings, vehicles, characters, animals, terrain, whole themed kits) from polyfork.dev. Use when the user needs 3D assets or a 3D scene, level, diorama or game world for three.js, React Three Fiber, Unity, Godot, Unreal, Blender, WebXR or the web, or asks for "a model of X", "low poly", "game assets" or "a scene with...".
+
+- Source: `C:\Users\chase\.gemini\config\skills\polyfork\SKILL.md`
+
 #### `redesign-screen`
 Redesign any screen from patterns real apps ship. Share a screenshot, your code or a design file, and the skill finds how apps on Mobbin handle the same screen. Explore a few directions or fix specific problems, and see the evidence behind each change. You get a before and after image and a short report. The redesign stays in your own design system, and anything that already works is kept. Use whenever the user points at a screen, section, or component they have, or at a reference, a Mobbin result, one or more Mobbin collections or the screens they saved, and asks to redesign, improve, restyle, or rebuild it, or to see a few directions for it.
 
@@ -1238,11 +1483,6 @@ What the Wix plugin holds and how to work with Wix through it: the flow the Wix 
 
 - Source: `C:\Users\chase\.gemini\config\plugins\wix\skills\wix-readme\SKILL.md`
 
-#### `wix-studio-two`
-Build or edit a Wix website by chat, with no local setup - start a new site, or change an existing Wix Studio Two site's pages, sections, text, images, colors or layout, or bring another site's or project's pages into one. The site's code is exported to a remote machine, edited and previewed there, and saved to Wix when the user asks. Not for sites built in the Wix Editor or Studio 1, not for headless sites, which belong to wix-headless-kit, and not for products, bookings, blog posts or other business data, which belong to wix-manage, and not for publishing HTML files or a static build the user already has, which belongs to wix-headless-kit. Never publishes.
-
-- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-partners\plugins\wix\1.41.4\skills\wix-studio-two\SKILL.md`
-
 ### Browser Automation & Web DevTools (9 skills)
 
 #### `a11y-debugging`
@@ -1289,6 +1529,133 @@ Automates Chromium, Firefox, and WebKit browsers using Playwright MCP for end-to
 Uses Chrome DevTools MCP and documentation to troubleshoot connection and target issues. Trigger this skill when list_pages, new_page, or navigate_page fail, or when the server initialization fails.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\chrome-devtools-plugin\skills\troubleshooting\SKILL.md`
+
+### Robotics, MuJoCo & Embodied Simulation (25 skills)
+
+#### `blender-creation`
+Creates physically calibrated, articulated, PBR-textured 3D MuJoCo assets (MJCF model.xml, .mjz, mjSpec) from scratch using headless Blender (bpy, bmesh, blender_mesh_utils, asset_build_utils), convex collision synthesis, 10-scenario auditing, and Studio preview. Use only when asked to create, model, or build a 3D MuJoCo object from a URL, image, or text description, or when blender-creation is named. Don't use for non-MuJoCo Blender/Cycles/CAD modeling.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\blender-creation\SKILL.md`
+
+#### `fr3-duo-control`
+Franka Duo robot only (Franka Research 3 / FR3 Duo dual-arm cell with Robotiq 2F-85 grippers, ZED Mini and RealSense D405 cameras). Brings up, homes, and controls it via pylibfranka on hardware or in MuJoCo sim. Use only when the user names Franka Duo, FR3 Duo, or fr3_duo.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\fr3-duo-control\SKILL.md`
+
+#### `i2rt-yam-bringup`
+Checks and installs the I2RT YAM SDK (i2rt), configures Linux socketcan or macOS gs_usb CAN bringup for I2RT YAM robot arms, and provides a wave smoke test (wave.py). Use only before bringing up or programming a physical or simulated I2RT YAM robot arm, or when asked to run a wave gesture on an I2RT YAM robot. Don't use for non-YAM CAN bus debugging (e.g. automotive OBD-II or industrial PLC CAN networks) or non-robotics tasks.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\i2rt-yam-bringup\SKILL.md`
+
+#### `i2rt-yam-ik`
+Solves 6-DOF inverse kinematics for the I2RT YAM and YAM Pro robot arm using Mink + DAQP on combined YAM + gripper MJCF. Use only when computing joint targets or local Cartesian moves on an I2RT YAM or YAM Pro robot arm. Don't use for non-YAM inverse kinematics, general quadratic programming (QP) solvers, or non-robotics tasks.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\i2rt-yam-ik\SKILL.md`
+
+#### `iteration`
+Staged execution and video-based debugging workflow for physical or MuJoCo simulated robots: splitting a robot manipulation task into stages, testing each stage with one script, reviewing rollout videos, and verifying physical completion after release and settle. Use only when writing code that makes a physical or simulated robot act and move. Don't use for non-robotics software engineering, UI/WebGL testing, or general scripting.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\iteration\SKILL.md`
+
+#### `motion-planning`
+Plans collision-free 6-DoF grasped-object paths, coupled robot arm+object joint trajectories, and Cartesian contact strokes for manipulation arms (SO-101, I2RT YAM, ALOHA, or MuJoCo robots) with stereo triangulation, clearance diagnostics, and camera overlay checks. Use when planning robot arm trajectories near tabletop obstacles, containers, doors, or apertures. Don't use for eye-in-hand servoing (use visual-servoing) or non-robot pathfinding.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\motion-planning\SKILL.md`
+
+#### `mujoco-accelerated`
+MuJoCo GPU and TPU batch simulation with MJX (mujoco.mjx in JAX) and MJWarp (mujoco_warp in CUDA): parallel rollouts (jax.vmap), trajectory scan (jax.lax.scan), differentiability, device memory (put_model, put_data), static contact sizing (max_contact_points, max_geom_pairs, nconmax, njmax), float32 precision, XLA compilation caching. Use only for MuJoCo MJX or MJWarp GPU/TPU batch rollouts, RL environments, and differentiable MuJoCo physics. Don't use for custom non-MuJoCo JAX or CUDA Warp simulations (e.g. custom 2D games, molecular dynamics, orbital mechanics, DEM granular solvers, or shallow-water PDEs that do not import `mujoco.mjx` or `mujoco_warp`), CPU simulation (mujoco-python), cross-engine parity debugging (mujoco-parity), rendering (mujoco-rendering), or GUI (mujoco-gui).
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\accelerated\SKILL.md`
+
+#### `mujoco-audit`
+Audits, validates, and remediates MuJoCo 3D assets (MJCF model.xml, .mjz archives, or mjSpec models) using the 7-point static/PBR/mesh hygiene checker (--static_only), the 10-scenario physical test suite (audit_scenarios.py with --scenarios and --thresholds_json), and Before-vs-After comparison sheets. Use only when the user explicitly names MuJoCo, MJCF, .mjz, or mjSpec to audit, validate, or fix a MuJoCo asset. Don't use for non-MuJoCo 3D mesh/CAD/USD linters.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\mujoco-audit\SKILL.md`
+
+#### `mujoco-gui`
+Dear ImGui and ImPlot user interface design for MuJoCo Studio and MuJoCo viewer plugins (C++ ux/ components and Python ViewerPlugin build_gui panels): immediate-mode widget layout, multi-row widget/column alignment (Tables API), tooltip length and aspect ratio, build_gui vs render separation, ID stack rules (## label disambiguation vs ### seed reset override), list virtualization (ImGuiListClipper), theming, and input capture (WantCaptureKeyboard). Use only when building, aligning, styling, or debugging MuJoCo Studio UI, mobile/HUD or responsive Studio layouts, or Dear ImGui widgets and ImPlot charts inside MuJoCo Studio, MuJoCo viewer plugins, or MuJoCo/robotics simulation and control tools. Don't use for general-purpose C++ or Python Dear ImGui / ImPlot / imgui_bundle desktop applications unrelated to MuJoCo or robotics, or for Studio plugin lifecycle/messaging (use mujoco-studio) or core physics stepping (use mujoco-python).
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\gui\SKILL.md`
+
+#### `mujoco-parity`
+Cross-engine physics parity comparison between MuJoCo (CPU, float64) and accelerated backends (MJWarp CUDA, MJX JAX, float32): stage-by-stage mj_forward vs mjw.forward isolation, normalized tolerances, stiff affine actuator and ill-conditioned mass matrix (qM) float32 bounds, actuation-conditioned forward passes, order-insensitive contact matching per geom pair, includemargin contact filtering, batched single-step evaluation, and float32-perturbed CPU rollouts. Use only when comparing MuJoCo CPU physics against MuJoCo MJWarp or MJX backends, or debugging MuJoCo sim-to-sim trajectory divergence, missing contacts, or force/qacc discrepancies. Don't use for float64-vs-float32 parity testing of non-MuJoCo C/C++/CUDA/JAX physics or PDE solvers, general GPU batch setup (mujoco-accelerated), or CPU-only simulation (mujoco-python).
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\parity\SKILL.md`
+
+#### `mujoco-playground`
+Runs and zero-shot transfers robot controllers across MuJoCo Playground sim and physical SO-101 or I2RT YAM DeviceLayers (plus sim G1 and Trossen WXAI) via PlaygroundSim2Real and setup_scene(spec), composing Studio, perception, IK, motion-planning, and visual-servoing skills. Use by default for SO-101, YAM, G1, or WXAI sim or sim-to-real controllers. Don't use for custom raw drivers, GPU RL training (use mujoco-playground-rl), or non-robotics tasks.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\mujoco-playground\SKILL.md`
+
+#### `mujoco-playground-rl`
+Authors, inspects in MuJoCo Studio, audits, trains, and deploys GPU-accelerated RL tasks on MuJoCo Playground and MuJoCo Menagerie 3D robots using PyTorch/Warp reaf-sim flat_scene (DeviceLayer / TaskLayer) and RSL-RL. Use by default when creating a MuJoCo Playground RL environment, training or evaluating locomotion/manipulation RL policies, or deploying RSL-RL checkpoints. Don't use for non-RL controllers (use mujoco-playground) or non-MuJoCo RL.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\mujoco-playground-rl\SKILL.md`
+
+#### `mujoco-python`
+MuJoCo Python (`import mujoco`) simulation lifecycle (MjSpec, MjModel, MjData), stepping (mj_step, mj_step1, mj_step2, mj_forward), named access (data.body, model.geom), bind(), multi-threaded CPU batch simulation (mujoco.batch.Batch, mujoco.rollout), optimization and system ID (mujoco.minimize, mujoco.sysid, mjd_transitionFD), contact/touch sensors, sensordata, keyframe resets, integrators, mju_ spatial math (quaternions, poses), and energy diagnostics. Use only for MuJoCo Python physics simulation, MjModel/MjData state access, MuJoCo CPU batching, stepping loops, and MuJoCo sensors/sysid. Don't use for custom non-MuJoCo Python/NumPy/C++ ODE or rigid-body simulators, custom finite-difference sysid, or general spatial math without `mujoco`, nor for spec editing (mujoco-spec-editing), deformable flex/cloth/cable modeling (mujoco-deformables), rendering (mujoco-rendering), GPU/TPU (mujoco-accelerated), parity (mujoco-parity), or GUI/viewers (mujoco-gui, mujoco-studio).
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\python\SKILL.md`
+
+#### `mujoco-rendering`
+MuJoCo offscreen image rendering using mujoco.Renderer in Python and the MuJoCo C/C++ rendering pipeline (mjrContext, mjvScene, mjr_render, mjr_readPixels): RGB, metric depth maps, segmentation masks (mjtObj), MJCF offwidth/offheight framebuffer sizing, MUJOCO_GL (osmesa, egl), MuJoCo cameras (fixed, tracking, free, MjvCamera), and mjvOption flags/geomgroup. Use only for headless camera rendering, dataset recording, and visual observations in MuJoCo simulations. Don't use for generic OpenGL/EGL/OSMesa offscreen rendering, glReadPixels depth/segmentation post-processing, or synthetic dataset pipelines that do not use the `mujoco` library, or for interactive viewers/Studio (mujoco-studio) or ImGui controls (mujoco-gui).
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\rendering\SKILL.md`
+
+#### `mujoco-showcase-shot`
+Renders a studio-lit 360-degree turntable showcase video (.mp4) and keyframe sheet for a MuJoCo asset (MJCF model.xml, .mjz, or mjSpec/MjModel) using MuJoCo's Filament PBR renderer (mjrf), sweeping articulated joints, pulsing collision geoms, and drawing a HUD overlay. Use only when rendering a showcase turntable video for a MuJoCo MJCF, .mjz, mjSpec, or MjModel asset. Don't use for non-MuJoCo turntable, Filament, OpenGL, or CAD renders.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\mujoco-showcase-shot\SKILL.md`
+
+#### `mujoco-spec-editing`
+MuJoCo procedural model authoring, editing, and tuning with MjSpec (`mujoco.MjSpec` in Python and `mjSpec` in C++): bodies, geoms, joints, sites, cameras, sub-model attachment with prefix namespaces, actuators (position servos, motors, velocity drives, trntype), baseline option/default overrides (implicitfast, elliptic cones, solref, solimp, armature, damping), collision bitmasks (contype, conaffinity), friction (condim), default classes (MjsDefault), procedural meshes, deletion, spec recompilation (spec.recompile). Use only for authoring or tuning MuJoCo MJCF/MjSpec models, adding bodies/geoms/actuators, and attaching sub-models. Don't use for designing custom non-MuJoCo XML/scene-graph APIs when MuJoCo `MjSpec` is not used, deformable flex/cloth/cable modeling (mujoco-deformables), stepping simulations (mujoco-python), or rendering (mujoco-rendering).
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\spec_editing\SKILL.md`
+
+#### `mujoco-studio`
+Builds and launches interactive MuJoCo Studio viewers and plugins in Python and C++, covering decoupled sim/viewer threads, Snapshot and Event messaging, lifecycle events, WebViewer browser streaming, and Python hot reload. Use only when launching MuJoCo Studio viewers (mujoco_studio.launch_web, launch_native, launch_passive, LaunchStudio) for a MuJoCo MjModel/MjData/MjSpec simulation, authoring MuJoCo Studio Python ViewerPlugin/SimPlugin or C++ RegisterPlugin (mjPLUGIN_LIB_INIT) extensions, synchronizing MuJoCo sim/viewer state (ViewerHandle.sync, @messages.handler), hot-reloading plugins/models (HotReloadEvent), configuring WebViewer WASM streaming, modifying Studio's built-in UI, WebViewer frontend/server, or camera/touch input controls, or debugging Studio logs. Don't use for non-MuJoCo simulations or generic web viewers/sidecars not using MuJoCo, Dear ImGui/ImPlot layout (mujoco-gui), core stepping (mujoco-python), or headless rendering (mujoco-rendering).
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\studio\SKILL.md`
+
+#### `mujoco-studio-sidecar`
+Runs the MuJoCo Studio Web sidecar (studiod daemon) to stream a live, hot-reloading MuJoCo simulation into the Antigravity aux pane. Use only when MuJoCo or mujoco_studio is used to launch studiod, scaffold a Studio workspace (messages.py, sim_plugin.py, viewer_plugin.py, scene.xml), check /_studio/status, or read captured SimHistory frames; load with mujoco-studio. Don't use for non-MuJoCo simulations or web viewers.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\mujoco-studio-sidecar\SKILL.md`
+
+#### `rgb-object-localization`
+Localizes metric 3D object coordinates and principal orientation axes of manipulation targets for robot arms (SO-101, I2RT YAM, ALOHA, or MuJoCo tabletop scenes) from RGB-only workspace cameras using gemini-4-hydrogen (or VLM + segmentation fallback), plane projection, or two-view stereo. Use when localizing graspable objects for a robot arm without a depth sensor. Don't use for non-robotics computer vision, CCTV, or AR apps.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\rgb-object-localization\SKILL.md`
+
+#### `share-example`
+Packages a real-robot or simulation demo (compact transcript.jsonl, final files, videos under 10 MB) into a scrubbed bundle with a pre-filled Show and tell GitHub Discussions URL. Use only when sharing a robotics example to GitHub Discussions. Don't use for creating repos, PRs, or issues.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\share-example\SKILL.md`
+
+#### `sim2real-gauntlet`
+Verifies a robot manipulation controller in MuJoCo simulation (robosim_gauntlet) across perturbation tiers T0-T4 with .mcap logging, physical safety grading, and paired Common Random Numbers before real-robot deployment. Use only when verifying, hill-climbing, or debugging a MuJoCo robot manipulation controller, auditing a task scene/goal predicate, or forking a failed episode. Don't use for RL training (use mujoco-playground-rl) or non-robotics tasks.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\sim2real-gauntlet\SKILL.md`
+
+#### `sim2real-iteration`
+Guides disciplined MuJoCo robotics sim-to-real controller iteration using robosim_gauntlet verification, preflight scene/goal audits, deterministic episode forking, paired Common Random Numbers, and adversarial robotics critic reviews. Use only when iterating on MuJoCo robot manipulation controllers, triaging contact/safety failures, or comparing controller candidates. Don't use for RL training (use mujoco-playground-rl) or non-robotics tuning.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\sim2real-iteration\SKILL.md`
+
+#### `so101-bringup`
+Guides physical SO-101 6-DOF robot arm bring-up from plug-in to Stage 3 Hello World motion and video: uv install, port/camera discovery (Stages 0-1), Feetech STS3215 joint calibration and abort-retreat checks (Stage 2), Hello World (Stage 3), and workspace USB bandwidth/frame checks (Stage 4). Use only when setting up, calibrating, checking, or operating an SO-101 robot arm and cameras. Don't use for non-SO-101 webcam, CNC, or 3D printer tasks.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\so101-bringup\SKILL.md`
+
+#### `so101-calibration`
+Stage 5 3D hand-eye projection and tabletop surface height (z_table) calibration for the physical SO-101 6-DOF robot arm with a fixed/overhead workspace camera: fixed-camera check, two-cue gripper marker verification, guarded 3 mm vertical touch-down probing, and 3x4 projective hand-eye least squares. Use only after SO-101 Stage 3 bring-up when calibrating a physical SO-101 arm to a fixed camera. Don't use for non-robot camera or bed-leveling calibration.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\so101-calibration\SKILL.md`
+
+#### `visual-servoing`
+Aligns an eye-in-hand physical or simulated robot arm end-effector (SO-101, I2RT YAM, or MuJoCo robot grippers) and grasp orientation to sub-millimeter precision using robot IBVS (analytical hover-plane ray alignment or CPU OpenCV feature-matching IBVS). Use only for closed-loop eye-in-hand robot gripper visual servoing before grasping or manipulation. Don't use for non-robot microscope, telescope/PTZ, AR glasses, or homography tasks.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\robotics\skills\visual-servoing\SKILL.md`
 
 ### Structural Biology & Molecular Modeling (11 skills)
 
@@ -1530,7 +1897,7 @@ Search PubMed for scientific literature, including published clinical trials. Fe
 
 - Source: `C:\Users\chase\.gemini\config\plugins\science\skills\pubmed_database\SKILL.md`
 
-### Developer Workflows & Automation (30 skills)
+### Developer Workflows & Automation (28 skills)
 
 #### `accidental-data-loss-prevention`
 **STOP AND VERIFY**: Before running any command or tool that results in irreversible data loss, you MUST obtain explicit user consent. When in doubt, ask. It is better to wait for confirmation than to accidentally delete production data or critical project assets. Use this for: - SQL: DROP TABLE/VIEW/SCHEMA/DATABASE, TRUNCATE, or broad DELETE (missing WHERE or using 1=1). - Cloud Storage: gsutil rm or gcloud storage rm targeting production data or critical buckets. - Infrastructure: gcloud projects delete, deleting Spanner/BigQuery/Dataproc resources, deleting secrets, or KMS key destruction.
@@ -1556,11 +1923,6 @@ Interactive guide to design and create a scheduled background automation. Use th
 Run CodeRabbit CLI reviews, retrieve saved local or GitHub PR fix prompts, and interpret CodeRabbit authentication and review output. Use for CodeRabbit review commands, committed/uncommitted or directory scopes, and CodeRabbit runbooks. Default code-review skill: also trigger for explicit code/PR/quality/security review requests or when a review is needed.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\coderabbit\skills\code-review\SKILL.md`
-
-#### `coderabbit-config`
-Create, update, or validate CodeRabbit repository configuration through the official CLI. Use for .coderabbit.yaml or .coderabbit.yml setup, review-style changes, path guidance, and configuration validation requests.
-
-- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-partners\plugins\coderabbit\1.2.1\skills\coderabbit-config\SKILL.md`
 
 #### `context7-mcp`
 This skill should be used when the user asks about libraries, frameworks, API references, or needs code examples. Activates for setup questions, code generation involving libraries, or mentions of specific frameworks like React, Vue, Next.js, Prisma, Supabase, etc.
@@ -1602,6 +1964,11 @@ Enforces professional GitHub Primer and enterprise cloud console design standard
 
 - Source: `C:\Users\chase\.gemini\config\skills\github-primer-anti-slop-ui\SKILL.md`
 
+#### `gmail`
+Read, search, send, and manage Gmail messages, drafts, labels, and emoji reactions using a Go CLI. Use when reading emails, searching inbox, sending messages, reacting to messages with emoji, managing drafts, forwarding, checking vacation responder, managing labels, downloading attachments, or decoding `mail.google.com` Web UI URLs. Don't use for Google Chat messages or Calendar invites.
+
+- Source: `C:\Users\chase\.gemini\config\plugins\gmail\skills\gmail\SKILL.md`
+
 #### `google-maps-platform`
 A collection of skills for architecting and implementing production-ready code using Google Maps Platform APIs and SDKs for any map, place, address, geocoding, routing/ETA (including eco-friendly routing), nearby search, 3D / Street View / static map, marker clustering, custom styling, drawing, geofencing, heatmap, or environmental (air-quality / pollen / solar / weather) feature — across Web, Android, iOS, and Web Services APIs. For prototyping, use the public Maps Demo Key — no billing setup and no Cloud project required, covering a growing set of the most popular Google Maps Platform APIs. For production, the skill prompts you to create and restrict your own key. All non-trivial code is grounded in freshly retrieved docs via the Google Maps Platform Code Assist service (no reliance on training-data memory).
 
@@ -1642,11 +2009,6 @@ Guidelines for interacting with GitHub and request permissions from the user whe
 
 - Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\permissioned-github\SKILL.md`
 
-#### `plugin`
-How to manage and create plugins — namespaced bundles of skills, agents, rules, MCP servers and hooks that install, enable and disable as a single unit. Use this skill when the user wants to enable, disable, install or uninstall a plugin, when they want to create a new plugin, or when a new customization should be packaged into a plugin rather than left loose. Also triggered by the /plugin slash command. Don't use for the underlying customization system itself — discovery roots, loading priority, or authoring a standalone skill, agent, rule, hook or MCP server outside a plugin; see the customizations guide skill for those.
-
-- Source: `C:\Users\chase\.gemini\antigravity\builtin\skills\plugin\SKILL.md`
-
 #### `run-workflow`
 How to write and run a dynamic workflow script with the `run_workflow` tool: a Python script that orchestrates many agents with `agent`, `parallel`, `pipeline`, and `phase`. Use when a task splits into many independent or staged pieces of agent work (fan out over files, modules, bugs, or review angles, then aggregate), or when the user asks for a workflow. Don't use for a single delegated task (use a subagent) or for legacy workflow files (see migrate-workflows).
 
@@ -1656,11 +2018,6 @@ How to write and run a dynamic workflow script with the `run_workflow` tool: a P
 Interactive scripting practice, challenge generator, code reviewer, and test runner for Red Hat Enterprise Linux (Bash/RHEL 8 & 9) and PowerShell (5.1 & 7+). Use when the user asks for scripting practice, challenges, code reviews, debugging assistance, or test execution for Linux bash or PowerShell.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\script-practice\skills\script-practice\SKILL.md`
-
-#### `setup`
-Use when setting up CodeRabbit, connecting the plugin, tailoring repository review settings or path instructions, or recovering an expired MCP connection. Guide setup with the packaged CLI and MCP browser sign-in without a separate CLI login.
-
-- Source: `C:\Users\chase\.gemini\antigravity\cache\marketplaces\antigravity-plugins-partners\plugins\coderabbit\1.2.1\packaging\mcp\skills\setup\SKILL.md`
 
 #### `uv`
 Checks whether the uv Python package manager is installed and installs it if missing. Ensures uv is on PATH. Use when another skill requires uv as a prerequisite.
@@ -1766,14 +2123,20 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `3d images` (3D / Graphics)
 - **Stack**: `Node.js, WebGL, Shaders, WebGPU`
 - **Status**: `Active`
-- **Frontier Architecture**: WebGL2 stereoscopic shaders, glTF Draco mesh compression, Three.js r185/r186 native 3D Gaussian Splatting (`GaussianSplat` / `SPZLoader`), `KHR_gaussian_splatting` glTF support, TSL materials with automatic WGSL/GLSL cross-compilation, FSR 1 and TAAU upscaling nodes, `PCFShadowMap` migration
-- **Target Action**: Integrate Draco mesh compression, native Gaussian Splatting (`examples/jsm/objects/GaussianSplat.js`), and Three.js r187 cube-target PMREM, EON rough diffuse BRDF, and FSR1/TAAU upscaling nodes to load high-resolution 3D models with minimal latency
+- **Frontier Architecture**: WebGL2 stereoscopic shaders, glTF Draco mesh compression, Three.js r185/r186 native 3D Gaussian Splatting (`GaussianSplat` / `SPZLoader`), `KHR_gaussian_splatting` glTF support, **`@shapeshift-labs/ink-studio`** SDF & pixel-art Gaussian splats, TSL materials, FSR 1/TAAU upscaling nodes, `PCFShadowMap` migration
+- **Target Action**: Integrate Draco mesh compression, native Gaussian Splatting (`GaussianSplat.js`), Ink Studio SDF splat exports, and Three.js r187 cube-target PMREM, EON BRDF, and FSR1/TAAU upscaling nodes
 
 ### `AAC` (Assistive Tech / Accessibility)
 - **Stack**: `TypeScript, Vite, Web Speech API, PWA, CSS`
 - **Status**: `Active`
-- **Frontier Architecture**: Amina Universal AAC & Systematic Phonics Studio, WCAG 2.1 AAA compliance, Open Board Format (`.obf`) & Open Board Zip (`.obz`) JSON schemas for Cboard/Open-AAC interoperability, Modified Fitzgerald Key clinical color coding, Afro-European female voice scoring engine ("Amina") with male voice exclusion, decodable micro-phonics ("The help lives on the word" single-letter dots, digraph bars, magic-e arcs), PWA offline caching, system screen reader synchronization (`aria-live="assertive"`, `v.default`)
-- **Target Action**: Implement .obf/.obz board export/import; calibrate switch-scanning dwell intervals; verify WCAG AAA contrast
+- **Frontier Architecture**: Amina Universal AAC & Systematic Phonics Studio, WCAG 2.1 AAA compliance, Open Board Format (`.obf`) & Open Board Zip (`.obz`) JSON schemas for Cboard/Open-AAC interoperability, Modified Fitzgerald Key color coding, Afro-European female voice scoring ("Amina"), decodable micro-phonics, PWA offline caching, **`tiny-voca v0.2.0`** offline JS/CPU TTS backup, system screen reader synchronization (`aria-live="assertive"`, `v.default`)
+- **Target Action**: Implement .obf/.obz board export/import; calibrate switch-scanning dwell intervals; verify WCAG AAA contrast & `tiny-voca` offline fallback
+
+### `Bookmark-favorites` (Portals / Browser Sync)
+- **Stack**: `Python 3.12, PowerShell 5.1/7+, HTML, JSON`
+- **Status**: `Active`
+- **Frontier Architecture**: **Active daily sync (Edge verified `2026-11-22 08:00:04`)**: `generate_bookmarks.py` + `Sync-BrowserBookmarks.ps1` + `Run-BookmarkSync.ps1` generating **88 project bookmarks** (50 HTML entry + 38 folder-only) across 6 domain categories (`antigravity-all-projects-bookmarks.html`, `projects-bookmarks.json`) and backing up + syncing Chrome & Microsoft Edge `Bookmarks` files
+- **Target Action**: Trigger `Run-BookmarkSync.ps1` automatically from `deploy/routine_scan.ps1` on new project detection; unify JSON export with `Plugins/website-bookmark-manager` and `chrome tab and bar`
 
 ### `Cert Training Guide` (Education / Certification)
 - **Stack**: `HTML5, CSS3, JS, PowerShell, Web Speech API, YouTube Embed`
@@ -1784,8 +2147,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `Choogle` (Search / Portals)
 - **Stack**: `Static Web, JS, CSS, PWA`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed **2026-11-18 23:05:02** ingesting `Popular Github Projects` and indexing **81 workspace entries**), offline Service Worker, local inverted index
-- **Target Action**: Maintain scheduled sync; register newly detected `increase my bing score` and newly staged apps (`turbo-type.html`, `rom_studio_3d.html`, `Paper_Mario_Expedition33_Pipe100.html`)
+- **Frontier Architecture**: Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed **`2026-11-22 23:05:03`**), offline Service Worker, local inverted index
+- **Target Action**: Maintain scheduled sync; register newly initialized projects (`Motion`, `Highschool basketball`, `geminipc`, `Neon- orchestrator`, `emulator and rom hunter`) and newly staged apps (`rom_studio_3d.html`, `WorldTear`)
 
 ### `Game Library` (Portals / Gaming UI)
 - **Stack**: `React, TailwindCSS, Python, Model Context Protocol`
@@ -1799,17 +2162,17 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Frontier Architecture**: Chase Hamilton Master Developer & Infrastructure Showcase, dynamic GitHub REST/GraphQL API integration, **interactive terminal CLI modal (`app.js`) with dynamic command parsing (`whoami`, `cat resume`, `ls projects`, `skills`, `clear`)**, Bento grid glassmorphism, live operational health badges synced from `deploy/health_status.json`
 - **Target Action**: Integrate terminal emulator component in `app.js` and connect project cards to live `deploy/PROJECT_CATALOG.json` health badges; test CLI commands
 
-### `Highschool basketball` (Antigravity Project)
-- **Stack**: `Native Workspace`
-- **Status**: `Active`
-- **Frontier Architecture**: Workspace project in Highschool basketball
-- **Target Action**: Active development and maintenance
+### `Highschool basketball` (Sports / Analytics)
+- **Stack**: `Scaffolding (Empty Dir)`
+- **Status**: `Scaffolding`
+- **Frontier Architecture**: Newly initialized workspace (`11/19/2026`) for high school basketball scouting, shot-charting, and game film highlights
+- **Target Action**: Scaffold Python (`uv`) + OpenCV court homography shot-chart analyzer and FFmpeg `av1_nvenc` / `neonclipping` highlight cutter with `aws-enterprise-baseline.css` 100vw x 100vh dashboard
 
 ### `How to train your AI` (AI / Agents)
 - **Stack**: `Ollama, Python, Modelfiles`
 - **Status**: `Active`
-- **Frontier Architecture**: TensorRT-LLM 1.4/1.5+ (PyTorch-native, native sparse MLA FMHA, unified NVFP4 MLA KV cache, `TRTLLM_FLASHINFER_WORKSPACE_PER_PROCESS` workspace isolation, FlashInfer CuTe DSL backends, DFlash 2 and EAGLE-3 speculative decoding, KV-Cache Manager V2 default for Llama, explicit `sampler_type`), vLLM v0.34.0 (Model Runner V2 default, `--linear-backend` replacing deprecated `VLLM_NVFP4_GEMM_BACKEND`, `--moe-backend flashinfer_moe_ep_cutedsl` CuTe-DSL MoE EP, LibTorch Stable ABI, PyTorch 2.14), Blackwell NVFP4 via ModelOpt (Triton block-pointer fix, `amax/448` KV scale, QAD, RoPE `skip_rope_quantization=True`), **Unsloth Dynamic V3.1** GGUF quantization (+5–15% Terminal-Bench/DeepSWE on Qwen3.8/DeepSeek-V4.1-Flash)
-- **Target Action**: Deploy `serve_vllm.ps1` with vLLM v0.34.0 `--linear-backend flashinfer_cutedsl` & `--moe-backend flashinfer_moe_ep_cutedsl`; test Unsloth Dynamic V3.1 GGUFs; integrate AST parser and local ChromaDB knowledge base
+- **Frontier Architecture**: NVIDIA **Vera Rubin NVL72** & **Rubin (SM107)** TensorRT-LLM preview, **CUTLASS 4.9.0** CuTe DSL (`@cute.jit`/`jax.vmap`), **Nemotron 3.5 Super VL / Transcribe**, **NIM 2.1.6**, TensorRT-LLM 1.4/1.5+ (PyTorch-native, PrimTS sparse MLA FMHA, unified NVFP4 MLA KV cache, EAGLE3 dynamic trees & PARD drafters, DFlash 2, KV-Cache Manager V2), **vLLM `v0.34.0`** (Model Runner V1 removed, extensible KV cache default, block size `64`, `gpu_memory_utilization=1.0`, `huggingface_hub>=2.0`, `--linear-backend`/`--moe-backend flashinfer_moe_ep_cutedsl`), Blackwell NVFP4 ModelOpt (`amax/448`, QAD), **`Qwen 3.8 Flash Next`**, **`LiquidAI LFM2.5-24B-A2B`**, **Unsloth Dynamic V3.1** & `sybil-solutions/inference-optimisation-skill`
+- **Target Action**: Deploy `serve_vllm.ps1` with vLLM `v0.34.0` Model Runner V2 (`--linear-backend flashinfer_cutedsl` & `--moe-backend flashinfer_moe_ep_cutedsl`); benchmark `Qwen 3.8 Flash Next` / `LFM2.5-24B-A2B` Unsloth V3.1 GGUFs; integrate AST parser and ChromaDB knowledge base
 
 ### `Images` (Asset Store)
 - **Stack**: `Image Formats (.heic, .jpg)`
@@ -1820,14 +2183,20 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `MCP` (Systems / AI Tools)
 - **Stack**: `Node.js, JSON-RPC, Python, JavaScript, FastMCP v4.2`
 - **Status**: `Active`
-- **Frontier Architecture**: Centralized Model Context Protocol hub, MCP `2026-07-28` specification standard (Linux Foundation, stateless protocol core, header routing `Mcp-Method`/`Mcp-Name`, multi round-trip `input_required`, `ttlMs` cache hints, formal `io.modelcontextprotocol/tasks` extensions), **FastMCP v4.2 ("Mad Skills")** / PrefectHQ `fastmcp` (**SEP-2640 Skills over MCP** via `SkillsExtension` / `SkillsDirectoryProvider` / `skill://` resources, SEP-1686 protocol-native background tasks via `@mcp.tool(task=True)`, Redis-backed distributed tasks with credential providers, Dual-Era serving & negotiation via `Client(mode="auto")`, client sampling & elicitation via `ctx.sample()`, SEP-990 Identity Assertions, Google ADK 3-legged OAuth for A2A, Dynamic Client Registration DCR, `CurrentContext` dependency injection, built-in OAuth 2.1, OpenTelemetry distributed tracing), UE 5.8 official native Unreal MCP Server bridge, newly deployed dedicated `ollama-mcp` server (`MCP/ollama-mcp`) exposing 6 specialized tools, MCP Baseline 2.0 (`MCP_WEB_APPS_BASELINE.md`), `mcp-baseline.js` v2.0, `mcp-registry.json`, `Ctrl+M` telemetry HUD, `Ctrl+E` in-app element inspection & hot-patching editor console, custom MCP servers (`game-studio-mcp`, `game-capture-mcp`, `ollama-mcp`), global `mcp_config.json`, Texas Property Tax Form 50-132 protest generator (`Tax_Summary_and_2027_Protest_Plan.md`)
-- **Target Action**: Sync live tool availability across all project hubs (`My Planetarium`, `My Custom Gui`, `index folder`); enforce loopback HMAC token auth; test FastMCP v4.2 SEP-2640 Skills serving & SEP-1686 background tasks and `CurrentContext` dependency injection in `ollama-mcp`
+- **Frontier Architecture**: Centralized Model Context Protocol hub, MCP `2026-07-28` specification standard (stateless core, header routing `Mcp-Method`/`Mcp-Name`, `input_required`, `ttlMs`, `io.modelcontextprotocol/tasks`), **FastMCP v4.2** (**SEP-2640 Skills over MCP**, SEP-1686 `@mcp.tool(task=True)`, `Client(mode="auto")`, `ctx.sample()`, SEP-990), **Google ADK 2.0 + Managed Agents API + A2A + `WebMCP` (`navigator.modelContext.registerTool`) + Android `AppFunctions`**, UE 5.8 Unreal MCP Server, `ollama-mcp`, `morluto/rea`, `rust-anything`, `fast-anything`, MCP Baseline 2.0 (`Ctrl+M`, `Ctrl+E`), Texas Form 50-132 generator
+- **Target Action**: Sync live tool availability across all project hubs; enforce loopback HMAC token auth; test FastMCP v4.2 SEP-2640 Skills serving & SEP-1686 background tasks in `ollama-mcp`; align web apps with `navigator.modelContext.registerTool` WebMCP manifests
 
 ### `MY Security` (Cybersecurity)
 - **Stack**: `C#, .NET 10, PowerShell`
 - **Status**: `Active`
-- **Frontier Architecture**: **Deployed inline security headers & same-origin mutation guard in `Program.cs` (`11/18/2026`)** + `SECURITY.md`; NetBird Zero-Trust posture checks, WireGuard kernel overlay, BitLocker/Defender compliance hooks, CISA KEV telemetry (**LiteLLM `CVE-2026-40217`**, **Kernel `CVE-2026-98432`**, **Java4Shell `CVE-2026-114938`**, **NoisyTCP `CVE-2026-99288`**, **SSHole `CVE-2026-123158`**, **BroadWorks `CVE-2026-20320`**, CVE-2026-76418, CVE-2026-76519, CVE-2026-76506, Meraki OS hardening)
-- **Target Action**: Add endpoint posture validator (BitLocker, Defender, OS/JDK/LiteLLM build) before peer access; alert on unpatched Java, LiteLLM, NoisyTCP/98432 kernels, OpenSSH musl, ASA SSL VPN, BroadWorks, AMP, UCS Central, Meraki, and NX-OS endpoints
+- **Frontier Architecture**: **Deployed inline security headers & same-origin mutation guard in `Program.cs` (`11/18/2026`)** + `SECURITY.md`; NetBird Zero-Trust posture checks, WireGuard kernel overlay, BitLocker/Defender/Endpoint ClamAV posture hooks, CISA KEV telemetry (**Expressway `CVE-2026-76466`**, **vCenter `123890`**, **LiteLLM `40217`**, **Kernel `98432`/`99288`**, **Java4Shell `114938`**, **SSHole `123158`**, **CRI-O `76061`**, **Podman `RHSA-2026:100547`**)
+- **Target Action**: Add endpoint posture validator (BitLocker, Defender, Secure Endpoint ClamAV, OS/JDK/LiteLLM build) before peer access; alert on unpatched BOD 26-04 KEVs, `RHSA-2026:100547`, Java, LiteLLM, and OpenSSH musl
+
+### `Motion` (XR / 3D Kinematics)
+- **Stack**: `NVIDIA MotionBricks, Hugging Face`
+- **Status**: `Active`
+- **Frontier Architecture**: **Newly added (`11/20/2026`)**: Research & staging anchor for **NVIDIA MotionBricks** (SIGGRAPH 2026, `NVlabs/motionbricks`, `townbox/motionbricks-playground` in `https   hugging.txt`) neural Smart-Primitives character kinematics (`15,000 FPS` / `~2ms` latency via Warp/Newton/TensorRT), actively bridged into `game mods/rom_studio_motion.js`
+- **Target Action**: Export real MotionBricks JSON pose trajectories and FBX/GLB retargeting rigs for `game mods` Grand ROM Palace & `game studio` UE5/Godot characters
 
 ### `My Custom Gui` (Portals / Command Center)
 - **Stack**: `HTML5, TailwindCSS, Glassmorphism`
@@ -1839,13 +2208,19 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Stack**: `Three.js, WebGL, High-Gloss Lacquer`
 - **Status**: `Active`
 - **Frontier Architecture**: 3D Interactive Deep Space Planetary Observatory & Sector Atlas, 64 charted planetary bodies, astronomical rigor, Three.js r184/r185 WebGPURenderer and TSL materials, Antigravity bidirectional prompt dispatching (`window.sidecar.agent.sendMessage`), auto-fit panoramic projection (`[F]`), slide-out MCP telemetry drawer
-- **Target Action**: Keep `projects-data.js` synchronized with expanded 79-project inventory; package as Antigravity UI extension plugin; upgrade to Three.js r187 (`PMREMGenerator` cube targets, EON BRDF, cooperative `compileAsync()`)
+- **Target Action**: Keep `projects-data.js` synchronized with expanded 87-project inventory; package as Antigravity UI extension plugin; upgrade to Three.js r187 (`PMREMGenerator` cube targets, EON BRDF, cooperative `compileAsync()`)
 
 ### `My Social Media` (Media / Enterprise Syndication)
 - **Stack**: `HTML5, CSS3, JS, PowerShell 7+, FastMCP, High-Gloss Lacquer, Web Speech API`
 - **Status**: `Active`
 - **Frontier Architecture**: Enterprise 100vw x 100vh Command Center, Meta outbound-link penalty bypass (3-part Threads chain, Facebook pinned comment workflow), 27-Repo GitHub MCP Matrix (`Chammin00`), YouTube Studio syndication (`ApexPulse 3D Gallery` & `@CartoonWhiteNoise`), real-time character count validators (150-char Threads bio, 500-char post, 101-char FB bio), MCP Baseline 2.0 (`Ctrl+M`, `Ctrl+E`), Web Speech audio narration, `Start-SocialCommandCenter.ps1` multi-tab launcher
 - **Target Action**: Execute `.\Start-SocialCommandCenter.ps1 -OpenSocialTabs` to launch live multi-platform console; test 3-part Threads chain and 27-repo syndication matrix
+
+### `Neon- orchestrator` (AI / Multi-Agent Orchestration)
+- **Stack**: `Scaffolding (Empty Dir)`
+- **Status**: `Scaffolding`
+- **Frontier Architecture**: Newly initialized workspace (`11/19/2026`) for multi-agent workflow orchestration and persistent state routing
+- **Target Action**: Scaffold async Python 3.12 DAG orchestrator backed by SQLite/Neon state, **ADK 2.0 + A2A**, **`stablyai/orca`**, `NousResearch/hermes-agent` FTS5 memory, and `Ctrl+M` MCP Baseline 2.0 HUD
 
 ### `Plugins/chrome-pulse-task-manager` (Browser Extension)
 - **Stack**: `Manifest V3, JS, Chrome APIs`
@@ -1910,26 +2285,26 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `Popular Github Projects` (AI / Open-Source Radar)
 - **Stack**: `Node.js >=24, SSE, Vercel, PWA, JS`
 - **Status**: `Active`
-- **Frontier Architecture**: **Graduated from scaffolding (`11/18/2026`)**: `github-trending-radar` v1.0.0 (`server.mjs` with SSE `/api/events`, `/api/reports`, path-traversal guard, `SECURITY_HEADERS`, `vercel.json` cleanUrls + HSTS, `SECURITY.md`, `public/sw.js`, 8 daily trending reports + verified Windows baseline `git 2.53.0`/`gh 2.97.0`/`Node v24.20.0`/`uv 0.12.5`), synced into `Choogle`
-- **Target Action**: Add `README.md` and deploy to Vercel (`vercel.json` ready); track mid-Nov 2026 trending "Agent Work Surfaces" (`claude-mem`, `docling.rs`, `Granite-Docling`, `FastMCP 4.2`, `unreal-agent-benchmark`); reclassify to Deployable in `deploy/PROJECT_CATALOG.json`
+- **Frontier Architecture**: **`github-trending-radar` v1.0.0 (`server.mjs`, `vercel.json`, `public/`, `dist/`)**: Verified **`2026-11-22`** daily report (`reports/2026-11-22.md`) + **18 organized `agent-tools/`** (`rust-anything v2.1.0`, `BatteryHub v1.1.0`, `NeonClipping v1.0.0`, `ink-studio`, `tiny-voca v0.2.0`, `hikaku-extension v0.1.0`, `RustText v2.5.0`, `orca`, `cc-switch`, `n8n`, `kiri`, `photocraft`, `magpie`, `peakcut`, `allo`) spotlighting **`morluto/rea`**, **`openclaw`**, **`deepseek-harness`**, **`hermes-agent`**, **`ponytail`**, **`Leonida`**, **`Xbox2Windows`**, **`xbox-emulator`**, **`fast-anything`**, **`WinRust`**, & Windows toolchain (`Git 2.53.0`, `gh 2.97.0`, `Node v24.20.0`, `Python 3.12.10`, `uv 0.12.5`, `FFmpeg 9.0.2`, `.NET 10.0.300`)
+- **Target Action**: Deploy to Vercel (`vercel.json` ready); add root `README.md`; reclassify from Incomplete to Deployable in `deploy/PROJECT_CATALOG.json`; keep wiring `agent-tools` releases into target workspaces (`fast-anything`, `WinRust`, `Xbox2Windows`)
 
 ### `REA` (Cybersecurity / Reversing)
-- **Stack**: `Python, Ghidra 12.2 (JDK 25+), PowerShell`
+- **Stack**: `Python, Ghidra 12.2 (JDK 25+), Node.js 24, PowerShell`
 - **Status**: `Active`
-- **Frontier Architecture**: Dedicated Reverse Engineering Applications Hub, **Ghidra 12.2** (Oct/Nov 2026 requiring **JDK 25+** with Compact Object Headers; ensure JDK 25 patches **CVE-2026-114938 Java4Shell** or pass `-XX:UseAVX=2` on x86-64), **`GhidrAssistMCP`** native FastMCP server exposing decompiled C, functions, and xrefs to AI agents, PyGhidra CPython 3 integration, `JitPcodeEmulator` (3x-5x speedup), Ninja Gaiden 2 Xenon/x64 DAT unpacker, Tekken 8 UE5 hooks, Naraka asset boundaries
-- **Target Action**: Automate 1-click Ghidra 12.2 + patched JDK 25 installer in `tools/setup_ghidra.ps1`; install `GhidrAssistMCP` plugin (`./gradlew`); connect `binary_inspector.py` with `JitPcodeEmulator` to `game mods`
+- **Frontier Architecture**: Dedicated Reverse Engineering Applications Hub, **newly integrated `tools/Invoke-RustAnythingAudit.ps1` (`2026-11-22 09:27`)** running SHA-256 verified **`erkamyaman/rust-anything` (`v2.1.0` staged / `v3.3.0` latest)** + `EL4CTEO/fast-anything v0.6.1`, **Ghidra 12.2** (requiring **JDK 25+**; patch **CVE-2026-114938**), **`GhidrAssistMCP`**, **`morluto/rea` (`rea-agents-6.10.1`, 473.6k stars)**, PyGhidra, `JitPcodeEmulator`, Xbox Series static recompilation (`Leonida`, `Xbox2Windows`, `xbox-emulator`)
+- **Target Action**: Run `Invoke-RustAnythingAudit.ps1 -Action Setup` alongside `npx rea-agents setup`; automate 1-click Ghidra 12.2 + patched JDK 25 installer in `tools/setup_ghidra.ps1`; connect `binary_inspector.py` to `game mods`
 
 ### `RHCSA Exam200` (Linux / SysAdmin)
 - **Stack**: `Markdown, Shell, RHEL 9.5/9.6/10.3`
 - **Status**: `Active`
-- **Frontier Architecture**: **RHEL 10.3** (Nov 2026 minor stream, RHEL Lightspeed AI) & Image Mode (`bootc` OS-as-container) + NIST PQC (`ML-KEM`, Linux 6.12 lineage; upstream Linux 7.4-rc); **NoisyTCP (`CVE-2026-99288`)** kernel TCP `ehash` DoS patching; RHEL 9.6 modernization (GCC 14, LLVM 19, Rust 1.84, Landlock LSM, UKIs, NetworkManager 1.52); Podman 5+/6.x Quadlets with rootless Netavark/`pasta`, container supply chain audit for **CVE-2026-123158** (SSHole on musl/Alpine), systemd v256+ `run0` (`--machine=`), `systemd-creds`, `loginctl enable-linger $USER`, cgroups v2, SELinux (`:Z`)
-- **Target Action**: Build `grade_rhcsa_lab.sh` validating Quadlets, pasta/Netavark networks, Landlock rules, SSHole container image audit, NoisyTCP kernel patch level, persistent LVM UUIDs, and SGID permissions
+- **Frontier Architecture**: **RHEL 10.3** (Nov 2026 minor stream, RHEL Lightspeed AI) & Image Mode (`bootc`) + NIST PQC (`ML-KEM`, Linux 6.12 lineage; upstream Linux 7.4-rc); **`CVE-2026-98432`**, **NoisyTCP (`CVE-2026-99288`)**, **`sssd` `CVE-2026-127101`** kernel/auth patching; Podman 5.8.x Quadlets (**`RHSA-2026:100547`** & `98554`/`97533`), SSHole (`CVE-2026-123158`), systemd v256+ `run0`, `systemd-creds`, cgroups v2, SELinux (`:Z`)
+- **Target Action**: Build `grade_rhcsa_lab.sh` validating Quadlets, pasta/Netavark networks, Landlock rules, SSHole/`RHSA-2026:100547`/`sssd` patch levels, persistent LVM UUIDs, and SGID permissions
 
 ### `Record my Gameplay` (XR / Media / Game Capture)
 - **Stack**: `Python 3.12, OBS Studio 30/31, obsws-python, OpenCV`
 - **Status**: `Active`
-- **Frontier Architecture**: obs-websocket v5.x protocol, NVIDIA NVENC AV1 hardware encoding (`jim_av1_nvenc` and OBS 31 `obs_nvenc_av1_tex`), OpenCV template matching (`cv2.TM_CCOEFF_NORMED`) with multi-scale downscaled pyramids for sub-45ms boss health bar & victory screen detection, automated failed attempt disk purging (`Path.unlink`), direct integration into `youtube shorts edit for gaming`
-- **Target Action**: Implement downscaled template matching loop in `vision_monitor.py` for hands-free detection; configure OBS encoder to NVENC AV1 for RTX 4080
+- **Frontier Architecture**: obs-websocket v5.x protocol, NVIDIA NVENC AV1 hardware encoding (`jim_av1_nvenc` and OBS 31 `obs_nvenc_av1_tex`), OpenCV template matching (`cv2.TM_CCOEFF_NORMED`) with multi-scale downscaled pyramids for sub-45ms boss health bar & victory screen detection, automated failed attempt disk purging (`Path.unlink`), direct integration into `youtube shorts edit for gaming` (`Invoke-NeonClippingPipeline.ps1`)
+- **Target Action**: Implement downscaled template matching loop in `vision_monitor.py` for hands-free detection; configure OBS encoder to NVENC AV1 for RTX 4080; route victory clips through `Invoke-NeonClippingPipeline.ps1`
 
 ### `Scary Water Slides` (XR / 3D Simulation / Media)
 - **Stack**: `Three.js, WebGL, Web Audio, VFX`
@@ -1949,11 +2324,11 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Frontier Architecture**: Collin CAD scraper, Zestimate/Redfin consensus, Collin County ARB Tax protest CMA generator, official Texas Property Tax Form 50-132 evidence packet (Collin CAD account # 2883011 for 1766 Crestridge Cir Princeton TX generated via `MCP`)
 - **Target Action**: Integrate automated sales comps calculation ($/sqft variance modeling) directly into annual protest PDF pipeline; sync valuation metrics to `My Custom Gui`
 
-### `VR creation apps` (XR / VR)
-- **Stack**: `WebXR, Three.js r187, Quest 3`
+### `VR creation apps` (XR / VR / MR)
+- **Stack**: `WebXR, Meta IWSDK 0.3.1, super-three 0.181, HavokPhysics WASM, Three.js r187`
 - **Status**: `Active`
-- **Frontier Architecture**: Three.js r187 (`PMREMGenerator` cube render targets, EON rough diffuse BRDF, cooperative `compileAsync()`), `WebGPURenderer` (`await renderer.init()`), r185/r186 native WebXR on WebGPU with `multiview: true` single-pass stereo rendering (50% draw-call reduction), native XR MSAA layers and transmission corrections, Three.js r184 non-blocking `compileAsync()`, TSL (Three Shading Language) transpiling dynamically to WGSL and GLSL, node-based `RenderPipeline` with MRT, Quest 3 bare-hand tracking (`XRHandModelFactory`), HRTF Web Audio
-- **Target Action**: Upgrade `word-defender-xr.html` to Three.js r187 WebGPURenderer (cube-target PMREM, cooperative `compileAsync()`) with `multiview: true` and TSL `RenderPipeline`; integrate `XRHandModelFactory` pinch firing
+- **Frontier Architecture**: **Expanded to 7,541 files (`11/19/2026`) with `github-repos/WorldTear`**: Meta **Immersive Web SDK (`@iwsdk/core` 0.3.1)** + `super-three@0.181.0` + **HavokPhysics WASM** + `vite-plugin-mkcert` HTTPS Quest 3 passthrough cape using W3C WebXR Raw Camera Access (`'camera-access'`, `XRWebGLBinding.getCameraImage`) and Verlet fingertip-poke cloth simulation (`indexTipSpaces.{left,right}`); paired with Three.js r187 (`PMREMGenerator` cube targets, EON BRDF, cooperative `compileAsync()`), `WebGPURenderer` `multiview: true`, Chrome Android WebGPU rollout, and `XRHandModelFactory`
+- **Target Action**: Launch `WorldTear` (`npm run dev` over mkcert HTTPS) on Quest 3 to validate `'camera-access'` passthrough cape; upgrade `word-defender-xr.html` to Three.js r187 `WebGPURenderer` `multiview: true` & TSL `RenderPipeline`
 
 ### `agent 365` (AI / Enterprise Productivity)
 - **Stack**: `Python 3.12, FastAPI, Pydantic v2, MSAL`
@@ -1964,8 +2339,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `ai defense` (Cybersecurity / AI Safety)
 - **Stack**: `Python 3.12, HTML5, High-Gloss Lacquer`
 - **Status**: `Active`
-- **Frontier Architecture**: Aegis-AI Defense Matrix: 7-vector containment (defending **LiteLLM `CVE-2026-40217`** bytecode sandbox escape & **Kernel `CVE-2026-98432`**), gVisor microVMs (`runsc`), AST/`RestrictedPython` validation, eBPF Tetragon telemetry, Codename MDASH alignment, default-deny DNS egress proxy, hardware killswitch
-- **Target Action**: Deploy live simulation testbed on port 5050; add `CVE-2026-40217` sandbox-escape simulation scenario; bind alerts to Sysmon and `MY Security`
+- **Frontier Architecture**: Aegis-AI Defense Matrix: 7-vector containment (defending **LiteLLM `CVE-2026-40217`** bytecode sandbox escape, **CRI-O `CVE-2026-76061`**, & **Kernel `CVE-2026-98432`**), gVisor microVMs (`runsc`), AST/`RestrictedPython` validation, eBPF Tetragon + memory histogram/ML pressure telemetry (`r/netsec`), GitHub Actions/npm hook defense, Codename MDASH alignment, default-deny DNS egress proxy
+- **Target Action**: Deploy live simulation testbed on port 5050; add `CVE-2026-40217` & `CVE-2026-76061` symlink containment scenarios; bind alerts to Sysmon and `MY Security`
 
 ### `ai models tools from threads` (AI / Directory & Studio)
 - **Stack**: `HTML5, TailwindCSS, JSON, JS`
@@ -1994,7 +2369,7 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `automate my day` (Productivity)
 - **Stack**: `Python 3.12, UV, Batch, VBS, Kokoro-82M, FFmpeg`
 - **Status**: `Active`
-- **Frontier Architecture**: Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py`), automated clip cutter & YouTube shorts/longform pipeline (`convert_to_shorts.py`, `smart_cutter.py`, `sfx_manager.py`, `sound_randomizer.py`, `Invoke-LongformPipeline.ps1`, `longform_editor.py`) routing 32+ authentic Marshall Law & character soundbytes with FIFO rotation and 10/day upload pacing across **Gears of War: E-Day**, TEKKEN 8, Beast of Reincarnation, and Sonic Racing (verified active through **11/19/2026 02:28 AM**), Kokoro-82M ONNX speech synthesis (`morning_brief.wav`), multi-source telemetry ingestion, Stock Watch coiling alerts
+- **Frontier Architecture**: Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py`), automated clip cutter & YouTube shorts/longform pipeline (`Invoke-LongformPipeline.ps1`, `longform_editor.py`, `smart_cutter.py`, `convert_to_shorts.py`, `game_intelligence.py`, `sfx_manager.py`, `sound_randomizer.py`, `audio_rotation.json`) routing 32+ authentic soundbytes with FIFO rotation across **Gears of War: E-Day**, TEKKEN 8, Beast of Reincarnation, and **Sonic Racing: CrossWorlds** (verified active through **`2026-11-23 02:28 AM`** including `longform_MultiGame_Collab_20261122_140209_1440p60.mp4`), Kokoro-82M ONNX (`morning_brief.wav`), Stock Watch coiling alerts
 - **Target Action**: Verify sentinel daemon automated clip & longform compilation runs; ensure morning audio briefing synthesizes daily telemetry via Kokoro-82M ONNX; maintain paced YouTube upload schedule
 
 ### `aws` (Cloud / DevOps)
@@ -2024,7 +2399,7 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `chancenvaders` (Games / Retro Arcade)
 - **Stack**: `HTML5 Canvas, Procedural Web Audio API, JS`
 - **Status**: `Active`
-- **Frontier Architecture**: Museum-grade 1978 Space Invaders Arcade Replica, 100% Intel 8080 spec fidelity (`invaders.asm`), bitmask sprite matrices, destructible arched bunkers with dynamic pixel blast carving, procedural Web Audio API synthesizer (discrete oscillators, 4-tone accelerating march 55.0Hz down to 33ms, zero audio files), continuous vertical swept-bounding-box raycast intervals (`[min(y, prevY), max(y, prevY)]` with `±3px` horizontal tolerances eliminating bullet tunneling), point-and-click finger/touch aim and rapid-fire streaming, 5 collectible power-up pods (Cyan Spread Laser, Neon Green Piercing Beam, Amber Shield, Orange Overdrive Rapid, Crimson Nuke), 6-tier Orbital Tower Ascension elevator, 1978 Pepper's Ghost Mirror Illusion (lunar diorama backdrop behind semi-transparent two-way mirror, 45-degree cabinet shelf reflection, cellophane color overlays)
+- **Frontier Architecture**: Museum-grade 1978 Space Invaders Arcade Replica, 100% Intel 8080 spec fidelity (`invaders.asm`), bitmask sprite matrices, destructible arched bunkers with dynamic pixel blast carving, procedural Web Audio API synthesizer (discrete oscillators, 4-tone accelerating march 55.0Hz down to 33ms, zero audio files), continuous vertical swept-bounding-box raycast intervals (`[min(y, prevY), max(y, prevY)]` with `±3px` horizontal tolerances eliminating bullet tunneling), point-and-click finger/touch aim and rapid-fire streaming, 5 collectible power-up pods (Cyan Spread Laser, Neon Green Piercing Beam, Amber Shield, Orange Overdrive Rapid, Crimson Nuke), 6-tier Orbital Tower Ascension elevator, 1978 Pepper's Ghost Mirror Illusion
 - **Target Action**: Add localStorage high scores persistence; integrate Gamepad API haptic rumble vibration; scaffold WebGL 3D curved CRT bezel simulation
 
 ### `chess` (Games)
@@ -2036,8 +2411,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `chrome tab and bar` (Browser Extension)
 - **Stack**: `Manifest V3, JS, CSS, Chrome APIs`
 - **Status**: `Active`
-- **Frontier Architecture**: Chrome 157 (`CVE-2026-125350` UAF + 200+ fixes patched) Manifest V3 2026 standard (`activeTab` minimal permissions + proxy workers, WebGPU sidePanel SLMs + subgroup size controls), persistent `chrome.sidePanel` with Chrome 140+ `sidePanel.getLayout()` dynamic left/right docking orientation awareness (and Chrome 148+ `browser.sidePanel.getLayout()` cross-browser namespace), programmatic `chrome.tabGroups` auto-categorization and color palettes, proactive memory reclamation via `chrome.tabs.discard`, `chrome.system.memory` & `chrome.system.cpu` live HUD telemetry, custom breadcrumb status bar, `Install-ChromeBookmarks.ps1`, `Antigravity_Index_Bookmarks.html`, `chrome.storage.session` state persistence
-- **Target Action**: Implement `sidePanel.getLayout()` in `sidepanel.js` to dynamically mirror UI layout based on left/right docking; integrate search, domain auto-grouping, and sleep controls; execute `Install-ChromeBookmarks.ps1`
+- **Frontier Architecture**: Chrome 157 (`CVE-2026-125350` UAF + 200+ fixes patched) Manifest V3 2026 standard (`activeTab` minimal permissions + proxy workers, Google **`WebMCP` `navigator.modelContext.registerTool`** + **`LiteRT.js` Wasm/WebGPU/WebNN** sidePanel SLMs + subgroup size controls), persistent `chrome.sidePanel` with Chrome 140+ `sidePanel.getLayout()`, programmatic `chrome.tabGroups`, proactive `chrome.tabs.discard`, `chrome.system.memory` & `chrome.system.cpu` live HUD telemetry, `Install-ChromeBookmarks.ps1`, `chrome.storage.session`
+- **Target Action**: Implement `sidePanel.getLayout()` in `sidepanel.js` to dynamically mirror UI layout based on left/right docking; expose tab-grouping tools via `navigator.modelContext.registerTool`; bridge `Bookmark-favorites` JSON sync
 
 ### `comptia exam simulator` (Education)
 - **Stack**: `HTML, JS, CSS`
@@ -2054,8 +2429,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `deploy` (DevOps / Control)
 - **Stack**: `PowerShell, SQLite, JSON`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated health audits (`Test-ProjectHealth.ps1`, `routine_scan.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking **81 total projects**, **35 deployable**, **6 in progress**), nightly health scan (verified **2026-11-18 23:01:36**: **17/17 Deploy Suite 100% Healthy**, 0 degraded, 0 critical in 3,610.67ms)
-- **Target Action**: Reclassify newly graduated `Popular Github Projects` (`server.mjs` / `public/index.html`) from Incomplete to Deployable; classify `increase my bing score`, `Cert Training Guide`, `onedrive cleanup`, and Godot 3D prototypes into automated deployment manager
+- **Frontier Architecture**: Automated health audits (`Test-ProjectHealth.ps1`, `routine_scan.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking **87 total cataloged projects**, **35 deployable**, **6 in progress**, 19 changes detected), nightly health scan (verified **`2026-11-22 23:02:16`**: **17/17 Deploy Suite 100% Healthy**, 0 degraded, 0 critical in `6,777.83 ms`)
+- **Target Action**: Reclassify newly graduated `Popular Github Projects` (`server.mjs`), `zfold6 features` (FoldCraft), `Bookmark-favorites`, `increase my bing score`, `Cert Training Guide`, and `onedrive cleanup` in `PROJECT_CATALOG.json`; trigger `Bookmark-favorites/Run-BookmarkSync.ps1` on new folder detection
 
 ### `desktopscreensaver` (Graphics)
 - **Stack**: `HTML5 Canvas, JS`
@@ -2064,10 +2439,10 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Add automatic frame throttling when window is unfocused to conserve GPU cycles
 
 ### `docker` (DevOps / Containers)
-- **Stack**: `PowerShell, Docker Desktop 4.98+, WSL2, Linux`
+- **Stack**: `PowerShell, Docker Desktop / Podman 5.8+, WSL2, Linux`
 - **Status**: `Active`
-- **Frontier Architecture**: Enterprise Container Virtualization on Windows 11 with WSL2, Intel Core i9-13900HX VT-x/VT-d firmware enablement, `.wslconfig` Mirrored Mode networking (`networkingMode=mirrored`), `dnsTunneling=true`, `autoProxy=true`, `virtiofs=true` high-performance shared-memory filesystem acceleration (slashing bind mount latency over legacy 9P), `autoMemoryReclaim=gradual` and `pageReporting=true` (dynamic RAM reclamation eliminating bloated `vmmemWSL`), `sparseVhd=true`, Docker Compose v2, rootless Podman 5 vs Docker CLI context bridging (`DOCKER_HOST`), base image scanning for CVE-2026-123158 ("SSHole" in musl libc)
-- **Target Action**: Verify VT-x firmware status post-reboot; execute `Test-DockerEnvironment.ps1 -RunContainerTest`; scan local Alpine/musl container images for CVE-2026-123158; test multi-service stack with `docker compose up -d`; apply Mirrored networking in `.wslconfig`
+- **Frontier Architecture**: Enterprise Container Virtualization on Windows 11 with WSL2 (Acer Predator i9-13900HX), `.wslconfig` Mirrored Mode networking, `virtiofs=true`, `autoMemoryReclaim=gradual`, `sparseVhd=true`, rootless Podman 5.8.x (**`RHSA-2026:100547` & `98554`**, Go `net/http`/`crypto/tls`/`crypto/x509`/`ssh` CVEs patched) vs `Kiri-0.2.2` / `DOCKER_HOST` bridging, base image scanning for `CVE-2026-123158` (SSHole), `CVE-2026-76061`, & `CVE-2026-17106` (CopyEscape); *(Host baseline `11/22`: Docker Desktop not yet installed)*
+- **Target Action**: Install Docker Desktop (`winget install Docker.DockerDesktop`) or bridge `DOCKER_HOST` to WSL2 rootless Podman 5.8 / `Kiri`; execute `Test-DockerEnvironment.ps1 -RunContainerTest`; scan local Alpine/musl images for CVE-2026-123158
 
 ### `email organizer` (Automation)
 - **Stack**: `Python, UV, Gmail API`
@@ -2075,11 +2450,17 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Frontier Architecture**: OAuth2 token refresh lifecycle, LangGraph triage agent, IBM Docling attachment parsing
 - **Target Action**: Route invoice/receipt attachments directly to Google Drive structured folders; stream spam senders to `spam block`
 
+### `emulator and rom hunter` (Games / ROM Curation)
+- **Stack**: `Scaffolding (Empty Dir)`
+- **Status**: `Scaffolding`
+- **Frontier Architecture**: Newly initialized workspace (`11/20/2026`) for emulator tracking (Dolphin 2512, ares v148, PCSX2-Qt, RPCS3, DuckStation, ShadPS4, Ryujinx) and ROM verification
+- **Target Action**: Scaffold Python (`uv`) ROM checksum/No-Intro DAT verifier & emulator version updater feeding directly into `game mods/tools/build_grand_rom_catalog.py`
+
 ### `game mods` (Game Dev)
-- **Stack**: `Batch, Asset Injectors, HTML`
+- **Stack**: `Python, Three.js, Batch, HTML`
 - **Status**: `Active`
-- **Frontier Architecture**: Mod conflict resolver, automated asset validator, IoStore (`.utoc`/`.ucas`) extraction with FModel, Xbox PC GUI dashboard (`xbox_pc_gui.html`), **3D ROM Studio launcher (`Start-3DROMStudio.ps1`, `Launch_3D_ROM_Studio.bat`, `rom_studio_3d.html`)**, automated ROM checksum validation script verifying patched game assets against known good hashes
-- **Target Action**: Build checksum validation script verifying patched game assets against known good hashes; launch `Start-3DROMStudio.ps1` to test 3D cartridge inspection; polish `xbox_pc_gui.html`
+- **Frontier Architecture**: **Grand ROM Palace 3D Studio + MotionBricks + Vehicles (`2026-11-22 10:47`)**: `rom_studio_3d.html`, `rom_studio_engine.js`, `rom_studio_scene.js`, `rom_studio_motion.js` upgraded with **4 vehicle modes** (`foot`, **Hyper-Veloce X1 Kart**, **Blue Star Hoverboard**, `drone`), **3-tier Mini-Turbo drift boost**, **Freeplay Basement & Neon Raceway lap portal**, and **Web Gamepad API Xbox controller**; `build_grand_rom_catalog.py` & `xbox_gui_server.py` serving **759 retail ROMs across 18 consoles**; tracking Xbox Series static recompilation (`Leonida`, `Xbox2Windows`, `xbox-emulator`)
+- **Target Action**: Upgrade `rom_studio_3d.html` from Three.js r128 to r187 WebGPURenderer; pair `rom_studio_motion.js` with real exported MotionBricks JSON trajectories; wire `emulator and rom hunter` discovery into `build_grand_rom_catalog.py`
 
 ### `game review` (Media / Script)
 - **Stack**: `Markdown`
@@ -2088,10 +2469,16 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Align *A Plague Tale: Resonance* script timestamps with captured gameplay footage
 
 ### `game studio` (Game Dev)
-- **Stack**: `C++ UE5.8, Godot 4.4/4.7, Unity 6, MSVC, ROMs`
+- **Stack**: `C++ UE5.8, Godot 4.4/4.7, Python, ROMs`
 - **Status**: `Active`
-- **Frontier Architecture**: **Antigravity Engine Forge IDE (`engine_forge.html`, `engine_forge.js`, `Start-EngineForge.ps1`, `Launch_Engine_Forge.bat`)** unifying Three.js PBR viewport, Blueprint Node Graph, UE5.8 MCP Bridge, GitHub AI Studio Multi-Agent Hierarchy, and Udemy Dev Academy; UE 5.8 Mesh Terrain, Lumen Probe Occlusion, Fast Geometry Streaming & native Unreal MCP Server; Godot 4.7 `AreaLight3D`, True HDR & Vulkan RT groundwork; Unreal Engine 5 C++ (`ShadowBlade_Tekken_Naraka_UE5` Battle Royale: Naraka clash, Tekken heat, Ninja Gaiden Izuna drop), Godot 4 3D arena (`ShatteredPagoda_Godot` with 3D models, scenes, tests, `Launch_Kagura_Godot3D.bat`, `Play_Kagura_Godot3D.vbs`), `ChessClash_Godot`, `aether_ascent_spire` build, 3D Art Studio (`index.html`, `game-studio-scene.js`, `game-studio-engine.js`), **newly added Turbo Type Rally 3D in Godot 4.3/4.4 (`TurboTypeRally_Godot` with `scripts/Main.gd`, `scenes/Main.tscn`, `Launch_TurboTypeRally_Godot.bat`)** featuring typed dictionaries, 3D physics interpolation, and native Jolt physics engine integration, **Paper Mario x Expedition 33 - 100 Trial Pipe RPG prototype (`Paper_Mario_Expedition33_Pipe100.html`)** with reactive QTE timing, dodge/parry mechanics, and tactical turn-based combat, **3D ROM Studio (`rom_studio_3d.html`, `rom_studio_engine.js`, `rom_studio_scene.js`)**, Michael Jackson "Hee-Hee" soundbyte integration in `assets/soundbytes/`, automated studio quality gate verification (`Test-StudioQualityGate.ps1`), master launcher (`GameStudio_Hub.ps1`), BPS/UPS delta-patching, Capstone disassembly, Anti-Slop hit-stop kinesthetics
-- **Target Action**: Upgrade `engine_forge.html` from legacy `three.min.js` (r128 fallback) to Three.js r187 `WebGPURenderer`; execute `Test-StudioQualityGate.ps1`; launch `Start-EngineForge.ps1` and `Launch_TurboTypeRally_Godot.bat` to test 3D typing rally mechanics; test `Paper_Mario_Expedition33_Pipe100.html` QTE timing; run `Launch_Kagura_Godot3D.bat` to verify 3D pagoda arena rendering; benchmark Forward+ clustered lighting and hit-stop frame freezing
+- **Frontier Architecture**: **Newly added `tools/Invoke-InkStudioSplatGenerator.ps1` (`2026-11-22 09:28`)** integrating **`@shapeshift-labs/ink-studio`** SDF sculpting & pixel-art Gaussian splats + **`chesstube_studio/` (`11/21–11/22`)** Chess.com-to-YouTube pipeline; Engine Forge IDE, UE 5.8 Mesh Terrain / Lumen Probe Occlusion / native Unreal MCP Server; Godot 4.7 `AreaLight3D`, True HDR, Vulkan RT & `Godot-MCP`; `ShadowBlade_Tekken_Naraka_UE5`, `ShatteredPagoda_Godot`, `ChessClash_Godot`, `TurboTypeRally_Godot`, `Paper_Mario_Expedition33_Pipe100.html`, `Test-StudioQualityGate.ps1`
+- **Target Action**: Run `Invoke-InkStudioSplatGenerator.ps1 -Operation RenderScene` to generate pixel-art Gaussian splat assets; run `python -m chesstube_studio` upload wizard; upgrade `engine_forge.html` from r128 to Three.js r187 `WebGPURenderer`; execute `Test-StudioQualityGate.ps1`
+
+### `geminipc` (AI / Desktop Agent)
+- **Stack**: `Scaffolding (Empty Dir)`
+- **Status**: `Scaffolding`
+- **Frontier Architecture**: Newly initialized workspace (`11/19/2026`) for Gemini PC desktop automation and browser AI integration
+- **Target Action**: Scaffold FastMCP v4.2 + **Google ADK 2.0**, **`WebMCP` (`navigator.modelContext.registerTool`)**, **Android `AppFunctions`**, & **`LiteRT.js`** desktop bridge with local `ollama-mcp` fallback and `ai defense` path scoping
 
 ### `google drive organizer` (Automation)
 - **Stack**: `PowerShell, Google Drive API`
@@ -2100,15 +2487,15 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Implement hash-based pre-upload check to eliminate redundant cloud uploads
 
 ### `improve gaming pc performance` (Gaming / Tuning)
-- **Stack**: `PowerShell 7+, Registry, WMI, UE5 Ini`
+- **Stack**: `PowerShell 7+, Registry, WMI, UE5 Ini, BatteryHub`
 - **Status**: `Active`
-- **Frontier Architecture**: **Factory Acer Predator power plan lock** (`$AcerPlanGuid = "02e54963-3a6d-4756-9cca-a42174041e63"`, refreshed `11/19/2026 03:01 AM` to prevent 100% Min Processor State thermal tripping), discrete RTX 4080 GPU registry assignment (`HKCU:\Software\Microsoft\DirectX\UserGpuPreferences`, `GpuPreference=2;`), Phantom Blade Zero (PBZ) & Steam continuous performance watcher (`Start-SteamGamingPerformanceWatcher.ps1` polling every 5s), automated optimization suite (`Invoke-PBZOptimization.ps1`), process priority elevation (`High`), UE5 `Engine.ini` streaming & async compute tuning (`r.Streaming.PoolSize=6144`, `r.CreateShadersOnLoad=1`, `r.AsyncCompute=1`, `FX.Niagara.AllowAsyncBudgeting=1`), GPU MSI-X mode verification, Windows 11 24H2 DirectStorage 1.2 GPU decompression
-- **Target Action**: Execute `Invoke-PBZOptimization.ps1` prior to gaming sessions; confirm `SteamPBZPerformanceWatcher` startup key remains active; verify `Engine.ini` 6GB texture pool & shader preload across steamapps directories
+- **Frontier Architecture**: **Factory Acer Predator power plan lock** (`$AcerPlanGuid = "02e54963-3a6d-4756-9cca-a42174041e63"`, refreshed **`2026-11-23 03:02 AM`**), **newly added `Start-BatteryHubMonitor.ps1` (`2026-11-22 09:27`)** integrating SHA-256 verified **`BatteryHub v1.1.0`** (~2 MB RAM wireless peripheral monitor), discrete RTX 4080 GPU registry assignment (`GpuPreference=2;`), Steam PBZ continuous watcher, process priority `High`, UE5 `Engine.ini`, DirectStorage 1.2
+- **Target Action**: Execute `Invoke-PBZOptimization.ps1` & `Start-BatteryHubMonitor.ps1 -Launch` prior to gaming sessions; confirm `SteamPBZPerformanceWatcher` startup key remains active; verify `Engine.ini` 6GB texture pool across steamapps
 
 ### `increase my bing score` (Automation / Productivity)
 - **Stack**: `PowerShell 5.1/7+, Edge, Task Scheduler`
 - **Status**: `Active`
-- **Frontier Architecture**: **Newly detected 81st portfolio directory (`2026-11-18 22:51:14`)**: `Invoke-BingRewardsSearch.ps1` (Microsoft Edge signed-in profile automation, `20 topics × 10 modifiers` randomized pool, `[CmdletBinding(SupportsShouldProcess)]`, `[PSCustomObject]` streaming) and `Register-BingRewardsTask.ps1` (daily `BingRewardsDailySearch` task)
+- **Frontier Architecture**: **Active daily automation (`2026-11-22 09:00:01`)**: `Invoke-BingRewardsSearch.ps1` (Microsoft Edge signed-in profile automation, `20 topics × 10 modifiers` randomized pool, `[CmdletBinding(SupportsShouldProcess)]`, `[PSCustomObject]` streaming), `Register-BingRewardsTask.ps1` (`BingRewardsDailySearch`), plus `README.md` & `.gitignore` (`11/19/2026`)
 - **Target Action**: Add `search_history.json` deduplication ledger across consecutive days, Pester 5.5+ unit tests, and status reporting into `deploy/health_status.json` & `Choogle`
 
 ### `index folder` (Portals / Workspace Navigation & 3D Museum)
@@ -2120,20 +2507,20 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `inspect my pc for improvements` (SysAdmin / Tuning)
 - **Stack**: `PowerShell, WMI`
 - **Status**: `Active`
-- **Frontier Architecture**: Windows Performance Toolkit (`xperf`), SSD SMART diagnostics, DPC/ISR latency sweeps
-- **Target Action**: Implement DPC and ISR latency check to flag driver-level audio/gaming microstutter
+- **Frontier Architecture**: Windows Performance Toolkit (`xperf`), SSD SMART diagnostics, DPC/ISR latency sweeps, **`Lemxy/WinRust v0.5.5`** native Windows Rust diagnostics pattern (`2026-11-22` report)
+- **Target Action**: Implement DPC and ISR latency check to flag driver-level audio/gaming microstutter; evaluate `WinRust v0.5.5` diagnostics in isolated VM
 
 ### `is this AI` (AI / Detection)
-- **Stack**: `Python, Transformers, FFT`
+- **Stack**: `Python, PIL, Transformers, FFT`
 - **Status**: `Active`
-- **Frontier Architecture**: 2D Fourier FFT spectral radial power density analysis, Kirchenbauer watermarking, acoustic phase flattening
-- **Target Action**: Implement 2D FFT radial power density check to catch synthetic diffusion grid artifacts
+- **Frontier Architecture**: **Deployed `hikaku-extension v0.1.0` C2PA/IPTC/XMP provenance rules (`2026-11-22 09:25`)** in `image_analyzer.py` (`trainedAlgorithmicMedia`, `compositeWithTrainedAlgorithmicMedia`, `digitalCapture`, 35+ generator markers, EXIF hardware check) + 2D Fourier FFT spectral radial power density analysis & Kirchenbauer watermarking
+- **Target Action**: Implement 2D FFT radial power density check alongside `image_analyzer.py` C2PA/IPTC provenance scoring to catch metadata-stripped diffusion images
 
 ### `mobile game` (Mobile / Game Dev)
-- **Stack**: `React Native 0.88, Expo SDK 54, TypeScript, Nitro Modules`
+- **Stack**: `React Native 0.88.1, Expo ~58.0.23, React 19.3.0, TypeScript ~6.0.3, Nitro Modules`
 - **Status**: `Active`
-- **Frontier Architecture**: React Native 0.88 (React 19.3.0, W3C `EventTarget` bubbling, `fontVariationSettings` variable fonts, Java/ObjC `ArrayBuffer` TurboModule contracts), Expo SDK 54 (precompiled iOS XCFrameworks for 10x faster builds, final legacy bridge transition), TypeScript, Margelo Nitro Modules (`react-native-nitro-modules`, Callstack enterprise partnership, `nitro-core`, `nitrogen` code generator, Swift 5.9+ direct C++ interop, Android `fbjni`, compile-time JSI bindings delivering ~7.27ms vs 115ms per 100k calls), **newly integrated Turbo Type Mobile screen (`TurboTypeScreen.tsx`, `turboTypeWords.ts`, `LobbyScreen.tsx`)**, Aether Ascent dual-mode card battle engine: Gwent 3-row tactical warfare (`gwentEngine.ts`, `gwentCards.ts`, Hayabusa faction kodachi/kusarigama/odachi, `GwentScreen.tsx`), Slay the Spire roguelike ascension (`spire.ts`, `spireCards.ts`, `spireEnemies.ts`, `SpireCombatScreen.tsx`), Afro-Asian warrior animated motion stage (`AfroAsianMotionStage.tsx`), Chess campaign play mode (`chessAudioService.ts`, `ChessPlayScreen.tsx`, `CampaignShopModal.tsx`), clean-room monetization service (`monetization.ts`, `monetizationService.ts`), SHA-256 deterministic combat state hashing, Anti-Slop kinesthetics (haptics, spring tweening, min 48dp touch targets)
-- **Target Action**: Test `TurboTypeScreen.tsx` typing game flow and lobby navigation; benchmark Nitro Modules JSI hybrid objects against standard state recalculations; test Expo web export bundle in `mobile game/public`; test Gwent 3-row combat flows
+- **Frontier Architecture**: **Verified `package.json` (`11/19/2026`)**: **React Native `0.88.1`**, **Expo `~58.0.23`**, **React `19.3.0`**, **TypeScript `~6.0.3`**, `react-native-svg 15.16.0`, `Start-MobileGames.ps1`, Margelo Nitro Modules (`react-native-nitro-modules`, `nitrogen` C++ JSI ~7.27ms/100k calls), **Turbo Type Mobile (`TurboTypeScreen.tsx`, `turboTypeWords.ts`, `LobbyScreen.tsx`)**, Aether Ascent Gwent 3-row (`gwentEngine.ts`) & Spire roguelike (`SpireCombatScreen.tsx`), `AfroAsianMotionStage.tsx`, `ChessPlayScreen.tsx`, SHA-256 deterministic state hashing, Anti-Slop kinesthetics
+- **Target Action**: Test `TurboTypeScreen.tsx`, `ShopScreen.tsx`, and `BattlePassScreen.tsx` via `Start-MobileGames.ps1`; benchmark Nitro Modules JSI hybrid objects against standard state recalculations; test Expo web export bundle
 
 ### `monopoly` (Games)
 - **Stack**: `HTML5 Canvas, JS, Python`
@@ -2150,8 +2537,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `ollama` (AI / Knowledge Hub)
 - **Stack**: `Python, Ollama, HTML/JS, FastMCP`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated Antigravity skill ingestion, dynamic Modelfile generation (`Modelfile`), local HTTP web studio (`index.html`), Windows scheduled daily sync, newly deployed **Ollama Tandem Protocol (`Invoke-OllamaTandem.ps1`, `tandem_bridge.py`, `OLLAMA_TANDEM_PROTOCOL.txt`)** for dual-model offline/cloud co-reasoning, dedicated Ollama Model Context Protocol server (`MCP/ollama-mcp`) exposing 6 specialized tools (`ollama_list_models`, `ollama_show_model`, `ollama_generate`, `ollama_chat`, `ollama_get_telemetry`, `ollama_studio_consult`) with FastMCP v4.2 (`SkillsDirectoryProvider` SEP-2640) / Python SDK v2 architecture
-- **Target Action**: Verify `MCP/ollama-mcp` server tools and SEP-2640 `skill://` resource serving; expand `sync_skills_to_ollama.py` to auto-ingest all 79 projects and refinement blueprints; validate `index.html` Web Studio and test tandem bridge
+- **Frontier Architecture**: Automated Antigravity skill ingestion (refreshed **`2026-11-22 04:01`** on **`ollama/ollama` v0.40.17** lineage), dynamic Modelfile generation (`Modelfile`), local HTTP web studio (`index.html`), Windows scheduled daily sync, **Ollama Tandem Protocol (`Invoke-OllamaTandem.ps1`, `tandem_bridge.py`, `OLLAMA_TANDEM_PROTOCOL.txt`)**, dedicated Ollama MCP server (`MCP/ollama-mcp`) with FastMCP v4.2 (`SkillsDirectoryProvider` SEP-2640), `openclaw`/`deepseek-harness`/`hermes-agent`/`ponytail` patterns
+- **Target Action**: Verify `MCP/ollama-mcp` server tools and SEP-2640 `skill://` resource serving; ensure `sync_skills_to_ollama.py` ingests all 87 projects and updated Nov 23 blueprints; validate `index.html` Web Studio and test tandem bridge
 
 ### `onedrive cleanup` (Storage / Lifecycle Automation)
 - **Stack**: `PowerShell 7+, Windows Storage API, FFmpeg`
@@ -2166,21 +2553,21 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Add live health badge polling from `deploy/health_status.json`
 
 ### `openshift` (Linux / Platform Engineering)
-- **Stack**: `OpenShift 4.19/4.20 EUS/4.21, Kubernetes 1.32-1.34, oc, Podman 5, Helm, Argo CD`
+- **Stack**: `OpenShift 4.19–4.22, Kubernetes 1.32–1.34+, oc, Podman 5.8, Helm, Argo CD`
 - **Status**: `Active`
-- **Frontier Architecture**: Red Hat OpenShift Administration II (DO280) & EX280 curriculum; **OpenShift 4.21 (K8s 1.34 & CRI-O 1.34)**: **Dynamic Resource Allocation (DRA) GA** for CEL GPU VRAM/NVLink/NUMA scheduling, **Kueue** & **JobSet Operator**, **`RHSA-2026:95408` (`ose-rhel-coreos` fix for `CVE-2026-98432` TCP UAF)** & CSI **`CVE-2026-85781`**; **OpenShift 4.20 EUS (K8s 1.33)**: `X25519MLKEM768` PQC TLS, OVN-K8s BGP/EVPN, GA Gateway API, native Sidecars GA, `LeaderWorkerSet` GA; **OpenShift 4.19 (K8s 1.32)**: strict cgroups v2, SSHole/Java4Shell/NGINX2Root admission auditing, CUDN BGP, `oc-mirror` v2 Cosign
-- **Target Action**: Add OpenShift 4.21 DRA GPU ResourceClaimTemplate labs alongside 4.20 EVPN/BGP & PQC TLS; verify `RHSA-2026:95408` RHCOS kernel & NGINX2Root ingress patches; execute `diagnose-route.ps1` & `deploy-hello-world.ps1`; integrate EX280 timed mock exam engine
+- **Frontier Architecture**: Red Hat OpenShift Administration II (DO280) & EX280 curriculum; **OpenShift 4.21 / 4.22 (K8s 1.34+ & CRI-O 1.34+)**: **DRA GA** for CEL GPU VRAM/NVLink/NUMA scheduling, **Kueue** & **JobSet Operator**, **`RHSA-2026:95408` (`CVE-2026-98432`)**, **CRI-O symlink bind-mount bypass (`CVE-2026-76061`)**, **`sssd` `CVE-2026-127101`**, Sandboxed Containers `systemd-gpt-auto-generator` hardening, `brace-expansion` (`14257`/`69152`), Go HTTP/2 (`33814`) & CSI `85781`; **OCP 4.20 EUS**: `X25519MLKEM768` PQC TLS, OVN-K8s BGP/EVPN
+- **Target Action**: Add OpenShift 4.21/4.22 DRA GPU ResourceClaimTemplate labs alongside 4.20 EVPN/BGP & PQC TLS; verify `RHSA-2026:95408` RHCOS, CRI-O `CVE-2026-76061`, & NGINX2Root ingress patches; execute `diagnose-route.ps1` & `deploy-hello-world.ps1`
 
 ### `opensource` (DevOps / Governance & Supply Chain)
 - **Stack**: `Markdown, Git, GitHub CLI, CycloneDX, SPDX, Python`
 - **Status**: `Active`
-- **Frontier Architecture**: Open-Source Program Office (OSPO) architecture, OpenChain (ISO/IEC 5230) license compliance, automated CycloneDX 1.6 / SPDX 3.0 profile-based SBOM generation (ECMA-424 & ISO/IEC standards), OpenSSF Scorecard automated security auditing (0-10 security rating across 18 checks), SLSA Level 3 build provenance with Cosign/Sigstore keyless OIDC attestations, automated Git submodule/subtree upstream sync (`Sync-UpstreamForks.ps1`), SemVer 2.0.0 release automation with `git-cliff`
-- **Target Action**: Scaffold `ospo_governance.py` and `Generate-ProjectSbom.ps1`; enforce SPDX license headers across all 79 portfolio repositories; deploy automated upstream fork synchronizer
+- **Frontier Architecture**: Open-Source Program Office (OSPO) architecture, OpenChain (ISO/IEC 5230) license compliance, automated CycloneDX 1.6 / SPDX 3.0 profile-based SBOM generation, OpenSSF Scorecard automated security auditing (18 checks + **`r/cybersecurity` Nov 2026 GitHub Actions & npm hook credential-stealing defense**), SLSA Level 3 build provenance with Cosign/Sigstore keyless OIDC attestations, automated Git submodule/subtree upstream sync (`Sync-UpstreamForks.ps1`), SemVer 2.0.0 release automation with `git-cliff`
+- **Target Action**: Scaffold `ospo_governance.py` and `Generate-ProjectSbom.ps1`; enforce SPDX license headers & SHA-pinned GitHub Actions across all 87 projects; deploy automated upstream fork synchronizer
 
 ### `personal assistant` (AI / Desktop)
 - **Stack**: `Python, Audio, JSON`
 - **Status**: `Active`
-- **Frontier Architecture**: Faster-Whisper Large V3 Turbo (CTranslate2 4x-6x faster), **Fluid-Speech-Pro** (~600MB sub-1B Parakeet-TDT 25-language local ASR), Kokoro-82M v1.0 ONNX Runtime Web / WebGPU (`kokoro-onnx` + G2P `misaki`), sub-150ms chunked sentence-by-sentence streaming loops (sub-5s end-to-end voice pipeline), multi-voice interpolation blending, Structured JSON Tool Calling
+- **Frontier Architecture**: Faster-Whisper Large V3 Turbo (CTranslate2 4x-6x faster), **Fluid-Speech-Pro** (~600MB sub-1B Parakeet-TDT 25-language local ASR), Kokoro-82M v1.0 ONNX Runtime Web / WebGPU (`kokoro-onnx` + G2P `misaki`), **`n4ze3m/tiny-voca v0.2.0`** (~70x realtime CPU fallback), sub-150ms sentence-streaming loops, multi-voice interpolation, Structured JSON Tool Calling
 - **Target Action**: Benchmark Fluid-Speech-Pro vs Faster-Whisper Turbo for noisy desktop ASR; implement sentence-streaming Kokoro-82M speech loop; bind `inspect_pc`, `windows event viewer`, and `automate my day` as callable tools
 
 ### `personal training` (Health / Fitness)
@@ -2226,10 +2613,10 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Add automated daily health check auditing all registered Antigravity scheduled tasks
 
 ### `screen reader` (Accessibility)
-- **Stack**: `Python, Surya OCR, Piper TTS`
+- **Stack**: `Python, Surya OCR, Piper TTS, Tiny-Voca`
 - **Status**: `Active`
-- **Frontier Architecture**: IBM Docling / Surya OCR layout parsing, Piper TTS, Tkinter UI snapshot caching, bookmarks persistence
-- **Target Action**: Replace legacy OCR with Surya/Docling to read multi-column technical PDFs without text interleaving
+- **Frontier Architecture**: **Newly deployed `Invoke-TinyVocaOfflineTTS.ps1` (`2026-11-22 09:30`)** running **`n4ze3m/tiny-voca v0.2.0`** (4.5M ~70x-realtime offline CPU/JS English TTS + `tiny-voca.gguf` -> `tiny_voca_output.wav`) alongside IBM Docling / Surya OCR layout parsing, Piper TTS, Tkinter UI snapshot caching, bookmarks persistence
+- **Target Action**: Replace legacy OCR with Surya/Docling to read multi-column technical PDFs without text interleaving; keep `tiny-voca` wired as zero-GPU offline TTS fallback
 
 ### `spam block` (Privacy / Security)
 - **Stack**: `Python, Flask, Playwright, XML`
@@ -2240,14 +2627,14 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `stock Bot traders` (Quantitative Finance / Algotrading)
 - **Stack**: `Python 3.12, alpaca-py, CCXT, Flask`
 - **Status**: `Active`
-- **Frontier Architecture**: Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling sentinel (verified active **11/18/2026 08:43:56**: `CHOP_BEAR` regime, top momentum `AAPL` +14.78% / Sharpe 2.52, `$100,029.19` settlement, 0/3 PDT, 100% compliant)
-- **Target Action**: Ingest coiling volatility squeeze signals from `stock watch` into vector screener; enforce zero entry slippage via bracket limit orders; add intrabar tick-state vs historical reload parity check (`r/algotrading` Nov 2026); maintain daily upskill logs
+- **Frontier Architecture**: Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling sentinel (verified active **`2026-11-22 08:01:11`**: `CHOP_BEAR` regime, top momentum `AAPL` +10.82% / Sharpe 1.94, `NTDOY` +0.15%, `BTC-USD` -21.24% / `ETH-USD` -29.75% `Safe=True`; Nov 19 settlement `$100,035.59`, 0/3 PDT, 100% SEC 15c3-5 compliant)
+- **Target Action**: Ingest coiling volatility squeeze signals from `stock watch` into vector screener; add intrabar tick-state parity, unintended short-skew check, & sector-batch cap (`r/algotrading` Nov 2026); maintain daily upskill logs
 
 ### `stock watch` (Quantitative Finance)
 - **Stack**: `Python 3.12, UV, alpaca-py, cuDF`
 - **Status**: `Active`
-- **Frontier Architecture**: NVIDIA RAPIDS cuDF GPU acceleration (`cudf.pandas.install()`), Volume-Filtered Carter Squeeze (VWAP & 21/50 EMA), Wyckoff Spring smart-money absorption ($>2.0\times$ volume), Half-Kelly capital sizing, tick-data vs. 1-min bar Sharpe validation (`r/algotrading` Nov 2026), Alpaca paper-to-live 1-share canary execution, slippage & spread delta logging
-- **Target Action**: Run tick-granularity validation against winning 1-min backtests; execute 1-share/micro-contract live canary phase and implement slippage/spread-crossing delta logger in `alpaca_broker.py`; connect evening screener alerts to `automate my day`
+- **Frontier Architecture**: NVIDIA RAPIDS cuDF GPU acceleration (`cudf.pandas.install()`), Volume-Filtered Carter Squeeze (VWAP & 21/50 EMA), Wyckoff Spring smart-money absorption ($>2.0\times$ volume), Half-Kelly capital sizing, **permutation testing & upper-tail p-value validation + tick-data vs. 1-min bar Sharpe validation (`r/algotrading` Nov 2026)**, Alpaca paper-to-live 1-share canary execution, slippage & spread delta logging
+- **Target Action**: Run permutation/p-value & tick-granularity validation against winning 1-min backtests; execute 1-share/micro-contract live canary phase and implement slippage/spread-crossing delta logger in `alpaca_broker.py`; connect evening screener alerts to `automate my day`
 
 ### `synergize and pay` (Strategy / Business)
 - **Stack**: `Markdown, HTML`
@@ -2270,30 +2657,30 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `vulnerability management` (Cybersecurity)
 - **Stack**: `C#, .NET 10 MVC, SQLite`
 - **Status**: `Active`
-- **Frontier Architecture**: **Deployed `SecurityHardeningMiddleware.cs` (`11/18/2026`)** + `SECURITY.md`; Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp`, CSAF 2.0/3.0, DefectDojo v2/v3; **Mid-Nov 2026 Critical CVEs & CISA KEV**: **LiteLLM `CVE-2026-40217`** (CISA KEV Nov 18, `v1.83.14-stable+`), **Linux Kernel `CVE-2026-98432`** (CVSS 9.8 IPv4 TCP UAF), **NGINX2Root (`CVE-2026-123007` / `123633`)**, **Podman `RHSA-2026:93464`/`98554`** & **CopyEscape `CVE-2026-17106`**, **Puppet `CVE-2026-115731`** (Nov 17 KEV), **Check Point `CVE-2026-123039`** (Nov 13 KEV), **UnrealIRCd `CVE-2026-114713`**, **Synology `CVE-2024-10441`**, **Axis `CVE-2026-90436`**, **REDCap `CVE-2026-90817`**; plus **Java4Shell (`CVE-2026-114938`)**, **NoisyTCP (`CVE-2026-99288`)**, **SSHole (`CVE-2026-123158`)**, BroadWorks **CVE-2026-20320**, Chrome 157 **CVE-2026-125350**, Cisco EOY freeze until Jan 20, 2027
-- **Target Action**: Ingest Nov 13–18 CISA KEV (`CVE-2026-40217`, `115731`, `123039`, `98432`, `123007`) into scanner; lock Cisco advisory baseline for EOY freeze until Jan 20, 2027; compile scanner with .NET 10 Native AOT
+- **Frontier Architecture**: **Deployed `SecurityHardeningMiddleware.cs` (`11/18/2026`)** + `SECURITY.md`; Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp`, CSAF 2.0/3.0, DefectDojo v2/v3; **CISA KEV BOD 26-04 (Nov 23 Deadline) & Nov 2026 CVEs**: **Cisco Expressway `CVE-2026-76466`** (`15.5.21+`), **Apache Roller `CVE-2026-129448`**, **VMware vCenter `CVE-2026-123890`**, **SAP NetWeaver `CVE-2025-42884`**, **LiteLLM `CVE-2026-40217`**; **Cisco Third-Party**: **NGINX `CVE-2026-113425`/`121810`** + **ClamAV DoS** (Secure Endpoint) + EOY freeze until Jan 20, 2027; **Podman/Go `RHSA-2026:100547` & `98554`** (`CVE-2026-78667`, `97031`, `111943`, `46597`), **CRI-O `CVE-2026-76061`**, **SSSD `CVE-2026-127101`**, **Kernel `CVE-2026-98432` & NoisyTCP (`99288`)**, **NGINX2Root (`123007`/`123633`)**, **Java4Shell (`114938`)**, **SSHole (`123158`)**
+- **Target Action**: Enforce BOD 26-04 Nov 23 remediation checks (`CVE-2026-76466`, `129448`, `123890`, `42884`) + `RHSA-2026:100547`/`CVE-2026-76061`/Cisco ClamAV in scanner; lock Cisco advisory baseline for EOY freeze until Jan 20, 2027; compile scanner with .NET 10 Native AOT
 
 ### `windows event viewer` (Cybersecurity)
-- **Stack**: `PowerShell, Sysmon 15+, Batch`
+- **Stack**: `PowerShell, Sysmon 15+, RustText, Batch`
 - **Status**: `Active`
-- **Frontier Architecture**: Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`) executing hourly and daily scans (verified active through **11/19/2026 02:32:07 AM**: Engine `1.1.26100.4`, DAT `1.463.367.0`, 508 processes & 15 autostart entries audited including `SteamPBZPerformanceWatcher`, 0 threats in 7.98s), LSASS memory dump protection (Sysmon Event ID 10), automated log rotation
-- **Target Action**: Maintain hourly and daily McAfee scanner scans; alert on LSASS dump attempts; parse scan logs into `deploy/health_status.json`
+- **Frontier Architecture**: Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`, verified active through **`2026-11-23 02:31 AM`**), **newly deployed `Open-EventLogInRustText.ps1` (`2026-11-22 09:29`)** integrating SHA-256 verified **`RustText v2.5.0`** (`Illson/RustText`) for large-file live log tailing & JSONL inspection
+- **Target Action**: Maintain hourly and daily McAfee scanner scans; test `Open-EventLogInRustText.ps1 -Launch` on latest scan logs; alert on LSASS dump attempts and parse logs into `deploy/health_status.json`
 
 ### `youtube channels` (Media / YouTube Automation)
 - **Stack**: `PowerShell, Python, YouTube Data API v3, FFmpeg, Pillow, Three.js, CSS`
 - **Status**: `Active`
-- **Frontier Architecture**: Your Favorite Character's White Noise & Sleep Ambience Automation Engine, high-AVD 3–8 hour sleep loops, 2-Upload Funnel (12–18s discovery Short with Related Video pill funnelling into 3–8h sleep loop), 4-slot rotating character format (Eustace Bagge, Rolf, Courage Computer, Nostalgia Wildcard), dynamic anti-repetition visual loops (CRT static grain, farmhouse shadows, audio waveforms), 16-episode catalog (`ep01`–`ep12` rendered + `ep13`–`ep16` queued in `character_rotation_catalog.json`) with matching audio, thumbnails, and short/long videos, updated `character_rotation_catalog.json`, automated publishing queue (`Invoke-AutoUploadQueue.ps1`, `youtube_api_upload.py`), **newly deployed licensed audio manifest and studio engine (`Build-AudioManifest.ps1`, `audio_manifest.json`, `studio-engine.js`, `hallway-scene.js`, `high-gloss-lacquer.css`)** featuring licensed character voice lines (Perfect Dark Elvis Maian, Guard, Ed Edd n Eddy Rolf)
+- **Frontier Architecture**: Your Favorite Character's White Noise & Sleep Ambience Automation Engine, high-AVD 3–8 hour sleep loops, 2-Upload Funnel (12–18s discovery Short with Related Video pill funnelling into 3–8h sleep loop), 4-slot rotating character format (Eustace Bagge, Rolf, Courage Computer, Nostalgia Wildcard), dynamic anti-repetition visual loops (CRT static grain, farmhouse shadows, audio waveforms), 16-episode catalog (`ep01`–`ep12` rendered + `ep13`–`ep16` queued in `character_rotation_catalog.json` refreshed **`2026-11-22 22:29`**), automated publishing queue (`Invoke-AutoUploadQueue.ps1`, `youtube_api_upload.py`), licensed audio manifest & 3D studio engine (`Build-AudioManifest.ps1`, `audio_manifest.json`, `studio-engine.js`, `hallway-scene.js`)
 - **Target Action**: Execute `Invoke-AutoUploadQueue.ps1` across the 12 generated episodes; verify YouTube Data API v3 OAuth2 token refresh; run `Start-HighlightStudio.ps1` to test 3D ambience studio view
 
 ### `youtube shorts edit for gaming` (Media / AI)
-- **Stack**: `Python, FFmpeg 7, OpenCV`
+- **Stack**: `Python, FFmpeg 7/9, OpenCV, PowerShell`
 - **Status**: `Active`
-- **Frontier Architecture**: NVIDIA NVENC AV1 (`av1_nvenc`), Faster-Whisper karaoke subtitles (`.ass`), optical flow crosshair tracker, video craftsmanship pacing
-- **Target Action**: Build FFmpeg script reframing 16:9 gameplay to 9:16 vertical video with animated `.ass` subs
+- **Frontier Architecture**: **Newly deployed `Invoke-NeonClippingPipeline.ps1` (`2026-11-22 09:27`)** bridging `Record my Gameplay/Recordings` into local **`iamajmeena/neonclipping` (`v1.0.0` local / `v1.1.0` latest)** 9:16 engine (`127.0.0.1:8770`) + NVIDIA NVENC AV1 (`av1_nvenc`), Faster-Whisper karaoke `.ass` subtitles, optical flow crosshair tracker, & **`PeakCut`**
+- **Target Action**: Launch `Invoke-NeonClippingPipeline.ps1 -StartServer` on port `8770`; benchmark `neonclipping` (`v1.1.0`) audio-spike + facecam layout detection vs `smart_cutter.py`
 
 ### `zfold6 features` (Mobile / Android)
-- **Stack**: `Markdown, Termux`
+- **Stack**: `Kotlin, Jetpack Compose, Android Gradle`
 - **Status**: `Active`
-- **Frontier Architecture**: Termux Linux environment, Tasker automation, DeX multi-window, bi-directional Syncthing sync
-- **Target Action**: Document Termux Python execution recipes and bi-directional Syncthing sync scripts
+- **Frontier Architecture**: **Graduated to FoldCraft Android App (`com.foldcraft.zfold6`, 22 files, `11/19/2026`)**: **Jetpack WindowManager (`androidx.window`)**, hardware **`Sensor.TYPE_HINGE_ANGLE`** (0°–180°), adaptive `NavigationBar`/`NavigationRail` (`screenWidthDp >= 580`), `PostureDashboardScreen`, `AppPairsScreen`, `FlexTriggersScreen` + draggable `FoldOverlayService`, `compileSdk 35`; aligned with **Android 17 Adaptive-First**, **Jetpack `AppFunctions` (Android MCP)**, **Android Studio BYOA**, & **Google AI Studio native Kotlin**
+- **Target Action**: Open in Android Studio Ladybug+ and deploy APK via USB Debugging to Galaxy Z Fold 6; expose FoldCraft actions via **Android `AppFunctions`** MCP; add Termux/Syncthing PC bridge trigger rule
 
