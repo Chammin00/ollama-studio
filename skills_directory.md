@@ -1,6 +1,6 @@
 # Antigravity Acquired Skills & Projects Ecosystem Digest
 
-Updated: 422 Acquired Skills | 100 Production Projects
+Updated: 423 Acquired Skills | 102 Production Projects
 
 ## 📦 Part 1: Acquired Agent Skills Catalog
 
@@ -1266,7 +1266,7 @@ Looker Developer Onboarding: Step 5. Creates a new Looker project and configures
 
 - Source: `C:\Users\chase\.gemini\config\plugins\looker\skills\setting-up-looker-project\SKILL.md`
 
-### Design, UI/UX & Creative Engineering (46 skills)
+### Design, UI/UX & Creative Engineering (47 skills)
 
 #### `best-practices`
 Tells your agent what Mobbin can and can't do and how the Mobbin skills work together, so it picks the right one or says when Mobbin isn't the right tool. Read it first, before any other Mobbin skill or tools, when the user asks about Mobbin or its connection, or starts a design task Mobbin could help with, including one that's too big or outside what Mobbin does.
@@ -1452,6 +1452,11 @@ Redesign any screen from patterns real apps ship. Share a screenshot, your code 
 Gets better results from every Mobbin search, so the references match what you're working on. Use before every call to search_screens, search_flows or search_sections. Covers the tool, writing an effective query, the mode, pulling more results, and what to do when a search falls short.
 
 - Source: `C:\Users\chase\.gemini\config\plugins\mobbin\skills\search\SKILL.md`
+
+#### `sprite-stacking`
+Makes fake-3D rotatable pixel art with sprite stacking. Turns four orthographic views (top, side, front, back) into a visual-hull carved slice strip, checks it, and renders a crisp turntable for web Canvas, Godot, Unity or Phaser. Use when someone asks to "make a rotatable pixel art car", "sprite stacking", "fake 3D pixel art", "pixel art turntable", "stacked slices", "voxel-style 2D sprite", or wants a top-down vehicle, prop, tree or building that turns without drawing every angle.
+
+- Source: `C:\Users\chase\.gemini\config\skills\sprite-stacking\SKILL.md`
 
 #### `stageshow`
 Build faux product UI that looks like a real product, as a still illustration or an animated demo with a cursor. Browser and app windows, dashboards, phones, notifications, terminals, bento grids and cursor walkthroughs, framed, masked and cropped the way a marketing page, feature card or docs hero needs them. Use whenever someone wants a fake or mocked UI, a product demo or walkthrough animation, a hero or feature-card illustration of an app, a product shot in the style of a polished marketing site, or an animated cursor doing things in an interface, even if they never say "faux UI". React and plain CSS.
@@ -2158,8 +2163,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `3d images` (3D / Graphics)
 - **Stack**: `Node.js, WebGL, Shaders, WebGPU`
 - **Status**: `Active`
-- **Frontier Architecture**: WebGL2 stereoscopic shaders, glTF Draco mesh compression, Three.js r185/r186 native 3D Gaussian Splatting (`GaussianSplat` / `SPZLoader`), `KHR_gaussian_splatting` glTF support, **`@shapeshift-labs/ink-studio`** SDF & pixel-art Gaussian splats, TSL materials, FSR 1/TAAU upscaling nodes, `PCFShadowMap` migration
-- **Target Action**: Integrate Draco mesh compression, native Gaussian Splatting (`GaussianSplat.js`), Ink Studio SDF splat exports, and Three.js r187 cube-target PMREM, EON BRDF, and FSR1/TAAU upscaling nodes
+- **Frontier Architecture**: WebGL2 stereoscopic shaders, glTF Draco mesh compression, Three.js r185/r186 native 3D Gaussian Splatting (`GaussianSplat` / `SPZLoader`), `KHR_gaussian_splatting` glTF support, **`@shapeshift-labs/ink-studio`** SDF & pixel-art Gaussian splats, **`danielwh2/sprite-stacking`** 2.5D voxel slices, **Google `Three-Live`**, TSL materials, FSR 1/TAAU upscaling nodes, `PCFShadowMap` migration
+- **Target Action**: Integrate Draco mesh compression, native Gaussian Splatting (`GaussianSplat.js`), Ink Studio SDF & `sprite-stacking` exports, and Three.js r187 cube-target PMREM, EON BRDF, and `Three-Live` glTF compilation
 
 ### `AAC` (Assistive Tech / Accessibility)
 - **Stack**: `TypeScript, Vite, Web Speech API, PWA, CSS`
@@ -2170,8 +2175,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `Bookmark-favorites` (Portals / Browser Sync)
 - **Stack**: `Python 3.12, PowerShell 5.1/7+, HTML, JSON`
 - **Status**: `Active`
-- **Frontier Architecture**: **Active daily sync (`2026-11-25 08:00:05`)**: `generate_bookmarks.py` + `Sync-BrowserBookmarks.ps1` + `Run-BookmarkSync.ps1` generating **90+ project bookmarks** across 6 domain categories (`antigravity-all-projects-bookmarks.html`, `projects-bookmarks.json`) and backing up + syncing Chrome & Microsoft Edge `Bookmarks` files
-- **Target Action**: Trigger `Run-BookmarkSync.ps1` automatically from `deploy/routine_scan.ps1` on new project detection (`foldscape`, `Maps and Wikepedia`, `Google Flow-music`, `media player`, `Google Flow- Movies`); unify JSON export with `Plugins/website-bookmark-manager` and `chrome tab and bar`
+- **Frontier Architecture**: **Active daily sync (`2026-11-26 08:00:02`)**: `generate_bookmarks.py` + `Sync-BrowserBookmarks.ps1` + `Run-BookmarkSync.ps1` generating **90+ project bookmarks** across 6 domain categories (`antigravity-all-projects-bookmarks.html`, `projects-bookmarks.json`) and backing up + syncing Chrome & Microsoft Edge `Bookmarks` files
+- **Target Action**: Trigger `Run-BookmarkSync.ps1` automatically from `deploy/routine_scan.ps1` on new project detection (`foldnav`, `Human Motion inputs`, `foldscape`, `Maps and Wikepedia`, `Google Flow-music`, `media player`, `Google Flow- Movies`); unify JSON export with `Plugins/website-bookmark-manager` and `chrome tab and bar`
 
 ### `Cert Training Guide` (Education / Certification)
 - **Stack**: `HTML5, CSS3, JS, PowerShell, Web Speech API, YouTube Embed`
@@ -2182,8 +2187,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `Choogle` (Search / Portals)
 - **Stack**: `Static Web, JS, CSS, PWA`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed **`2026-11-25 23:05`**), offline Service Worker, local inverted index
-- **Target Action**: Maintain scheduled sync; verify `foldscape`, `media player`, `Google Flow-music`, `Maps and Wikepedia`, `Google Flow- Movies`, `Motion`, `Highschool basketball`, `geminipc`, `Neon- orchestrator`, & `WorldTear` entries
+- **Frontier Architecture**: Automated `Sync-ChoogleProjects.ps1` catalog sync (verified executed **`2026-11-26 23:05`**, indexing `Human Motion`), offline Service Worker, local inverted index
+- **Target Action**: Maintain scheduled sync; verify `foldnav`, `Human Motion inputs`, `foldscape`, `media player`, `Google Flow-music`, `Maps and Wikepedia`, `Google Flow- Movies`, `Motion`, `Highschool basketball`, `geminipc`, `Neon- orchestrator`, & `WorldTear` entries
 
 ### `Game Library` (Portals / Gaming UI)
 - **Stack**: `React, TailwindCSS, Python, Model Context Protocol`
@@ -2194,20 +2199,20 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `Github Portfolio` (Web / Career Showcase)
 - **Stack**: `HTML5, CSS3, JS, Markdown, PDF Resumes`
 - **Status**: `Active`
-- **Frontier Architecture**: Chase Hamilton Master Developer & Infrastructure Showcase (`README.md` & `projects.json` refreshed **`2026-11-25 18:06`**), dynamic GitHub REST/GraphQL API integration, **interactive terminal CLI modal (`app.js`)**, Bento grid, live operational health badges synced from `deploy/health_status.json`
+- **Frontier Architecture**: Chase Hamilton Master Developer & Infrastructure Showcase (`README.md` & `projects.json` refreshed **`2026-11-26 18:05`**), dynamic GitHub REST/GraphQL API integration, **interactive terminal CLI modal (`app.js`)**, Bento grid, live operational health badges synced from `deploy/health_status.json`
 - **Target Action**: Keep `projects.json` & CLI emulator synced with `deploy/PROJECT_CATALOG.json` and `resume` PDFs
 
 ### `Google Flow- Movies` (Media / Generative Anime & 3D CGI)
 - **Stack**: `Google Flow, Nano Banana 2, Veo 3.1 Lite, Omni 1.2 Flash, Higgsfield, FFmpeg`
 - **Status**: `Active`
-- **Frontier Architecture**: **Dual Flagship Productions (`2026-11-26 01:42 AM`)**: (1) **`dead-channel-13` Season 1**: EP01 Full Pilot (`JP_SUB` 250.3 MB / `EN_DUB` 259.4 MB YouTube masters), EP02 Full Episode (`JP_SUB` 128.9 MB), & newly authored **`ep03/ep03_script.md`** (*Ghost Number Seven*, 15 shots split between Google Flow `Omni 1.2 Flash` JP lip-sync & Higgsfield `Kling v2.1 Pro` / `Seedance v1 Pro` sakuga); (2) **`mushroom-gaiden`** (*Dragon of the Shadow Cap*): 60s 1080p24 3D CGI Toad/Toadette *Ninja Gaiden* action short (`MUSHROOM_GAIDEN_ACTION_SHORT_CLEAN.mp4` 94.3 MB & `JP_SUB.mp4` 93.5 MB) with automated QA frame sweeps
-- **Target Action**: Render `dead-channel-13/ep03` shots across Google Flow + Higgsfield MCP; automate `shots.json` -> Gemini API batch orchestration; promote status from `Incomplete` to `Deployable`/`Active` in `deploy/PROJECT_CATALOG.json` & `Choogle`
+- **Frontier Architecture**: **Dual Flagship Productions (`2026-11-26 17:54`)**: (1) **`dead-channel-13` Season 1**: EP01 Full Pilot (`JP_SUB` 250.3 MB / `EN_DUB` 259.4 MB YouTube masters), EP02 Full Episode (`JP_SUB` 128.9 MB), & **EP03 (*Ghost Number Seven*) Acts 1–2 rendered & assembled (`DEAD_CHANNEL_13_EP03_ACTS_1_2_EN_DUB.mp4` 52.8 MB & `JP_SUB.mp4` 47.9 MB, `videos_ep3/`, `frames_ep3/`)**; (2) **`mushroom-gaiden`** (*Dragon of the Shadow Cap*): 60s 1080p24 3D CGI Toad/Toadette *Ninja Gaiden* action short (`CLEAN.mp4` 94.3 MB & `JP_SUB.mp4` 93.5 MB) with automated QA frame sweeps
+- **Target Action**: Render `dead-channel-13/ep03` Act III (`ep3_11`–`ep3_15`) across Google Flow + Higgsfield MCP & assemble full EP03 masters; automate `shots.json` -> Gemini API batch orchestration; promote status from `Incomplete` to `Deployable`/`Active` in `deploy/PROJECT_CATALOG.json` & `Choogle`
 
 ### `Google Flow-music` (Media / Generative Audio)
 - **Stack**: `PowerShell, Python, FFmpeg, Web Audio, FastMCP`
 - **Status**: `Active`
-- **Frontier Architecture**: **Expanded (`2026-11-25 10:52 AM`, 233 files)**: Central Soundtrack, Stem & Cross-Project Integration Hub with **`vault/catalog.json` (14 tracks)**, **`dashboard/` Audition & Deployment Console** (`Serve-FlowMusicDashboard.py`, gapless 48 kHz Web Audio deck, 24fps frame cursor, ROM Studio & Dead Channel 13 sync), **`flow_music_dsp.py` + `Profile-StemDsp.py`** (`4.39x` overall / `41.01x` phase-lag speedup ready for `fast-anything v0.8.7`), 12 target LUFS syncs (`-14`/`-16`/`-18` LUFS), `Build-YuYuConnectedBlend.py`, `Build-RomStudioYoutubeSuite.py`, adaptive Godot/Unity/UE5/Web templates, & **`MCP/flow-music-mcp`** (10 FastMCP tools)
-- **Target Action**: Pair `New-FlowMusicTrack.ps1` brief generation with **Google DeepMind Lyria 3.5 / Lyria Clip** API synthesis; install Rust + `@el4cteo/fast-anything v0.8.7` to port `flow_music_dsp.py` kernels; run `Test-FlowMusicPipeline.ps1`; stream vault tracks into `media player` (SONA)
+- **Frontier Architecture**: **Expanded (`2026-11-25 10:52 AM`, 233 files)**: Central Soundtrack, Stem & Cross-Project Integration Hub with **`vault/catalog.json` (14 tracks)**, **`dashboard/` Audition & Deployment Console** (`Serve-FlowMusicDashboard.py`, gapless 48 kHz Web Audio deck, 24fps frame cursor, ROM Studio & Dead Channel 13 sync), **`flow_music_dsp.py` + `Profile-StemDsp.py`** (`4.39x` overall / `41.01x` phase-lag speedup ready for `fast-anything v0.8.8`), 12 target LUFS syncs (`-14`/`-16`/`-18` LUFS), `Build-YuYuConnectedBlend.py`, `Build-RomStudioYoutubeSuite.py`, adaptive Godot/Unity/UE5/Web templates, & **`MCP/flow-music-mcp`** (10 FastMCP tools)
+- **Target Action**: Pair `New-FlowMusicTrack.ps1` brief generation with **Google DeepMind Lyria 3.5 / Lyria Clip** API synthesis; install Rust + `@el4cteo/fast-anything v0.8.8` to port `flow_music_dsp.py` kernels; run `Test-FlowMusicPipeline.ps1`; stream vault tracks into `media player` (SONA) & `Human Motion inputs` Court Hero
 
 ### `Highschool basketball` (Sports / Analytics)
 - **Stack**: `Scaffolding (Empty Dir)`
@@ -2216,10 +2221,16 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Target Action**: Scaffold Python (`uv`) + OpenCV court homography shot-chart analyzer and FFmpeg `av1_nvenc` / `neonclipping` highlight cutter with `aws-enterprise-baseline.css` 100vw x 100vh dashboard
 
 ### `How to train your AI` (AI / Agents)
-- **Stack**: `Ollama, Python, Modelfiles`
+- **Stack**: `Ollama, Python, Modelfiles, Songe`
 - **Status**: `Active`
-- **Frontier Architecture**: NVIDIA **Vera Rubin NVL72**, **SC26 Rubin HPC** (50k+ CUDA cores, 7th-gen NVLink), **`Nemotron-Labs-Image-30B-A3B`** ("Pixel as Code"), **CUTLASS 4.9.0**, **NIM 2.1.6**, TensorRT-LLM 1.4/1.5+ (DSA FP4/FP8, GVR Top-K, Skip Softmax, PrimTS sparse MLA, EAGLE3 & PARD), **vLLM Container `26.10`** (`CUDA 13.4.3`, `FlashInfer 0.7.1rc5`, `Torch 2.15.0a0`, `vllm-rs` Rust frontend), **vLLM `v0.34.0`** (Model Runner V2 only, extensible KV cache `433k->672k`, block size `64`, `Inkling 2 Mini`), **ModelOpt `v0.48.0–v0.49.0rc0`** (`fp8_pb_wo`, `W4A16_NVFP4`, `MXFP8`, `amax/448`, QAD), **`NariQ`** 2.5–3-bit trellis GGUFs (`Qwen3.8-27B`), **`DaisyRose-27B`**, **`Qwen 3.8 Flash Next`**, **`LiquidAI LFM2.5-24B-A2B`**, **Unsloth Dynamic V3.1** & `inference-optimisation-skill`
-- **Target Action**: Deploy `serve_vllm.ps1` with vLLM `v0.34.0` / Container `26.10` (`--linear-backend flashinfer_cutedsl` & `--moe-backend flashinfer_moe_ep_cutedsl`); benchmark `NariQ` 3-bit / `DaisyRose-27B` / `Qwen 3.8 Flash Next` / `Inkling 2 Mini` GGUFs; integrate AST parser and ChromaDB knowledge base
+- **Frontier Architecture**: NVIDIA **Vera Rubin NVL72**, **SC26 Rubin HPC**, **`Nemotron-Labs-Image-30B-A3B`**, **CUTLASS 4.9.0**, **NIM 2.1.6**, TensorRT-LLM 1.4/1.5+ (`trtllm-build` removed, `prims_ts_sparse_mla`, `/v1/messages` + gRPC, KV Cache V2 default), **CUDA 13.0–13.5 (`CUDA Tile`)**, **vLLM Container `26.10`** (`vllm-rs`), **vLLM `v0.33`/`v0.34.0`** (Model Runner V2 only, extensible KV cache, block size `64`), **ModelOpt `v0.48–v0.49`** (`vllm_serve_fakequant`), **`Invoke-SongeTrainer.ps1` (`2026-11-26 10:58`)** w/ **`sous-labs/songe`** idle-compute LoRA proxy, **`NariQ`**, **`Inkling 2 Mini`**, **OpenRouter HF Routing**, Unsloth Dynamic V3.1
+- **Target Action**: Run `Invoke-SongeTrainer.ps1 -RunInit` for idle-compute LoRA fine-tuning on RTX 4080; deploy `serve_vllm.ps1` with vLLM `v0.34.0` / Container `26.10` (`--linear-backend flashinfer_cutedsl`); benchmark `NariQ` 3-bit / `Inkling 2 Mini`; integrate AST parser and ChromaDB knowledge base
+
+### `Human Motion inputs` (XR / CV & Input Emulation)
+- **Stack**: `Python 3.12, MediaPipe Tasks v1.x, OpenCV, WebSockets, OSC, vgamepad`
+- **Status**: `Testing`
+- **Frontier Architecture**: **Newly created (`2026-11-26 14:39`, 51 files)**: Real-time Logitech C920 (`1280x720` MJPG @ 30 FPS) motion capture & input hub using **MediaPipe Tasks v1.x** (`pose_landmarker_full` 33-pt world-3D + segmentation, `hand_landmarker` 21-pt, `face_landmarker` 478-pt/52 blendshapes, `efficientdet_lite0` + HSV ball lock), **Court Hero** dribble rhythm game (`/game`, synced to `Google Flow-music`), **Math Grab** (`/math-grab`), Room Scanner (`room_scanner.py`), Live 3D Web Studio (`8785`), & WASD / Air Mouse / **OSC UDP (`9000`)** / Xbox 360 (`vgamepad`) emulation
+- **Target Action**: Enable `[gpu]` (`onnxruntime-gpu`, `ultralytics`) & MediaPipe LiteRT GPU delegates; bridge OSC `127.0.0.1:9000` pose/dribble telemetry directly into `game mods` (`G21_WEBCAM_MOCAP_STUDIO` & `3F` Basketball) & `Highschool basketball`; upgrade web studio to Three.js `r187`/`r188` `WebGPURenderer`
 
 ### `Images` (Asset Store)
 - **Stack**: `Image Formats (.heic, .jpg)`
@@ -2230,26 +2241,26 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `MCP` (Systems / AI Tools)
 - **Stack**: `Node.js, JSON-RPC, Python, JavaScript, FastMCP v4.2`
 - **Status**: `Active`
-- **Frontier Architecture**: Centralized Model Context Protocol hub (**19 registered servers** in `mcp-registry.json`, including newly deployed **`flow-music-mcp`** [`2026-11-24` / pytest `11/25`]), MCP `2026-07-28` specification standard (stateless core, header routing `Mcp-Method`/`Mcp-Name`, `input_required`, `ttlMs`, `io.modelcontextprotocol/tasks`), **FastMCP v4.2** (**OAuth 2.1 CIMD `client_metadata_url` + RFC 8414 / RFC 9728 + PKCE**, `OAuthProvider`, **SEP-2640 Skills over MCP**, SEP-1686 `@mcp.tool(task=True)`, `Client(mode="auto")`, `ctx.sample()`, SEP-990), **Google ADK 2.0 + Managed Agents API + A2A + `WebMCP` + Android `AppFunctions`**, **`INK-Q/agy-fast` (`v0.3.1`)** local Antigravity MCP accelerator, UE 5.8 Unreal MCP Server, `ollama-mcp`, `morluto/rea`, `rust-anything`, `fast-anything v0.8.7`, MCP Baseline 2.0 (`Ctrl+M`, `Ctrl+E`), Texas Form 50-132 generator
-- **Target Action**: Test `flow-music-mcp` & `ollama-mcp` SEP-2640/SEP-1686 tasks; enforce OAuth 2.1 PKCE/CIMD + loopback HMAC token auth; evaluate `INK-Q/agy-fast v0.3.1` batched symbol/search MCP; scaffold `refdata-mcp` for `Maps and Wikepedia`; align web apps with `navigator.modelContext.registerTool` WebMCP manifests
+- **Frontier Architecture**: Centralized Model Context Protocol hub (**19 registered servers** in `mcp-registry.json`, including newly deployed **`flow-music-mcp`** [`2026-11-24` / pytest `11/25`]), MCP `2026-07-28` specification standard (stateless core, header routing `Mcp-Method`/`Mcp-Name`, `input_required`, `ttlMs`, `io.modelcontextprotocol/tasks`), **FastMCP `v4.2.6`/`v4.2.7a1`** (**OAuth 2.1 CIMD + RFC 8414 / RFC 9728 + PKCE**, server-side **`SKILL.md` Agent Skills** SEP-2640, **streaming `listen` subscriptions**, **opt-in OpenTelemetry usage middleware**, SEP-1686 `@mcp.tool(task=True)`, `Client(mode="auto")`, `ctx.sample()`), **Google ADK 2.0 + Managed Agents API + A2A + `WebMCP` + Android `AppFunctions`**, **`INK-Q/agy-fast` (`v0.3.2`)** local Antigravity MCP accelerator, UE 5.8 Unreal MCP Server, `ollama-mcp`, `morluto/rea`, `rust-anything`, `fast-anything v0.8.8`, MCP Baseline 2.0 (`Ctrl+M`, `Ctrl+E`), Texas Form 50-132 generator
+- **Target Action**: Test `flow-music-mcp` & `ollama-mcp` SEP-2640/SEP-1686 tasks & streaming `listen` subscriptions; enable FastMCP OpenTelemetry usage middleware; enforce OAuth 2.1 PKCE/CIMD + loopback HMAC token auth; scaffold `refdata-mcp` for `Maps and Wikepedia`; align web apps with `navigator.modelContext.registerTool` WebMCP manifests
 
 ### `MY Security` (Cybersecurity)
 - **Stack**: `C#, .NET 10, PowerShell`
 - **Status**: `Active`
-- **Frontier Architecture**: **Deployed inline security headers & same-origin mutation guard in `Program.cs` (`11/18/2026`)** + `SECURITY.md`; NetBird Zero-Trust posture checks, WireGuard kernel overlay, BitLocker/Defender/Endpoint ClamAV posture hooks, CISA KEV telemetry (**Mitel `133323`**, **Drupal `132165`**, **Optimizely `132224`**, **MailAssure `134624`**, **MONAI `133968`**, **Expressway `76466`**, **vCenter `123890`**, **LiteLLM `40217`**, **Kernel `98432`/`99288`**, **Java4Shell `114938`**, **SSHole `123158`**, **Podman `94603`/`19730`**)
-- **Target Action**: Add endpoint posture validator (BitLocker, Defender, Secure Endpoint ClamAV, OS/JDK/LiteLLM build) before peer access; alert on unpatched Nov 23–25 KEVs, `RHSA-2026:102590`, Java, LiteLLM, and OpenSSH musl
+- **Frontier Architecture**: **Deployed inline security headers & same-origin mutation guard in `Program.cs` (`11/18/2026`)** + `SECURITY.md`; NetBird Zero-Trust posture checks, WireGuard kernel overlay, BitLocker/Defender/Endpoint ClamAV posture hooks, CISA KEV telemetry (**NFS2ROOT `CVE-2026-99362`**, **vCenter `123903`/`123890`**, **Mitel `133323`**, **Drupal `132165`**, **Optimizely `132224`**, **MailAssure `134624`**, **MONAI `133968`**, **Expressway `76466`**, **LiteLLM `40217`**, **Kernel `98432`/`99288`**, **Java4Shell `114938`**, **SSHole `123158`**, **Podman `94603`/`19730`**)
+- **Target Action**: Add endpoint posture validator (BitLocker, Defender, Secure Endpoint ClamAV, OS/JDK/LiteLLM build) before peer access; alert on unpatched `CVE-2026-99362`, `CVE-2026-123903`, Nov 23–25 KEVs, `RHSA-2026:103817`/`102590`, Java, LiteLLM, and OpenSSH musl
 
 ### `Maps and Wikepedia` (Data / Offline Reference & GIS)
 - **Stack**: `Python 3.12, SQLite R-Tree/FTS5, Kiwix ZIM, Natural Earth GPKG`
 - **Status**: `Active`
 - **Frontier Architecture**: **Newly detected (`2026-11-24 23:00`, 14 workspace files + `F:\ReferenceData\`)**: `refdata` Python package (`GeoDatabase`, `WorldMap`, `WikipediaArchive`, `ReferenceHub`) + `manifest.json` indexing **`19.19M` English Wikipedia ZIM entries** (`52.69 GB` SHA-256 verified), **`13.48M` GeoNames SQLite R-Tree/FTS5 places**, and **`183` Natural Earth GeoPackage layers** + GeoTIFF basemaps
-- **Target Action**: Add **DuckDB `spatial` (`ST_Read`)** zero-ETL vector analytics, **PMTiles + MapLibre GL JS** zero-server slippy-map UI, and **`MCP/refdata-mcp`** FastMCP v4.2 offline grounding server for `ollama`, `geminipc`, & `My Planetarium`
+- **Target Action**: Add **DuckDB `spatial` (`ST_Read`)** zero-ETL vector analytics, **PMTiles + MapLibre GL JS** (`raster-layer-blend` & `{line,fill}-layer-blend`) zero-server slippy-map UI, and **`MCP/refdata-mcp`** FastMCP v4.2.6+ offline grounding server for `ollama`, `geminipc`, `foldnav`, & `My Planetarium`
 
 ### `Motion` (XR / 3D Kinematics)
 - **Stack**: `NVIDIA MotionBricks, Hugging Face`
 - **Status**: `Active`
 - **Frontier Architecture**: **Newly added (`11/20/2026`)**: Research & staging anchor for **NVIDIA MotionBricks** (SIGGRAPH 2026, `NVlabs/motionbricks`, `townbox/motionbricks-playground` in `https   hugging.txt`) neural Smart-Primitives character kinematics (`15,000 FPS` / `~2ms` latency via Warp/Newton/TensorRT), actively bridged into `game mods/rom_studio_motion.js`
-- **Target Action**: Export real MotionBricks JSON pose trajectories and FBX/GLB retargeting rigs for `game mods` Grand ROM Palace & `game studio` UE5/Godot characters
+- **Target Action**: Export real MotionBricks JSON pose trajectories and FBX/GLB retargeting rigs for `game mods` Grand ROM Palace, `Human Motion inputs`, & `game studio` UE5/Godot characters
 
 ### `My Custom Gui` (Portals / Command Center)
 - **Stack**: `HTML5, TailwindCSS, Glassmorphism`
@@ -2338,8 +2349,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `Popular Github Projects` (AI / Open-Source Radar)
 - **Stack**: `Node.js >=24, SSE, Vercel, PWA, JS`
 - **Status**: `Active`
-- **Frontier Architecture**: **`Fresh New TeCH (StackPulse)` / `github-trending-radar` v1.0.0 (`README.md`, `server.mjs`, `vercel.json`, `public/`, `dist/`, refreshed `2026-11-25 09:52`)**: Verified **`2026-11-25`** daily report (`reports/2026-11-25.md`) + **18 `agent-tools/`** spotlighting **`morluto/rea`** (`478.0k`★), **`openclaw` (`v2026.11.10`)**, **`mattpocock/skills` (`v1.3.2`)**, **`obra/superpowers` (`v7.0.2`)**, **`hermes-agent` (`v0.23.4`)**, **`opencode` (`v1.19.6`)**, **`n8n@2.49.6`**, **`yt-dlp` (`2026.11.23`)**, **`claw-code` (`v0.1.14`)**, **`Marvisak/VIctory` (`12.2k`★)**, **`xcl-dev/xcl` (`8.2k`★)**, **`fxceless/victory-fork` (`2.8k`★)**, **`4lwayz/portwatch-vi`**, **`ubiquitarianism/leonida`**, **`Xbox2Windows`**, **`xbox-emulator`**, **`fast-anything` (`v0.8.7`)**, **`INK-Q/agy-fast` (`v0.3.1`)**, **`Stream-Tube-Desktop` (`v0.7.5-alpha`)**, **`neonclipping` (`v1.1.0`)**, **`os6/nospeaker` (`v1.1`)**, **`xnulinux`**
-- **Target Action**: Deploy to Vercel (`vercel.json` ready); reclassify from Incomplete to Deployable in `deploy/PROJECT_CATALOG.json`; install `INK-Q/agy-fast v0.3.1` & `obra/superpowers v7.0.2`; wire `fast-anything v0.8.7`, `VIctory`, and `xcl` discoveries into `REA`, `Google Flow-music`, & `game mods`
+- **Frontier Architecture**: **`Fresh New TeCH (StackPulse)` / `github-trending-radar` v1.0.0 (`README.md`, `server.mjs`, `vercel.json`, `public/`, `dist/`, refreshed `2026-11-26 10:58`)**: Verified **`2026-11-26`** daily report (`reports/2026-11-26.md`) + **22 `agent-tools/`** spotlighting **`morluto/rea`** (`479.4k`★), **`openclaw` (`v2026.11.10`)**, **`mattpocock/skills` (`v1.3.2`)**, **`obra/superpowers` (`v7.0.2`)**, **`hermes-agent` (`v0.23.4`)**, **`opencode` (`v1.19.6`)**, **`n8n@2.49.7`**, **`ollama` (`v0.40.18`)**, **`claw-code` (`v0.1.14`)**, **`Marvisak/VIctory` (`13.0k`★)**, **`xcl-dev/xcl` (`8.5k`★)**, **`4lwayz/portwatch-vi` (`5.1k`★)**, **`xnulinux` (`4.2k`★)**, **`fast-anything` (`v0.8.8`, `4.2k`★)**, **`neonclipping` (`v1.1.0`)**, **`ubiquitarianism/leonida`**, **`Xbox2Windows`**, **`INK-Q/agy-fast` (`v0.3.2`)**, **`Stream-Tube-Desktop` (`v0.7.5-alpha`)**, **`qianyiai/kurocat` (`v5.1.2`)**, **`alesha-pro/llm.asm`**, **`deterministic-machines/deslop-please` (`v0.1.6`)**, **`danielwh2/sprite-stacking`**, and **`sous-labs/songe` (`0.1.0a15`)**
+- **Target Action**: Deploy to Vercel (`vercel.json` ready); reclassify from Incomplete to Deployable in `deploy/PROJECT_CATALOG.json`; evaluate `deslop-please v0.1.6` & `kurocat v5.1.2`; keep `agy-fast v0.3.2`, `songe`, `sprite-stacking`, and `fast-anything v0.8.8` synced across `How to train your AI`, `game studio`, & `Google Flow-music`
 
 ### `REA` (Cybersecurity / Reversing)
 - **Stack**: `Python, Ghidra 12.2 (JDK 25+), Node.js 24, PowerShell`
@@ -2350,8 +2361,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `RHCSA Exam200` (Linux / SysAdmin)
 - **Stack**: `Markdown, Shell, RHEL 9.5/9.6/10.3`
 - **Status**: `Active`
-- **Frontier Architecture**: **RHEL 10.3** (Nov 2026 minor stream, RHEL Lightspeed AI) & Image Mode (`bootc`) + NIST PQC (`ML-KEM`, Linux 6.12 lineage; upstream Linux 7.4-rc); **`RHSA-2026:102590`**, **`CVE-2026-98432`** (`RHSA-2026:93414`/`93412`/`93413`), **`luksmeta` `CVE-2026-111555`**, **NoisyTCP (`CVE-2026-99288`)**, **`cifs-utils` `104715`**, **`sssd` `CVE-2026-127101`** kernel/auth patching; Podman 5.8.x Quadlets (**`RHSA-2026:102296` / `100547` / `38495`** fixing **`CVE-2026-94603`** & **`19730`**), SSHole (`CVE-2026-123158`), systemd v256+ `run0`, `systemd-creds`, cgroups v2, SELinux (`:Z`)
-- **Target Action**: Build `grade_rhcsa_lab.sh` validating Quadlets, pasta/Netavark networks, Landlock rules, `CVE-2026-98432` / `RHSA-2026:102590` kernel, `luksmeta` `111555`, & Podman `CVE-2026-94603`/`19730` patch levels, persistent LVM UUIDs, and SGID permissions
+- **Frontier Architecture**: **RHEL 10.3** (Nov 2026 minor stream, RHEL Lightspeed AI) & Image Mode (`bootc`) + NIST PQC (`ML-KEM`, Linux 6.12 lineage; upstream Linux 7.4-rc); **`RHSA-2026:103817` / `103838` ("NFS2ROOT" `CVE-2026-99362` `nfsd` pre-auth root RCE + `99236` / `63916` / `98741`, Nov 26)**, **`CVE-2026-98432`** (`RHSA-2026:93414`/`93412`/`93413`), **`luksmeta` `CVE-2026-111555`**, **NoisyTCP (`CVE-2026-99288`, `RHSA-2026:102709`)**, **`cifs-utils` `104715`**, **`sssd` `CVE-2026-127101`** kernel/auth patching; Podman 5.8.x Quadlets (**`RHSA-2026:102296` / `100547` / `38495`** fixing **`CVE-2026-94603`** & **`19730`**), SSHole (`CVE-2026-123158`), systemd v256+ `run0`, `systemd-creds`, cgroups v2, SELinux (`:Z`)
+- **Target Action**: Build `grade_rhcsa_lab.sh` validating Quadlets, pasta/Netavark networks, Landlock rules, `RHSA-2026:103817` (`CVE-2026-99362` NFS2ROOT) / `98432` kernel, `luksmeta` `111555`, & Podman `CVE-2026-94603`/`19730` patch levels, persistent LVM UUIDs, and SGID permissions
 
 ### `Record my Gameplay` (XR / Media / Game Capture)
 - **Stack**: `Python 3.12, OBS Studio 30/31, obsws-python, OpenCV`
@@ -2380,7 +2391,7 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `VR creation apps` (XR / VR / MR)
 - **Stack**: `WebXR, Meta IWSDK 0.3.1, super-three 0.181, HavokPhysics WASM, Three.js r187`
 - **Status**: `Active`
-- **Frontier Architecture**: **Expanded to 7,541 files (`11/19/2026`) with `github-repos/WorldTear`**: Meta **Immersive Web SDK (`@iwsdk/core` 0.3.1)** + `super-three@0.181.0` + **HavokPhysics WASM** + `vite-plugin-mkcert` HTTPS Quest 3 passthrough cape using W3C WebXR Raw Camera Access (`'camera-access'`, `XRWebGLBinding.getCameraImage`) and Verlet fingertip-poke cloth simulation (`indexTipSpaces.{left,right}`); paired with Three.js r187 (`PMREMGenerator` cube targets, EON BRDF, cooperative `compileAsync()`), `WebGPURenderer` `multiview: true`, Chrome Android WebGPU rollout, and `XRHandModelFactory`
+- **Frontier Architecture**: **Expanded to 7,541 files (`11/19/2026`) with `github-repos/WorldTear`**: Meta **Immersive Web SDK (`@iwsdk/core` 0.3.1)** + `super-three@0.181.0` + **HavokPhysics WASM** + `vite-plugin-mkcert` HTTPS Quest 3 passthrough cape using W3C WebXR Raw Camera Access (`'camera-access'`, `XRWebGLBinding.getCameraImage`) and Verlet fingertip-poke cloth simulation (`indexTipSpaces.{left,right}`); paired with Three.js r187 (`PMREMGenerator` cube targets, EON BRDF, cooperative `compileAsync()`), **Google `Three-Live`** AI-to-GLB/USDZ/RealityKit JIT, `WebGPURenderer` `multiview: true`, and `XRHandModelFactory`
 - **Target Action**: Launch `WorldTear` (`npm run dev` over mkcert HTTPS) on Quest 3 to validate `'camera-access'` passthrough cape; upgrade `word-defender-xr.html` to Three.js r187 `WebGPURenderer` `multiview: true` & TSL `RenderPipeline`
 
 ### `agent 365` (AI / Enterprise Productivity)
@@ -2392,8 +2403,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `ai defense` (Cybersecurity / AI Safety)
 - **Stack**: `Python 3.12, HTML5, High-Gloss Lacquer`
 - **Status**: `Active`
-- **Frontier Architecture**: Aegis-AI Defense Matrix: 7-vector containment (defending **LiteLLM `CVE-2026-40217`** bytecode sandbox escape, **MONAI Label `CVE-2026-133968`**, **Drupal `CVE-2026-132165`**, **Optimizely JS `CVE-2026-132224`**, **Podman `CVE-2026-94603`**, **CRI-O `CVE-2026-76061`/`17113`**, & **Kernel `CVE-2026-98432`**), gVisor microVMs (`runsc`), AST/`RestrictedPython` validation, eBPF Tetragon + memory histogram/ML pressure telemetry (`r/netsec`), GitHub Actions/npm hook defense, Codename MDASH alignment, default-deny DNS egress proxy
-- **Target Action**: Deploy live simulation testbed on port 5050; add `CVE-2026-40217`, `CVE-2026-133968`, & `CVE-2026-132224` JS supply-chain containment scenarios; bind alerts to Sysmon and `MY Security`
+- **Frontier Architecture**: Aegis-AI Defense Matrix: 7-vector containment (defending **LiteLLM `CVE-2026-40217`** bytecode sandbox escape, **MONAI Label `CVE-2026-133968`**, **Drupal `CVE-2026-132165`**, **Optimizely JS `CVE-2026-132224`**, **Podman `CVE-2026-94603`**, **CRI-O `CVE-2026-76061`/`17113`**, **Kernel `CVE-2026-99362`/`98432`**, & **AI inference canary/AWS secret leakage**), gVisor microVMs (`runsc`), AST/`RestrictedPython` validation, eBPF Tetragon + memory histogram/ML pressure telemetry (`r/netsec`), GitHub Actions/npm hook defense, Codename MDASH alignment, default-deny DNS egress proxy
+- **Target Action**: Deploy live simulation testbed on port 5050; add `CVE-2026-40217`, `CVE-2026-133968`, `CVE-2026-132224`, & inference secret-canary scrubbing scenarios; bind alerts to Sysmon and `MY Security`
 
 ### `ai models tools from threads` (AI / Directory & Studio)
 - **Stack**: `HTML5, TailwindCSS, JSON, JS`
@@ -2404,8 +2415,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `ai slop` (Automation / Code Craftsmanship)
 - **Stack**: `PowerShell 7+, Regex, AST, Git Hooks, Windows Scheduler`
 - **Status**: `Active`
-- **Frontier Architecture**: Anti-Slop Craftsman automated audit engine (`Invoke-AntiSlopAudit.ps1`), 6 community anti-patterns (Emoji Asset Flips, LLM Purple Prose, Shovelware Ad-Traps, Shallow Dilution, Zero Kinesthetics & Lifeless Touch, Sub-48dp touch targets), `Clear-AiSlop.ps1` automated remediation, `Register-AntiSlopSchedule.ps1` recurring audit
-- **Target Action**: Execute `Invoke-AntiSlopAudit.ps1` across all workspace projects; register daily scheduled audit; integrate anti-slop quality score into `deploy/health_status.json` and morning briefings
+- **Frontier Architecture**: Anti-Slop Craftsman automated audit engine (`Invoke-AntiSlopAudit.ps1`), 6 community anti-patterns (Emoji Asset Flips, LLM Purple Prose, Shovelware Ad-Traps, Shallow Dilution, Zero Kinesthetics & Lifeless Touch, Sub-48dp touch targets), `Clear-AiSlop.ps1` automated remediation, `Register-AntiSlopSchedule.ps1` recurring audit, paired with **`deterministic-machines/deslop-please v0.1.6`** (`field-leak`, `shallow-module`, `module-cycle`, `tangle` static architecture linter)
+- **Target Action**: Execute `Invoke-AntiSlopAudit.ps1` across all workspace projects; adopt `deslop-please v0.1.6` deep-module linting rules; register daily scheduled audit; integrate anti-slop quality score into `deploy/health_status.json`
 
 ### `anime` (Media)
 - **Stack**: `Python, PowerShell, REST`
@@ -2422,7 +2433,7 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `automate my day` (Productivity)
 - **Stack**: `Python 3.12, UV, Batch, VBS, Kokoro-82M, FFmpeg`
 - **Status**: `Active`
-- **Frontier Architecture**: Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py`), automated clip cutter & YouTube shorts/longform pipeline (`Invoke-LongformPipeline.ps1`, `send_gaming_upload.ps1`, `longform_editor.py`, `smart_cutter.py`, `convert_to_shorts.py`, `game_intelligence.py`, `sfx_manager.py`, `sound_randomizer.py`, `audio_rotation.json`) routing 32+ authentic soundbytes across **Gears of War: E-Day**, TEKKEN 8, Beast of Reincarnation, and **Sonic Racing: CrossWorlds** (verified active **`2026-11-26 02:36`**: `longform_MultiGame_Collab_20261125` uploaded + `short_chill` & `short_hype` Theatre Gameplay renders ready), Kokoro-82M ONNX (`morning_brief.wav`), Stock Watch coiling alerts
+- **Frontier Architecture**: Passive income sentinel daemon (`sentinel_daemon.py`, `storage_cleaner.py` updated `11/26 11:43`), automated clip cutter & YouTube shorts/longform pipeline (`Invoke-LongformPipeline.ps1` `11/26 14:00`, `send_gaming_upload.ps1`, `longform_editor.py`, `smart_cutter.py`, `convert_to_shorts.py`, `game_intelligence.py`, `sfx_manager.py`, `sound_randomizer.py`, `audio_rotation.json`) routing 32+ authentic soundbytes across **Gears of War: E-Day**, TEKKEN 8, Beast of Reincarnation, and **Sonic Racing: CrossWorlds** (verified active **`2026-11-27 02:36`**: `longform_MultiGame_Collab_20261126_140048` uploaded `11/26 14:11` + `short_chill` `01:36` & `short_hype` `02:36` Theatre Gameplay renders ready), Kokoro-82M ONNX (`morning_brief.wav`), Stock Watch coiling alerts
 - **Target Action**: Verify sentinel daemon automated clip & longform compilation runs; ensure morning audio briefing synthesizes daily telemetry via Kokoro-82M ONNX; maintain paced YouTube upload schedule
 
 ### `aws` (Cloud / DevOps)
@@ -2482,8 +2493,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `deploy` (DevOps / Control)
 - **Stack**: `PowerShell, SQLite, JSON`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated health audits (`Test-ProjectHealth.ps1`, `routine_scan.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking **92 total scanned projects**, **36 deployable**, **6 in progress**, registering `foldscape` & `media player`), nightly health scan (verified **`2026-11-25 23:01:54`**: **17/17 Deploy Suite 100% Healthy**, 0 degraded, 0 critical in `4,472.33 ms`)
-- **Target Action**: Promote `foldscape`, `Popular Github Projects`, `Google Flow- Movies`, `Google Flow-music`, & `Maps and Wikepedia` from `Incomplete` to `Deployable`/`Active` in `PROJECT_CATALOG.json`; trigger `Bookmark-favorites/Run-BookmarkSync.ps1` on new folder detection
+- **Frontier Architecture**: Automated health audits (`Test-ProjectHealth.ps1`, `routine_scan.ps1`), full portfolio catalog sync (`PROJECT_CATALOG.json` tracking **94 total scanned projects**, **36 deployable**, **6 in progress**, registering `Human Motion inputs` & `foldnav` on `2026-11-26 23:00`), nightly health scan (verified **`2026-11-26 23:01:52`**: **17/17 Deploy Suite 100% Healthy**, 0 degraded, 0 critical in `3,672.1 ms`)
+- **Target Action**: Promote `foldnav`, `Human Motion inputs`, `foldscape`, `Popular Github Projects`, `Google Flow- Movies`, `Google Flow-music`, & `Maps and Wikepedia` from `Incomplete`/`Testing` to `Deployable`/`Active` in `PROJECT_CATALOG.json`; trigger `Bookmark-favorites/Run-BookmarkSync.ps1` on new folder detection
 
 ### `desktopscreensaver` (Graphics)
 - **Stack**: `HTML5 Canvas, JS`
@@ -2494,8 +2505,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `docker` (DevOps / Containers)
 - **Stack**: `PowerShell, Docker Desktop / Podman 5.8+, WSL2, Linux`
 - **Status**: `Active`
-- **Frontier Architecture**: Enterprise Container Virtualization on Windows 11 with WSL2 (Acer Predator i9-13900HX), `.wslconfig` Mirrored Mode networking, `virtiofs=true`, `autoMemoryReclaim=gradual`, `sparseVhd=true`, rootless Podman 5.8.x (**`RHSA-2026:102296`/`100547`/`38495`** fixing **`CVE-2026-94603`** checkpoint sandbox bypass, **`CVE-2026-19730`** Quadlet leak, & Go `56853`/`78667`/`97031`/`111943`) vs `Kiri-0.2.2` / `DOCKER_HOST` bridging, base image scanning for `CVE-2026-123158` (SSHole), `CVE-2026-76061`/`17113`, & `CVE-2026-17106` (CopyEscape); *(Host baseline `11/25`: Docker Desktop not yet installed)*
-- **Target Action**: Install Docker Desktop (`winget install Docker.DockerDesktop`) or bridge `DOCKER_HOST` to WSL2 rootless Podman 5.8 / `Kiri`; execute `Test-DockerEnvironment.ps1 -RunContainerTest`; scan local Alpine/musl images for CVE-2026-123158
+- **Frontier Architecture**: Enterprise Container Virtualization on Windows 11 with WSL2 (Acer Predator i9-13900HX), `.wslconfig` Mirrored Mode networking, `virtiofs=true`, `autoMemoryReclaim=gradual`, `sparseVhd=true`, rootless Podman 5.8.x (**`RHSA-2026:102296`/`100547`/`38495`** fixing **`CVE-2026-94603`** checkpoint sandbox bypass, **`CVE-2026-19730`** Quadlet leak, & Go `56853`/`78667`/`97031`/`111943`) vs `Kiri-0.2.2` / `DOCKER_HOST` bridging, **`Patchboard`** Docker socket container health monitor (`r/selfhosted`), base image scanning for `CVE-2026-123158` (SSHole), `CVE-2026-76061`/`17113`, & `CVE-2026-17106` (CopyEscape); *(Host baseline `11/26`: Docker Desktop not yet installed)*
+- **Target Action**: Install Docker Desktop (`winget install Docker.DockerDesktop`) or bridge `DOCKER_HOST` to WSL2 rootless Podman 5.8 / `Kiri`; evaluate `Patchboard` read-only status monitor; execute `Test-DockerEnvironment.ps1 -RunContainerTest`; scan local Alpine/musl images for CVE-2026-123158
 
 ### `email organizer` (Automation)
 - **Stack**: `Python, UV, Gmail API`
@@ -2509,17 +2520,23 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 - **Frontier Architecture**: Newly initialized workspace (`11/20/2026`) for emulator tracking (Dolphin 2512, ares v148, PCSX2-Qt, RPCS3, DuckStation, ShadPS4, Ryujinx) and ROM verification
 - **Target Action**: Scaffold Python (`uv`) ROM checksum/No-Intro DAT verifier & emulator version updater feeding directly into `game mods/tools/build_grand_rom_catalog.py`
 
+### `foldnav` (Mobile / Navigation & GIS)
+- **Stack**: `Kotlin, Jetpack Compose, MapLibre Android, WindowManager`
+- **Status**: `Active`
+- **Frontier Architecture**: **Newly created (`2026-11-26 14:22`, 25 files + `exports/FoldNav-ZFold6.apk` `44.82 MB`)**: Native Galaxy Z Fold 6 3D navigation cockpit (`com.foldnav.app`, `compileSdk 35`, `androidx.window:window:1.3.0`, `org.maplibre.gl:android-sdk:11.11.0`) with 3 dark-AMOLED 3D extruded themes (`MapStyleFactory.kt`), 5 custom cursors (`CursorBitmapFactory.kt`), `FoldTelemetryEngine.kt` (`TYPE_HINGE_ANGLE` + linear G-forces + Chicago Demo Cruise), Nominatim + OSRM turn-by-turn routing (`RoutingClient.kt`), voice TTS, & draggable floating Google Maps HUD pill (`FoldHudOverlayService.kt`)
+- **Target Action**: Upgrade `org.maplibre.gl:android-sdk` from `11.11.0` to **MapLibre Native `android-v13.5.4`** (Vulkan fixes, 16KB page-size, Globe preview); integrate `Maps and Wikepedia` GeoNames/PMTiles offline fallback & **Android 17 `AppFunctions`**; install `FoldNav-ZFold6.apk` on Z Fold 6 & promote from `Incomplete` to `Deployable`
+
 ### `foldscape` (XR / Mobile / Shaders)
 - **Stack**: `Kotlin, OpenGL ES 3.0, GLSL ES 3.00, Jetpack WindowManager, Compose, Three.js, Vite`
 - **Status**: `Active`
 - **Frontier Architecture**: **Newly built (`2026-11-25 18:22`, 209 files)**: Universal Foldable Screensaver & Live Wallpaper Suite powered by **10 shared GLSL ES 3.00 shader scenes** (5 procedural + 5 custom optical dioramas incl. Sonic, Shadow, Bruce Lee), Vite/TypeScript/Three.js 3D hardware studio (`studio/`), headless 60fps MP4 exporter (`exporter/export-packs.mjs`), & compiled **`exports/FoldScape-ZFold6.apk`** (`3.67 MB`, `compileSdk 35`, `androidx.window:window:1.3.0`, `FoldScapeWallpaperService`, `FoldScapeDreamService`, `HingeSensorTracker`, `HingeHapticsController`)
-- **Target Action**: Install `exports/FoldScape-ZFold6.apk` on Galaxy Z Fold 6; adopt **Android 16/17 Live Wallpaper Content APIs** & evaluate Vulkan swapchain reflow; unify posture telemetry with `zfold6 features` (FoldCraft) and promote from `Incomplete` to `Deployable`/`Active` in `deploy/PROJECT_CATALOG.json`
+- **Target Action**: Install `exports/FoldScape-ZFold6.apk` on Galaxy Z Fold 6; adopt **Android 16/17 Live Wallpaper Content APIs** & evaluate Vulkan swapchain reflow; unify posture telemetry with `zfold6 features` (FoldCraft) & `foldnav`; promote from `Incomplete` to `Deployable`/`Active` in `deploy/PROJECT_CATALOG.json`
 
 ### `game mods` (Game Dev)
 - **Stack**: `Python, Three.js, Batch, HTML`
 - **Status**: `Active`
-- **Frontier Architecture**: **Grand ROM Palace 3D Studio — `16/16` CDP/Playwright QA Gates Passed (`2026-11-26 01:50`, `0` local console/HTTP errors)**: `rom_studio_3d.html`, `rom_studio_dashboard.js`, `rom_studio_audio.js` (2-deck BGM + per-room console soundbank), `rom_studio_scene.js`, `rom_studio_engine.js`, `rom_studio_motion.js`, `studio_characters.js`, `tools/studio_quality_gate.mjs`; **Grand Railroad Exhibit** (4 trains, cab ride), **IMAX Shared Screen** (5 providers), **NASA Standish J2000 Observatory**, **18-Hole Mario Golf**, **Expanded Water Park Physics** (Gerstner waves, 3 slides, lazy river, diving), **Neon Raceway GP**, **Hide & Seek 3D**, **Drone Arena**, & **5 HTML5 arcade cabinets + web emulator**; **759 retail ROMs across 18 consoles**; tracking Xbox Series X\
-- **Target Action**: S wave (**`VIctory`** 12.2k★, **`victory-fork`**, **`xcl-dev/xcl`**, **`portwatch-vi`**, **`ubiquitarianism/leonida`**, **`Xbox2Windows`**, **`xbox-emulator`**)
+- **Frontier Architecture**: **Grand ROM Palace 3D Studio — `38/38` CDP/Playwright QA Gates Passed (`2026-11-27 01:57`, `0` console/HTTP errors, `0.42 MB` heap delta, `38` lazy-loaded zones saving `1,330` calls)**: `rom_studio_3d.html`, `rom_studio_engine.js`, `rom_studio_registry.js`, `rom_studio_radial.js`, `rom_studio_skyboxes.js`, `rom_studio_funko.js`, **Batch 3 (`brickstudio`, `nbaarena`, `boxinggym`)**, **Batch 4 (`penthouse`, `starship`, `piratecove`)**, **Webcam Mocap Studio (`G21`, MediaPipe 33-pt + Chao)**, **Minecraft (`G22`)**, **Horizon Stunt (`G23`)**, **SA1 Pinball & Ice Cap (`G29`/`G30`)**, **Cowboys Stadium (`G31`)**, **Creative Art Studio (`G32`)**, **Batch 1–2 (`G34`/`G35`)**, **Funko Vault (`G36`)**, **Profiles/Coins (`G37`)**, Railroad, IMAX, NASA J2000, Mario Golf, Water Park, Raceway, Hide & Seek/Monster, Drone, & 5 Arcades; **759 retail ROMs across 18 consoles**; tracking Xbox Series X\
+- **Target Action**: S wave (`VIctory` 13.0k★, `xcl` 8.5k★, `portwatch-vi`, `leonida`, `Xbox2Windows`, `xbox-emulator`)
 
 ### `game review` (Media / Script)
 - **Stack**: `Markdown`
@@ -2530,8 +2547,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `game studio` (Game Dev)
 - **Stack**: `C++ UE5.8, Godot 4.4/4.7, Python, ROMs`
 - **Status**: `Active`
-- **Frontier Architecture**: **`tools/Invoke-InkStudioSplatGenerator.ps1`** integrating **`@shapeshift-labs/ink-studio`** SDF sculpting & pixel-art Gaussian splats + **`chesstube_studio/` (updated `2026-11-26 01:37`)** Chess.com-to-YouTube pipeline; Engine Forge IDE, UE 5.8 Mesh Terrain / Lumen Probe Occlusion / native Unreal MCP Server; Epic `AnimGenOffline` & Nsight DLSS-vs-native profiling; Godot 4.7 `AreaLight3D`, True HDR, Vulkan RT & `Godot-MCP`; `ShadowBlade_Tekken_Naraka_UE5`, `ShatteredPagoda_Godot`, `ChessClash_Godot`, `TurboTypeRally_Godot`, `Paper_Mario_Expedition33_Pipe100.html`, `Test-StudioQualityGate.ps1`
-- **Target Action**: Run `Invoke-InkStudioSplatGenerator.ps1 -Operation RenderScene` to generate pixel-art Gaussian splat assets; run `Invoke-ChessAutoUpload.ps1` across Nov 25–26 packages; sync `Google Flow-music` adaptive stems; upgrade `engine_forge.html` to Three.js r187/r188 `WebGPURenderer`
+- **Frontier Architecture**: **`tools/Invoke-InkStudioSplatGenerator.ps1`** (`@shapeshift-labs/ink-studio`), **`danielwh2/sprite-stacking`** skill, + **`chesstube_studio/` (updated `2026-11-27 00:36`)** Chess.com-to-YouTube pipeline (`test_daily_limit.py`, `Start-ChessUploadWizard.ps1`); Engine Forge IDE, UE 5.8 Mesh Terrain / Lumen Probe Occlusion / native Unreal MCP Server; Epic `AnimGenOffline` & Nsight DLSS-vs-native profiling; Godot 4.7 `AreaLight3D`, True HDR, Vulkan RT & `Godot-MCP`; **Google `Three-Live`**; `ShadowBlade_Tekken_Naraka_UE5`, `ShatteredPagoda_Godot`, `ChessClash_Godot`, `TurboTypeRally_Godot`, `Paper_Mario_Expedition33_Pipe100.html`, `Test-StudioQualityGate.ps1`
+- **Target Action**: Run `Invoke-InkStudioSplatGenerator.ps1 -Operation RenderScene`; run `Invoke-ChessAutoUpload.ps1` across Nov 26–27 packages; sync `Google Flow-music` adaptive stems; upgrade `engine_forge.html` to Three.js r187/r188 `WebGPURenderer` & evaluate `Three-Live`
 
 ### `geminipc` (AI / Desktop Agent)
 - **Stack**: `Scaffolding (Empty Dir)`
@@ -2542,19 +2559,19 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `google drive organizer` (Automation)
 - **Stack**: `PowerShell, Google Drive API`
 - **Status**: `Active`
-- **Frontier Architecture**: PEP 723 inline script metadata, SHA-256 deduplication, automatic OAuth2 token refresh (`2026-11-25 08:00:03` sync verified)
+- **Frontier Architecture**: PEP 723 inline script metadata, SHA-256 deduplication, automatic OAuth2 token refresh (`2026-11-26 08:00:01` sync verified)
 - **Target Action**: Implement hash-based pre-upload check to eliminate redundant cloud uploads
 
 ### `improve gaming pc performance` (Gaming / Tuning)
 - **Stack**: `PowerShell 7+, Registry, WMI, UE5 Ini, BatteryHub`
 - **Status**: `Active`
-- **Frontier Architecture**: **Factory Acer Predator power plan lock** (`$AcerPlanGuid = "02e54963-3a6d-4756-9cca-a42174041e63"`, refreshed **`2026-11-26 03:01`**), **`Start-BatteryHubMonitor.ps1`** integrating SHA-256 verified **`BatteryHub v1.1.0`** (~2 MB RAM wireless peripheral monitor), discrete RTX 4080 GPU registry assignment (`GpuPreference=2;`), Steam PBZ continuous watcher, process priority `High`, UE5 `Engine.ini`, DirectStorage 1.2
+- **Frontier Architecture**: **Factory Acer Predator power plan lock** (`$AcerPlanGuid = "02e54963-3a6d-4756-9cca-a42174041e63"`, refreshed **`2026-11-27 03:01`**), **`Start-BatteryHubMonitor.ps1`** integrating SHA-256 verified **`BatteryHub v1.1.0`** (~2 MB RAM wireless peripheral monitor), discrete RTX 4080 GPU registry assignment (`GpuPreference=2;`), Steam PBZ continuous watcher, process priority `High`, UE5 `Engine.ini`, DirectStorage 1.2
 - **Target Action**: Execute `Invoke-PBZOptimization.ps1` & `Start-BatteryHubMonitor.ps1 -Launch` prior to gaming sessions; confirm `SteamPBZPerformanceWatcher` startup key remains active; verify `Engine.ini` 6GB texture pool across steamapps
 
 ### `increase my bing score` (Automation / Productivity)
 - **Stack**: `PowerShell 5.1/7+, Edge, Task Scheduler`
 - **Status**: `Active`
-- **Frontier Architecture**: **Active daily automation (`2026-11-25 09:00:02`)**: `Invoke-BingRewardsSearch.ps1` (Microsoft Edge signed-in profile automation, `20 topics × 10 modifiers` randomized pool, `[CmdletBinding(SupportsShouldProcess)]`, `[PSCustomObject]` streaming), `Register-BingRewardsTask.ps1` (`BingRewardsDailySearch`), plus `README.md` & `.gitignore`
+- **Frontier Architecture**: **Active daily automation (`2026-11-26 09:00:01`)**: `Invoke-BingRewardsSearch.ps1` (Microsoft Edge signed-in profile automation, `20 topics × 10 modifiers` randomized pool, `[CmdletBinding(SupportsShouldProcess)]`, `[PSCustomObject]` streaming), `Register-BingRewardsTask.ps1` (`BingRewardsDailySearch`), plus `README.md` & `.gitignore`
 - **Target Action**: Add `search_history.json` deduplication ledger across consecutive days, Pester 5.5+ unit tests, and status reporting into `deploy/health_status.json` & `Choogle`
 
 ### `index folder` (Portals / Workspace Navigation & 3D Museum)
@@ -2602,8 +2619,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `ollama` (AI / Knowledge Hub)
 - **Stack**: `Python, Ollama, HTML/JS, FastMCP`
 - **Status**: `Active`
-- **Frontier Architecture**: Automated Antigravity skill ingestion (refreshed **`2026-11-25 04:01`** on **`ollama/ollama` v0.40.17** lineage), dynamic Modelfile generation (`Modelfile`), local HTTP web studio (`index.html`), Windows scheduled daily sync, **Ollama Tandem Protocol (`Invoke-OllamaTandem.ps1`, `tandem_bridge.py`, `OLLAMA_TANDEM_PROTOCOL.txt`)**, dedicated Ollama MCP server (`MCP/ollama-mcp`) with FastMCP v4.2 (`SkillsDirectoryProvider` SEP-2640), `openclaw v2026.11.10` / `obra/superpowers v7.0.2` / `agy-fast v0.3.1` / `ECC v2.2.3` / `claw-code` / `hermes-agent v0.23.4` / `mattpocock/skills v1.3.2` patterns
-- **Target Action**: Verify `MCP/ollama-mcp` server tools and SEP-2640 `skill://` resource serving; ensure `sync_skills_to_ollama.py` ingests all 92+ projects (`foldscape`, `Maps and Wikepedia`, `Google Flow-music`, `media player`) and Nov 26 blueprints; validate `index.html` Web Studio
+- **Frontier Architecture**: Automated Antigravity skill ingestion (refreshed **`2026-11-26 04:01`** on **`ollama/ollama` v0.40.18** lineage), dynamic Modelfile generation (`Modelfile`), local HTTP web studio (`index.html`), Windows scheduled daily sync, **Ollama Tandem Protocol (`Invoke-OllamaTandem.ps1`, `tandem_bridge.py`, `OLLAMA_TANDEM_PROTOCOL.txt`)**, dedicated Ollama MCP server (`MCP/ollama-mcp`) with **FastMCP `v4.2.6`/`v4.2.7a1`** (`SkillsDirectoryProvider` SEP-2640, streaming `listen`), `openclaw v2026.11.10` / `obra/superpowers v7.0.2` / `agy-fast v0.3.2` / `ECC v2.2.3` / `claw-code` / `hermes-agent v0.23.4` / `songe` patterns
+- **Target Action**: Verify `MCP/ollama-mcp` server tools and SEP-2640 `skill://` resource serving; ensure `sync_skills_to_ollama.py` ingests all 94+ projects (`foldnav`, `Human Motion inputs`, `foldscape`, `Maps and Wikepedia`, `Google Flow-music`, `media player`) and Nov 27 blueprints; validate `index.html` Web Studio
 
 ### `onedrive cleanup` (Storage / Lifecycle Automation)
 - **Stack**: `PowerShell 7+, Windows Storage API, FFmpeg`
@@ -2620,8 +2637,8 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `openshift` (Linux / Platform Engineering)
 - **Stack**: `OpenShift 4.19–4.22, Kubernetes 1.32–1.34+, oc, Podman 5.8, Helm, Argo CD`
 - **Status**: `Active`
-- **Frontier Architecture**: Red Hat OpenShift Administration II (DO280) & EX280 curriculum; **OpenShift 4.21 / 4.22 (K8s 1.34+ & CRI-O 1.34+)**: **DRA GA** for CEL GPU VRAM/NVLink/NUMA scheduling, **Kueue** & **JobSet Operator**, **`RHSA-2026:95408` (`CVE-2026-98432`)**, **`RHSA-2026:102590`**, **`luksmeta` `CVE-2026-111555`**, **CRI-O symlink bind-mount bypass (`CVE-2026-76061`) & `mergeEnvs` (`CVE-2026-17113`)**, **`cifs-utils` (`CVE-2026-104715`)**, **Podman `CVE-2026-94603`/`19730`**, **`sssd` `CVE-2026-127101`**, Sandboxed Containers `systemd-gpt-auto-generator` hardening, `brace-expansion` (`14257`/`69152`), Go HTTP/2 (`33814`) & CSI `85781`; **OCP 4.20 EUS**: `X25519MLKEM768` PQC TLS, OVN-K8s BGP/EVPN
-- **Target Action**: Add OpenShift 4.21/4.22 DRA GPU ResourceClaimTemplate labs alongside 4.20 EVPN/BGP & PQC TLS; verify `RHSA-2026:95408` RHCOS, `luksmeta` `111555`, CRI-O `CVE-2026-76061`/`17113`, & NGINX2Root ingress patches; execute `diagnose-route.ps1` & `deploy-hello-world.ps1`
+- **Frontier Architecture**: Red Hat OpenShift Administration II (DO280) & EX280 curriculum; **OpenShift 4.21 / 4.22 (K8s 1.34+ & CRI-O 1.34+)**: **DRA GA** for CEL GPU VRAM/NVLink/NUMA scheduling, **Kueue** & **JobSet Operator**, **`RHSA-2026:103817` (`CVE-2026-99362` NFS2ROOT)**, **`RHSA-2026:95408` (`CVE-2026-98432`)**, **`RHSA-2026:102590` / `102709`**, **`luksmeta` `CVE-2026-111555`**, **CRI-O symlink bind-mount bypass (`CVE-2026-76061`) & `mergeEnvs` (`CVE-2026-17113`)**, **`cifs-utils` (`CVE-2026-104715`)**, **Podman `CVE-2026-94603`/`19730`**, **`sssd` `CVE-2026-127101`**, Sandboxed Containers `systemd-gpt-auto-generator` hardening, `brace-expansion` (`14257`/`69152`), Go HTTP/2 (`33814`) & CSI `85781`; **OCP 4.20 EUS**: `X25519MLKEM768` PQC TLS, OVN-K8s BGP/EVPN
+- **Target Action**: Add OpenShift 4.21/4.22 DRA GPU ResourceClaimTemplate labs alongside 4.20 EVPN/BGP & PQC TLS; verify `RHSA-2026:103817`/`95408` RHCOS, `luksmeta` `111555`, CRI-O `CVE-2026-76061`/`17113`, & NGINX2Root ingress patches; execute `diagnose-route.ps1` & `deploy-hello-world.ps1`
 
 ### `opensource` (DevOps / Governance & Supply Chain)
 - **Stack**: `Markdown, Git, GitHub CLI, CycloneDX, SPDX, Python`
@@ -2692,14 +2709,14 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `stock Bot traders` (Quantitative Finance / Algotrading)
 - **Stack**: `Python 3.12, alpaca-py, CCXT, Flask`
 - **Status**: `Active`
-- **Frontier Architecture**: Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling sentinel (verified active **`2026-11-25 17:00:55`**: `CHOP_BEAR` regime, top momentum `AAPL` +14.34% / Sharpe 2.46, 5 `AAPL` shares **`$100,048.44`** equity **`+$47.10` / `+2.73%`** unrealized, `NTDOY` -0.65%, `NVDA` -26.99%, `BTC-USD` -26.18% / `ETH-USD` `Safe=True`, 0/3 PDT, 100% SEC 15c3-5 compliant)
-- **Target Action**: Ingest coiling volatility squeeze signals from `stock watch` into vector screener; add ATR-scaled slippage stress testing, intrabar tick-state parity, unintended short-skew check, & sector-batch cap (`r/algotrading` Nov 2026); maintain daily upskill logs
+- **Frontier Architecture**: Multi-broker execution architecture (Alpaca equities & CCXT crypto), `alpaca-py` parent `LimitOrderRequest` (zero entry slippage) & stop-limit `StopLossRequest`, rug pull detector & liquidity cliff sentinel (`core/rug_pull_detector.py`), regulatory compliance engine (PDT & wash-sale check), vectorized alpha factors & screeners, real-time Web GUI dashboard (localhost:5000), automated daily upskilling sentinel (verified active **`2026-11-26 17:00:52`**: `CHOP_BEAR` regime, top momentum `AAPL` +13.53% / Sharpe 2.34, 5 `AAPL` shares **`$100,053.44`** equity **`+$52.10` / `+3.02%`** unrealized, `NTDOY` +3.11%, `MSFT` -1.11%, `NVDA` -28.71%, `BTC-USD` -23.11% / `ETH-USD` `Safe=True`, 0/3 PDT, 100% SEC 15c3-5 compliant)
+- **Target Action**: Ingest coiling volatility squeeze signals from `stock watch` into vector screener; add ATR-scaled slippage stress testing, intrabar tick-state restart parity, unintended short-skew check, & sector-batch cap (`r/algotrading` Nov 2026); maintain daily upskill logs
 
 ### `stock watch` (Quantitative Finance)
 - **Stack**: `Python 3.12, UV, alpaca-py, cuDF`
 - **Status**: `Active`
-- **Frontier Architecture**: NVIDIA RAPIDS cuDF GPU acceleration (`cudf.pandas.install()`), Volume-Filtered Carter Squeeze (VWAP & 21/50 EMA), Wyckoff Spring smart-money absorption ($>2.0\times$ volume), Half-Kelly capital sizing, **point-in-time fundamentals & delisted-ticker survivorship hygiene, Form 13F institutional benchmark, regime-dependent ATR slippage, 1x/2x/4x cost-frontier stress testing, limit trade-through fills, walk-forward OOS + permutation/p-value & tick Sharpe validation (`r/algotrading` Nov 2026)**, **`ZhuLinsen/daily_stock_analysis`** local LLM filing/sentiment pattern, Alpaca paper-to-live 1-share canary execution
-- **Target Action**: Run 1x/2x/4x slippage stress tests, permutation/p-value, survivorship-free & tick-granularity validation against winning 1-min backtests; add offline Ollama SEC-filing/earnings sentiment screen; execute 1-share live canary phase in `alpaca_broker.py`
+- **Frontier Architecture**: NVIDIA RAPIDS cuDF GPU acceleration (`cudf.pandas.install()`), Volume-Filtered Carter Squeeze (VWAP & 21/50 EMA), Wyckoff Spring smart-money absorption ($>2.0\times$ volume), Half-Kelly capital sizing, **point-in-time fundamentals & delisted-ticker survivorship hygiene, 2016–Nov 2026 Form 13F institutional benchmark w/ friction, 1-year 16-AI-model live benchmark, non-PnL live-transition anomaly telemetry, regime-dependent ATR slippage, 1x/2x/4x cost-frontier stress testing, limit trade-through fills, walk-forward OOS + permutation/p-value & tick Sharpe validation (`r/algotrading` Nov 2026)**, **`ZhuLinsen/daily_stock_analysis`** local LLM filing/sentiment pattern, Alpaca paper-to-live 1-share canary execution
+- **Target Action**: Run 1x/2x/4x slippage stress tests, permutation/p-value, survivorship-free & tick-granularity validation against winning 1-min backtests; add non-PnL fill-latency/quote-staleness anomaly checks + offline Ollama SEC-filing/earnings sentiment screen; execute 1-share live canary phase in `alpaca_broker.py`
 
 ### `synergize and pay` (Strategy / Business)
 - **Stack**: `Markdown, HTML`
@@ -2722,13 +2739,13 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `vulnerability management` (Cybersecurity)
 - **Stack**: `C#, .NET 10 MVC, SQLite`
 - **Status**: `Active`
-- **Frontier Architecture**: **Deployed `SecurityHardeningMiddleware.cs` (`11/18/2026`)** + `SECURITY.md`; Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp`, CSAF 2.0/3.0, DefectDojo v2/v3; **CISA KEV Nov 25 (BOD 26-04 Due Nov 28)**: **Mitel MiCollab `CVE-2026-133323`** + 4 AWV CVEs, **Danfoss AK-SM 800A**, **HPE Juniper Session Smart**, **Vates Xen Orchestra**; **Nov 24 KEV (Due Nov 27)**: **Drupal Core `132165`** (Fail2Install / Anthropic OSS Scanner), **Idunno AntiCsrf `131914`**, **Optimizely `132224`** (+ **Cleverbridge** breach); **Nov 23 KEV**: **MailAssure `134624`**, **MONAI Label `133968`**, **Expressway `76466`** (`15.5.21+`), **vCenter `123890`**, **LiteLLM `40217`**; **Gitea `117635`** & **Azure APIM Classic**; **Kernel `RHSA-2026:102590`/`98432`**, **`luksmeta` `111555`**, **Podman `RHSA-2026:102296`/`100547`/`38495`**, **CRI-O `76061`/`17113`**, **`cifs-utils` `104715`**, **Java4Shell (`114938`)**, **SSHole (`123158`)**
-- **Target Action**: Enforce Nov 23–25 CISA KEV + BOD 26-04 remediation (`CVE-2026-133323`, `132165`, `131914`, `132224`, `134624`, `133968`, `76466`, `123890`) + `RHSA-2026:102590` / `102296` / `luksmeta` `111555` / CRI-O `17113` / NGINX HTTP/2 in scanner; lock Cisco baseline until Jan 20, 2027; compile Native AOT
+- **Frontier Architecture**: **Deployed `SecurityHardeningMiddleware.cs` (`11/18/2026`)** + `SECURITY.md`; Cisco PSIRT openVuln API, `CiscoPSIRT/openvuln-mcp`, CSAF 2.0/3.0, DefectDojo v2/v3; **Linux Kernel "NFS2ROOT" `CVE-2026-99362` (`RHSA-2026:103817`/`103838`, Nov 26)** + `CVE-2026-99236`/`63916`/`98741`; **VMware vCenter `VMSA-2026-0011` (`CVE-2026-123903` LDAP auth bypass, Nov 24)** + `VMSA-2026-0009` (`123890`); **CISA KEV Nov 25 (BOD 26-04 Due Nov 28)**: **Mitel MiCollab `CVE-2026-133323`** + 4 AWV CVEs, **Danfoss AK-SM 800A**, **HPE Juniper Session Smart**, **Vates Xen Orchestra**; **Nov 24 KEV**: **Drupal Core `132165`** (Fail2Install), **Idunno `131914`**, **Optimizely `132224`** (+ **Cleverbridge**); **Nov 23 KEV**: **MailAssure `134624`**, **MONAI Label `133968`**, **Expressway `76466`** (`X15.5.20+`/`15.5.21+`), **LiteLLM `40217`**; **Kernel `RHSA-2026:102590`/`102709`/`98432`**, **`luksmeta` `111555`**, **Podman `RHSA-2026:102296`/`100547`**, **CRI-O `76061`/`17113`**, **Java4Shell (`114938`)**, **SSHole (`123158`)**
+- **Target Action**: Enforce `RHSA-2026:103817` (`CVE-2026-99362` NFS2ROOT), `VMSA-2026-0011` (`CVE-2026-123903`), & Nov 23–25 CISA KEV + BOD 26-04 remediation (`133323`, `132165`, `131914`, `132224`, `134624`, `133968`, `76466`, `123890`) + `luksmeta` `111555` / CRI-O `17113` / NGINX HTTP/2 in scanner; lock Cisco baseline until Jan 20, 2027; compile Native AOT
 
 ### `windows event viewer` (Cybersecurity)
 - **Stack**: `PowerShell, Sysmon 15+, RustText, Batch`
 - **Status**: `Active`
-- **Frontier Architecture**: Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`, verified active through **`2026-11-26 02:32 AM`** with `McAfeeScan_Daily_20261126_010307.log` & `McAfeeScan_Hourly_20261126_023224.log`), **`Open-EventLogInRustText.ps1`** integrating SHA-256 verified **`RustText v2.5.0`** (`Illson/RustText`) for large-file live log tailing & JSONL inspection
+- **Frontier Architecture**: Sysmon Event IDs (1, 3, 7, 10, 22, 25), MITRE ATT&CK, automated McAfee scanner orchestration (`Invoke-McAfeeScanner.ps1`, verified active through **`2026-11-27 02:32 AM`** with `McAfeeScan_Daily_20261126_010307.log` & `McAfeeScan_Hourly_20261127_023159.log`), **`Open-EventLogInRustText.ps1`** integrating SHA-256 verified **`RustText v2.5.0`** (`Illson/RustText`) for large-file live log tailing & JSONL inspection
 - **Target Action**: Maintain hourly and daily McAfee scanner scans; test `Open-EventLogInRustText.ps1 -Launch` on latest scan logs; alert on LSASS dump attempts and parse logs into `deploy/health_status.json`
 
 ### `youtube channels` (Media / YouTube Automation)
@@ -2746,6 +2763,6 @@ Top 0.1% YouTube packaging strategist, retention engineer, and algorithm optimiz
 ### `zfold6 features` (Mobile / Android)
 - **Stack**: `Kotlin, Jetpack Compose, Android Gradle`
 - **Status**: `Active`
-- **Frontier Architecture**: **Graduated to FoldCraft Android App (`com.foldcraft.zfold6`, 22 files, `11/19/2026`)**: **Jetpack WindowManager (`androidx.window`)**, hardware **`Sensor.TYPE_HINGE_ANGLE`** (0°–180°), adaptive `NavigationBar`/`NavigationRail` (`screenWidthDp >= 580`), `PostureDashboardScreen`, `AppPairsScreen`, `FlexTriggersScreen` + draggable `FoldOverlayService`, `compileSdk 35`; aligned with **Android 17 Adaptive-First**, **Android 16/17 Live Wallpaper Content APIs**, **Jetpack `AppFunctions` (Android MCP)**, **Android Studio BYOA**, **Google AI Studio native Kotlin**, **`foldscape`**, & **`pierridotite/mobile-agent-testers`** virtual Android CI QA
-- **Target Action**: Open in Android Studio Ladybug+ and deploy APK alongside `foldscape/exports/FoldScape-ZFold6.apk` via USB Debugging to Galaxy Z Fold 6; expose FoldCraft actions via **Android `AppFunctions`** MCP; wire `mobile-agent-testers` CI UI sweeps & Termux/Syncthing PC bridge
+- **Frontier Architecture**: **Graduated to FoldCraft Android App (`com.foldcraft.zfold6`, 22 files, `11/19/2026`)**: **Jetpack WindowManager (`androidx.window`)**, hardware **`Sensor.TYPE_HINGE_ANGLE`** (0°–180°), adaptive `NavigationBar`/`NavigationRail` (`screenWidthDp >= 580`), `PostureDashboardScreen`, `AppPairsScreen`, `FlexTriggersScreen` + draggable `FoldOverlayService`, `compileSdk 35`; aligned with **Android 17 Adaptive-First & *Gemini Intelligence***, **Android 16/17 Live Wallpaper Content APIs**, **Jetpack `AppFunctions` (Android MCP)**, **Android Studio BYOA**, **Google AI Studio native Kotlin**, **`foldscape`**, **`foldnav`**, & **`pierridotite/mobile-agent-testers`** virtual Android CI QA
+- **Target Action**: Open in Android Studio Ladybug+ and deploy APK alongside `foldscape/exports/FoldScape-ZFold6.apk` & `foldnav/exports/FoldNav-ZFold6.apk` via USB Debugging to Galaxy Z Fold 6; expose FoldCraft actions via **Android `AppFunctions`** MCP; wire `mobile-agent-testers` CI UI sweeps & Termux/Syncthing PC bridge
 
